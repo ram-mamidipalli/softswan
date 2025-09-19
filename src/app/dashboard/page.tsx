@@ -52,9 +52,15 @@ export default function DashboardPage() {
     };
   }, []);
 
-  const progressPercentage = currentBadge && nextBadge 
-    ? Math.max(0, ((swanXP - currentBadge.xpRequired) / (nextBadge.xpRequired - currentBadge.xpRequired)) * 100)
-    : (currentBadge && swanXP >= currentBadge.xpRequired) ? 100 : 0;
+  const progressPercentage = React.useMemo(() => {
+    if (!currentBadge || !nextBadge) {
+      return swanXP > 0 ? 100 : 0;
+    }
+    const range = nextBadge.xpRequired - currentBadge.xpRequired;
+    if (range <= 0) return 0; // Avoid division by zero
+    const progress = swanXP - currentBadge.xpRequired;
+    return (progress / range) * 100;
+  }, [swanXP, currentBadge, nextBadge]);
 
   const stats = [
     {
