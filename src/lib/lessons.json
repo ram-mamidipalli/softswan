@@ -1,3 +1,4 @@
+
 {
   "lessons": [
     {
@@ -49,6 +50,406 @@
       "imageUrl": "https://img.youtube.com/vi/M3fHnE-n_GA/hqdefault.jpg",
       "videoUrl": "https://www.youtube.com/embed/M3fHnE-n_GA",
       "description": "This lecture provides a comprehensive guide to raising a pre-seed round, including how to find investors, what to put in your deck, and how to close the deal."
+    },
+    {
+      "id": 6,
+      "title": "Everything We Teach at YC in 10 Minutes",
+      "author": "Y Combinator",
+      "category": "Startup Fundamentals",
+      "imageHint": "y combinator",
+      "imageUrl": "https://img.youtube.com/vi/Pg72m3CjuK4/hqdefault.jpg",
+      "videoUrl": "https://www.youtube.com/embed/Pg72m3CjuK4",
+      "description": "A rapid-fire summary of the core concepts taught at Y Combinator, covering everything from idea to execution."
+    },
+    {
+      "id": 7,
+      "title": "How to Start a Startup",
+      "author": "Sam Altman, Dustin Moskovitz",
+      "category": "Startup Fundamentals",
+      "imageHint": "startup journey",
+      "imageUrl": "https://img.youtube.com/vi/CBYhVcO4WgI/hqdefault.jpg",
+      "videoUrl": "https://www.youtube.com/embed/CBYhVcO4WgI",
+      "description": "A foundational lecture on the principles of starting a company, from two of the most influential figures in the startup world."
+    },
+    {
+      "id": 8,
+      "title": "Best Startup Lessons from Y Combinator",
+      "author": "Michael Seibel",
+      "category": "Startup Advice",
+      "imageHint": "startup advice",
+      "imageUrl": "https://img.youtube.com/vi/GP5jXj0O4OM/hqdefault.jpg",
+      "videoUrl": "https://www.youtube.com/embed/GP5jXj0O4OM",
+      "description": "YC's CEO Michael Seibel shares some of the most important lessons learned from working with thousands of startups."
+    },
+    {
+      "id": 9,
+      "title": "Startup Business Models and Pricing",
+      "author": "Startup School",
+      "category": "Business Strategy",
+      "imageHint": "pricing strategy",
+      "imageUrl": "https://img.youtube.com/vi/oWZbWzAyHAE/hqdefault.jpg",
+      "videoUrl": "https://www.youtube.com/embed/oWZbWzAyHAE",
+      "description": "An essential guide to creating a sustainable business model and setting the right price for your product."
+    },
+    {
+      "id": 10,
+      "title": "How to Apply and Succeed at YC",
+      "author": "Startup School",
+      "category": "Startup Advice",
+      "imageHint": "y combinator application",
+      "imageUrl": "https://img.youtube.com/vi/B5tU2447OK8/hqdefault.jpg",
+      "videoUrl": "https://www.youtube.com/embed/B5tU2447OK8",
+      "description": "Insider tips on how to craft a successful application for Y Combinator and what to expect during the process."
+    },
+    {
+      "id": 11,
+      "title": "The Sales Playbook For Founders",
+      "author": "Startup School",
+      "category": "Sales & Growth",
+      "imageHint": "sales playbook",
+      "imageUrl": "https://img.youtube.com/vi/g0k0Y-55vG4/hqdefault.jpg",
+      "videoUrl": "https://www.youtube.com/embed/g0k0Y-55vG4",
+      "description": "A practical guide for founders on how to build a repeatable sales process from the ground up."
+    },
+    {
+      "id": 12,
+      "title": "How to Get Your First Customers",
+      "author": "Startup School",
+      "category": "Sales & Growth",
+      "imageHint": "first customers",
+      "imageUrl": "https://img.youtube.com/vi/L5yK78vL-i4/hqdefault.jpg",
+      "videoUrl": "https://www.youtube.com/embed/L5yK78vL-i4",
+      "description": "Actionable strategies for acquiring your first set of users and validating your product in the market."
+    },
+    {
+      "id": 13,
+      "title": "How to Build An MVP",
+      "author": "Startup School",
+      "category": "Product Development",
+      "imageHint": "building mvp",
+      "imageUrl": "https://img.youtube.com/vi/qM2h-s6x_bI/hqdefault.jpg",
+      "videoUrl": "https://www.youtube.com/embed/qM2h-s6x_bI",
+      "description": "Learn the principles of creating a Minimum Viable Product to test your ideas quickly and efficiently."
+    },
+    {
+      "id": 14,
+      "title": "Why Should I Start a Startup?",
+      "author": "Michael Seibel",
+      "category": "Motivation",
+      "imageHint": "startup motivation",
+      "imageUrl": "https://img.youtube.com/vi/L2G50oF8m6M/hqdefault.jpg",
+      "videoUrl": "https://www.youtube.com/embed/L2G50oF8m6M",
+      "description": "A talk that explores the core motivations and mindset required to embark on the entrepreneurial journey."
+    },
+    {
+      "id": 15,
+      "title": "Lessons from 1,000+ YC Startups",
+      "author": "Dalton Caldwell",
+      "category": "Startup Advice",
+      "imageHint": "startup lessons",
+      "imageUrl": "https://img.youtube.com/vi/d_kF1n9zB70/hqdefault.jpg",
+      "videoUrl": "https://www.youtube.com/embed/d_kF1n9zB70",
+      "description": "Insights on resilience, avoiding common pitfalls, and knowing when to pivot, drawn from a vast pool of startup experiences."
+    },
+    {
+      "id": 16,
+      "title": "English for Entrepreneurs",
+      "author": "Oxford Online English",
+      "category": "Communication",
+      "imageHint": "business english",
+      "imageUrl": "https://img.youtube.com/vi/MbrwRQSokDA/hqdefault.jpg",
+      "videoUrl": "https://www.youtube.com/embed/MbrwRQSokDA",
+      "description": "A lesson focused on the specific English language skills needed to grow your business and communicate effectively."
+    },
+    {
+      "id": 17,
+      "title": "30 Years of Business Knowledge in 2.5 Hours",
+      "author": "Valuetainment",
+      "category": "Business Strategy",
+      "imageHint": "business knowledge",
+      "imageUrl": "https://img.youtube.com/vi/9VlvbpXwLJs/hqdefault.jpg",
+      "videoUrl": "https://www.youtube.com/embed/9VlvbpXwLJs",
+      "description": "A marathon session covering decades of business wisdom, condensed into a single, high-impact video."
+    },
+    {
+      "id": 18,
+      "title": "The Foundations of Entrepreneurship",
+      "author": "The Speaker",
+      "category": "Startup Fundamentals",
+      "imageHint": "entrepreneurship foundations",
+      "imageUrl": "https://img.youtube.com/vi/UEngvxZ11sw/hqdefault.jpg",
+      "videoUrl": "https://www.youtube.com/embed/UEngvxZ11sw",
+      "description": "A full course on the fundamental principles of entrepreneurship, from idea generation to execution."
+    },
+    {
+      "id": 19,
+      "title": "7 Must-Know Business English Lessons",
+      "author": "Go Natural English",
+      "category": "Communication",
+      "imageHint": "business communication",
+      "imageUrl": "https://img.youtube.com/vi/YjJEiWZw3_w/hqdefault.jpg",
+      "videoUrl": "https://www.youtube.com/embed/YjJEiWZw3_w",
+      "description": "Practical English lessons for real-world business scenarios, including emails, presentations, and meetings."
+    },
+    {
+      "id": 20,
+      "title": "IELTS Speaking Topic: Entrepreneurship",
+      "author": "IELTS English Academy",
+      "category": "Communication",
+      "imageHint": "ielts speaking",
+      "imageUrl": "https://img.youtube.com/vi/LKpjdG7ygUg/hqdefault.jpg",
+      "videoUrl": "https://www.youtube.com/embed/LKpjdG7ygUg",
+      "description": "An English podcast designed to help you talk about entrepreneurship, perfect for IELTS preparation and general fluency."
+    },
+    {
+      "id": 21,
+      "title": "Introduction to Entrepreneurship",
+      "author": "Michael R. Nusbaum",
+      "category": "Startup Fundamentals",
+      "imageHint": "introduction entrepreneurship",
+      "imageUrl": "https://img.youtube.com/vi/ICYqc5_mJ5g/hqdefault.jpg",
+      "videoUrl": "https://www.youtube.com/embed/ICYqc5_mJ5g",
+      "description": "A university-style lecture that provides a comprehensive introduction to the world of entrepreneurship."
+    },
+    {
+      "id": 22,
+      "title": "How To Build A Business That Works",
+      "author": "Brian Tracy",
+      "category": "Business Strategy",
+      "imageHint": "building business",
+      "imageUrl": "https://img.youtube.com/vi/p4vA4p5A52A/hqdefault.jpg",
+      "videoUrl": "https://www.youtube.com/embed/p4vA4p5A52A",
+      "description": "Legendary business coach Brian Tracy shares his formula for building a successful and sustainable business."
+    },
+    {
+      "id": 23,
+      "title": "The Power of an Entrepreneurial Mindset",
+      "author": "Bill Roche",
+      "category": "Mindset",
+      "imageHint": "entrepreneurial mindset",
+      "imageUrl": "https://img.youtube.com/vi/sS_w8h1S78g/hqdefault.jpg",
+      "videoUrl": "https://www.youtube.com/embed/sS_w8h1S78g",
+      "description": "A TEDx talk on how cultivating the right mindset can be the most critical factor in entrepreneurial success."
+    },
+    {
+      "id": 24,
+      "title": "Naval Ravikant Talks Entrepreneurship",
+      "author": "Naval Ravikant",
+      "category": "Startup Advice",
+      "imageHint": "naval ravikant",
+      "imageUrl": "https://img.youtube.com/vi/x2y73jD_l_s/hqdefault.jpg",
+      "videoUrl": "https://www.youtube.com/embed/x2y73jD_l_s",
+      "description": "Philosopher and investor Naval Ravikant shares his unique and profound insights on building wealth and a successful business."
+    },
+    {
+      "id": 25,
+      "title": "Business English Conversation",
+      "author": "Boston English",
+      "category": "Communication",
+      "imageHint": "business conversation",
+      "imageUrl": "https://img.youtube.com/vi/e7n2K5gR-rk/hqdefault.jpg",
+      "videoUrl": "https://www.youtube.com/embed/e7n2K5gR-rk",
+      "description": "The first lesson in a course designed to improve your conversational skills in a professional business context."
+    },
+    {
+      "id": 26,
+      "title": "How to Finally Start Your First Business",
+      "author": "Ali Abdaal",
+      "category": "Startup Fundamentals",
+      "imageHint": "starting business",
+      "imageUrl": "https://img.youtube.com/vi/WpJOg7N54Qw/hqdefault.jpg",
+      "videoUrl": "https://www.youtube.com/embed/WpJOg7N54Qw",
+      "description": "A practical guide to overcoming procrastination and taking the first steps to launch your business in 2025."
+    },
+    {
+      "id": 27,
+      "title": "49 Powerful Lessons From Entrepreneurs",
+      "author": "Chris Do",
+      "category": "Startup Advice",
+      "imageHint": "entrepreneur lessons",
+      "imageUrl": "https://img.youtube.com/vi/LKnlA-T0tA8/hqdefault.jpg",
+      "videoUrl": "https://www.youtube.com/embed/LKnlA-T0tA8",
+      "description": "A compilation of priceless advice and lessons learned from dozens of successful entrepreneurs."
+    },
+    {
+      "id": 28,
+      "title": "How to Write a Business Plan",
+      "author": "Brian Tracy",
+      "category": "Business Strategy",
+      "imageHint": "business plan",
+      "imageUrl": "https://img.youtube.com/vi/ZEMbKzy7FD8/hqdefault.jpg",
+      "videoUrl": "https://www.youtube.com/embed/ZEMbKzy7FD8",
+      "description": "An essential lesson on how to create a clear and effective business plan to guide your startup's growth."
+    },
+    {
+      "id": 29,
+      "title": "Best 54 Minutes of Business Advice",
+      "author": "Foundr",
+      "category": "Startup Advice",
+      "imageHint": "business advice",
+      "imageUrl": "https://img.youtube.com/vi/KTn61FEkIHo/hqdefault.jpg",
+      "videoUrl": "https://www.youtube.com/embed/KTn61FEkIHo",
+      "description": "A curated collection of the best business advice from some of the world's most successful founders."
+    },
+    {
+      "id": 30,
+      "title": "6 Tips on Being a Successful Entrepreneur",
+      "author": "John Mullins",
+      "category": "Startup Advice",
+      "imageHint": "successful entrepreneur",
+      "imageUrl": "https://img.youtube.com/vi/eHJnEHyyN1Y/hqdefault.jpg",
+      "videoUrl": "https://www.youtube.com/embed/eHJnEHyyN1Y",
+      "description": "A TED talk offering six practical and insightful tips for anyone looking to succeed in entrepreneurship."
+    },
+    {
+      "id": 31,
+      "title": "18 Minutes of the Best Entrepreneur Advice",
+      "author": "Evan Carmichael",
+      "category": "Startup Advice",
+      "imageHint": "entrepreneur advice",
+      "imageUrl": "https://img.youtube.com/vi/d8DzwSJ1-w8/hqdefault.jpg",
+      "videoUrl": "https://www.youtube.com/embed/d8DzwSJ1-w8",
+      "description": "A fast-paced compilation of top advice to help you grow your business and mindset."
+    },
+    {
+      "id": 32,
+      "title": "50 Entrepreneurs Share Priceless Advice",
+      "author": "Alex Berman",
+      "category": "Startup Advice",
+      "imageHint": "priceless advice",
+      "imageUrl": "https://img.youtube.com/vi/QoqohmccTSc/hqdefault.jpg",
+      "videoUrl": "https://www.youtube.com/embed/QoqohmccTSc",
+      "description": "A massive compilation of tips and wisdom from 50 different successful entrepreneurs."
+    },
+    {
+      "id": 33,
+      "title": "Best Advice to Small Business Owners",
+      "author": "Forbes",
+      "category": "Business Strategy",
+      "imageHint": "small business",
+      "imageUrl": "https://img.youtube.com/vi/0PbjZ01ObLA/hqdefault.jpg",
+      "videoUrl": "https://www.youtube.com/embed/0PbjZ01ObLA",
+      "description": "A collection of top advice specifically tailored for small business owners from a leading business publication."
+    },
+    {
+      "id": 34,
+      "title": "Simon Sinek: 5 Rules Of Success",
+      "author": "Startup Stories",
+      "category": "Motivation",
+      "imageHint": "simon sinek",
+      "imageUrl": "https://img.youtube.com/vi/9_tM2_g3dD4/hqdefault.jpg",
+      "videoUrl": "https://www.youtube.com/embed/9_tM2_g3dD4",
+      "description": "An inspirational video outlining Simon Sinek's five key rules for achieving success in business and life."
+    },
+    {
+      "id": 35,
+      "title": "Steve Jobs Motivational Speech",
+      "author": "Startup Stories",
+      "category": "Motivation",
+      "imageHint": "steve jobs",
+      "imageUrl": "https://img.youtube.com/vi/t-q2cK45C0A/hqdefault.jpg",
+      "videoUrl": "https://www.youtube.com/embed/t-q2cK45C0A",
+      "description": "A powerful motivational speech from Steve Jobs that continues to inspire entrepreneurs around the world."
+    },
+    {
+      "id": 36,
+      "title": "How to Take Criticism: Startup Edition",
+      "author": "Entrepreneur",
+      "category": "Mindset",
+      "imageHint": "handling criticism",
+      "imageUrl": "https://img.youtube.com/vi/kY0R6n2w_iQ/hqdefault.jpg",
+      "videoUrl": "https://www.youtube.com/embed/kY0R6n2w_iQ",
+      "description": "A lesson on how to handle feedback and criticism constructively, a crucial skill for any founder."
+    },
+    {
+      "id": 37,
+      "title": "How to Pitch Investors on Your Vision",
+      "author": "Entrepreneur",
+      "category": "Pitching & Fundraising",
+      "imageHint": "pitching investors",
+      "imageUrl": "https://img.youtube.com/vi/5V51C05M2pA/hqdefault.jpg",
+      "videoUrl": "https://www.youtube.com/embed/5V51C05M2pA",
+      "description": "Learn from self-made startup owners as they share their secrets to pitching a compelling vision to investors."
+    },
+    {
+      "id": 38,
+      "title": "How Much is Your Startup Worth?",
+      "author": "Entrepreneur",
+      "category": "Business Strategy",
+      "imageHint": "startup valuation",
+      "imageUrl": "https://img.youtube.com/vi/52F-fQ-pY0M/hqdefault.jpg",
+      "videoUrl": "https://www.youtube.com/embed/52F-fQ-pY0M",
+      "description": "A real-world guide to startup valuation, helping you understand how to determine your company's worth."
+    },
+    {
+      "id": 39,
+      "title": "Fix My Pitch: The Secrets of a Killer Business Pitch",
+      "author": "Entrepreneur",
+      "category": "Pitching & Fundraising",
+      "imageHint": "killer pitch",
+      "imageUrl": "https://img.youtube.com/vi/4C2X7b_0i90/hqdefault.jpg",
+      "videoUrl": "https://www.youtube.com/embed/4C2X7b_0i90",
+      "description": "A practical session that breaks down a business pitch and rebuilds it to be more effective and persuasive."
+    },
+    {
+      "id": 40,
+      "title": "Fix My Pitch: Nailing the 'Three P's'",
+      "author": "Anthony Sullivan",
+      "category": "Pitching & Fundraising",
+      "imageHint": "pitching framework",
+      "imageUrl": "https://img.youtube.com/vi/e7R-3b1L5S0/hqdefault.jpg",
+      "videoUrl": "https://www.youtube.com/embed/e7R-3b1L5S0",
+      "description": "Legendary pitchman Anthony Sullivan shares his framework for nailing the 'Three P's' of a successful pitch."
+    },
+    {
+      "id": 41,
+      "title": "Fix My Pitch: Turn a Setback Into Success",
+      "author": "Entrepreneur",
+      "category": "Pitching & Fundraising",
+      "imageHint": "pitching success",
+      "imageUrl": "https://img.youtube.com/vi/3W-i2Hw5u9U/hqdefault.jpg",
+      "videoUrl": "https://www.youtube.com/embed/3W-i2Hw5u9U",
+      "description": "Learn how to handle tough questions and turn a pitch meeting setback into a successful outcome."
+    },
+    {
+      "id": 42,
+      "title": "How to Evaluate Startup Ideas",
+      "author": "Kevin Hale",
+      "category": "Startup Fundamentals",
+      "imageHint": "evaluating ideas",
+      "imageUrl": "https://img.youtube.com/vi/uK48WcTqj4g/hqdefault.jpg",
+      "videoUrl": "https://www.youtube.com/embed/uK48WcTqj4g",
+      "description": "A YC partner shares a framework for evaluating startup ideas to determine if they have potential."
+    },
+    {
+      "id": 43,
+      "title": "Asking 80 Year Old Millionaires If It Was Worth It",
+      "author": "Noah Kagan",
+      "category": "Mindset",
+      "imageHint": "millionaire advice",
+      "imageUrl": "https://img.youtube.com/vi/x9q9v9Z3C_o/hqdefault.jpg",
+      "videoUrl": "https://www.youtube.com/embed/x9q9v9Z3C_o",
+      "description": "A unique video that gathers life and business wisdom from those who have achieved long-term success."
+    },
+    {
+      "id": 44,
+      "title": "How To Lean On Your Best Self When Life Gets Hard",
+      "author": "Dan Martell",
+      "category": "Mindset",
+      "imageHint": "resilience",
+      "imageUrl": "https://img.youtube.com/vi/zJ5bB7tKj2o/hqdefault.jpg",
+      "videoUrl": "https://www.youtube.com/embed/zJ5bB7tKj2o",
+      "description": "Coach Dan Martell provides strategies for staying resilient and accessing your strengths during tough times."
+    },
+    {
+      "id": 45,
+      "title": "The Future of Digital Marketing Will Surprise You",
+      "author": "Neil Patel",
+      "category": "Sales & Growth",
+      "imageHint": "digital marketing",
+      "imageUrl": "https://img.youtube.com/vi/T_Dq6WcT9g4/hqdefault.jpg",
+      "videoUrl": "https://www.youtube.com/embed/T_Dq6WcT9g4",
+      "description": "Marketing guru Neil Patel shares his predictions for the future of digital marketing and how to stay ahead."
     }
   ]
 }
