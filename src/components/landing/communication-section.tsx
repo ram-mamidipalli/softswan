@@ -17,7 +17,7 @@ export function CommunicationSection() {
                     className="absolute inset-0 h-full w-full"
                     src="https://www.youtube.com/embed/eIho2S0ZahI"
                     title="YouTube video player"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     allowFullScreen
                   ></iframe>
                 </div>
