@@ -5,23 +5,23 @@ import { SectionSubtitle, SectionTitle } from './section-helpers';
 const features = [
   {
     icon: <Target className="h-8 w-8 text-primary" />,
-    title: 'Focused on Freshers',
-    description: 'Skills recruiters actually test for entry-level roles.',
+    title: 'Built for Founders',
+    description: 'Real-world skills for startup and business success.',
   },
   {
     icon: <BrainCircuit className="h-8 w-8 text-primary" />,
-    title: 'Brain + Voice Growth',
-    description: 'Problem-solving &amp; communication combined in one platform.',
+    title: 'Mind + Voice Mastery',
+    description: 'Strategic thinking meets persuasive communication.',
   },
   {
     icon: <Zap className="h-8 w-8 text-primary" />,
-    title: 'Fast &amp; Fun',
-    description: 'Simple, bite-sized learning that fits into your busy schedule.',
+    title: 'Fast & Actionable',
+    description: 'Bite-sized lessons with immediate application.',
   },
   {
     icon: <Smartphone className="h-8 w-8 text-primary" />,
     title: 'Accessible Anywhere',
-    description: 'Seamless learning experience on both mobile and desktop.',
+    description: 'Learn on mobile, desktop, or in between meetings.',
   },
 ];
 
