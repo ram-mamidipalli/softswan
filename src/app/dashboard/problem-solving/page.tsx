@@ -96,7 +96,7 @@ export default function ProblemSolvingPage() {
         </Button>
       </div>
 
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {currentPuzzles.map((puzzle) => {
           const isSolved = solvedPuzzles.includes(puzzle.id);
           const isHard = puzzle.category.includes('Hard') || puzzle.category.includes('Deep') || puzzle.category.includes('Advanced') || puzzle.category.includes('Tough') || puzzle.category.includes('Critical');
