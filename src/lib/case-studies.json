@@ -115,7 +115,7 @@
           "description": ""
         },
         {
-          "title": "A Case Study On Netflix's Successful Digital Marketing Strategy from Digital Toppers",
+          "title": "A Case Study on Netflix's Successful Digital Marketing Strategy from Digital Toppers",
           "url": "https://www.digitaltoppers.com/a-case-study-on-netflixs-successful-digital-marketing-strategy/",
           "description": ""
         },
@@ -207,12 +207,12 @@
       "title": "Spotify's Business Success",
       "links": [
         {
-          "title": "The Thrilling Business Model Of Netflix 2025 from IIDE",
+          "title": "The Thrilling Business Model Of Spotify from IIDE",
           "url": "https://iide.co/case-studies/business-model-of-spotify/",
           "description": "Explains Spotify's freemium model and its journey from a music streaming platform to an audio giant."
         },
         {
-          "title": "Spotify's Freemium Model A Blueprint for Subscription Growth from Rajiv Gopinath",
+          "title": "Spotify's Freemium Model A Blueprint for Subscription Growth",
           "url": "https://www.rajivgopinath.com/real-time/next-gen-media-and-marketing/the-subscription-economy-and-rentership-culture/trends-in-subscription-models/spotifys-freemium-model-a-blueprint-for-subscription-growth",
           "description": "A deep dive into the psychology and mechanics of Spotify's successful freemium model."
         },
@@ -227,7 +227,7 @@
           "description": "This article explains how Spotify uses AI to create its hyper-personalized playlists and features like 'Spotify Wrapped.'"
         },
         {
-          "title": "Case Study: Artificial Intelligence in Spotify from Squarespace",
+          "title": "Case Study: Artificial Intelligence in Spotify",
           "url": "https://static1.squarespace.com/static/62856357b3c6636e1f1a3318/t/6628503031d8987ce5c8e14a/1713918003014/Sid+Yu+SSIE+Winter+Research.pdf",
           "description": "A detailed look at the machine learning algorithms, such as BaRT, that power Spotify's recommendation engine."
         },
@@ -237,17 +237,17 @@
           "description": "This page highlights Spotify's expansion beyond music into podcasts and audiobooks, a key part of its diversification strategy."
         },
         {
-          "title": "Personalized Audiobook Recommendations at Spotify Through Graph Neural Networks from arXiv",
+          "title": "Personalized Audiobook Recommendations at Spotify Through Graph Neural Networks",
           "url": "https://arxiv.org/html/2403.05185v1",
           "description": "A research paper that discusses Spotify's efforts to personalize audiobook and podcast recommendations."
         },
         {
-          "title": "9 International Growth Strategies from Spotify from OneSky Blog",
+          "title": "9 International Growth Strategies from Spotify",
           "url": "https://www.onesky.ai/blog/spotify-global-expansion",
           "description": "A case study that breaks down Spotify's localization and global expansion strategies, including its focus on local music tastes."
         },
         {
-          "title": "(PDF) Individual Case Study & Report: Spotify from ResearchGate",
+          "title": "(PDF) Individual Case Study & Report: Spotify",
           "url": "https://www.researchgate.net/publication/383598771_Individual_Case_Study_Report_Spotify",
           "description": "This report analyzes Spotify's global expansion, market positioning, and its competitive advantage in different regions."
         }
@@ -286,12 +286,26 @@
     {
       "id": 8,
       "companyName": "Slack",
-      "title": "How Slack Achieved $1.12B in Its First Year",
+      "title": "How Slack Became a Billion-Dollar Company",
       "links": [
-        "https://productled.com/blog/slack-product-led-growth"
+        {
+          "title": "The Freemium Model and Viral Adoption",
+          "url": "https://www.theproductfolks.com/product-management-blog/how-slack-went-from-0-to-1b-valuation-in-just-8-months-a-blueprint-for-rapid-success",
+          "description": "Learn how Slack's 'bottom-up' freemium model eliminated sales friction and fueled viral adoption within organizations."
+        },
+        {
+          "title": "Obsessive Focus on User Experience",
+          "url": "https://maccelerator.la/en/blog/go-to-market/how-slack-achieved-1-12b-in-its-first-year-a-masterclass-in-go-to-market-strategy/",
+          "description": "Discover how a simple, fun, and integration-rich product experience built a loyal user base that became brand advocates."
+        },
+        {
+          "title": "Word-of-Mouth Marketing and Organic Growth",
+          "url": "https://narrato.io/blog/slack-content-marketing-case-study-how-slack-uses-content-marketing-to-grow-its-user-base/",
+          "description": "Explore how Slack built a powerful word-of-mouth engine by creating a product so good that it marketed itself."
+        }
       ],
       "websiteUrl": "www.slack.com",
-      "description": "A masterclass in product-led growth, focusing on its freemium model and word-of-mouth marketing.",
+      "description": "Slack's success is a phenomenal case study in product-led growth. The company transformed team communication by building a product so effective that it sold itself, focusing on a freemium model, user experience, and word-of-mouth marketing.",
       "imageUrl": "https://images.unsplash.com/photo-1705988142466-e468bc654eeb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxzbGFja3xlbnwwfHx8fDE3NTgyOTQ4NTh8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "slack communication"
     },
