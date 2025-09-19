@@ -105,6 +105,7 @@ export default function DashboardPage() {
       title: 'Total Swan XP',
       value: swanXP.toString(),
       icon: Flame,
+      iconClassName: 'text-orange-400',
       change: 'Keep the flame alive!',
     },
     {
@@ -158,7 +159,7 @@ export default function DashboardPage() {
               <CardTitle className="text-sm font-medium">
                 {stat.title}
               </CardTitle>
-              <stat.icon className="h-4 w-4 text-muted-foreground" />
+              <stat.icon className={`h-4 w-4 text-muted-foreground ${stat.iconClassName || ''}`} />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{stat.value}</div>
