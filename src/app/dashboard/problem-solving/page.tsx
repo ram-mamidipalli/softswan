@@ -12,12 +12,15 @@ import {
 } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
 import { type Puzzle } from '@/ai/flows/generate-puzzles';
-import { Loader2 } from 'lucide-react';
+import { Loader2, CheckCircle } from 'lucide-react';
 import { getPuzzles } from '@/app/actions';
 import Link from 'next/link';
+import { Badge } from '@/components/ui/badge';
+import { cn } from '@/lib/utils';
 
 export default function ProblemSolvingPage() {
   const [puzzles, setPuzzles] = React.useState<Puzzle[]>([]);
+  const [solvedPuzzles, setSolvedPuzzles] = React.useState<number[]>([]);
   const [pageLoading, setPageLoading] = React.useState(true);
   const { toast } = useToast();
 
@@ -28,6 +31,9 @@ export default function ProblemSolvingPage() {
       setPuzzles(result.puzzles);
       // Store puzzles in session storage to persist across pages
       sessionStorage.setItem('puzzles', JSON.stringify(result.puzzles));
+      // Clear solved puzzles for the new set
+      sessionStorage.setItem('solvedPuzzles', JSON.stringify([]));
+      setSolvedPuzzles([]);
     } else {
       toast({
         variant: 'destructive',
@@ -41,11 +47,15 @@ export default function ProblemSolvingPage() {
   React.useEffect(() => {
     // Try to load puzzles from session storage first
     const storedPuzzles = sessionStorage.getItem('puzzles');
+    const storedSolvedPuzzles = sessionStorage.getItem('solvedPuzzles');
     if (storedPuzzles) {
       setPuzzles(JSON.parse(storedPuzzles));
       setPageLoading(false);
     } else {
       fetchPuzzles();
+    }
+    if (storedSolvedPuzzles) {
+      setSolvedPuzzles(JSON.parse(storedSolvedPuzzles));
     }
   }, [fetchPuzzles]);
 
@@ -93,20 +103,27 @@ export default function ProblemSolvingPage() {
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {puzzles.map((puzzle, index) => {
+          const isSolved = solvedPuzzles.includes(index);
           return (
             <Link
               href={`/dashboard/problem-solving/${index}`}
               key={index}
-              className="group"
+              className={cn('group', { 'pointer-events-none': isSolved })}
             >
-              <Card className="h-full transition-all group-hover:shadow-lg group-hover:-translate-y-1">
+              <Card className="h-full transition-all group-hover:shadow-lg group-hover:-translate-y-1 relative">
+                {isSolved && (
+                  <Badge variant="secondary" className="absolute top-4 right-4 bg-green-100 text-green-800 border-green-200">
+                    <CheckCircle className="mr-1 h-3 w-3"/>
+                    Completed
+                  </Badge>
+                )}
                 <CardHeader>
                   <CardTitle className="text-base font-semibold">
                     Challenge #{index + 1}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-sm text-muted-foreground">
+                  <p className={cn('text-sm text-muted-foreground', {'opacity-60': isSolved})}>
                     {puzzle.question}
                   </p>
                 </CardContent>

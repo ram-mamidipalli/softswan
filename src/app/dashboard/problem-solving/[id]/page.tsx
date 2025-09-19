@@ -16,9 +16,11 @@ import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
 import { getFeedback } from '@/app/actions';
 import { type Puzzle } from '@/ai/flows/generate-puzzles';
-import { Loader2, ArrowLeft, Lightbulb } from 'lucide-react';
+import { Loader2, ArrowLeft, Lightbulb, CheckCircle, ArrowRight } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
 
 export default function PuzzlePage() {
+  const [puzzles, setPuzzles] = React.useState<Puzzle[]>([]);
   const [puzzle, setPuzzle] = React.useState<Puzzle | null>(null);
   const [userAnswer, setUserAnswer] = React.useState('');
   const [isLoading, setIsLoading] = React.useState(false);
@@ -32,18 +34,29 @@ export default function PuzzlePage() {
   React.useEffect(() => {
     const storedPuzzles = sessionStorage.getItem('puzzles');
     if (storedPuzzles) {
-      const puzzles: Puzzle[] = JSON.parse(storedPuzzles);
-      if (puzzles[puzzleId]) {
-        setPuzzle(puzzles[puzzleId]);
+      const parsedPuzzles: Puzzle[] = JSON.parse(storedPuzzles);
+      setPuzzles(parsedPuzzles);
+      if (parsedPuzzles[puzzleId]) {
+        setPuzzle(parsedPuzzles[puzzleId]);
+        const solvedPuzzles = JSON.parse(sessionStorage.getItem('solvedPuzzles') || '[]');
+        if (solvedPuzzles.includes(puzzleId)) {
+          setIsSolved(true);
+        }
       } else {
-        // Redirect if puzzle not found
         router.push('/dashboard/problem-solving');
       }
     } else {
-      // If no puzzles in storage, redirect to generate them
       router.push('/dashboard/problem-solving');
     }
   }, [puzzleId, router]);
+
+  const handleNextChallenge = () => {
+    if (puzzleId < puzzles.length - 1) {
+        router.push(`/dashboard/problem-solving/${puzzleId + 1}`);
+    } else {
+        router.push('/dashboard/problem-solving');
+    }
+  }
 
   const checkAnswer = async () => {
     if (!puzzle) return;
@@ -75,16 +88,30 @@ export default function PuzzlePage() {
     }
 
     const { isCorrect, feedback } = result.feedback;
-
-    if (isCorrect) {
-      setIsSolved(true);
-    }
     
     toast({
       title: isCorrect ? 'Correct! 🎉' : 'Not quite!',
       description: feedback,
       variant: isCorrect ? 'default' : 'destructive',
     });
+
+    if (isCorrect) {
+      setIsSolved(true);
+      const solvedPuzzles = JSON.parse(sessionStorage.getItem('solvedPuzzles') || '[]');
+      if (!solvedPuzzles.includes(puzzleId)) {
+        const newSolvedPuzzles = [...solvedPuzzles, puzzleId];
+        sessionStorage.setItem('solvedPuzzles', JSON.stringify(newSolvedPuzzles));
+        
+        // Update total solved count in localStorage for dashboard
+        const currentTotal = parseInt(localStorage.getItem('puzzlesSolvedCount') || '0', 10);
+        localStorage.setItem('puzzlesSolvedCount', (currentTotal + 1).toString());
+        // Dispatch a storage event to notify other tabs (like the dashboard)
+        window.dispatchEvent(new StorageEvent('storage', {
+            key: 'puzzlesSolvedCount',
+            newValue: (currentTotal + 1).toString(),
+        }));
+      }
+    }
   };
 
   if (!puzzle) {
@@ -103,7 +130,10 @@ export default function PuzzlePage() {
         </Button>
         <Card>
             <CardHeader>
-                <CardTitle>Challenge #{puzzleId + 1}</CardTitle>
+                <div className="flex justify-between items-center">
+                    <CardTitle>Challenge #{puzzleId + 1}</CardTitle>
+                    {isSolved && <Badge variant="secondary" className="bg-green-100 text-green-800 border-green-200"><CheckCircle className="mr-1 h-3 w-3"/>Completed</Badge>}
+                </div>
                 <CardDescription className="text-base pt-4">{puzzle.question}</CardDescription>
             </CardHeader>
             <CardContent>
@@ -129,16 +159,22 @@ export default function PuzzlePage() {
                 </div>
             </CardContent>
             <CardFooter className="flex-col items-start gap-4">
-                <Button 
-                    variant="outline" 
-                    size="sm" 
-                    onClick={() => setShowHint(!showHint)}
-                    disabled={isSolved}
-                >
-                    <Lightbulb className="mr-2 h-4 w-4" />
-                    {showHint ? "Hide" : "Show"} Expert Answer
-                </Button>
-                 {(isSolved || showHint) && (
+                {isSolved ? (
+                    <Button onClick={handleNextChallenge} className="w-full">
+                        Next Challenge <ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
+                ) : (
+                    <Button 
+                        variant="outline" 
+                        size="sm" 
+                        onClick={() => setShowHint(!showHint)}
+                    >
+                        <Lightbulb className="mr-2 h-4 w-4" />
+                        {showHint ? "Hide" : "Show"} Expert Answer
+                    </Button>
+                )}
+
+                 {showHint && !isSolved && (
                   <div className="p-4 bg-accent rounded-md w-full">
                     <p className="text-sm text-accent-foreground">
                         <span className="font-semibold">Expert's Answer: </span>
@@ -146,6 +182,14 @@ export default function PuzzlePage() {
                     </p>
                   </div>
                 )}
+                 {isSolved && (
+                     <div className="p-4 bg-accent rounded-md w-full">
+                        <p className="text-sm text-accent-foreground">
+                            <span className="font-semibold">Expert's Answer: </span>
+                            {puzzle.answer}
+                        </p>
+                    </div>
+                 )}
             </CardFooter>
         </Card>
     </div>

@@ -1,6 +1,7 @@
 
 'use client';
 
+import * as React from 'react';
 import { useAuth } from '@/hooks/use-auth';
 import {
   Card,
@@ -9,40 +10,59 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { Flame, Star, Trophy, Target, Award } from 'lucide-react';
+import { Flame, Target, Trophy, Award } from 'lucide-react';
 import { Progress } from '@/components/ui/progress';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 
-const stats = [
-  {
-    title: 'Puzzles Solved',
-    value: '12',
-    icon: Target,
-    change: '+2 since last week',
-  },
-  {
-    title: 'Tutorials Completed',
-    value: '5',
-    icon: Trophy,
-    change: '1 more to the next badge',
-  },
-  {
-    title: 'Daily Streak',
-    value: '3 Days',
-    icon: Flame,
-    change: 'Keep the flame alive!',
-  },
-  {
-    title: 'Current Badge',
-    value: 'Bronze Swan',
-    icon: Award,
-    change: '120 / 500 points',
-  },
-];
-
 export default function DashboardPage() {
   const { user } = useAuth();
+  const [puzzlesSolved, setPuzzlesSolved] = React.useState(0);
+
+  React.useEffect(() => {
+    // This code runs only on the client, after hydration
+    const solvedCount = localStorage.getItem('puzzlesSolvedCount');
+    setPuzzlesSolved(solvedCount ? parseInt(solvedCount, 10) : 0);
+
+    // Listen for storage changes from other tabs
+    const handleStorageChange = (e: StorageEvent) => {
+        if (e.key === 'puzzlesSolvedCount') {
+            setPuzzlesSolved(e.newValue ? parseInt(e.newValue, 10) : 0);
+        }
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+    return () => {
+        window.removeEventListener('storage', handleStorageChange);
+    };
+  }, []);
+
+  const stats = [
+    {
+      title: 'Puzzles Solved',
+      value: puzzlesSolved.toString(),
+      icon: Target,
+      change: '+2 since last week',
+    },
+    {
+      title: 'Tutorials Completed',
+      value: '5',
+      icon: Trophy,
+      change: '1 more to the next badge',
+    },
+    {
+      title: 'Daily Streak',
+      value: '3 Days',
+      icon: Flame,
+      change: 'Keep the flame alive!',
+    },
+    {
+      title: 'Current Badge',
+      value: 'Bronze Swan',
+      icon: Award,
+      change: '120 / 500 points',
+    },
+  ];
 
   return (
     <div className="flex flex-col gap-8">
