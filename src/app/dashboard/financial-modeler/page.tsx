@@ -150,7 +150,13 @@ const FinancialModelerPage = () => {
       return;
     }
 
-    toPng(modelerRef.current, { cacheBust: true, pixelRatio: 2 })
+    toPng(modelerRef.current, { 
+        cacheBust: true, 
+        pixelRatio: 2,
+        fetchRequestInit: {
+            mode: 'no-cors'
+        }
+    })
       .then((dataUrl) => {
         const link = document.createElement('a');
         link.download = 'financial-model.png';

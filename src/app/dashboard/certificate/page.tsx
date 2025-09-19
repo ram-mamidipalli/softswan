@@ -36,7 +36,13 @@ export default function CertificatePage() {
       return;
     }
 
-    toPng(certificateRef.current, { cacheBust: true, pixelRatio: 2 })
+    toPng(certificateRef.current, { 
+      cacheBust: true, 
+      pixelRatio: 2,
+      fetchRequestInit: {
+        mode: 'no-cors'
+      }
+    })
       .then((dataUrl) => {
         const link = document.createElement('a');
         link.download = `softswan-certificate-${badge.name.toLowerCase().replace(/ /g, '-')}.png`;
