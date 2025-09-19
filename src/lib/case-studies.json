@@ -155,6 +155,7 @@
           "description": ""
         }
       ],
+      "websiteUrl": "https://www.netflix.com",
       "description": "Netflix's success through data-driven marketing, personalized recommendations, and original content.",
       "imageUrl": "https://images.unsplash.com/photo-1637363990764-de84fd247b7d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxuZXRmbGl4fGVufDB8fHx8MTc1ODI5Mjg0MXww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "netflix streaming"
@@ -195,8 +196,9 @@
           "description": "This case study examines how Starbucks adapted its global expansion strategy for different markets, using joint ventures in places like India to leverage local expertise while maintaining its core brand."
         }
       ],
+      "websiteUrl": "https://www.starbucks.com",
       "description": "How Starbucks transformed into a community-focused café with a unique brand experience.",
-      "imageUrl": "https://images.unsplash.com/photo-1545231027-637d2f6210f8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxM3x8c3RhcmJ1Y2tzfGVufDB8fHx8MTc1ODI5MjkwMnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1545231027-637d2f6210f8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxM3x8c3RhcmJ1Y2tzfGVufDB8fHx8MTc1ODI5MjkwMnww&ixlib=rb-4.1.0&q=80&w=108O",
       "imageHint": "starbucks coffee"
     },
     {
@@ -250,6 +252,7 @@
           "description": "This report analyzes Spotify's global expansion, market positioning, and its competitive advantage in different regions."
         }
       ],
+      "websiteUrl": "https://www.spotify.com",
       "description": "An in-depth look at Spotify's success, from its freemium business model and use of AI to its content strategy and global expansion.",
       "imageUrl": "https://images.unsplash.com/photo-1611339555312-e607c8352fd7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxzcG90aWZ5fGVufDB8fHx8MTc1ODI5MzI2MXww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "spotify music"
@@ -261,6 +264,7 @@
       "description": "How Airbnb disrupted the hospitality industry with its innovative business model and marketing strategies.",
       "imageUrl": "https://images.unsplash.com/photo-1657256031855-68029292ff34?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxhaXJibmJ8ZW58MHx8fHwxNzU4MjkzNTk4fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "airbnb travel",
+      "websiteUrl": "https://www.airbnb.com",
       "links": [
         {
           "title": "Airbnb Case Study - Road to $84.56B with Programmatic SEO Strategy",
@@ -286,6 +290,7 @@
       "links": [
         "https://productled.com/blog/slack-product-led-growth"
       ],
+      "websiteUrl": "https://www.slack.com",
       "description": "A masterclass in product-led growth, focusing on its freemium model and word-of-mouth marketing.",
       "imageUrl": "https://picsum.photos/seed/cs8/600/400",
       "imageHint": "slack communication"
@@ -297,6 +302,7 @@
       "links": [
         "https://www.meritshot.com/case-studies/tesla-case-study"
       ],
+      "websiteUrl": "https://www.tesla.com",
       "description": "Analyzes Tesla's vertical integration and innovation, bringing electric vehicles into the mainstream.",
       "imageUrl": "https://picsum.photos/seed/cs9/600/400",
       "imageHint": "tesla electric"
@@ -308,6 +314,7 @@
       "links": [
         "https://www.facebook.com/business/success"
       ],
+      "websiteUrl": "https://www.facebook.com",
       "description": "An example of a successful marketing campaign using Facebook and Instagram ads and Pixel data.",
       "imageUrl": "https://picsum.photos/seed/cs10/600/400",
       "imageHint": "meta advertising"
@@ -341,6 +348,7 @@
       "links": [
         "https://www.hubspot.com/customers/case-studies"
       ],
+      "websiteUrl": "https://www.hubspot.com",
       "description": "How startups have used HubSpot's CRM platform to streamline sales, marketing, and customer service.",
       "imageUrl": "https://picsum.photos/seed/cs13/600/400",
       "imageHint": "hubspot crm"
@@ -352,6 +360,7 @@
       "links": [
         "https://www.shopify.com/case-studies"
       ],
+      "websiteUrl": "https://www.shopify.com",
       "description": "Brands that have used Shopify's e-commerce platform to unify sales and scale their businesses.",
       "imageUrl": "https://picsum.photos/seed/cs14/600/400",
       "imageHint": "shopify ecommerce"
@@ -396,6 +405,7 @@
       "links": [
         "https://www.feedough.com/ikea-business-model/"
       ],
+      "websiteUrl": "https://www.ikea.com",
       "description": "Explains IKEA's innovative business model, centered on low-cost, functional design and a unique in-store experience.",
       "imageUrl": "https://picsum.photos/seed/cs18/600/400",
       "imageHint": "ikea furniture"
@@ -418,6 +428,7 @@
       "links": [
         "https://www.managementstudyguide.com/fedex-success-story.htm"
       ],
+      "websiteUrl": "https://www.fedex.com",
       "description": "How FedEx's commitment to service quality and technological innovation allowed it to dominate the overnight delivery market.",
       "imageUrl": "https://picsum.photos/seed/cs20/600/400",
       "imageHint": "fedex delivery"
