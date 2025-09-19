@@ -20,8 +20,8 @@ const features = [
   },
   {
     icon: <Smartphone className="h-8 w-8 text-primary" />,
-    title: 'Accessible Anywhere',
-    description: 'Learn on mobile, desktop, or in between meetings.',
+    title: 'Learn On the Go',
+    description: 'Access lessons on mobile, desktop, or in between meetings.',
   },
 ];
 
