@@ -1,4 +1,5 @@
 'use client';
+import * as React from 'react';
 import {
   Table,
   TableBody,
@@ -19,28 +20,51 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { useAuth } from '@/hooks/use-auth';
 import { cn } from '@/lib/utils';
 import { User } from 'lucide-react';
+import { getBadgeForPoints, type Badge as BadgeType } from '@/lib/badges';
 
 const leaderboardData = [
-  { rank: 1, username: 'puzzle_master', points: 2540, badge: 'Golden Swan' },
-  { rank: 2, username: 'riddle_fiend', points: 2310, badge: 'Golden Swan' },
-  { rank: 3, username: 'logic_lord', points: 1890, badge: 'Silver Swan' },
-  { rank: 4, username: 'code_ninja', points: 1550, badge: 'Silver Swan' },
-  { rank: 5, username: 'learner_bee', points: 1210, badge: 'Silver Swan' },
-  { rank: 6, username: 'curious_cat', points: 980, badge: 'Bronze Swan' },
-  { rank: 7, username: 'you', points: 850, badge: 'Bronze Swan' },
-  { rank: 8, username: 'newbie_coder', points: 720, badge: 'Bronze Swan' },
-  { rank: 9, username: 'thinker_bell', points: 610, badge: 'Bronze Swan' },
-  { rank: 10, username: 'smart_swan', points: 500, badge: 'Bronze Swan' },
+  { rank: 1, username: 'puzzle_master', points: 2540, badgeName: 'Master 5' },
+  { rank: 2, username: 'riddle_fiend', points: 2310, badgeName: 'Master 3' },
+  { rank: 3, username: 'logic_lord', points: 1890, badgeName: 'Diamond 2' },
+  { rank: 4, username: 'code_ninja', points: 1550, badgeName: 'Platinum 1' },
+  { rank: 5, username: 'learner_bee', points: 1210, badgeName: 'Gold 3' },
+  { rank: 6, username: 'curious_cat', points: 980, badgeName: 'Silver 2' },
+  { rank: 7, username: 'you', points: 850, badgeName: 'Silver 1' },
+  { rank: 8, username: 'newbie_coder', points: 720, badgeName: 'Bronze Swan' },
+  { rank: 9, username: 'thinker_bell', points: 610, badgeName: 'Bronze Swan' },
+  { rank: 10, username: 'smart_swan', points: 500, badgeName: 'Bronze Swan' },
 ];
 
-const badgeColors: { [key: string]: 'default' | 'secondary' | 'destructive' | 'outline'} = {
-  'Golden Swan': 'default',
-  'Silver Swan': 'secondary',
-  'Bronze Swan': 'outline',
-};
 
 export default function LeaderboardPage() {
   const { user } = useAuth();
+  const [userPoints, setUserPoints] = React.useState(0);
+  const [userBadge, setUserBadge] = React.useState<BadgeType | null>(null);
+
+  React.useEffect(() => {
+    const xp = parseInt(localStorage.getItem('swanXP') || '0', 10);
+    const { badge } = getBadgeForPoints(xp);
+    setUserPoints(xp);
+    setUserBadge(badge);
+
+     const handleStorageChange = (e: StorageEvent) => {
+        if (e.key === 'swanXP') {
+            const newXp = parseInt(e.newValue || '0', 10);
+            const { badge: newBadge } = getBadgeForPoints(newXp);
+            setUserPoints(newXp);
+            setUserBadge(newBadge);
+        }
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+    return () => {
+        window.removeEventListener('storage', handleStorageChange);
+    };
+  }, []);
+
+  const updatedLeaderboard = leaderboardData.map(player => 
+    player.username === 'you' ? { ...player, points: userPoints, badgeName: userBadge?.name || 'Bronze Swan' } : player
+  ).sort((a, b) => b.points - a.points).map((p, i) => ({ ...p, rank: i + 1 }));
 
   return (
     <div className="flex flex-col gap-8">
@@ -65,11 +89,11 @@ export default function LeaderboardPage() {
                 <TableHead className="w-[80px]">Rank</TableHead>
                 <TableHead>User</TableHead>
                 <TableHead>Badge</TableHead>
-                <TableHead className="text-right">Points</TableHead>
+                <TableHead className="text-right">XP</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
-              {leaderboardData.map((player) => (
+              {updatedLeaderboard.map((player) => (
                 <TableRow
                   key={player.rank}
                   className={cn({
@@ -92,8 +116,8 @@ export default function LeaderboardPage() {
                     </div>
                   </TableCell>
                   <TableCell>
-                    <Badge variant={badgeColors[player.badge] || 'outline'}>
-                      {player.badge}
+                    <Badge variant={player.username === 'you' ? 'default' : 'secondary'}>
+                      {player.badgeName}
                     </Badge>
                   </TableCell>
                   <TableCell className="text-right font-mono">

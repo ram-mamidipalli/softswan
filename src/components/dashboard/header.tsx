@@ -5,6 +5,7 @@ import {
   User,
 } from 'lucide-react';
 
+import * as React from 'react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -22,14 +23,27 @@ import { signOut } from 'firebase/auth';
 import { useRouter } from 'next/navigation';
 import { useToast } from '@/hooks/use-toast';
 import Link from 'next/link';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Badge } from '../ui/badge';
+import { getBadgeForPoints } from '@/lib/badges';
 
 
 export function DashboardHeader() {
   const { user } = useAuth();
   const router = useRouter();
   const { toast } = useToast();
+  const [badgeName, setBadgeName] = React.useState('Bronze Swan');
+
+  React.useEffect(() => {
+    const updateBadge = () => {
+      const xp = parseInt(localStorage.getItem('swanXP') || '0', 10);
+      const { badge } = getBadgeForPoints(xp);
+      setBadgeName(badge.name);
+    };
+
+    updateBadge();
+    window.addEventListener('storage', updateBadge);
+    return () => window.removeEventListener('storage', updateBadge);
+  }, []);
 
   const handleSignOut = async () => {
     try {
@@ -54,7 +68,7 @@ export function DashboardHeader() {
       <div className="flex-1" />
       <Badge variant="outline" className="hidden sm:flex items-center gap-2">
         <Award className="h-4 w-4" />
-        Bronze Swan
+        {badgeName}
       </Badge>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>

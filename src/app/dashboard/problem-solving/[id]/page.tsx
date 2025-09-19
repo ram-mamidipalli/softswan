@@ -90,7 +90,7 @@ export default function PuzzlePage() {
     const { isCorrect, feedback } = result.feedback;
     
     toast({
-      title: isCorrect ? 'Correct! 🎉' : 'Not quite!',
+      title: isCorrect ? 'Correct! +10 XP 🎉' : 'Not quite!',
       description: feedback,
       variant: isCorrect ? 'default' : 'destructive',
     });
@@ -102,13 +102,19 @@ export default function PuzzlePage() {
         const newSolvedPuzzles = [...solvedPuzzles, puzzleId];
         sessionStorage.setItem('solvedPuzzles', JSON.stringify(newSolvedPuzzles));
         
+        // Update solved count
         const currentTotal = parseInt(localStorage.getItem('puzzlesSolvedCount') || '0', 10);
-        localStorage.setItem('puzzlesSolvedCount', (currentTotal + 1).toString());
+        const newTotal = currentTotal + 1;
+        localStorage.setItem('puzzlesSolvedCount', newTotal.toString());
         
-        window.dispatchEvent(new StorageEvent('storage', {
-            key: 'puzzlesSolvedCount',
-            newValue: (currentTotal + 1).toString(),
-        }));
+        // Update XP
+        const currentXP = parseInt(localStorage.getItem('swanXP') || '0', 10);
+        const newXP = currentXP + 10;
+        localStorage.setItem('swanXP', newXP.toString());
+
+        // Dispatch storage event to notify other tabs/components
+        window.dispatchEvent(new StorageEvent('storage', { key: 'puzzlesSolvedCount', newValue: newTotal.toString() }));
+        window.dispatchEvent(new StorageEvent('storage', { key: 'swanXP', newValue: newXP.toString() }));
       }
     }
   };
@@ -195,5 +201,3 @@ export default function PuzzlePage() {
     </div>
   );
 }
-
-    

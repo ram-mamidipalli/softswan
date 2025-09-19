@@ -14,20 +14,34 @@ import { Flame, Target, Trophy, Award } from 'lucide-react';
 import { Progress } from '@/components/ui/progress';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import { getBadgeForPoints, type Badge } from '@/lib/badges';
 
 export default function DashboardPage() {
   const { user } = useAuth();
   const [puzzlesSolved, setPuzzlesSolved] = React.useState(0);
+  const [swanXP, setSwanXP] = React.useState(0);
+  const [currentBadge, setCurrentBadge] = React.useState<Badge | null>(null);
+  const [nextBadge, setNextBadge] = React.useState<Badge | null>(null);
 
   React.useEffect(() => {
     // This code runs only on the client, after hydration
-    const solvedCount = localStorage.getItem('puzzlesSolvedCount');
-    setPuzzlesSolved(solvedCount ? parseInt(solvedCount, 10) : 0);
+    const updateStats = () => {
+      const solvedCount = localStorage.getItem('puzzlesSolvedCount');
+      const xp = parseInt(localStorage.getItem('swanXP') || '0', 10);
+      const { badge, nextBadge } = getBadgeForPoints(xp);
+      
+      setPuzzlesSolved(solvedCount ? parseInt(solvedCount, 10) : 0);
+      setSwanXP(xp);
+      setCurrentBadge(badge);
+      setNextBadge(nextBadge);
+    };
+
+    updateStats();
 
     // Listen for storage changes from other tabs
     const handleStorageChange = (e: StorageEvent) => {
-        if (e.key === 'puzzlesSolvedCount') {
-            setPuzzlesSolved(e.newValue ? parseInt(e.newValue, 10) : 0);
+        if (e.key === 'puzzlesSolvedCount' || e.key === 'swanXP') {
+            updateStats();
         }
     };
 
@@ -37,30 +51,34 @@ export default function DashboardPage() {
     };
   }, []);
 
+  const progressPercentage = currentBadge && nextBadge 
+    ? ((swanXP - currentBadge.xpRequired) / (nextBadge.xpRequired - currentBadge.xpRequired)) * 100
+    : 0;
+
   const stats = [
     {
       title: 'Puzzles Solved',
       value: puzzlesSolved.toString(),
       icon: Target,
-      change: '+2 since last week',
+      change: `+${puzzlesSolved * 10} XP earned`,
+    },
+    {
+      title: 'Total Swan XP',
+      value: swanXP.toString(),
+      icon: Flame,
+      change: 'Keep the flame alive!',
     },
     {
       title: 'Tutorials Completed',
       value: '5',
       icon: Trophy,
-      change: '1 more to the next badge',
-    },
-    {
-      title: 'Daily Streak',
-      value: '3 Days',
-      icon: Flame,
-      change: 'Keep the flame alive!',
+      change: 'Keep learning!',
     },
     {
       title: 'Current Badge',
-      value: 'Bronze Swan',
+      value: currentBadge?.name || 'Bronze Swan',
       icon: Award,
-      change: '120 / 500 points',
+      change: nextBadge ? `${nextBadge.xpRequired - swanXP} XP to next` : 'Max level reached!',
     },
   ];
 
@@ -95,22 +113,24 @@ export default function DashboardPage() {
       <div className="grid gap-6 lg:grid-cols-2">
         <Card>
           <CardHeader>
-            <CardTitle>Next Badge: Silver Swan</CardTitle>
+            <CardTitle>Next Badge: {nextBadge?.name || 'Cosmic Swan'}</CardTitle>
             <CardDescription>
-              You are 380 points away from unlocking the Silver Swan badge.
+              {nextBadge 
+                ? `You are ${nextBadge.xpRequired - swanXP} points away from unlocking the ${nextBadge.name} badge.`
+                : 'You have achieved the highest rank!'}
             </CardDescription>
           </CardHeader>
           <CardContent className="flex flex-col gap-4">
              <div className="flex items-center gap-4">
-              <div className="text-4xl">🥉</div>
+              <div className="text-4xl">{currentBadge?.icon || '🥉'}</div>
               <div className="flex-1">
                 <div className="flex justify-between text-sm text-muted-foreground">
-                    <span>Bronze Swan</span>
-                    <span>120 / 500 XP</span>
+                    <span>{currentBadge?.name || 'Bronze Swan'}</span>
+                    {nextBadge && <span>{swanXP} / {nextBadge.xpRequired} XP</span>}
                 </div>
-                <Progress value={24} className="mt-1" />
+                <Progress value={progressPercentage} className="mt-1" />
               </div>
-              <div className="text-4xl opacity-50">🥈</div>
+              <div className="text-4xl opacity-50">{nextBadge?.icon || '🏆'}</div>
             </div>
             <Button asChild className="ml-auto">
               <Link href="/dashboard/leaderboard">View Leaderboard</Link>
@@ -121,7 +141,7 @@ export default function DashboardPage() {
           <CardHeader>
             <CardTitle>Start a new challenge</CardTitle>
             <CardDescription>
-              Ready to test your skills? Generate a new set of puzzles.
+              Ready to test your skills? Jump into the next puzzle.
             </CardDescription>
           </CardHeader>
           <CardContent>
