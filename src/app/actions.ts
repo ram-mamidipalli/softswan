@@ -17,6 +17,8 @@ import {
   type ProvideFeedbackOutput,
 } from '@/ai/flows/provide-feedback';
 
+import { generateStartupPlanFlow } from '@/ai/flows/generate-startup-plan';
+
 export async function getRecommendedTutorials(data: {
   skills: string[];
   activity: string;
@@ -67,4 +69,19 @@ export async function getFeedback(
         error: 'Failed to get feedback. Please try again.',
         };
     }
+}
+
+export async function generateStartupPlan(
+  idea: string
+): Promise<{ success: boolean; plan?: string; error?: string }> {
+  try {
+    const result = await generateStartupPlanFlow({ idea });
+    return { success: true, plan: result.plan };
+  } catch (error) {
+    console.error(error);
+    return {
+      success: false,
+      error: 'Failed to generate plan. Please try again.',
+    };
+  }
 }
