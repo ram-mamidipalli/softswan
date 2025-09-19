@@ -1,3 +1,28 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "hero-visual",
+      "description": "An abstract illustration of a student with icons representing brain and voice.",
+      "imageUrl": "https://picsum.photos/seed/swan1/800/600",
+      "imageHint": "abstract illustration"
+    },
+    {
+      "id": "video-preview",
+      "description": "A mock video frame for public speaking tutorials.",
+      "imageUrl": "https://picsum.photos/seed/swan2/1200/800",
+      "imageHint": "video tutorial"
+    },
+    {
+      "id": "avatar1",
+      "description": "Avatar of a student who gave a testimonial.",
+      "imageUrl": "https://picsum.photos/seed/person1/100/100",
+      "imageHint": "person portrait"
+    },
+    {
+      "id": "avatar2",
+      "description": "Avatar of another student who gave a testimonial.",
+      "imageUrl": "https://picsum.photos/seed/person2/100/100",
+      "imageHint": "person portrait"
+    }
+  ]
 }
