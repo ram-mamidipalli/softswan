@@ -44,7 +44,7 @@ export default function LessonPage() {
     if (!completedLessons.includes(lesson.title)) {
       // Award XP
       const currentXP = parseInt(localStorage.getItem('swanXP') || '0', 10);
-      const newXP = currentXP + 50; // Lessons are worth more XP
+      const newXP = currentXP + 30; // Award 30 XP for lessons
       localStorage.setItem('swanXP', newXP.toString());
       window.dispatchEvent(new StorageEvent('storage', { key: 'swanXP', newValue: newXP.toString() }));
 
@@ -55,7 +55,7 @@ export default function LessonPage() {
       
       toast({
         title: 'Lesson Completed!',
-        description: 'You earned 50 XP! 🚀',
+        description: 'You earned 30 XP! 🚀',
       });
     }
   };
