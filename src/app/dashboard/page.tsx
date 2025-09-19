@@ -106,7 +106,7 @@ export default function DashboardPage() {
       title: 'Total Swan XP',
       value: swanXP.toString(),
       icon: Flame,
-      iconClassName: 'text-primary',
+      iconClassName: 'text-amber-500',
       change: 'Keep the flame alive!',
     },
     {
