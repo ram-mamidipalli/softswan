@@ -4,7 +4,7 @@
 import * as React from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { caseStudies, type CaseStudy } from '@/lib/case-studies';
-import { Loader2, ArrowLeft, ExternalLink } from 'lucide-react';
+import { Loader2, ArrowLeft, ExternalLink, Globe } from 'lucide-react';
 import {
   Card,
   CardContent,
@@ -64,7 +64,17 @@ export default function CaseStudyPage() {
                 data-ai-hint={study.imageHint}
               />
           </div>
-          <Badge variant="secondary" className="w-fit mb-2">{study.companyName}</Badge>
+          <div className="flex justify-between items-start">
+            <Badge variant="secondary" className="w-fit mb-2">{study.companyName}</Badge>
+            {study.websiteUrl && (
+                <Button variant="outline" size="sm" asChild>
+                    <a href={study.websiteUrl} target="_blank" rel="noopener noreferrer">
+                        <Globe className="mr-2 h-4 w-4" />
+                        Visit Company
+                    </a>
+                </Button>
+            )}
+          </div>
           <CardTitle className="text-2xl">{study.title}</CardTitle>
         </CardHeader>
         <CardContent>

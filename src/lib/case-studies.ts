@@ -6,6 +6,7 @@ export type CaseStudy = {
   companyName: string;
   title: string;
   links: string[];
+  websiteUrl?: string;
   description: string;
   imageUrl: string;
   imageHint: string;
