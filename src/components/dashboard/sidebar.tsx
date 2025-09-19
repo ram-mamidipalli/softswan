@@ -14,6 +14,7 @@ import {
   BarChart,
   Settings,
   LogOut,
+  LifeBuoy,
 } from 'lucide-react';
 import { SwanLogo } from '../icons/swan-logo';
 import { usePathname, useRouter } from 'next/navigation';
@@ -46,6 +47,11 @@ const secondaryNav = [
     href: '/dashboard/settings',
     label: 'Settings',
     icon: Settings,
+  },
+  {
+    href: '/dashboard/support',
+    label: 'Support',
+    icon: LifeBuoy,
   },
 ];
 
