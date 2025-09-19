@@ -11,7 +11,6 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Flame, Target, Trophy, Award, CheckCircle, Star } from 'lucide-react';
-import { Progress } from '@/components/ui/progress';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { getBadgeForPoints, type Badge, badgeLevels } from '@/lib/badges';
@@ -95,16 +94,6 @@ export default function DashboardPage() {
     setNewlyAchievedBadge(null);
   };
 
-  const progressPercentage = React.useMemo(() => {
-    if (!currentBadge || !nextBadge) {
-      return 100;
-    }
-    const range = nextBadge.xpRequired - currentBadge.xpRequired;
-    if (range <= 0) return 100;
-    const progress = swanXP - currentBadge.xpRequired;
-    return Math.max(0, (progress / range) * 100);
-  }, [swanXP, currentBadge, nextBadge]);
-
   const stats = [
     {
       title: 'Puzzles Solved',
@@ -129,6 +118,7 @@ export default function DashboardPage() {
       value: currentBadge?.name || 'Bronze Swan',
       icon: Award,
       change: nextBadge ? `${nextBadge.xpRequired - swanXP} XP to next` : 'Max level reached!',
+      emblem: currentBadge?.icon,
     },
   ];
 
@@ -169,7 +159,11 @@ export default function DashboardPage() {
               <CardTitle className="text-sm font-medium">
                 {stat.title}
               </CardTitle>
-              <stat.icon className="h-4 w-4 text-muted-foreground" />
+              {stat.emblem ? (
+                <span className="text-2xl">{stat.emblem}</span>
+              ) : (
+                <stat.icon className="h-4 w-4 text-muted-foreground" />
+              )}
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{stat.value}</div>
@@ -179,30 +173,7 @@ export default function DashboardPage() {
         ))}
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-2">
-        <Card>
-          <CardHeader>
-            <CardTitle>Next Badge: {nextBadge?.name || 'Cosmic Swan'}</CardTitle>
-            <CardDescription>
-              {nextBadge 
-                ? `You are ${nextBadge.xpRequired - swanXP} points away from unlocking the ${nextBadge.name} badge.`
-                : 'You have achieved the highest rank!'}
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="flex flex-col gap-4">
-             <div className="flex items-center gap-4">
-              <div className="text-4xl">{currentBadge?.icon || '🥉'}</div>
-              <div className="flex-1">
-                <div className="flex justify-between text-sm text-muted-foreground">
-                    <span>{currentBadge?.name || 'Bronze Swan'}</span>
-                    {nextBadge && <span>{swanXP} / {nextBadge.xpRequired} XP</span>}
-                </div>
-                <Progress value={progressPercentage} className="mt-1" />
-              </div>
-              <div className="text-4xl opacity-50">{nextBadge?.icon || '🌌'}</div>
-            </div>
-          </CardContent>
-        </Card>
+      <div className="grid gap-6 lg:grid-cols-1">
          <Card>
           <CardHeader>
             <CardTitle>Start a new challenge</CardTitle>
