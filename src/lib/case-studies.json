@@ -287,27 +287,27 @@
       "id": 8,
       "companyName": "Slack",
       "title": "How Slack Became a Billion-Dollar Company",
+      "description": "Slack's success is a phenomenal case study in product-led growth and disruptive go-to-market strategy. The company transformed team communication by building a product so effective that it sold itself. They focused on three key areas that fueled their rapid growth and eventual acquisition by Salesforce.",
+      "imageUrl": "https://images.unsplash.com/photo-1705988142466-e468bc654eeb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxzbGFja3xlbnwwfHx8fDE3NTgyOTQ4NTh8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "slack communication",
+      "websiteUrl": "https://www.slack.com",
       "links": [
         {
-          "title": "The Freemium Model and Viral Adoption",
-          "url": "https://www.theproductfolks.com/product-management-blog/how-slack-went-from-0-to-1b-valuation-in-just-8-months-a-blueprint-for-rapid-success",
-          "description": "Learn how Slack's 'bottom-up' freemium model eliminated sales friction and fueled viral adoption within organizations."
+          "title": "The Freemium Model and Viral Adoption 🚀",
+          "description": "Learn how Slack's 'bottom-up' freemium model eliminated sales friction and fueled viral adoption within organizations. As a team's usage grew, the natural progression was to upgrade to a paid plan, spreading the product organically throughout a company.",
+          "url": "https://www.theproductfolks.com/product-management-blog/how-slack-went-from-0-to-1b-valuation-in-just-8-months-a-blueprint-for-rapid-success"
         },
         {
-          "title": "Obsessive Focus on User Experience",
-          "url": "https://maccelerator.la/en/blog/go-to-market/how-slack-achieved-1-12b-in-its-first-year-a-masterclass-in-go-to-market-strategy/",
-          "description": "Discover how a simple, fun, and integration-rich product experience built a loyal user base that became brand advocates."
+          "title": "Obsessive Focus on Product and User Experience ✨",
+          "description": "Discover how a simple, fun, and integration-rich product experience built a loyal user base. Slack's customer-centric approach, focusing on every detail from emojis to integrations, made users into brand advocates.",
+          "url": "https://maccelerator.la/en/blog/go-to-market/how-slack-achieved-1-12b-in-its-first-year-a-masterclass-in-go-to-market-strategy/"
         },
         {
-          "title": "Word-of-Mouth Marketing and Organic Growth",
-          "url": "https://narrato.io/blog/slack-content-marketing-case-study-how-slack-uses-content-marketing-to-grow-its-user-base/",
-          "description": "Explore how Slack built a powerful word-of-mouth engine by creating a product so good that it marketed itself."
+          "title": "Word-of-Mouth Marketing and Organic Growth 📣",
+          "description": "Explore how Slack built a powerful word-of-mouth engine by creating a product so good that it marketed itself, leveraging customer testimonials and a strong reputation to achieve massive growth with a small marketing budget.",
+          "url": "https://narrato.io/blog/slack-content-marketing-case-study-how-slack-uses-content-marketing-to-grow-its-user-base/"
         }
-      ],
-      "websiteUrl": "https://www.slack.com",
-      "description": "Slack's success is a phenomenal case study in product-led growth. The company transformed team communication by building a product so effective that it sold itself, focusing on a freemium model, user experience, and word-of-mouth marketing.",
-      "imageUrl": "https://images.unsplash.com/photo-1705988142466-e468bc654eeb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxzbGFja3xlbnwwfHx8fDE3NTgyOTQ4NTh8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "slack communication"
+      ]
     },
     {
       "id": 9,
@@ -321,32 +321,17 @@
         {
           "title": "Direct-to-Consumer Sales Model 🛒",
           "url": "https://www.datanext.ai/case-study/tesla-direct-sales-model/",
-          "description": "This analysis explains how Tesla's direct-to-consumer model has revolutionized the car industry by bypassing dealerships."
-        },
-        {
-          "title": "Benefits and Effects of Tesla's Direct-to-Customer Sales Model",
-          "url": "https://ieomsociety.org/proceedings/2023lisbon/471.pdf",
-          "description": "This paper investigates how Tesla's sales methodology has enabled it to grow into a major brand with worldwide recognition."
+          "description": "This analysis explains how Tesla's direct-to-consumer model has revolutionized the car industry by bypassing dealerships, giving them total control over the customer experience and pricing."
         },
         {
           "title": "Vertical Integration 🏭",
-          "url": "https://www.scribd.com/document/775343175/Case-Studies",
-          "description": "This document provides an in-depth look at Tesla's vertical integration strategy, from battery production to software development and direct sales."
-        },
-        {
-          "title": "Why Vertical Integration Worked for Tesla",
           "url": "https://eightception.com/tesla-vertical-integration-strategy/",
-          "description": "This article explains the benefits of Tesla's strategy, including cost control and enhanced customer experience."
+          "description": "This article explains the benefits of Tesla's strategy of controlling its production process—from batteries to software—which allows for rapid innovation and cost control."
         },
         {
           "title": "Brand Identity and Ecosystem 🔌",
           "url": "https://www.youngurbanproject.com/tesla-case-study/",
           "description": "This case study analyzes Tesla's brand, marketing strategy, and how it used storytelling and community to build a cult-like following without traditional advertising."
-        },
-        {
-          "title": "An Analysis of Tesla's Disruptive Innovation Strategy",
-          "url": "https://www.researchgate.net/publication/385331939_An_Analysis_of_Tesla's_Disruptive_Innovation_Strategy",
-          "description": "This paper examines how Tesla's innovative approach in technology and market positioning has redefined the electric vehicle industry."
         }
       ]
     },
@@ -354,13 +339,27 @@
       "id": 10,
       "companyName": "Facebook (Meta)",
       "title": "Meta Advertising Case Study",
-      "links": [
-        "https://www.facebook.com/business/success"
-      ],
-      "websiteUrl": "https://www.facebook.com",
-      "description": "An example of a successful marketing campaign using Facebook and Instagram ads and Pixel data.",
+      "description": "Facebook's (now Meta) success is a landmark case study in the power of network effects and data-driven monetization. Its journey from a college directory to a global social network and advertising powerhouse is built on a few core strategic pillars.",
       "imageUrl": "https://images.unsplash.com/photo-1636114673156-052a83459fc1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxmYWNlYm9va3xlbnwwfHx8fDE3NTgyOTU3OTB8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "meta advertising"
+      "imageHint": "meta advertising",
+      "websiteUrl": "https://www.facebook.com",
+      "links": [
+        {
+          "title": "The Power of Network Effects 🫂",
+          "description": "A Medium article that explains how Facebook leveraged a viral, college-centric approach to build its initial user base.",
+          "url": "https://medium.com/@gilfoyle_v2/how-facebook-acquired-its-initial-customers-cfd7634c02b2"
+        },
+        {
+          "title": "The Data-Driven Advertising Model 📈",
+          "description": "An article that explains how Facebook's advertising-centric model, its user data collection, and its global strategy work to generate revenue.",
+          "url": "https://iide.co/case-studies/business-model-of-facebook/"
+        },
+        {
+          "title": "Strategic Acquisitions and Ecosystem Expansion 📱",
+          "description": "This article provides examples of businesses that have found success using Facebook's advertising and its family of apps, like Instagram.",
+          "url": "https://cropink.com/meta-ads-examples"
+        }
+      ]
     },
     {
       "id": 11,
