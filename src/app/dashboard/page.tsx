@@ -56,8 +56,14 @@ export default function DashboardPage() {
     if (!currentBadge || !nextBadge) {
       return swanXP > 0 ? 100 : 0;
     }
+    if (swanXP === 0 && currentBadge.xpRequired === 0) {
+      return 0;
+    }
+    if (swanXP === currentBadge.xpRequired) {
+      return 0;
+    }
     const range = nextBadge.xpRequired - currentBadge.xpRequired;
-    if (range <= 0) return 0; // Avoid division by zero
+    if (range <= 0) return 0;
     const progress = swanXP - currentBadge.xpRequired;
     return (progress / range) * 100;
   }, [swanXP, currentBadge, nextBadge]);
@@ -139,9 +145,6 @@ export default function DashboardPage() {
               </div>
               <div className="text-4xl opacity-50">{nextBadge?.icon || '🌌'}</div>
             </div>
-            <Button asChild className="ml-auto">
-              <Link href="/dashboard/leaderboard">View Leaderboard</Link>
-            </Button>
           </CardContent>
         </Card>
          <Card>

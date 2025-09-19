@@ -12,7 +12,6 @@ import {
   Puzzle,
   Mic,
   BarChart,
-  Trophy,
   Settings,
   LogOut,
 } from 'lucide-react';
@@ -39,11 +38,6 @@ const mainNav = [
     href: '/dashboard/tutorials',
     label: 'Tutorials',
     icon: Mic,
-  },
-  {
-    href: '/dashboard/leaderboard',
-    label: 'Leaderboard',
-    icon: Trophy,
   },
 ];
 
