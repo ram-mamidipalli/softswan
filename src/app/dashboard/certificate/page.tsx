@@ -8,11 +8,13 @@ import { SwanLogo } from '@/components/icons/swan-logo';
 import { useAuth } from '@/hooks/use-auth';
 import { ArrowLeft, Download } from 'lucide-react';
 import { badgeLevels, type Badge } from '@/lib/badges';
+import { toPng } from 'html-to-image';
 
 export default function CertificatePage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { user } = useAuth();
+  const certificateRef = React.useRef<HTMLDivElement>(null);
 
   const badgeName = searchParams.get('badge');
   const date = searchParams.get('date');
@@ -28,28 +30,41 @@ export default function CertificatePage() {
   if (!badgeName || !date || !badge) {
     return null;
   }
+  
+  const handleDownload = React.useCallback(() => {
+    if (certificateRef.current === null) {
+      return;
+    }
 
-  const handlePrint = () => {
-    window.print();
-  };
+    toPng(certificateRef.current, { cacheBust: true, pixelRatio: 2 })
+      .then((dataUrl) => {
+        const link = document.createElement('a');
+        link.download = `softswan-certificate-${badge.name.toLowerCase().replace(/ /g, '-')}.png`;
+        link.href = dataUrl;
+        link.click();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [badge.name]);
 
   return (
-    <div className="bg-background text-foreground min-h-screen print:bg-white">
-       <div className="fixed top-0 left-0 right-0 p-4 flex justify-between items-center bg-background/80 backdrop-blur-sm z-10 print:hidden">
+    <div className="bg-background text-foreground min-h-screen">
+       <div className="fixed top-0 left-0 right-0 p-4 flex justify-between items-center bg-background/80 backdrop-blur-sm z-10">
          <Button variant="ghost" onClick={() => router.push('/dashboard')}>
             <ArrowLeft className="mr-2 h-4 w-4" />
             Back to Dashboard
         </Button>
-        <Button onClick={handlePrint}>
+        <Button onClick={handleDownload}>
             <Download className="mr-2 h-4 w-4" />
             Download
         </Button>
       </div>
 
-      <div className="max-w-4xl mx-auto p-8 print:p-0">
-        <div className="border-[10px] border-primary p-8 rounded-lg shadow-2xl bg-secondary/30 relative overflow-hidden print:shadow-none print:rounded-none">
-            <div className="absolute -top-20 -left-20 w-60 h-60 bg-primary/20 rounded-full blur-2xl print:hidden"></div>
-            <div className="absolute -bottom-20 -right-20 w-60 h-60 bg-accent rounded-full blur-2xl print:hidden"></div>
+      <div className="max-w-4xl mx-auto p-8 pt-24">
+        <div ref={certificateRef} className="border-[10px] border-primary p-8 rounded-lg shadow-2xl bg-white text-foreground relative overflow-hidden">
+            <div className="absolute -top-20 -left-20 w-60 h-60 bg-primary/20 rounded-full blur-2xl"></div>
+            <div className="absolute -bottom-20 -right-20 w-60 h-60 bg-accent rounded-full blur-2xl"></div>
             
             <div className="text-center mb-8 relative z-10">
                 <div className="flex justify-center text-5xl font-bold text-foreground mb-4">
@@ -88,17 +103,6 @@ export default function CertificatePage() {
             </div>
         </div>
       </div>
-       <style jsx global>{`
-        @media print {
-          body {
-            -webkit-print-color-adjust: exact;
-            print-color-adjust: exact;
-          }
-          .page-break {
-            page-break-after: always;
-          }
-        }
-      `}</style>
     </div>
   );
 }

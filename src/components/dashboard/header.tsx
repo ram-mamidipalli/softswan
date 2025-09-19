@@ -86,6 +86,9 @@ export function DashboardHeader() {
           <DropdownMenuItem asChild>
             <Link href="/dashboard/settings">Settings</Link>
           </DropdownMenuItem>
+          <DropdownMenuItem asChild>
+            <Link href="/dashboard/settings">My Certificates</Link>
+          </DropdownMenuItem>
           <DropdownMenuItem>Support</DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem onClick={handleSignOut}>Logout</DropdownMenuItem>
