@@ -11,6 +11,12 @@ import {
   type GeneratePuzzlesOutput,
 } from '@/ai/flows/generate-puzzles';
 
+import {
+  provideFeedback,
+  type ProvideFeedbackInput,
+  type ProvideFeedbackOutput,
+} from '@/ai/flows/provide-feedback';
+
 export async function getRecommendedTutorials(data: {
   skills: string[];
   activity: string;
@@ -46,4 +52,19 @@ export async function getPuzzles(): Promise<{
       error: 'Failed to generate puzzles. Please try again.',
     };
   }
+}
+
+export async function getFeedback(
+  data: ProvideFeedbackInput
+): Promise<{ success: boolean; feedback?: ProvideFeedbackOutput; error?: string }> {
+    try {
+        const result = await provideFeedback(data);
+        return { success: true, feedback: result };
+    } catch (error) {
+        console.error(error);
+        return {
+        success: false,
+        error: 'Failed to get feedback. Please try again.',
+        };
+    }
 }

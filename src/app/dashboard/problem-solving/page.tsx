@@ -14,9 +14,10 @@ import {
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
 import { puzzles, type Puzzle } from '@/lib/puzzles';
-import { ChevronLeft, ChevronRight, Check } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Check, Loader2 } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
+import { getFeedback } from '@/app/actions';
 
 export default function ProblemSolvingPage() {
   const [currentPuzzleIndex, setCurrentPuzzleIndex] = React.useState(0);
@@ -24,6 +25,7 @@ export default function ProblemSolvingPage() {
     {}
   );
   const [solvedPuzzles, setSolvedPuzzles] = React.useState<number[]>([]);
+  const [isLoading, setIsLoading] = React.useState(false);
   const { toast } = useToast();
 
   const currentPuzzle = puzzles[currentPuzzleIndex];
@@ -32,7 +34,7 @@ export default function ProblemSolvingPage() {
     setUserAnswers((prev) => ({ ...prev, [index]: answer }));
   };
 
-  const checkAnswer = (index: number) => {
+  const checkAnswer = async (index: number) => {
     const puzzle = puzzles[index];
     const userAnswer = userAnswers[index];
     if (!userAnswer) {
@@ -43,16 +45,33 @@ export default function ProblemSolvingPage() {
       return;
     }
 
-    const isCorrect =
-      userAnswer.trim().toLowerCase() ===
-      puzzle.expert_answer.trim().toLowerCase();
+    setIsLoading(true);
+
+    const result = await getFeedback({
+      problem: puzzle.problem,
+      expertAnswer: puzzle.expert_answer,
+      userAnswer: userAnswer,
+    });
+
+    setIsLoading(false);
+
+    if (!result.success || !result.feedback) {
+        toast({
+            variant: 'destructive',
+            title: 'Error',
+            description: result.error,
+        });
+        return;
+    }
+
+    const { isCorrect, feedback } = result.feedback;
 
     if (isCorrect) {
       if (!solvedPuzzles.includes(index)) {
         setSolvedPuzzles([...solvedPuzzles, index]);
         toast({
           title: 'Correct! 🎉',
-          description: `+10 points! You've solved ${
+          description: `${feedback} You've solved ${
             solvedPuzzles.length + 1
           } out of ${puzzles.length} puzzles.`,
         });
@@ -64,8 +83,8 @@ export default function ProblemSolvingPage() {
       }
     } else {
       toast({
-        title: 'Incorrect, try again!',
-        description: `Hint: The answer is not "${userAnswer}".`,
+        title: 'Not quite!',
+        description: feedback,
         variant: 'destructive',
       });
     }
@@ -127,10 +146,10 @@ export default function ProblemSolvingPage() {
                   onChange={(e) =>
                     handleAnswerChange(currentPuzzleIndex, e.target.value)
                   }
-                  disabled={isCurrentPuzzleSolved}
+                  disabled={isCurrentPuzzleSolved || isLoading}
                 />
-                <Button onClick={() => checkAnswer(currentPuzzleIndex)} disabled={isCurrentPuzzleSolved}>
-                  Submit
+                <Button onClick={() => checkAnswer(currentPuzzleIndex)} disabled={isCurrentPuzzleSolved || isLoading}>
+                  {isLoading ? <Loader2 className="animate-spin" /> : 'Submit'}
                 </Button>
             </div>
              {isCurrentPuzzleSolved && <p className="text-sm text-green-600">Correct Answer: {currentPuzzle.expert_answer}</p>}
@@ -142,6 +161,7 @@ export default function ProblemSolvingPage() {
           size="icon"
           onClick={goToPreviousPuzzle}
           className="absolute left-0 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full h-12 w-12 hidden md:flex"
+          disabled={isLoading}
         >
           <ChevronLeft />
         </Button>
@@ -150,6 +170,7 @@ export default function ProblemSolvingPage() {
           size="icon"
           onClick={goToNextPuzzle}
           className="absolute right-0 top-1/2 translate-x-1/2 -translate-y-1/2 rounded-full h-12 w-12 hidden md:flex"
+          disabled={isLoading}
         >
           <ChevronRight />
         </Button>
@@ -159,12 +180,14 @@ export default function ProblemSolvingPage() {
              <Button
                 variant="outline"
                 onClick={goToPreviousPuzzle}
+                disabled={isLoading}
             >
                 <ChevronLeft className="mr-2" /> Previous
             </Button>
              <Button
                 variant="outline"
                 onClick={goToNextPuzzle}
+                disabled={isLoading}
             >
                 Next <ChevronRight className="ml-2" />
             </Button>
