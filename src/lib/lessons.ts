@@ -9,6 +9,7 @@ export type Lesson = {
   imageUrl: string;
   videoUrl: string;
   description: string;
+  recommended?: boolean;
 };
 
 export const lessons: Lesson[] = data.lessons;

@@ -4,12 +4,13 @@
     {
       "id": 1,
       "title": "Why Startups Win In The AI Era",
-      "author": "Aaron Levie (Box) at YC AI Startup School",
+      "author": "Aaron Levie (Box)",
       "category": "Startup Strategy",
       "imageHint": "AI startup",
       "imageUrl": "https://img.youtube.com/vi/uqc_vt95GJg/hqdefault.jpg",
       "videoUrl": "https://www.youtube.com/embed/uqc_vt95GJg",
-      "description": "A deep dive into how startups can compete with incumbents in the age of AI."
+      "description": "A deep dive into how startups can compete with incumbents in the age of AI.",
+      "recommended": true
     },
     {
       "id": 2,
@@ -29,7 +30,8 @@
       "imageHint": "idea validation",
       "imageUrl": "https://img.youtube.com/vi/8-UfUYrr3N8/hqdefault.jpg",
       "videoUrl": "https://www.youtube.com/embed/8-UfUYrr3N8",
-      "description": "A workshop on techniques for brainstorming and testing startup ideas."
+      "description": "A workshop on techniques for brainstorming and testing startup ideas.",
+      "recommended": true
     },
     {
       "id": 4,
@@ -39,7 +41,8 @@
       "imageHint": "y combinator",
       "imageUrl": "https://img.youtube.com/vi/CBYhVcO4WgI/hqdefault.jpg",
       "videoUrl": "https://www.youtube.com/embed/CBYhVcO4WgI",
-      "description": "A classic and foundational lecture on starting a company from two of the best in the industry."
+      "description": "A classic and foundational lecture on starting a company from two of the best in the industry.",
+      "recommended": true
     },
     {
       "id": 5,
@@ -140,6 +143,61 @@
       "imageUrl": "https://img.youtube.com/vi/IP0cUBWTgpY/hqdefault.jpg",
       "videoUrl": "https://www.youtube.com/embed/IP0cUBWTgpY",
       "description": "An explanation of the Business Model Canvas and how to use its nine segments to plan your business."
+    },
+    {
+      "id": 16,
+      "title": "How to Apply And Succeed at Y Combinator",
+      "author": "Startup School",
+      "category": "Y Combinator",
+      "imageHint": "Y Combinator",
+      "imageUrl": "https://img.youtube.com/vi/B5tU2447OK8/hqdefault.jpg",
+      "videoUrl": "https://www.youtube.com/embed/B5tU2447OK8",
+      "description": "Learn how to apply and succeed at Y Combinator.",
+      "recommended": true
+    },
+    {
+      "id": 17,
+      "title": "The Sales Playbook For Founders",
+      "author": "Startup School",
+      "category": "Sales",
+      "imageHint": "sales playbook",
+      "imageUrl": "https://img.youtube.com/vi/DH7REvnQ1y4/hqdefault.jpg",
+      "videoUrl": "https://www.youtube.com/embed/DH7REvnQ1y4",
+      "description": "A sales playbook designed for startup founders.",
+      "recommended": true
+    },
+    {
+      "id": 18,
+      "title": "How to Get Your First Customers",
+      "author": "Startup School",
+      "category": "Customer Acquisition",
+      "imageHint": "first customers",
+      "imageUrl": "https://img.youtube.com/vi/hyYCn_kAngI/hqdefault.jpg",
+      "videoUrl": "https://www.youtube.com/embed/hyYCn_kAngI",
+      "description": "Learn the strategies to acquire your first customers.",
+      "recommended": true
+    },
+    {
+      "id": 19,
+      "title": "How to Plan an MVP",
+      "author": "Michael Seibel",
+      "category": "Product",
+      "imageHint": "MVP planning",
+      "imageUrl": "https://img.youtube.com/vi/1hHMwLxN6EM/hqdefault.jpg",
+      "videoUrl": "https://www.youtube.com/embed/1hHMwLxN6EM",
+      "description": "Michael Seibel from Y Combinator explains how to plan your Minimum Viable Product.",
+      "recommended": true
+    },
+    {
+      "id": 20,
+      "title": "How To Talk To Users",
+      "author": "Startup School",
+      "category": "User Research",
+      "imageHint": "talk to users",
+      "imageUrl": "https://img.youtube.com/vi/z1iF1c8w5Lg/hqdefault.jpg",
+      "videoUrl": "https://www.youtube.com/embed/z1iF1c8w5Lg",
+      "description": "Learn the art of talking to users to get meaningful feedback.",
+      "recommended": true
     }
   ]
 }

@@ -12,7 +12,7 @@ import {
 import { Badge } from '@/components/ui/badge';
 import Image from 'next/image';
 import Link from 'next/link';
-import { CheckCircle } from 'lucide-react';
+import { CheckCircle, Star } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { lessons } from '@/lib/lessons';
 
@@ -59,6 +59,14 @@ export default function LessonsPage() {
                        <Badge variant="secondary" className="bg-green-100 text-green-800 border-green-200 text-sm">
                         <CheckCircle className="mr-1 h-4 w-4" />
                         Completed
+                      </Badge>
+                    </div>
+                  )}
+                  {lesson.recommended && !isCompleted && (
+                    <div className="absolute top-2 right-2">
+                       <Badge variant="default" className="bg-primary/90 text-primary-foreground border-primary text-sm">
+                        <Star className="mr-1 h-3 w-3" />
+                        Recommended
                       </Badge>
                     </div>
                   )}
