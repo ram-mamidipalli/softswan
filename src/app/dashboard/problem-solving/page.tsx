@@ -82,7 +82,7 @@ export default function ProblemSolvingPage() {
 
   return (
     <div className="flex flex-col gap-8">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl font-bold tracking-tight">
             Problem Solving Challenges
@@ -106,34 +106,34 @@ export default function ProblemSolvingPage() {
               key={puzzle.id}
               className={cn('group', { 'pointer-events-none': isSolved })}
             >
-              <Card className="h-full transition-all group-hover:shadow-lg group-hover:-translate-y-1 relative">
-                <div className="flex justify-between items-start p-6">
-                   <div>
-                    <CardTitle className="text-base font-semibold">
+              <Card className="h-full transition-all group-hover:shadow-lg group-hover:-translate-y-1 relative flex flex-col">
+                <CardHeader className="flex-grow">
+                  <div className="flex justify-between items-start gap-4 mb-2">
+                    <CardTitle className="text-base font-semibold leading-snug">
                       Challenge #{puzzle.id}
                     </CardTitle>
-                    <CardDescription>{puzzle.category}</CardDescription>
+                    <div className="flex flex-col items-end gap-2 flex-shrink-0">
+                      {isSolved && (
+                        <Badge
+                          variant="secondary"
+                          className="bg-green-100 text-green-800 border-green-200 text-xs"
+                        >
+                          <CheckCircle className="mr-1 h-3 w-3" />
+                          Completed
+                        </Badge>
+                      )}
+                      {isHard && !isSolved && (
+                        <Badge variant="destructive" className="text-xs">
+                          Hard
+                        </Badge>
+                      )}
+                    </div>
                   </div>
-                  <div className="flex flex-col items-end gap-2">
-                    {isSolved && (
-                      <Badge
-                        variant="secondary"
-                        className="bg-green-100 text-green-800 border-green-200"
-                      >
-                        <CheckCircle className="mr-1 h-3 w-3" />
-                        Completed
-                      </Badge>
-                    )}
-                    {isHard && !isSolved && (
-                      <Badge variant="destructive">
-                        Hard
-                      </Badge>
-                    )}
-                  </div>
-                </div>
-                <CardContent className="pt-0">
+                  <CardDescription>{puzzle.category}</CardDescription>
+                </CardHeader>
+                <CardContent>
                   <p
-                    className={cn('text-sm text-muted-foreground', {
+                    className={cn('text-sm text-muted-foreground line-clamp-3', {
                       'opacity-60': isSolved,
                     })}
                   >
@@ -188,5 +188,3 @@ export default function ProblemSolvingPage() {
     </div>
   );
 }
-
-    
