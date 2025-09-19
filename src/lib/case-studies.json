@@ -5,7 +5,11 @@
       "id": 1,
       "companyName": "Apple",
       "title": "Apple at Work - Success Stories",
-      "link": "https://www.apple.com/business/success-stories/",
+      "links": [
+        "https://www.apple.com/business/success-stories/",
+        "https://cdotimes.com/2024/11/21/case-study-apples-ecosystem-strategy-building-loyalty-and-revenue-through-integration-and-innovation/",
+        "https://www.researchgate.net/publication/377718441_Apple's_Brand_Marketing_Strategy_A_Case_Study_on_Brand_Image_and_Customer_Engagement"
+      ],
       "description": "How companies across various industries leverage Apple products and services to enhance productivity and innovation.",
       "imageUrl": "https://images.unsplash.com/photo-1621768216002-5ac171876625?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxhcHBsZXxlbnwwfHx8fDE3NTgyOTAwNTR8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "apple products"
@@ -14,7 +18,9 @@
       "id": 2,
       "companyName": "Amazon",
       "title": "Amazon Business Case Study: Strategies & Growth",
-      "link": "https://www.upgrad.com/blog/amazon-business-case-study-in-depth-analysis/",
+      "links": [
+        "https://www.upgrad.com/blog/amazon-business-case-study-in-depth-analysis/"
+      ],
       "description": "An in-depth analysis of Amazon's journey, its customer-centric approach, and strategic importance of AWS.",
       "imageUrl": "https://picsum.photos/seed/cs2/600/400",
       "imageHint": "amazon growth"
@@ -23,7 +29,9 @@
       "id": 3,
       "companyName": "Google",
       "title": "Google Ad Manager Success Stories",
-      "link": "https://admanager.google.com/home/resources/success-stories/",
+      "links": [
+        "https://admanager.google.com/home/resources/success-stories/"
+      ],
       "description": "How publishers use Google's advertising platforms to monetize content and optimize ad revenue.",
       "imageUrl": "https://picsum.photos/seed/cs3/600/400",
       "imageHint": "google ads"
@@ -32,7 +40,9 @@
       "id": 4,
       "companyName": "Netflix",
       "title": "A Case Study on Netflix Marketing Strategy",
-      "link": "https://iide.co/case-studies/netflix-marketing-strategy/",
+      "links": [
+        "https://iide.co/case-studies/netflix-marketing-strategy/"
+      ],
       "description": "Netflix's success through data-driven marketing, personalized recommendations, and original content.",
       "imageUrl": "https://picsum.photos/seed/cs4/600/400",
       "imageHint": "netflix streaming"
@@ -41,7 +51,9 @@
       "id": 5,
       "companyName": "Starbucks",
       "title": "The Starbucks Success Story",
-      "link": "https://www.investopedia.com/articles/investing/102214/how-starbucks-became-21-billion-business.asp",
+      "links": [
+        "https://www.investopedia.com/articles/investing/102214/how-starbucks-became-21-billion-business.asp"
+      ],
       "description": "How Starbucks transformed into a community-focused café with a unique brand experience.",
       "imageUrl": "https://picsum.photos/seed/cs5/600/400",
       "imageHint": "starbucks coffee"
@@ -50,7 +62,9 @@
       "id": 6,
       "companyName": "Spotify",
       "title": "Business Model of Spotify",
-      "link": "https://www.feedough.com/spotify-business-model/",
+      "links": [
+        "https://www.feedough.com/spotify-business-model/"
+      ],
       "description": "A breakdown of Spotify's freemium strategy and its use of AI for personalized recommendations.",
       "imageUrl": "https://picsum.photos/seed/cs6/600/400",
       "imageHint": "spotify music"
@@ -59,7 +73,9 @@
       "id": 7,
       "companyName": "Airbnb",
       "title": "Airbnb Programmatic SEO Strategy Case Study",
-      "link": "https://www.growth-method.com/programmatic-seo-airbnb-case-study",
+      "links": [
+        "https://www.growth-method.com/programmatic-seo-airbnb-case-study"
+      ],
       "description": "How Airbnb disrupted the hospitality industry with its programmatic SEO strategy to generate immense organic traffic.",
       "imageUrl": "https://picsum.photos/seed/cs7/600/400",
       "imageHint": "airbnb travel"
@@ -68,7 +84,9 @@
       "id": 8,
       "companyName": "Slack",
       "title": "How Slack Achieved $1.12B in Its First Year",
-      "link": "https://productled.com/blog/slack-product-led-growth",
+      "links": [
+        "https://productled.com/blog/slack-product-led-growth"
+      ],
       "description": "A masterclass in product-led growth, focusing on its freemium model and word-of-mouth marketing.",
       "imageUrl": "https://picsum.photos/seed/cs8/600/400",
       "imageHint": "slack communication"
@@ -77,7 +95,9 @@
       "id": 9,
       "companyName": "Tesla",
       "title": "Tesla Case Study - Meritshot",
-      "link": "https://www.meritshot.com/case-studies/tesla-case-study",
+      "links": [
+        "https://www.meritshot.com/case-studies/tesla-case-study"
+      ],
       "description": "Analyzes Tesla's vertical integration and innovation, bringing electric vehicles into the mainstream.",
       "imageUrl": "https://picsum.photos/seed/cs9/600/400",
       "imageHint": "tesla electric"
@@ -86,7 +106,9 @@
       "id": 10,
       "companyName": "Facebook (Meta)",
       "title": "Meta Advertising Case Study",
-      "link": "https://www.facebook.com/business/success",
+      "links": [
+        "https://www.facebook.com/business/success"
+      ],
       "description": "An example of a successful marketing campaign using Facebook and Instagram ads and Pixel data.",
       "imageUrl": "https://picsum.photos/seed/cs10/600/400",
       "imageHint": "meta advertising"
@@ -95,7 +117,9 @@
       "id": 11,
       "companyName": "Zappos",
       "title": "Zappos Success Story",
-      "link": "https://www.investopedia.com/articles/investing/042915/zappos-billion-dollar-customer-service-machine.asp",
+      "links": [
+        "https://www.investopedia.com/articles/investing/042915/zappos-billion-dollar-customer-service-machine.asp"
+      ],
       "description": "How Zappos built a billion-dollar business on exceptional customer service and a unique company culture.",
       "imageUrl": "https://picsum.photos/seed/cs11/600/400",
       "imageHint": "zappos shoes"
@@ -104,7 +128,9 @@
       "id": 12,
       "companyName": "Patagonia",
       "title": "The Success of Patagonia's Marketing Strategy",
-      "link": "https://www.drip.com/blog/patagonia-marketing-strategy",
+      "links": [
+        "https://www.drip.com/blog/patagonia-marketing-strategy"
+      ],
       "description": "A lesson in purpose-driven marketing, building brand loyalty through environmental activism.",
       "imageUrl": "https://picsum.photos/seed/cs12/600/400",
       "imageHint": "patagonia outdoors"
@@ -113,7 +139,9 @@
       "id": 13,
       "companyName": "HubSpot",
       "title": "HubSpot for Startups Customer Stories",
-      "link": "https://www.hubspot.com/customers/case-studies",
+      "links": [
+        "https://www.hubspot.com/customers/case-studies"
+      ],
       "description": "How startups have used HubSpot's CRM platform to streamline sales, marketing, and customer service.",
       "imageUrl": "https://picsum.photos/seed/cs13/600/400",
       "imageHint": "hubspot crm"
@@ -122,7 +150,9 @@
       "id": 14,
       "companyName": "Shopify",
       "title": "Shopify Case Studies",
-      "link": "https://www.shopify.com/case-studies",
+      "links": [
+        "https://www.shopify.com/case-studies"
+      ],
       "description": "Brands that have used Shopify's e-commerce platform to unify sales and scale their businesses.",
       "imageUrl": "https://picsum.photos/seed/cs14/600/400",
       "imageHint": "shopify ecommerce"
@@ -131,7 +161,9 @@
       "id": 15,
       "companyName": "Salesforce",
       "title": "Success Stories from Companies Using Salesforce",
-      "link": "https://www.salesforce.com/customer-success-stories/",
+      "links": [
+        "https://www.salesforce.com/customer-success-stories/"
+      ],
       "description": "How businesses have used Salesforce to gain a 360-degree view of their customers and boost profitability.",
       "imageUrl": "https://picsum.photos/seed/cs15/600/400",
       "imageHint": "salesforce cloud"
@@ -140,7 +172,9 @@
       "id": 16,
       "companyName": "LEGO",
       "title": "LEGO - Harvard Business School Case",
-      "link": "https://www.hbs.edu/faculty/Pages/item.aspx?num=53229",
+      "links": [
+        "https://www.hbs.edu/faculty/Pages/item.aspx?num=53229"
+      ],
       "description": "Examines LEGO's journey from near bankruptcy to a thriving company by balancing innovation with core values.",
       "imageUrl": "https://picsum.photos/seed/cs16/600/400",
       "imageHint": "lego bricks"
@@ -149,7 +183,9 @@
       "id": 17,
       "companyName": "UNIQLO",
       "title": "How UNIQLO Engineered Fashion's Most Unconventional Success Story",
-      "link": "https://www.businessoffashion.com/articles/retail/how-uniqlo-engineered-fashions-most-unconventional-success-story/",
+      "links": [
+        "https://www.businessoffashion.com/articles/retail/how-uniqlo-engineered-fashions-most-unconventional-success-story/"
+      ],
       "description": "UNIQLO's success through material innovation and high-quality, long-lasting basic wear.",
       "imageUrl": "https://picsum.photos/seed/cs17/600/400",
       "imageHint": "uniqlo fashion"
@@ -158,7 +194,9 @@
       "id": 18,
       "companyName": "IKEA",
       "title": "IKEA Business Model Explained",
-      "link": "https://www.feedough.com/ikea-business-model/",
+      "links": [
+        "https://www.feedough.com/ikea-business-model/"
+      ],
       "description": "Explains IKEA's innovative business model, centered on low-cost, functional design and a unique in-store experience.",
       "imageUrl": "https://picsum.photos/seed/cs18/600/400",
       "imageHint": "ikea furniture"
@@ -167,7 +205,9 @@
       "id": 19,
       "companyName": "Southwest Airlines",
       "title": "Case Study: Southwest Airlines Strategies",
-      "link": "https://www.investopedia.com/articles/investing/111815/case-study-southwest-airlines-strategies.asp",
+      "links": [
+        "https://www.investopedia.com/articles/investing/111815/case-study-southwest-airlines-strategies.asp"
+      ],
       "description": "A case study on Southwest's low-cost, point-to-point business model and strong employee-focused culture.",
       "imageUrl": "https://picsum.photos/seed/cs19/600/400",
       "imageHint": "southwest airplane"
@@ -176,7 +216,9 @@
       "id": 20,
       "companyName": "FedEx",
       "title": "Case Study: FedEx Success Story",
-      "link": "https://www.managementstudyguide.com/fedex-success-story.htm",
+      "links": [
+        "https://www.managementstudyguide.com/fedex-success-story.htm"
+      ],
       "description": "How FedEx's commitment to service quality and technological innovation allowed it to dominate the overnight delivery market.",
       "imageUrl": "https://picsum.photos/seed/cs20/600/400",
       "imageHint": "fedex delivery"

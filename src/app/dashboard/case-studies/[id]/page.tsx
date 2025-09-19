@@ -69,12 +69,16 @@ export default function CaseStudyPage() {
         </CardHeader>
         <CardContent>
           <p className="text-muted-foreground mb-6">{study.description}</p>
-          <Button asChild>
-            <a href={study.link} target="_blank" rel="noopener noreferrer">
-              Read Full Case Study
-              <ExternalLink className="ml-2 h-4 w-4" />
-            </a>
-          </Button>
+          <div className="flex flex-col gap-4">
+            {study.links.map((link, index) => (
+              <Button asChild key={index}>
+                <a href={link} target="_blank" rel="noopener noreferrer">
+                  Read Full Case Study {study.links.length > 1 ? `#${index + 1}` : ''}
+                  <ExternalLink className="ml-2 h-4 w-4" />
+                </a>
+              </Button>
+            ))}
+          </div>
         </CardContent>
       </Card>
     </div>
