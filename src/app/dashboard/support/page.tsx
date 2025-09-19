@@ -2,7 +2,6 @@
 'use client';
 
 import * as React from 'react';
-import { Button } from '@/components/ui/button';
 import {
   Card,
   CardContent,
@@ -10,89 +9,46 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Textarea } from '@/components/ui/textarea';
-import { useToast } from '@/hooks/use-toast';
-import { useAuth } from '@/hooks/use-auth';
+import { Mail, Phone } from 'lucide-react';
 
 export default function SupportPage() {
-  const { toast } = useToast();
-  const { user } = useAuth();
-  const [subject, setSubject] = React.useState('');
-  const [message, setMessage] = React.useState('');
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!subject || !message) {
-      toast({
-        variant: 'destructive',
-        title: 'Missing Fields',
-        description: 'Please fill out both the subject and message.',
-      });
-      return;
-    }
-
-    const recipient = 'ramasubbarao1125@gmail.com';
-    const mailtoLink = `mailto:${recipient}?subject=${encodeURIComponent(
-      subject
-    )}&body=${encodeURIComponent(
-      `From: ${user?.email || 'Unknown User'}\n\n${message}`
-    )}`;
-
-    window.location.href = mailtoLink;
-
-    toast({
-      title: 'Redirecting to Email Client',
-      description: 'Your email client should open shortly to send the message.',
-    });
-  };
-
   return (
     <div className="flex flex-col gap-8">
       <div>
         <h1 className="text-3xl font-bold tracking-tight">Support</h1>
         <p className="text-muted-foreground">
-          Have a question or need help? Fill out the form below.
+          Have a question or need help? Here's how you can reach us.
         </p>
       </div>
 
       <Card className="max-w-2xl">
         <CardHeader>
-          <CardTitle>Contact Us</CardTitle>
+          <CardTitle>Contact Information</CardTitle>
           <CardDescription>
-            We'll get back to you as soon as possible.
+            We're available to assist you. Please feel free to get in touch.
           </CardDescription>
         </CardHeader>
-        <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="email">Your Email</Label>
-              <Input id="email" value={user?.email || ''} disabled />
+        <CardContent className="space-y-6 pt-6">
+            <div className="flex items-start gap-4">
+                <Mail className="h-6 w-6 text-primary mt-1" />
+                <div>
+                    <h3 className="font-semibold">Email</h3>
+                    <p className="text-muted-foreground text-sm mb-1">For any support queries, please email us.</p>
+                    <a href="mailto:ramasubbarao1125@gmail.com" className="text-primary hover:underline">
+                        ramasubbarao1125@gmail.com
+                    </a>
+                </div>
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="subject">Subject</Label>
-              <Input
-                id="subject"
-                placeholder="How can we help?"
-                value={subject}
-                onChange={(e) => setSubject(e.target.value)}
-              />
+             <div className="flex items-start gap-4">
+                <Phone className="h-6 w-6 text-primary mt-1" />
+                <div>
+                    <h3 className="font-semibold">Phone</h3>
+                     <p className="text-muted-foreground text-sm mb-1">You can also reach us by phone during business hours.</p>
+                    <a href="tel:+1234567890" className="text-primary hover:underline">
+                        +1 (234) 567-890
+                    </a>
+                </div>
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="message">Your Message</Label>
-              <Textarea
-                id="message"
-                placeholder="Please describe your issue in detail..."
-                className="min-h-[150px]"
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-              />
-            </div>
-            <Button type="submit" className="w-full">
-              Send Message
-            </Button>
-          </form>
         </CardContent>
       </Card>
     </div>
