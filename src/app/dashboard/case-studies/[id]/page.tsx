@@ -3,7 +3,7 @@
 
 import * as React from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import { caseStudies, type CaseStudy } from '@/lib/case-studies';
+import { caseStudies, type CaseStudy, type CaseStudyLink } from '@/lib/case-studies';
 import { Loader2, ArrowLeft, ExternalLink, Globe } from 'lucide-react';
 import {
   Card,
@@ -15,6 +15,11 @@ import {
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import Image from 'next/image';
+
+function isCaseStudyLink(link: string | CaseStudyLink): link is CaseStudyLink {
+    return typeof link === 'object' && link !== null && 'url' in link;
+}
+
 
 export default function CaseStudyPage() {
   const [study, setStudy] = React.useState<CaseStudy | null>(null);
@@ -80,14 +85,34 @@ export default function CaseStudyPage() {
         <CardContent>
           <p className="text-muted-foreground mb-6">{study.description}</p>
           <div className="flex flex-col gap-4">
-            {study.links.map((link, index) => (
-              <Button asChild key={index}>
-                <a href={link} target="_blank" rel="noopener noreferrer">
-                  Read Full Case Study {study.links.length > 1 ? `#${index + 1}` : ''}
-                  <ExternalLink className="ml-2 h-4 w-4" />
-                </a>
-              </Button>
-            ))}
+             {study.links.map((link, index) => {
+                if (isCaseStudyLink(link)) {
+                    return (
+                        <Card key={index} className="bg-secondary">
+                            <CardHeader>
+                                <CardTitle className="text-lg">{link.title}</CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <p className="text-sm text-muted-foreground mb-4">{link.description}</p>
+                                <Button asChild>
+                                    <a href={link.url} target="_blank" rel="noopener noreferrer">
+                                        Read More
+                                        <ExternalLink className="ml-2 h-4 w-4" />
+                                    </a>
+                                </Button>
+                            </CardContent>
+                        </Card>
+                    )
+                }
+                return (
+                    <Button asChild key={index}>
+                        <a href={link} target="_blank" rel="noopener noreferrer">
+                        Read Full Case Study {study.links.length > 1 ? `#${index + 1}` : ''}
+                        <ExternalLink className="ml-2 h-4 w-4" />
+                        </a>
+                    </Button>
+                )
+             })}
           </div>
         </CardContent>
       </Card>

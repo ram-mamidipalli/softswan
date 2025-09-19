@@ -33,7 +33,31 @@
       "companyName": "Google",
       "title": "Google's business case studies",
       "links": [
-        "https://admanager.google.com/home/resources/success-stories/"
+        {
+          "title": "The Core Business Model: Advertising 💰",
+          "url": "https://iide.co/case-studies/business-model-of-google/",
+          "description": "This case study explains how Google's primary revenue source is its advertising business model. It details how Google connects businesses with consumers through its search engine, YouTube, and other platforms. The study emphasizes the power of Google Ads and how the company's auction-based pricing model allows it to dominate the digital advertising market, generating a significant majority of its parent company Alphabet's revenue."
+        },
+        {
+          "title": "Google Cloud's Enterprise Success ☁️",
+          "url": "https://cloud.google.com/customers",
+          "description": "This page features a collection of customer stories showing how businesses use Google Cloud to solve complex problems. For instance, you can find case studies on how companies like The Super-Pharm pharmacy chain used Vertex AI to improve inventory accuracy by up to 90%, and how HCA Healthcare used generative AI to redesign patient care. These examples highlight Google's growing influence in the enterprise market and its focus on AI and data analytics."
+        },
+        {
+          "title": "Small Business & Individual Growth 🌱",
+          "url": "https://grow.google/intl/en_in/success-stories/",
+          "description": "This section of Google's official site focuses on the \"human\" aspect of its business. It features success stories of individuals and small businesses that have used Google tools like Google My Business and digital skills training to grow their operations. For example, it highlights a military veteran who used Google My Business to reach more clients, and a small bakery that grew its business through online visibility."
+        },
+        {
+          "title": "Ad-Driven Publisher Success 📈",
+          "url": "https://www.google.com/adsense/start/success-stories/",
+          "description": "This page provides case studies of publishers and content creators who have successfully monetized their websites using Google AdSense. It showcases how a French food blogger, a creative family blog, and an online directory in Japan were able to generate significant ad revenue, allowing them to turn their passions into sustainable businesses."
+        },
+        {
+          "title": "Google Marketing Platform's Impact 🎯",
+          "url": "https://marketingplatform.google.com/about/resources/customer-success-stories/",
+          "description": "This collection of case studies focuses on how large enterprises use the Google Marketing Platform to improve their advertising campaigns. Companies like McDonald's Hong Kong used Google Analytics 4 to increase in-app orders by over 550%, and Uber Eats used Display & Video 360 to increase campaign reach by 10%. The case studies demonstrate how sophisticated tools help businesses make data-driven decisions."
+        }
       ],
       "description": "How publishers use Google's advertising platforms to monetize content and optimize ad revenue.",
       "imageUrl": "https://picsum.photos/seed/cs3/600/400",
