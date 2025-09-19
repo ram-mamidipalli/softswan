@@ -1,18 +1,18 @@
 
+
 'use client';
 
 import * as React from 'react';
 import {
   Sidebar,
   SidebarProvider,
-  SidebarTrigger,
-  SidebarInset,
 } from '@/components/ui/sidebar';
 import { useAuth } from '@/hooks/use-auth';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { Loader2 } from 'lucide-react';
 import { DashboardSidebar } from '@/components/dashboard/sidebar';
 import { DashboardHeader } from '@/components/dashboard/header';
+import { DashboardContent } from './content';
 
 export default function DashboardLayout({
   children,
@@ -21,6 +21,7 @@ export default function DashboardLayout({
 }) {
   const { user, loading } = useAuth();
   const router = useRouter();
+  const pathname = usePathname();
 
   React.useEffect(() => {
     if (!loading && !user) {
@@ -35,16 +36,22 @@ export default function DashboardLayout({
       </div>
     );
   }
+  
+  if (pathname === '/dashboard/certificate') {
+    return <>{children}</>;
+  }
+
 
   return (
     <SidebarProvider>
       <Sidebar side="left" variant="sidebar" collapsible="icon" className="border-r">
         <DashboardSidebar />
       </Sidebar>
-      <SidebarInset>
+      <DashboardContent>
         <DashboardHeader />
         <main className="p-4 sm:p-6 lg:p-8">{children}</main>
-      </SidebarInset>
+      </DashboardContent>
     </SidebarProvider>
   );
 }
+

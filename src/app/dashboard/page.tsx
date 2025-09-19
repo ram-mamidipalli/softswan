@@ -1,4 +1,5 @@
 
+
 'use client';
 
 import * as React from 'react';
@@ -10,11 +11,11 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { Flame, Target, Trophy, Award, CheckCircle } from 'lucide-react';
+import { Flame, Target, Trophy, Award, CheckCircle, Star } from 'lucide-react';
 import { Progress } from '@/components/ui/progress';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { getBadgeForPoints, type Badge } from '@/lib/badges';
+import { getBadgeForPoints, type Badge, badgeLevels } from '@/lib/badges';
 
 export default function DashboardPage() {
   const { user } = useAuth();
@@ -23,9 +24,12 @@ export default function DashboardPage() {
   const [swanXP, setSwanXP] = React.useState(0);
   const [currentBadge, setCurrentBadge] = React.useState<Badge | null>(null);
   const [nextBadge, setNextBadge] = React.useState<Badge | null>(null);
+  const [newlyAchievedBadge, setNewlyAchievedBadge] = React.useState<Badge | null>(null);
 
   React.useEffect(() => {
     const updateStats = () => {
+      const prevBadgeName = localStorage.getItem('currentBadgeName');
+
       const solvedCount = parseInt(localStorage.getItem('puzzlesSolvedCount') || '0', 10);
       const completedTutorialsCount = JSON.parse(localStorage.getItem('completedTutorials') || '[]').length;
       const xp = parseInt(localStorage.getItem('swanXP') || '0', 10);
@@ -36,9 +40,29 @@ export default function DashboardPage() {
       setSwanXP(xp);
       setCurrentBadge(badge);
       setNextBadge(nextBadge);
+      localStorage.setItem('currentBadgeName', badge.name);
+
+      const majorBadgeTiers = ['Silver 1', 'Gold 1', 'Platinum 1', 'Diamond 1', 'Master 1', 'Cosmic Swan'];
+      if (prevBadgeName !== badge.name && majorBadgeTiers.includes(badge.name)) {
+        const newlyAchieved = badgeLevels.find(b => b.name === badge.name);
+        if (newlyAchieved) {
+            setNewlyAchievedBadge(newlyAchieved);
+            sessionStorage.setItem('newlyAchievedBadge', JSON.stringify({
+                name: newlyAchieved.name,
+                date: new Date().toISOString()
+            }));
+        }
+      }
     };
 
     updateStats();
+
+    const storedNewBadge = sessionStorage.getItem('newlyAchievedBadge');
+    if (storedNewBadge) {
+        const { name } = JSON.parse(storedNewBadge);
+        const foundBadge = badgeLevels.find(b => b.name === name);
+        if (foundBadge) setNewlyAchievedBadge(foundBadge);
+    }
 
     const handleStorageChange = (e: StorageEvent) => {
         if (e.key === 'puzzlesSolvedCount' || e.key === 'swanXP' || e.key === 'completedTutorials') {
@@ -51,19 +75,18 @@ export default function DashboardPage() {
         window.removeEventListener('storage', handleStorageChange);
     };
   }, []);
+  
+  const handleViewCertificate = () => {
+    sessionStorage.removeItem('newlyAchievedBadge');
+    setNewlyAchievedBadge(null);
+  };
 
   const progressPercentage = React.useMemo(() => {
     if (!currentBadge || !nextBadge) {
-      return swanXP > 0 ? 100 : 0;
-    }
-    if (swanXP === 0 && currentBadge.xpRequired === 0) {
-      return 0;
-    }
-    if (swanXP === currentBadge.xpRequired) {
-      return 0;
+      return 100;
     }
     const range = nextBadge.xpRequired - currentBadge.xpRequired;
-    if (range <= 0) return 0;
+    if (range <= 0) return 100;
     const progress = swanXP - currentBadge.xpRequired;
     return (progress / range) * 100;
   }, [swanXP, currentBadge, nextBadge]);
@@ -105,6 +128,25 @@ export default function DashboardPage() {
           Here&apos;s a snapshot of your progress. Keep up the great work!
         </p>
       </div>
+
+       {newlyAchievedBadge && (
+        <Card className="bg-primary/10 border-primary">
+          <CardHeader className="flex-row items-center gap-4">
+            <Star className="w-8 h-8 text-primary" />
+            <div>
+              <CardTitle>Congratulations! You've Leveled Up!</CardTitle>
+              <CardDescription>You have achieved the rank of {newlyAchievedBadge.name}.</CardDescription>
+            </div>
+          </CardHeader>
+          <CardContent>
+            <Button asChild onClick={handleViewCertificate}>
+              <Link href={`/dashboard/certificate?badge=${encodeURIComponent(newlyAchievedBadge.name)}&date=${new Date().toISOString()}`}>
+                View Your Certificate
+              </Link>
+            </Button>
+          </CardContent>
+        </Card>
+      )}
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
         {stats.map((stat) => (
