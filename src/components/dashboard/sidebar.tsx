@@ -15,6 +15,12 @@ import {
   Settings,
   LogOut,
   LifeBuoy,
+  BookText,
+  Users,
+  BookOpen,
+  Newspaper,
+  ClipboardList,
+  Calculator,
 } from 'lucide-react';
 import { SwanLogo } from '../icons/swan-logo';
 import { usePathname, useRouter } from 'next/navigation';
@@ -39,6 +45,36 @@ const mainNav = [
     href: '/dashboard/tutorials',
     label: 'Tutorials',
     icon: Mic,
+  },
+  {
+    href: '/dashboard/case-studies',
+    label: 'Case Studies',
+    icon: BookText,
+  },
+  {
+    href: '/dashboard/investors',
+    label: 'Investors',
+    icon: Users,
+  },
+  {
+    href: '/dashboard/lessons',
+    label: 'Lessons',
+    icon: BookOpen,
+  },
+  {
+    href: '/dashboard/articles',
+    label: 'Articles',
+    icon: Newspaper,
+  },
+  {
+    href: '/dashboard/plan-builder',
+    label: 'Plan Builder',
+    icon: ClipboardList,
+  },
+  {
+    href: '/dashboard/financial-modeler',
+    label: 'Financial Modeler',
+    icon: Calculator,
   },
 ];
 
