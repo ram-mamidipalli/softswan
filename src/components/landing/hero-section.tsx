@@ -3,8 +3,11 @@ import { Button } from '@/components/ui/button';
 
 export function HeroSection() {
   return (
-    <section id="home" className="relative overflow-hidden bg-background flex-1">
-      <div className="container mx-auto px-4 lg:px-6 h-full flex flex-col justify-center">
+    <section
+      id="home"
+      className="relative flex h-dvh min-h-[500px] flex-col items-center justify-center overflow-hidden bg-background"
+    >
+      <div className="container mx-auto px-4 lg:px-6">
         <div className="grid grid-cols-1 items-center gap-12">
           <div className="text-center">
             <h1 className="font-headline text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl md:text-6xl">
