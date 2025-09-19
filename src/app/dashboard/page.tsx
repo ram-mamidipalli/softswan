@@ -99,6 +99,7 @@ export default function DashboardPage() {
       title: 'Puzzles Solved',
       value: puzzlesSolved.toString(),
       icon: Target,
+      iconClassName: 'text-primary',
       change: `+${puzzlesSolved * 10} XP earned`,
     },
     {
