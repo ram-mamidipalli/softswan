@@ -32,7 +32,7 @@ export function WhySoftSwanSection() {
         <div className="mx-auto max-w-2xl text-center">
           <SectionTitle>Why SoftSwan?</SectionTitle>
           <SectionSubtitle>
-            We bridge the gap between academic knowledge and real-world job skills.
+            We bridge the gap between academic knowledge and real-world implementation.
           </SectionSubtitle>
         </div>
         <div className="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
