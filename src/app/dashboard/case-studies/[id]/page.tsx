@@ -86,16 +86,20 @@ export default function CaseStudyPage() {
           <p className="text-muted-foreground mb-6">{study.description}</p>
           <div className="flex flex-col gap-4">
              {study.links.map((link, index) => {
-                if (isCaseStudyLink(link)) {
+                const linkUrl = typeof link === 'string' ? link : link.url;
+                const linkTitle = typeof link === 'string' ? `Read Full Case Study #${index + 1}` : link.title;
+                const linkDescription = typeof link === 'string' ? '' : link.description;
+
+                if (linkDescription) {
                     return (
                         <Card key={index} className="bg-secondary">
                             <CardHeader>
-                                <CardTitle className="text-lg">{link.title}</CardTitle>
+                                <CardTitle className="text-lg">{linkTitle}</CardTitle>
                             </CardHeader>
                             <CardContent>
-                                <p className="text-sm text-muted-foreground mb-4">{link.description}</p>
+                                <p className="text-sm text-muted-foreground mb-4">{linkDescription}</p>
                                 <Button asChild>
-                                    <a href={link.url} target="_blank" rel="noopener noreferrer">
+                                    <a href={linkUrl} target="_blank" rel="noopener noreferrer">
                                         Read More
                                         <ExternalLink className="ml-2 h-4 w-4" />
                                     </a>
@@ -106,8 +110,8 @@ export default function CaseStudyPage() {
                 }
                 return (
                     <Button asChild key={index}>
-                        <a href={link} target="_blank" rel="noopener noreferrer">
-                        Read Full Case Study {study.links.length > 1 ? `#${index + 1}` : ''}
+                        <a href={linkUrl} target="_blank" rel="noopener noreferrer">
+                        {linkTitle}
                         <ExternalLink className="ml-2 h-4 w-4" />
                         </a>
                     </Button>
