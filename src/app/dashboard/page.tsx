@@ -53,7 +53,7 @@ export default function DashboardPage() {
   }, []);
 
   const progressPercentage = currentBadge && nextBadge 
-    ? ((swanXP - currentBadge.xpRequired) / (nextBadge.xpRequired - currentBadge.xpRequired)) * 100
+    ? Math.max(0, ((swanXP - currentBadge.xpRequired) / (nextBadge.xpRequired - currentBadge.xpRequired)) * 100)
     : swanXP > 0 ? 100 : 0;
 
   const stats = [
