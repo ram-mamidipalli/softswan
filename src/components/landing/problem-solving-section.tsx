@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { BarChart, CheckCircle, Lightbulb } from 'lucide-react';
+import { BarChart, CheckCircle, Lightbulb, Handshake } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { SectionSubtitle, SectionTitle } from './section-helpers';
@@ -20,6 +20,11 @@ const puzzles = [
     title: 'Growth Puzzles',
     description: 'Solve challenges related to user acquisition and scaling.',
   },
+  {
+    icon: <Handshake className="h-8 w-8 text-primary" />,
+    title: 'Find Right Investor',
+    description: 'Learn to identify and pitch to the right investors for your startup.',
+  }
 ];
 
 export function ProblemSolvingSection() {
@@ -34,7 +39,7 @@ export function ProblemSolvingSection() {
             prepare you for real-world business scenarios.
           </SectionSubtitle>
         </div>
-        <div className="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {puzzles.map((puzzle, index) => (
             <Card
               key={index}
