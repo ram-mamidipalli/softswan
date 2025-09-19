@@ -14,6 +14,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import { articles } from '@/lib/articles';
+import { TrendingUp } from 'lucide-react';
 
 export default function ArticlesPage() {
   return (
@@ -42,6 +43,14 @@ export default function ArticlesPage() {
                     className={cn('object-cover')}
                     data-ai-hint={article.imageHint}
                   />
+                   {article.trending && (
+                    <div className="absolute top-2 right-2">
+                       <Badge variant="default" className="bg-primary/90 text-primary-foreground border-primary text-sm">
+                        <TrendingUp className="mr-1 h-3 w-3" />
+                        Trending
+                      </Badge>
+                    </div>
+                  )}
                 </div>
               </CardHeader>
               <CardContent className="p-4 flex-grow">

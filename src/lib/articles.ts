@@ -9,6 +9,7 @@ export type Article = {
   imageHint: string;
   category: string;
   content: string[];
+  trending?: boolean;
 };
 
 export const articles: Article[] = data.articles;
