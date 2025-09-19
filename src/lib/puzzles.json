@@ -60,6 +60,126 @@
       "category": "Job Interview Problem",
       "problem": "You are asked in an interview: 'Tell me about a time you failed.' How should you respond?",
       "expert_answer": "Be honest but strategic. Share a real but non-critical failure. Show what you learned: 'I realized the importance of planning. Since then, I use task tracking tools, and I haven’t missed a deadline again.' This shows growth mindset, not weakness."
+    },
+    {
+      "id": 11,
+      "category": "Puzzle",
+      "problem": "A farmer needs to take a wolf, a goat, and a cabbage across a river. He can only take one at a time. If left alone, the wolf eats the goat, and the goat eats the cabbage. How does he do it?",
+      "expert_answer": "Farmer takes goat across → goes back → takes wolf across → brings goat back → takes cabbage across → goes back → takes goat."
+    },
+    {
+      "id": 12,
+      "category": "Aptitude (Math)",
+      "problem": "If 20% of a number is 40, what is the number?",
+      "expert_answer": "20% = 40 → 100% = 200."
+    },
+    {
+      "id": 13,
+      "category": "Logical Reasoning",
+      "problem": "You see a room with only one door. The door is locked, but there are three keys on the floor. Only one opens it. You can test only two keys. How can you guarantee escape?",
+      "expert_answer": "You cannot guarantee with 2 attempts. Probability = 2/3."
+    },
+    {
+      "id": 14,
+      "category": "Life Problem (Stress)",
+      "problem": "You have 3 deadlines tomorrow but feel completely overwhelmed. What should you do?",
+      "expert_answer": "Prioritize tasks using Eisenhower matrix. Break them into smaller chunks. Communicate with your manager if something is unrealistic."
+    },
+    {
+      "id": 15,
+      "category": "Riddle",
+      "problem": "The more of me you take, the more you leave behind. What am I?",
+      "expert_answer": "Footsteps."
+    },
+    {
+      "id": 16,
+      "category": "Critical Thinking",
+      "problem": "How would you measure exactly 4 liters using only a 3-liter and a 5-liter jug?",
+      "expert_answer": "Fill 5L → pour into 3L (2L left). Empty 3L → pour remaining 2L into 3L → refill 5L → pour into 3L until full → exactly 4L left in 5L jug."
+    },
+    {
+      "id": 17,
+      "category": "Interview Question",
+      "problem": "“Why should we hire you?”",
+      "expert_answer": "Show unique strengths + fit: “I bring strong problem-solving skills, communication ability, and adaptability. I’m eager to contribute and grow with your team.”"
+    },
+    {
+      "id": 18,
+      "category": "Workplace Conflict",
+      "problem": "A colleague takes credit for your work. How do you respond?",
+      "expert_answer": "Stay professional. Document contributions. Politely bring it up with your manager with evidence, not accusations."
+    },
+    {
+      "id": 19,
+      "category": "Analytical Puzzle",
+      "problem": "A bat and ball cost $1.10 in total. The bat costs $1 more than the ball. How much is the ball?",
+      "expert_answer": "Ball = $0.05, Bat = $1.05."
+    },
+    {
+      "id": 20,
+      "category": "Time Management",
+      "problem": "You have 2 hours to prepare for a surprise test in two subjects. How do you manage?",
+      "expert_answer": "Study 80/20 → focus on high-yield topics. Alternate 30–40 minutes per subject. Revise key notes at the end."
+    },
+    {
+      "id": 21,
+      "category": "Logical Puzzle",
+      "problem": "You are in a dark room with a candle, a lantern, and a fireplace. You only have one match. What do you light first?",
+      "expert_answer": "The match."
+    },
+    {
+      "id": 22,
+      "category": "Interview Question",
+      "problem": "“Where do you see yourself in 5 years?”",
+      "expert_answer": "Show ambition but alignment: “I see myself taking leadership roles, contributing to impactful projects, and growing with this company.”"
+    },
+    {
+      "id": 23,
+      "category": "Real-Life Problem",
+      "problem": "You keep procrastinating important work. How do you break the cycle?",
+      "expert_answer": "Use 2-minute rule: If it takes <2 mins, do it now. Break large tasks into smaller ones. Remove distractions."
+    },
+    {
+      "id": 24,
+      "category": "Puzzle",
+      "problem": "Two fathers and two sons enter a shop and buy three apples. Each gets one apple. How?",
+      "expert_answer": "They are grandfather, father, and son (3 people)."
+    },
+    {
+      "id": 25,
+      "category": "Communication Problem",
+      "problem": "During an interview, you don’t understand the question. What should you do?",
+      "expert_answer": "Politely ask for clarification: “Could you please rephrase or give an example?” This shows confidence."
+    },
+    {
+      "id": 26,
+      "category": "Brain Teaser",
+      "problem": "You have 8 coins. One is fake and lighter. Find it using a balance scale only twice.",
+      "expert_answer": "Divide into 3-3-2. Weigh 3 vs 3. If equal, fake is in 2. If not, fake is in lighter group of 3. Weigh 2 of them."
+    },
+    {
+      "id": 27,
+      "category": "Workplace Problem",
+      "problem": "Your manager gives unclear instructions. What do you do?",
+      "expert_answer": "Clarify politely: “Just to confirm, you’d like me to…” Summarize instructions and ask for confirmation."
+    },
+    {
+      "id": 28,
+      "category": "Riddle",
+      "problem": "What has keys but can’t open locks?",
+      "expert_answer": "A piano."
+    },
+    {
+      "id": 29,
+      "category": "Aptitude Problem",
+      "problem": "Train A leaves at 10 AM at 60 km/h. Train B leaves same station at 11 AM at 90 km/h. When will Train B catch Train A?",
+      "expert_answer": "In 1 hour, A covers 60 km. Relative speed = 30 km/h. Time = 60/30 = 2 hours. So at 11 AM + 2 hours = 1 PM. Answer: 1 PM."
+    },
+    {
+      "id": 30,
+      "category": "Interview Behavioral",
+      "problem": "“Tell me about a time you worked in a team.”",
+      "expert_answer": "Use STAR method. Example: “In college, I worked on a project where I handled data analysis. The result was an award-winning paper. It taught me collaboration and accountability.”"
     }
   ]
 }

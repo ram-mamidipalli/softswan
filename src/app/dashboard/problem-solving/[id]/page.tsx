@@ -15,12 +15,11 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
 import { getFeedback } from '@/app/actions';
-import { type Puzzle } from '@/ai/flows/generate-puzzles';
+import { type Puzzle, puzzles } from '@/lib/puzzles';
 import { Loader2, ArrowLeft, Lightbulb, CheckCircle, ArrowRight } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 
 export default function PuzzlePage() {
-  const [puzzles, setPuzzles] = React.useState<Puzzle[]>([]);
   const [puzzle, setPuzzle] = React.useState<Puzzle | null>(null);
   const [userAnswer, setUserAnswer] = React.useState('');
   const [isLoading, setIsLoading] = React.useState(false);
@@ -32,28 +31,25 @@ export default function PuzzlePage() {
   const puzzleId = parseInt(params.id as string, 10);
 
   React.useEffect(() => {
-    const storedPuzzles = sessionStorage.getItem('puzzles');
-    if (storedPuzzles) {
-      const parsedPuzzles: Puzzle[] = JSON.parse(storedPuzzles);
-      setPuzzles(parsedPuzzles);
-      if (parsedPuzzles[puzzleId]) {
-        setPuzzle(parsedPuzzles[puzzleId]);
+    const currentPuzzle = puzzles.find(p => p.id === puzzleId);
+    if (currentPuzzle) {
+        setPuzzle(currentPuzzle);
         const solvedPuzzles = JSON.parse(sessionStorage.getItem('solvedPuzzles') || '[]');
         if (solvedPuzzles.includes(puzzleId)) {
           setIsSolved(true);
         }
-      } else {
-        router.push('/dashboard/problem-solving');
-      }
     } else {
-      router.push('/dashboard/problem-solving');
+        router.push('/dashboard/problem-solving');
     }
   }, [puzzleId, router]);
 
   const handleNextChallenge = () => {
-    if (puzzleId < puzzles.length - 1) {
-        router.push(`/dashboard/problem-solving/${puzzleId + 1}`);
+    const currentIndex = puzzles.findIndex(p => p.id === puzzleId);
+    if (currentIndex < puzzles.length - 1) {
+        const nextPuzzleId = puzzles[currentIndex + 1].id;
+        router.push(`/dashboard/problem-solving/${nextPuzzleId}`);
     } else {
+        toast({ title: "Congratulations!", description: "You've completed all challenges."});
         router.push('/dashboard/problem-solving');
     }
   }
@@ -71,8 +67,8 @@ export default function PuzzlePage() {
     setIsLoading(true);
 
     const result = await getFeedback({
-      problem: puzzle.question,
-      expertAnswer: puzzle.answer,
+      problem: puzzle.problem,
+      expertAnswer: puzzle.expert_answer,
       userAnswer: userAnswer,
     });
 
@@ -102,10 +98,9 @@ export default function PuzzlePage() {
         const newSolvedPuzzles = [...solvedPuzzles, puzzleId];
         sessionStorage.setItem('solvedPuzzles', JSON.stringify(newSolvedPuzzles));
         
-        // Update total solved count in localStorage for dashboard
         const currentTotal = parseInt(localStorage.getItem('puzzlesSolvedCount') || '0', 10);
         localStorage.setItem('puzzlesSolvedCount', (currentTotal + 1).toString());
-        // Dispatch a storage event to notify other tabs (like the dashboard)
+        
         window.dispatchEvent(new StorageEvent('storage', {
             key: 'puzzlesSolvedCount',
             newValue: (currentTotal + 1).toString(),
@@ -124,17 +119,17 @@ export default function PuzzlePage() {
 
   return (
     <div className="max-w-2xl mx-auto">
-        <Button variant="ghost" onClick={() => router.back()} className="mb-4">
+        <Button variant="ghost" onClick={() => router.push('/dashboard/problem-solving')} className="mb-4">
             <ArrowLeft className="mr-2 h-4 w-4" />
             Back to Challenges
         </Button>
         <Card>
             <CardHeader>
                 <div className="flex justify-between items-center">
-                    <CardTitle>Challenge #{puzzleId + 1}</CardTitle>
+                    <CardTitle>Challenge #{puzzle.id}</CardTitle>
                     {isSolved && <Badge variant="secondary" className="bg-green-100 text-green-800 border-green-200"><CheckCircle className="mr-1 h-3 w-3"/>Completed</Badge>}
                 </div>
-                <CardDescription className="text-base pt-4">{puzzle.question}</CardDescription>
+                <CardDescription className="text-base pt-4">{puzzle.problem}</CardDescription>
             </CardHeader>
             <CardContent>
                  <div className="flex w-full gap-2">
@@ -144,6 +139,7 @@ export default function PuzzlePage() {
                     onChange={(e) => setUserAnswer(e.target.value)}
                     disabled={isSolved || isLoading}
                     className="text-sm"
+                    onKeyDown={(e) => e.key === 'Enter' && !isSolved && !isLoading && checkAnswer()}
                   />
                   <Button
                     onClick={checkAnswer}
@@ -178,7 +174,7 @@ export default function PuzzlePage() {
                   <div className="p-4 bg-accent rounded-md w-full">
                     <p className="text-sm text-accent-foreground">
                         <span className="font-semibold">Expert's Answer: </span>
-                        {puzzle.answer}
+                        {puzzle.expert_answer}
                     </p>
                   </div>
                 )}
@@ -186,7 +182,7 @@ export default function PuzzlePage() {
                      <div className="p-4 bg-accent rounded-md w-full">
                         <p className="text-sm text-accent-foreground">
                             <span className="font-semibold">Expert's Answer: </span>
-                            {puzzle.answer}
+                            {puzzle.expert_answer}
                         </p>
                     </div>
                  )}

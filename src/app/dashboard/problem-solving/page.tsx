@@ -11,72 +11,66 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
-import { type Puzzle } from '@/ai/flows/generate-puzzles';
+import { type Puzzle, puzzles } from '@/lib/puzzles';
 import { Loader2, CheckCircle } from 'lucide-react';
-import { getPuzzles } from '@/app/actions';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from '@/components/ui/pagination';
+import { useSearchParams, useRouter } from 'next/navigation';
+
+const PUZZLES_PER_PAGE = 9;
 
 export default function ProblemSolvingPage() {
-  const [puzzles, setPuzzles] = React.useState<Puzzle[]>([]);
   const [solvedPuzzles, setSolvedPuzzles] = React.useState<number[]>([]);
   const [pageLoading, setPageLoading] = React.useState(true);
-  const { toast } = useToast();
+  const router = useRouter();
+  const searchParams = useSearchParams();
 
-  const fetchPuzzles = React.useCallback(async () => {
-    setPageLoading(true);
-    const result = await getPuzzles();
-    if (result.success && result.puzzles) {
-      setPuzzles(result.puzzles);
-      // Store puzzles in session storage to persist across pages
-      sessionStorage.setItem('puzzles', JSON.stringify(result.puzzles));
-      // Clear solved puzzles for the new set
-      sessionStorage.setItem('solvedPuzzles', JSON.stringify([]));
-      setSolvedPuzzles([]);
-    } else {
-      toast({
-        variant: 'destructive',
-        title: 'Failed to load puzzles',
-        description: result.error,
-      });
-    }
-    setPageLoading(false);
-  }, [toast]);
+  const currentPage = Number(searchParams.get('page')) || 1;
+  const totalPages = Math.ceil(puzzles.length / PUZZLES_PER_PAGE);
+
+  const currentPuzzles = puzzles.slice(
+    (currentPage - 1) * PUZZLES_PER_PAGE,
+    currentPage * PUZZLES_PER_PAGE
+  );
 
   React.useEffect(() => {
-    // Try to load puzzles from session storage first
-    const storedPuzzles = sessionStorage.getItem('puzzles');
     const storedSolvedPuzzles = sessionStorage.getItem('solvedPuzzles');
-    if (storedPuzzles) {
-      setPuzzles(JSON.parse(storedPuzzles));
-      setPageLoading(false);
-    } else {
-      fetchPuzzles();
-    }
     if (storedSolvedPuzzles) {
       setSolvedPuzzles(JSON.parse(storedSolvedPuzzles));
     }
-  }, [fetchPuzzles]);
+    setPageLoading(false);
+  }, []);
+
+  const handlePageChange = (page: number) => {
+    router.push(`/dashboard/problem-solving?page=${page}`);
+  };
+
+  const { toast } = useToast();
+
+  const resetPuzzles = () => {
+    sessionStorage.setItem('solvedPuzzles', JSON.stringify([]));
+    setSolvedPuzzles([]);
+    toast({
+      title: 'Progress Reset',
+      description: 'Your progress on the puzzles has been cleared.',
+    });
+  };
 
   if (pageLoading) {
     return (
       <div className="flex h-full w-full flex-col items-center justify-center gap-4">
         <Loader2 className="h-8 w-8 animate-spin" />
-        <span className="text-muted-foreground">
-          Generating new challenges for you...
-        </span>
-      </div>
-    );
-  }
-
-  if (!puzzles.length) {
-    return (
-      <div className="text-center">
-        <p className="text-muted-foreground">Could not load any puzzles.</p>
-        <Button onClick={fetchPuzzles} className="mt-4">
-          Try again
-        </Button>
+        <span className="text-muted-foreground">Loading challenges...</span>
       </div>
     );
   }
@@ -89,42 +83,46 @@ export default function ProblemSolvingPage() {
             Problem Solving Challenges
           </h1>
           <p className="text-sm text-muted-foreground">
-            A fresh set of {puzzles.length} AI-generated puzzles to test your
-            skills.
+            A set of {puzzles.length} challenges to test your skills.
           </p>
         </div>
-        <Button onClick={fetchPuzzles} disabled={pageLoading}>
-          {pageLoading ? (
-            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-          ) : null}
-          Regenerate
+        <Button onClick={resetPuzzles} variant="outline">
+          Reset Progress
         </Button>
       </div>
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {puzzles.map((puzzle, index) => {
-          const isSolved = solvedPuzzles.includes(index);
+        {currentPuzzles.map((puzzle) => {
+          const isSolved = solvedPuzzles.includes(puzzle.id);
           return (
             <Link
-              href={`/dashboard/problem-solving/${index}`}
-              key={index}
+              href={`/dashboard/problem-solving/${puzzle.id}`}
+              key={puzzle.id}
               className={cn('group', { 'pointer-events-none': isSolved })}
             >
               <Card className="h-full transition-all group-hover:shadow-lg group-hover:-translate-y-1 relative">
                 {isSolved && (
-                  <Badge variant="secondary" className="absolute top-4 right-4 bg-green-100 text-green-800 border-green-200">
-                    <CheckCircle className="mr-1 h-3 w-3"/>
+                  <Badge
+                    variant="secondary"
+                    className="absolute top-4 right-4 bg-green-100 text-green-800 border-green-200"
+                  >
+                    <CheckCircle className="mr-1 h-3 w-3" />
                     Completed
                   </Badge>
                 )}
                 <CardHeader>
                   <CardTitle className="text-base font-semibold">
-                    Challenge #{index + 1}
+                    Challenge #{puzzle.id}
                   </CardTitle>
+                  <CardDescription>{puzzle.category}</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <p className={cn('text-sm text-muted-foreground', {'opacity-60': isSolved})}>
-                    {puzzle.question}
+                  <p
+                    className={cn('text-sm text-muted-foreground', {
+                      'opacity-60': isSolved,
+                    })}
+                  >
+                    {puzzle.problem}
                   </p>
                 </CardContent>
               </Card>
@@ -132,6 +130,44 @@ export default function ProblemSolvingPage() {
           );
         })}
       </div>
+      <Pagination>
+        <PaginationContent>
+          <PaginationItem>
+            <PaginationPrevious
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                if (currentPage > 1) handlePageChange(currentPage - 1);
+              }}
+              className={cn({ 'pointer-events-none opacity-50': currentPage === 1 })}
+            />
+          </PaginationItem>
+          {Array.from({ length: totalPages }, (_, i) => (
+            <PaginationItem key={i}>
+              <PaginationLink
+                href="#"
+                isActive={currentPage === i + 1}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handlePageChange(i + 1);
+                }}
+              >
+                {i + 1}
+              </PaginationLink>
+            </PaginationItem>
+          ))}
+          <PaginationItem>
+            <PaginationNext
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                if (currentPage < totalPages) handlePageChange(currentPage + 1);
+              }}
+               className={cn({ 'pointer-events-none opacity-50': currentPage === totalPages })}
+            />
+          </PaginationItem>
+        </PaginationContent>
+      </Pagination>
     </div>
   );
 }
