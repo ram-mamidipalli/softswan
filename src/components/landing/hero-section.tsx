@@ -16,7 +16,7 @@ export function HeroSection() {
               Master Your Voice.
               <br />
               <span className="relative inline-block">
-                Start Your Journey.
+                Start Your <span className="text-primary">Journey</span>.
                 <span className="absolute -bottom-2 left-0 h-2 w-full bg-primary/30"></span>
               </span>
             </h1>
