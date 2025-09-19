@@ -38,7 +38,7 @@ export function Footer() {
               <SwanLogo />
             </Link>
             <p className="text-muted-foreground">
-              Sharpen Your Mind. Master Your Voice.
+              Sharpen Your Strategy. Amplify Your Impact.
             </p>
           </div>
           <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">

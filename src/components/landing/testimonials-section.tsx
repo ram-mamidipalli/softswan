@@ -7,16 +7,16 @@ import { User } from 'lucide-react';
 const testimonials = [
   {
     quote:
-      'SoftSwan helped me crack puzzles I never thought I could solve. It was a huge confidence booster before my first placement interview.',
-    name: 'Priya Sharma',
-    title: 'Engineering Student',
+      'SoftSwan helped me refine my pitch and land my first investor. The communication tutorials were a game-changer.',
+    name: 'Alex Carter',
+    title: 'Founder & CEO, Innovate Inc.',
     avatarId: 'avatar1',
   },
   {
     quote:
-      'The public speaking tutorials are gold. I went from being nervous during group discussions to leading them with confidence. Highly recommended!',
-    name: 'Rohan Singh',
-    title: 'MBA Aspirant',
+      'The strategy challenges gave me clarity on my product roadmap. I feel much more confident in my business decisions.',
+    name: 'Jessica Chen',
+    title: 'Startup Founder',
     avatarId: 'avatar2',
   },
 ];
@@ -27,9 +27,9 @@ export function TestimonialsSection() {
     <section id="testimonials" className="bg-secondary">
       <div className="container mx-auto px-4 py-24 sm:py-32 lg:px-6">
         <div className="mx-auto max-w-2xl text-center">
-          <SectionTitle>What Our Learners Say</SectionTitle>
+          <SectionTitle>What Founders Say</SectionTitle>
           <SectionSubtitle>
-            Thousands of students are already sharpening their skills with us.
+            Entrepreneurs are already sharpening their skills with us.
           </SectionSubtitle>
         </div>
         <div className="mt-16 grid grid-cols-1 gap-8 lg:grid-cols-2">

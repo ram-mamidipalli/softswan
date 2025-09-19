@@ -7,10 +7,10 @@ export function CtaSection() {
     <section className="bg-background">
       <div className="container mx-auto px-4 py-24 sm:py-32 lg:px-6">
         <div className="mx-auto max-w-2xl text-center">
-          <SectionTitle>Ready to Sharpen Your Skills?</SectionTitle>
+          <SectionTitle>Ready to Build Smarter?</SectionTitle>
           <SectionSubtitle>
-            Join thousands of learners building problem-solving and communication
-            mastery with SoftSwan. Your journey to confidence starts here.
+            Join thousands of entrepreneurs mastering strategy and communication
+            with SoftSwan.
           </SectionSubtitle>
           <div className="mt-10">
             <Button asChild size="lg" className="h-12 px-8 text-lg">
