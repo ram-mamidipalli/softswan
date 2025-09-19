@@ -49,7 +49,7 @@ const mainNav = [
   },
    {
     href: '/dashboard/lessons',
-    label: 'Startup lessons',
+    label: 'Startup Lessons',
     icon: BookOpen,
   },
   {
