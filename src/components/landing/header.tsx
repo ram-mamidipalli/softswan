@@ -20,7 +20,7 @@ import { auth } from '@/lib/firebase';
 import { useToast } from '@/hooks/use-toast';
 
 const navigationLinks = [
-  { name: 'Puzzles', href: '/#puzzles' },
+  { name: 'Strategy', href: '/#strategy' },
   { name: 'Tutorials', href: '/#tutorials' },
   { name: 'Testimonials', href: '/#testimonials' },
 ];
@@ -65,8 +65,8 @@ export function Header() {
   return (
     <header
       className={cn(
-        'sticky top-0 z-50 w-full border-b border-transparent bg-background/80 backdrop-blur-sm transition-all',
-        { 'border-border': isScrolled }
+        'sticky top-0 z-50 w-full border-b bg-background/80 backdrop-blur-sm transition-all',
+        isScrolled ? 'border-border' : 'border-transparent'
       )}
     >
       <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-6">
