@@ -163,7 +163,36 @@
       "companyName": "Starbucks",
       "title": "The Starbucks Success Story",
       "links": [
-        "https://www.investopedia.com/articles/investing/102214/how-starbucks-became-21-billion-business.asp"
+        {
+          "title": "The Starbucks Success Story from MBA Knowledge Base",
+          "url": "https://www.mbaknol.com/management-case-studies/case-study-of-starbucks-an-amazing-business-success-story/",
+          "description": "This article details how Starbucks built its brand on quality, the \"third place\" concept, and investing in its employees."
+        },
+        {
+          "title": "Starbucks Business Model in 2025 from IIDE",
+          "url": "https://iide.co/case-studies/business-model-of-starbucks/",
+          "description": "This study breaks down the company's business model, revenue streams (including licensed stores and packaged goods), and its strategic focus on a digital loyalty platform."
+        },
+        {
+          "title": "Starbucks Growth Strategy from MBA Knowledge Base",
+          "url": "https://www.mbaknol.com/management-case-studies/case-study-starbucks-growth-strategy/",
+          "description": "This case study focuses on Starbucks' strategic expansion and its use of a mix of company-owned and licensed stores to achieve global dominance."
+        },
+        {
+          "title": "Starbucks Marketing Strategy from Skillfloor",
+          "url": "https://skillfloor.com/blog/starbucks-marketing-strategy-case-study",
+          "description": "This resource explains Starbucks' premium pricing, its strategic store placement, and its use of a 4Ps marketing mix to create a strong brand identity."
+        },
+        {
+          "title": "The Secret to Starbucks' Brand Success from Martin Roll",
+          "url": "https://martinroll.com/resources/articles/strategy/secret-starbucks-brand-success/",
+          "description": "This article highlights the importance of consistent branding, a unique store experience, and digital innovation in building brand loyalty."
+        },
+        {
+          "title": "Starbucks International Strategy from The Strategy Institute",
+          "url": "https://www.thestrategyinstitute.org/insights/starbucks-international-strategy-a-case-study-for-global-success/",
+          "description": "This case study examines how Starbucks adapted its global expansion strategy for different markets, using joint ventures in places like India to leverage local expertise while maintaining its core brand."
+        }
       ],
       "description": "How Starbucks transformed into a community-focused café with a unique brand experience.",
       "imageUrl": "https://images.unsplash.com/photo-1545231027-637d2f6210f8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxM3x8c3RhcmJ1Y2tzfGVufDB8fHx8MTc1ODI5MjkwMnww&ixlib=rb-4.1.0&q=80&w=1080",
