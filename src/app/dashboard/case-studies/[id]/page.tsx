@@ -109,10 +109,10 @@ export default function CaseStudyPage() {
                     )
                 }
                 return (
-                    <Button asChild key={index} variant="outline" className="justify-start text-left h-auto">
-                        <a href={linkUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 p-3">
+                    <Button asChild key={index} variant="outline" className="justify-start text-left h-auto whitespace-normal">
+                        <a href={linkUrl} target="_blank" rel="noopener noreferrer" className="flex items-start gap-2 p-3">
                             <span className="flex-grow">{linkTitle}</span>
-                            <ExternalLink className="ml-auto h-4 w-4 flex-shrink-0" />
+                            <ExternalLink className="ml-2 h-4 w-4 flex-shrink-0" />
                         </a>
                     </Button>
                 )
