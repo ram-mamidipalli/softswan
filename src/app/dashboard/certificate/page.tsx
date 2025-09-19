@@ -34,7 +34,7 @@ export default function CertificatePage() {
   };
 
   return (
-    <div className="bg-background text-foreground min-h-screen">
+    <div className="bg-background text-foreground min-h-screen print:bg-white">
        <div className="fixed top-0 left-0 right-0 p-4 flex justify-between items-center bg-background/80 backdrop-blur-sm z-10 print:hidden">
          <Button variant="ghost" onClick={() => router.push('/dashboard')}>
             <ArrowLeft className="mr-2 h-4 w-4" />
@@ -46,10 +46,10 @@ export default function CertificatePage() {
         </Button>
       </div>
 
-      <div className="max-w-4xl mx-auto p-8 pt-24">
-        <div className="border-[10px] border-primary p-8 rounded-lg shadow-2xl bg-secondary/30 relative overflow-hidden">
-            <div className="absolute -top-20 -left-20 w-60 h-60 bg-primary/20 rounded-full blur-2xl"></div>
-            <div className="absolute -bottom-20 -right-20 w-60 h-60 bg-accent rounded-full blur-2xl"></div>
+      <div className="max-w-4xl mx-auto p-8 print:p-0">
+        <div className="border-[10px] border-primary p-8 rounded-lg shadow-2xl bg-secondary/30 relative overflow-hidden print:shadow-none print:rounded-none">
+            <div className="absolute -top-20 -left-20 w-60 h-60 bg-primary/20 rounded-full blur-2xl print:hidden"></div>
+            <div className="absolute -bottom-20 -right-20 w-60 h-60 bg-accent rounded-full blur-2xl print:hidden"></div>
             
             <div className="text-center mb-8 relative z-10">
                 <div className="flex justify-center text-5xl font-bold text-foreground mb-4">
@@ -93,6 +93,9 @@ export default function CertificatePage() {
           body {
             -webkit-print-color-adjust: exact;
             print-color-adjust: exact;
+          }
+          .page-break {
+            page-break-after: always;
           }
         }
       `}</style>
