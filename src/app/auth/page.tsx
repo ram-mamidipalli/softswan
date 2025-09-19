@@ -9,9 +9,7 @@ function AuthContent() {
     <div className="flex min-h-dvh flex-col bg-background">
       <Header />
       <main className="flex-1 flex items-center justify-center py-12">
-        <Suspense fallback={<Loader2 className="h-8 w-8 animate-spin" />}>
           <AuthForm />
-        </Suspense>
       </main>
       <Footer />
     </div>
@@ -20,7 +18,7 @@ function AuthContent() {
 
 export default function AuthPage() {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<div className="flex h-dvh w-full items-center justify-center"><Loader2 className="h-8 w-8 animate-spin" /></div>}>
       <AuthContent />
     </Suspense>
   );

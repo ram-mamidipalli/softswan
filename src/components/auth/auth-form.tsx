@@ -2,7 +2,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useSearchParams, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
@@ -31,6 +31,7 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Loader2 } from 'lucide-react';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 
 const formSchema = z.object({
   email: z.string().email({ message: 'Please enter a valid email address.' }),
@@ -40,9 +41,8 @@ const formSchema = z.object({
 });
 
 export function AuthForm() {
-  const searchParams = useSearchParams();
   const router = useRouter();
-  const mode = searchParams.get('mode') === 'signup' ? 'signup' : 'login';
+  const [mode, setMode] = useState<'login' | 'signup'>('login');
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
 
@@ -83,74 +83,69 @@ export function AuthForm() {
       });
     } finally {
       setIsLoading(false);
+      form.reset();
     }
   };
+  
+  const handleModeChange = (newMode: string) => {
+    setMode(newMode as 'login' | 'signup');
+    form.reset();
+  }
 
   return (
     <Card className="mx-auto max-w-sm">
-      <CardHeader>
-        <CardTitle className="text-2xl">
-          {mode === 'signup' ? 'Create an Account' : 'Welcome Back'}
-        </CardTitle>
-        <CardDescription>
-          {mode === 'signup'
-            ? 'Enter your email and password to create an account.'
-            : 'Enter your credentials to access your account.'}
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-            <FormField
-              control={form.control}
-              name="email"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Email</FormLabel>
-                  <FormControl>
-                    <Input placeholder="name@example.com" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="password"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Password</FormLabel>
-                  <FormControl>
-                    <Input type="password" placeholder="••••••••" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <Button type="submit" className="w-full" disabled={isLoading}>
-              {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-              {mode === 'signup' ? 'Sign Up' : 'Login'}
-            </Button>
-          </form>
-        </Form>
-        <div className="mt-4 text-center text-sm">
-          {mode === 'signup' ? (
-            <>
-              Already have an account?{' '}
-              <a href="/auth" className="underline">
-                Login
-              </a>
-            </>
-          ) : (
-            <>
-              Don&apos;t have an account?{' '}
-              <a href="/auth?mode=signup" className="underline">
-                Sign up
-              </a>
-            </>
-          )}
-        </div>
-      </CardContent>
+       <Tabs value={mode} onValueChange={handleModeChange} className="w-full">
+        <TabsList className="grid w-full grid-cols-2">
+            <TabsTrigger value="login">Login</TabsTrigger>
+            <TabsTrigger value="signup">Sign Up</TabsTrigger>
+        </TabsList>
+        <CardHeader>
+          <CardTitle className="text-2xl">
+            {mode === 'signup' ? 'Create an Account' : 'Welcome Back'}
+          </CardTitle>
+          <CardDescription>
+            {mode === 'signup'
+              ? 'Enter your email and password to create an account.'
+              : 'Enter your credentials to access your account.'}
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Email</FormLabel>
+                    <FormControl>
+                      <Input placeholder="name@example.com" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="password"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Password</FormLabel>
+                    <FormControl>
+                      <Input type="password" placeholder="••••••••" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <Button type="submit" className="w-full" disabled={isLoading}>
+                {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                {mode === 'signup' ? 'Sign Up' : 'Login'}
+              </Button>
+            </form>
+          </Form>
+        </CardContent>
+      </Tabs>
     </Card>
   );
 }
