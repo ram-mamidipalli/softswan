@@ -1,3 +1,4 @@
+
 {
   "investors": [
     {
@@ -8,7 +9,7 @@
       "investmentStructure": "Invests between $2 Mn to $10 Mn in each company with less than $10 Mn in revenues.",
       "industries": ["Outsourcing", "Mobile", "Internet", "Retail Services", "Healthcare", "Education", "Financial Services"],
       "startupsFunded": ["Yepme", "MakemyTrip", "NetAmbit", "Komli", "TAXI For Sure", "PubMatic"],
-      "contact": "8040183333, 01244615333, 4"
+      "contact": "8040183333, 01244615333"
     },
     {
       "id": 2,
