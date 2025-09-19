@@ -94,6 +94,7 @@ export default function ProblemSolvingPage() {
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {currentPuzzles.map((puzzle) => {
           const isSolved = solvedPuzzles.includes(puzzle.id);
+          const isHard = puzzle.category.includes('Hard') || puzzle.category.includes('Deep') || puzzle.category.includes('Advanced') || puzzle.category.includes('Tough') || puzzle.category.includes('Critical');
           return (
             <Link
               href={`/dashboard/problem-solving/${puzzle.id}`}
@@ -101,22 +102,31 @@ export default function ProblemSolvingPage() {
               className={cn('group', { 'pointer-events-none': isSolved })}
             >
               <Card className="h-full transition-all group-hover:shadow-lg group-hover:-translate-y-1 relative">
-                {isSolved && (
-                  <Badge
-                    variant="secondary"
-                    className="absolute top-4 right-4 bg-green-100 text-green-800 border-green-200"
-                  >
-                    <CheckCircle className="mr-1 h-3 w-3" />
-                    Completed
-                  </Badge>
-                )}
-                <CardHeader>
-                  <CardTitle className="text-base font-semibold">
-                    Challenge #{puzzle.id}
-                  </CardTitle>
-                  <CardDescription>{puzzle.category}</CardDescription>
-                </CardHeader>
-                <CardContent>
+                <div className="flex justify-between items-start p-6">
+                   <div>
+                    <CardTitle className="text-base font-semibold">
+                      Challenge #{puzzle.id}
+                    </CardTitle>
+                    <CardDescription>{puzzle.category}</CardDescription>
+                  </div>
+                  <div className="flex flex-col items-end gap-2">
+                    {isSolved && (
+                      <Badge
+                        variant="secondary"
+                        className="bg-green-100 text-green-800 border-green-200"
+                      >
+                        <CheckCircle className="mr-1 h-3 w-3" />
+                        Completed
+                      </Badge>
+                    )}
+                    {isHard && !isSolved && (
+                      <Badge variant="destructive">
+                        Hard
+                      </Badge>
+                    )}
+                  </div>
+                </div>
+                <CardContent className="pt-0">
                   <p
                     className={cn('text-sm text-muted-foreground', {
                       'opacity-60': isSolved,

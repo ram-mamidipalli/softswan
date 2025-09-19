@@ -3,183 +3,183 @@
   "puzzles": [
     {
       "id": 1,
-      "category": "Logical Puzzle",
-      "problem": "There are 3 boxes: one with apples, one with oranges, and one with both apples & oranges. All are incorrectly labeled. How can you correctly label them by picking only one fruit from one box?",
-      "expert_answer": "Pick one fruit from the box labeled 'Both'. Since the labels are wrong, that box must contain only one fruit type. If you draw an apple, that box is 'Apples.' Then relabel the others accordingly."
+      "category": "Puzzle (Hard Logic)",
+      "problem": "You have 12 identical-looking balls. One is slightly heavier or lighter. You can use a balance scale only 3 times. How do you find the odd one and know if it’s heavier or lighter?",
+      "expert_answer": "Divide into groups of 4. Weigh 4 vs 4. If equal → odd is in remaining 4. Split further and test. Using elimination in 3 weighings, you identify the odd ball and whether it’s heavier/lighter."
     },
     {
       "id": 2,
-      "category": "Aptitude Problem",
-      "problem": "Find the missing number: 2, 6, 12, 20, 30, ?",
-      "expert_answer": "Pattern = n\u00b2 + n (1\u00b2+1=2, 2\u00b2+2=6, 3\u00b2+3=12, 4\u00b2+4=20, 5\u00b2+5=30, 6\u00b2+6=42). Answer: 42."
+      "category": "Aptitude (Probability)",
+      "problem": "Two dice are rolled. What is the probability that the sum is either 7 or 11?",
+      "expert_answer": "Total outcomes = 36. Sum = 7 → (6 outcomes). Sum = 11 → (2 outcomes). Probability = 8/36 = 2/9."
     },
     {
       "id": 3,
-      "category": "Riddle",
-      "problem": "I speak without a mouth and hear without ears. I have no body, but I come alive with wind. What am I?",
-      "expert_answer": "An echo."
+      "category": "Logical Reasoning (Hard)",
+      "problem": "A says: “B always lies.” B says: “C always lies.” C says: “A and B are lying.” Who is telling the truth?",
+      "expert_answer": "C is telling the truth. If C is right, then A and B are lying. A lies → B doesn’t always lie. B lies → C doesn’t always lie. Consistency holds only if C is truthful."
     },
     {
       "id": 4,
-      "category": "Workplace Problem",
-      "problem": "You have a brilliant idea in a team meeting, but a louder colleague speaks over you and takes the spotlight. What do you do?",
-      "expert_answer": "Stay calm, don’t interrupt aggressively. Acknowledge the colleague: 'That’s a good point, and to build on it…' then restate your idea. Follow up with the manager or in email if not heard. This shows assertive communication without conflict."
+      "category": "Interview Question (Deep)",
+      "problem": "“How would you handle failure if your dream project collapses?”",
+      "expert_answer": "Show resilience: “I’d analyze root causes, learn from mistakes, and apply insights to future work. Failure is data for growth.”"
     },
     {
       "id": 5,
-      "category": "Logical Reasoning",
-      "problem": "You have 9 identical-looking balls, one of which is heavier. You can use a balance scale only twice. How do you find the heavier ball?",
-      "expert_answer": "Divide balls into 3 groups of 3. Weigh two groups. If equal, heavier is in the 3rd group. If not, heavier is in the heavier group. Weigh 2 balls from that group → heavier one is found."
+      "category": "Real-Life Problem (Ethical Dilemma)",
+      "problem": "You discover a colleague is leaking confidential company data. What do you do?",
+      "expert_answer": "Protect integrity: Document evidence, escalate to HR/management discreetly, avoid confrontation directly."
     },
     {
       "id": 6,
-      "category": "Communication Challenge",
-      "problem": "You feel nervous when speaking in front of 50 people. How do you overcome stage fright?",
-      "expert_answer": "Prepare key points (not scripts). Practice with smaller groups. Use breathing techniques before speaking. Start with eye contact to 2–3 friendly faces. Remember: audience is rooting for you, not judging."
+      "category": "Puzzle (Hard Math)",
+      "problem": "A clock shows 3:15. What is the angle between the hour and minute hands?",
+      "expert_answer": "At 3:15, minute hand at 90°. Hour hand = 3 × 30 + 7.5 = 97.5°. Difference = 7.5°."
     },
     {
       "id": 7,
-      "category": "Analytical Thinking",
-      "problem": "If 5 machines make 5 items in 5 minutes, how long will 100 machines take to make 100 items?",
-      "expert_answer": "Each machine makes 1 item in 5 minutes. So 100 machines make 100 items in 5 minutes. Answer: 5 minutes."
+      "category": "Aptitude (Combinatorics)",
+      "problem": "How many ways can you arrange the letters of the word “SUCCESS”?",
+      "expert_answer": "7! / (3! × 2! × 1! × 1!) = 420."
     },
     {
       "id": 8,
-      "category": "Real-Life Problem",
-      "problem": "You are preparing for exams, but social media distracts you constantly. What’s the best approach?",
-      "expert_answer": "Use the Pomodoro method (25 min focus + 5 min break). Block apps with productivity tools. Keep phone in another room. Replace scrolling with quick walks or deep breathing."
+      "category": "Workplace Critical Thinking",
+      "problem": "Your boss gives an impossible deadline. What do you do?",
+      "expert_answer": "Clarify scope, propose realistic alternatives, break down deliverables, and suggest phased delivery."
     },
     {
       "id": 9,
-      "category": "Critical Thinking Puzzle",
-      "problem": "A man is looking at a picture. Someone asks, 'Whose picture is that?' The man replies: 'Brothers and sisters, I have none. But that man’s father is my father’s son.' Who is in the picture?",
-      "expert_answer": "'My father’s son' = me. So the man’s son. Answer: It’s his son."
+      "category": "Deep Riddle",
+      "problem": "I’m always in front of you but can never be seen. What am I?",
+      "expert_answer": "The future."
     },
     {
       "id": 10,
-      "category": "Job Interview Problem",
-      "problem": "You are asked in an interview: 'Tell me about a time you failed.' How should you respond?",
-      "expert_answer": "Be honest but strategic. Share a real but non-critical failure. Show what you learned: 'I realized the importance of planning. Since then, I use task tracking tools, and I haven’t missed a deadline again.' This shows growth mindset, not weakness."
+      "category": "Logical Puzzle (Hard)",
+      "problem": "You are in a prison with 2 doors and 2 guards. One door leads to freedom, the other to death. One guard always lies, one always tells the truth. You can ask only 1 question. What do you ask?",
+      "expert_answer": "Ask either guard: “If I ask the other guard which door leads to freedom, which door will he point to?” Then choose the opposite door."
     },
     {
       "id": 11,
-      "category": "Puzzle",
-      "problem": "A farmer needs to take a wolf, a goat, and a cabbage across a river. He can only take one at a time. If left alone, the wolf eats the goat, and the goat eats the cabbage. How does he do it?",
-      "expert_answer": "Farmer takes goat across → goes back → takes wolf across → brings goat back → takes cabbage across → goes back → takes goat."
+      "category": "Aptitude (Series)",
+      "problem": "2, 6, 12, 20, 30, ?",
+      "expert_answer": "Pattern = n² + n → 2 (1²+1), 6 (2²+2), 12 (3²+3), 20 (4²+4), 30 (5²+5). Next = 42 (6²+6)."
     },
     {
       "id": 12,
-      "category": "Aptitude (Math)",
-      "problem": "If 20% of a number is 40, what is the number?",
-      "expert_answer": "20% = 40 → 100% = 200."
+      "category": "Interview Question (Leadership)",
+      "problem": "“If your team disagrees with you unanimously, what would you do?”",
+      "expert_answer": "Listen, validate perspectives, test assumptions with data, and adapt if team’s reasoning is stronger."
     },
     {
       "id": 13,
-      "category": "Logical Reasoning",
-      "problem": "You see a room with only one door. The door is locked, but there are three keys on the floor. Only one opens it. You can test only two keys. How can you guarantee escape?",
-      "expert_answer": "You cannot guarantee with 2 attempts. Probability = 2/3."
+      "category": "Real-Life Problem (Tough Choice)",
+      "problem": "You get two job offers: one high-paying but stressful, another low-paying but growth-oriented. Which do you choose?",
+      "expert_answer": "Align with long-term vision. If stability needed, take higher pay. If career growth is priority, choose learning path."
     },
     {
       "id": 14,
-      "category": "Life Problem (Stress)",
-      "problem": "You have 3 deadlines tomorrow but feel completely overwhelmed. What should you do?",
-      "expert_answer": "Prioritize tasks using Eisenhower matrix. Break them into smaller chunks. Communicate with your manager if something is unrealistic."
+      "category": "Math Puzzle (Advanced)",
+      "problem": "A man has two ropes, each takes 60 minutes to burn but burns unevenly. How to measure exactly 45 minutes?",
+      "expert_answer": "Burn Rope A both ends + Rope B one end → Rope A finishes in 30 mins. Then light Rope B other end → finishes in 15 mins. Total = 45 mins."
     },
     {
       "id": 15,
-      "category": "Riddle",
-      "problem": "The more of me you take, the more you leave behind. What am I?",
-      "expert_answer": "Footsteps."
+      "category": "Logical Puzzle (Hard)",
+      "problem": "100 prisoners are in a line. Each wears a red or blue hat, sees hats in front but not own. They must guess their hat color in order to survive. What’s the best strategy?",
+      "expert_answer": "Use parity strategy: First prisoner announces color based on parity of visible hats. Each following prisoner deduces own hat using prior answers + visible hats."
     },
     {
       "id": 16,
-      "category": "Critical Thinking",
-      "problem": "How would you measure exactly 4 liters using only a 3-liter and a 5-liter jug?",
-      "expert_answer": "Fill 5L → pour into 3L (2L left). Empty 3L → pour remaining 2L into 3L → refill 5L → pour into 3L until full → exactly 4L left in 5L jug."
+      "category": "Aptitude (Probability)",
+      "problem": "A coin is tossed until heads appears. What is the expected number of tosses?",
+      "expert_answer": "Expectation = 1/p = 1/0.5 = 2."
     },
     {
       "id": 17,
-      "category": "Interview Question",
-      "problem": "“Why should we hire you?”",
-      "expert_answer": "Show unique strengths + fit: “I bring strong problem-solving skills, communication ability, and adaptability. I’m eager to contribute and grow with your team.”"
+      "category": "Interview Question (Deep Behavioral)",
+      "problem": "“Tell me about the hardest decision you’ve made in your life.”",
+      "expert_answer": "Use STAR method. Example: Choosing between career paths, balancing risk vs stability, final decision based on values and long-term goals."
     },
     {
       "id": 18,
-      "category": "Workplace Conflict",
-      "problem": "A colleague takes credit for your work. How do you respond?",
-      "expert_answer": "Stay professional. Document contributions. Politely bring it up with your manager with evidence, not accusations."
+      "category": "Puzzle (Numbers)",
+      "problem": "Find two numbers that multiply to 36 but add to 13.",
+      "expert_answer": "Numbers = 9 and 4."
     },
     {
       "id": 19,
-      "category": "Analytical Puzzle",
-      "problem": "A bat and ball cost $1.10 in total. The bat costs $1 more than the ball. How much is the ball?",
-      "expert_answer": "Ball = $0.05, Bat = $1.05."
+      "category": "Workplace Scenario",
+      "problem": "You’re asked to lead a team in a technology you don’t know. What do you do?",
+      "expert_answer": "Quickly upskill, leverage experts in team, facilitate collaboration, and focus on leadership rather than technical micromanagement."
     },
     {
       "id": 20,
-      "category": "Time Management",
-      "problem": "You have 2 hours to prepare for a surprise test in two subjects. How do you manage?",
-      "expert_answer": "Study 80/20 → focus on high-yield topics. Alternate 30–40 minutes per subject. Revise key notes at the end."
+      "category": "Deep Riddle",
+      "problem": "What disappears the moment you say its name?",
+      "expert_answer": "Silence."
     },
     {
       "id": 21,
-      "category": "Logical Puzzle",
-      "problem": "You are in a dark room with a candle, a lantern, and a fireplace. You only have one match. What do you light first?",
-      "expert_answer": "The match."
+      "category": "Aptitude (Hard Algebra)",
+      "problem": "If x + 1/x = 5, find x² + 1/x².",
+      "expert_answer": "(x + 1/x)² = 25 → x² + 1/x² + 2 = 25 → x² + 1/x² = 23."
     },
     {
       "id": 22,
-      "category": "Interview Question",
-      "problem": "“Where do you see yourself in 5 years?”",
-      "expert_answer": "Show ambition but alignment: “I see myself taking leadership roles, contributing to impactful projects, and growing with this company.”"
+      "category": "Interview Case Study",
+      "problem": "“If you were CEO of a failing startup, how would you save it?”",
+      "expert_answer": "Diagnose core issues (finance, product, market fit). Pivot product if needed, cut costs, re-engage customers, seek strategic partnerships."
     },
     {
       "id": 23,
-      "category": "Real-Life Problem",
-      "problem": "You keep procrastinating important work. How do you break the cycle?",
-      "expert_answer": "Use 2-minute rule: If it takes <2 mins, do it now. Break large tasks into smaller ones. Remove distractions."
+      "category": "Real-Life Ethical Problem",
+      "problem": "You find out your friend cheated in an interview but got selected. Do you report it?",
+      "expert_answer": "Weigh ethics vs loyalty. If company integrity is harmed, report anonymously."
     },
     {
       "id": 24,
-      "category": "Puzzle",
-      "problem": "Two fathers and two sons enter a shop and buy three apples. Each gets one apple. How?",
-      "expert_answer": "They are grandfather, father, and son (3 people)."
+      "category": "Puzzle (Chessboard Math)",
+      "problem": "A chessboard has 64 squares. How many total squares of all sizes are there?",
+      "expert_answer": "1² + 2² + 3² … + 8² = 204 squares."
     },
     {
       "id": 25,
-      "category": "Communication Problem",
-      "problem": "During an interview, you don’t understand the question. What should you do?",
-      "expert_answer": "Politely ask for clarification: “Could you please rephrase or give an example?” This shows confidence."
+      "category": "Logical Reasoning (Tough)",
+      "problem": "Three switches are outside a room with 3 bulbs inside. You can only enter the room once. How do you identify which switch controls which bulb?",
+      "expert_answer": "Turn on Switch 1 for 5 mins → turn it off. Turn Switch 2 on → enter room. Warm bulb = Switch 1, lit bulb = Switch 2, cold bulb = Switch 3."
     },
     {
       "id": 26,
-      "category": "Brain Teaser",
-      "problem": "You have 8 coins. One is fake and lighter. Find it using a balance scale only twice.",
-      "expert_answer": "Divide into 3-3-2. Weigh 3 vs 3. If equal, fake is in 2. If not, fake is in lighter group of 3. Weigh 2 of them."
+      "category": "Aptitude (Speed/Distance)",
+      "problem": "A boat goes 20 km downstream in 2 hours, and the same distance upstream in 4 hours. Find speed of boat in still water.",
+      "expert_answer": "Downstream = 10 km/h, upstream = 5 km/h → boat speed = (10+5)/2 = 7.5 km/h."
     },
     {
       "id": 27,
-      "category": "Workplace Problem",
-      "problem": "Your manager gives unclear instructions. What do you do?",
-      "expert_answer": "Clarify politely: “Just to confirm, you’d like me to…” Summarize instructions and ask for confirmation."
+      "category": "Interview (Stress Test)",
+      "problem": "“If we reject you today, what will you do?”",
+      "expert_answer": "Show resilience: “I’ll reflect, improve my skills, and reapply when I’m stronger. Rejection motivates me to grow.”"
     },
     {
       "id": 28,
-      "category": "Riddle",
-      "problem": "What has keys but can’t open locks?",
-      "expert_answer": "A piano."
+      "category": "Deep Puzzle",
+      "problem": "Four people must cross a bridge at night with one torch. They take 1, 2, 7, and 10 mins. Only two can cross at once. What’s the minimum time?",
+      "expert_answer": "Optimal = 17 mins (Strategy: 1+2 cross, 1 returns, 7+10 cross, 2 returns, 1+2 cross again)."
     },
     {
       "id": 29,
-      "category": "Aptitude Problem",
-      "problem": "Train A leaves at 10 AM at 60 km/h. Train B leaves same station at 11 AM at 90 km/h. When will Train B catch Train A?",
-      "expert_answer": "In 1 hour, A covers 60 km. Relative speed = 30 km/h. Time = 60/30 = 2 hours. So at 11 AM + 2 hours = 1 PM. Answer: 1 PM."
+      "category": "Workplace Problem (Critical)",
+      "problem": "You realize a project will fail just days before deadline. What do you do?",
+      "expert_answer": "Communicate early, propose salvage strategy (partial delivery, phased approach), and ensure transparency."
     },
     {
       "id": 30,
-      "category": "Interview Behavioral",
-      "problem": "“Tell me about a time you worked in a team.”",
-      "expert_answer": "Use STAR method. Example: “In college, I worked on a project where I handled data analysis. The result was an award-winning paper. It taught me collaboration and accountability.”"
+      "category": "Final Brain Teaser",
+      "problem": "You have 2 eggs and a 100-floor building. Find the highest floor from which you can drop an egg without breaking. Minimize attempts.",
+      "expert_answer": "Use √N strategy → first egg from floors 14, 27, 39… until it breaks. Then use second egg floor by floor. Worst-case = 14 attempts."
     }
   ]
 }
