@@ -1,0 +1,54 @@
+{
+  "lessons": [
+    {
+      "id": 1,
+      "title": "How to Build a Startup",
+      "author": "Y Combinator",
+      "category": "Startup Fundamentals",
+      "imageHint": "startup whiteboard",
+      "imageUrl": "https://img.youtube.com/vi/ZoqgAy3h4Is/hqdefault.jpg",
+      "videoUrl": "https://www.youtube.com/embed/ZoqgAy3h4Is",
+      "description": "Sam Altman and the partners of YC teach you how to start a startup. This lecture covers the basics of starting a company, including the idea, team, product, and execution."
+    },
+    {
+      "id": 2,
+      "title": "How to Pitch Your Startup in 3 Minutes",
+      "author": "Michael Seibel",
+      "category": "Pitching & Fundraising",
+      "imageHint": "startup pitch",
+      "imageUrl": "https://img.youtube.com/vi/wdbj2mXo0s8/hqdefault.jpg",
+      "videoUrl": "https://www.youtube.com/embed/wdbj2mXo0s8",
+      "description": "A great pitch is crucial for fundraising, recruiting, and more. Michael Seibel, CEO of Y Combinator, breaks down how to craft a compelling 3-minute pitch."
+    },
+    {
+      "id": 3,
+      "title": "How to Get Your First 1,000 Users",
+      "author": "Gustaf Alströmer",
+      "category": "Growth & Marketing",
+      "imageHint": "user growth chart",
+      "imageUrl": "https://img.youtube.com/vi/T9U-2bE4i4w/hqdefault.jpg",
+      "videoUrl": "https://www.youtube.com/embed/T9U-2bE4i4w",
+      "description": "Getting your first users is one of the hardest parts of building a startup. Gustaf Alströmer, partner at YC, shares actionable strategies to acquire your initial user base."
+    },
+    {
+      "id": 4,
+      "title": "How to Build a Great Product",
+      "author": "Y Combinator",
+      "category": "Product Development",
+      "imageHint": "product development blueprint",
+      "imageUrl": "https://img.youtube.com/vi/y_hY2io_xYw/hqdefault.jpg",
+      "videoUrl": "https://www.youtube.com/embed/y_hY2io_xYw",
+      "description": "Learn the principles of building products that users love. This lecture covers the importance of talking to users, iterating quickly, and focusing on a core problem."
+    },
+    {
+      "id": 5,
+      "title": "A Guide to Pre-seed Fundraising",
+      "author": "Y Combinator",
+      "category": "Pitching & Fundraising",
+      "imageHint": "fundraising pitch deck",
+      "imageUrl": "https://img.youtube.com/vi/M3fHnE-n_GA/hqdefault.jpg",
+      "videoUrl": "https://www.youtube.com/embed/M3fHnE-n_GA",
+      "description": "This lecture provides a comprehensive guide to raising a pre-seed round, including how to find investors, what to put in your deck, and how to close the deal."
+    }
+  ]
+}
