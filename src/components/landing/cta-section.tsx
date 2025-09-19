@@ -14,7 +14,7 @@ export function CtaSection() {
           </SectionSubtitle>
           <div className="mt-10">
             <Button asChild size="lg" className="h-12 px-8 text-lg">
-              <Link href="#">Join SoftSwan Free</Link>
+              <Link href="/auth?mode=signup">Join SoftSwan Free</Link>
             </Button>
           </div>
         </div>

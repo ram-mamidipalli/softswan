@@ -5,7 +5,7 @@ export function HeroSection() {
   return (
     <section
       id="home"
-      className="relative flex h-dvh min-h-[500px] flex-col items-center justify-center overflow-hidden bg-background"
+      className="relative flex h-[calc(100dvh-4rem)] min-h-[500px] flex-col items-center justify-center overflow-hidden bg-background"
     >
       <div className="container mx-auto px-4 lg:px-6">
         <div className="grid grid-cols-1 items-center gap-12">
@@ -25,7 +25,7 @@ export function HeroSection() {
             </p>
             <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Button asChild size="lg">
-                <Link href="#">Start Learning Free</Link>
+                <Link href="/auth?mode=signup">Start Learning Free</Link>
               </Button>
               <Button
                 asChild
