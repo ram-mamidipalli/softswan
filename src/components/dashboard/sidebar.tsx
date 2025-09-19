@@ -26,8 +26,6 @@ import { SwanLogo } from '../icons/swan-logo';
 import { usePathname, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useAuth } from '@/hooks/use-auth';
-import { auth } from '@/lib/firebase';
-import { signOut } from 'firebase/auth';
 import { useToast } from '@/hooks/use-toast';
 
 const mainNav = [
@@ -95,10 +93,21 @@ export function DashboardSidebar() {
   const pathname = usePathname();
   const router = useRouter();
   const { toast } = useToast();
+  const { supabase, user } = useAuth();
+
 
   const handleSignOut = async () => {
+    if (!supabase) {
+      toast({
+        variant: 'destructive',
+        title: 'Supabase client not available',
+        description: 'Please check your Supabase credentials.',
+      });
+      return;
+    }
     try {
-      await signOut(auth);
+      const { error } = await supabase.auth.signOut();
+      if (error) throw error;
       toast({
         title: 'Signed out',
         description: 'You have been successfully signed out.',

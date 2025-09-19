@@ -1,0 +1,114 @@
+{
+  "investors": [
+    {
+      "id": 1,
+      "name": "Helion Venture Partners",
+      "description": "Investing in technology-powered and consumer service businesses, Helion Ventures Partners is a $605 Mn Indian-focused, an early to mid-stage venture fund participating in future rounds of financing in syndication with other venture partners.",
+      "people": ["Sandeep Fakun", "Kanwaljit Singh"],
+      "investmentStructure": "Invests between $2 Mn to $10 Mn in each company with less than $10 Mn in revenues.",
+      "industries": ["Outsourcing", "Mobile", "Internet", "Retail Services", "Healthcare", "Education", "Financial Services"],
+      "startupsFunded": ["Yepme", "MakemyTrip", "NetAmbit", "Komli", "TAXI For Sure", "PubMatic"],
+      "contact": "8040183333, 01244615333, 4"
+    },
+    {
+      "id": 2,
+      "name": "Accel Partners",
+      "description": "Accel Partners founded in 1983 has global presence in Palo Alto, London , New York, China and India. Typical multi-stage investments in internet technology companies are made by Accel partners.",
+      "people": ["Subrata Mitra", "Prashanth Prakash", "Mahendran Balachandran"],
+      "investmentStructure": "Invests between $0.5 Mn and $50 Mn in its portfolio companies.",
+      "industries": ["Internet and Consumer Services", "Infrastructure", "Cloud -Enabled Services", "Mobile and Software"],
+      "startupsFunded": ["Flipkart", "BabyOye", "Freshdesk", "Book My Show", "Zansaar", "Probe", "Myntra", "CommonFloor"],
+      "contact": "8041232551, 8043539800"
+    },
+    {
+      "id": 3,
+      "name": "Blume Ventures",
+      "description": "Venture capital firm, Blume Venture Advisor funds early-stage seed, startups, pre-series A, series B and late stage investments. Blume backs startups with both funding as well as active mentoring and support.",
+      "people": ["Karthik Reddy", "Sanjay Nath"],
+      "investmentStructure": "Provides seed funding investments between $0.05 Mn – $0.3 Mn in seed stage. Also, provides follow-on investments to portfolio companies ranging from $.5Mn to $1.5Mn.",
+      "industries": ["Mobile Applications", "Telecommunications Equipment", "Data Infrastructure", "Internet and Software Sectors", "Consumer Internet", "Media", "Research and Development"],
+      "startupsFunded": ["Carbon Clean Solutions", "EKI Communications", "Audio Compass", "Exotel", "Printo"],
+      "contact": "https://blume.vc/contact-us"
+    },
+    {
+      "id": 4,
+      "name": "Sequoia Capital India",
+      "description": "Sequoia Capital India specializes in investments in startup seed, early, mid, late, expansion, public and growth stage companies.",
+      "people": ["Shailesh Lakhani", "Shailendra Singh"],
+      "investmentStructure": "SCI invests between $100,000 and $1 Mn in seed stage, between $1 Mn and $10 Mn in early stage and between $10 Mn and $100 Mn in growth stage companies.",
+      "industries": ["Consumer", "Energy", "Financial", "Healthcare", "Outsourcing", "Technology"],
+      "startupsFunded": ["JustDial", "Knowlarity", "Practo", "iYogi", "bankbazaar.com"],
+      "contact": "8041245880, 2240747272, 01149567200"
+    },
+    {
+      "id": 5,
+      "name": "Nexus Venture Partners",
+      "description": "Nexus Venture Partners is a venture capital firm investing in early stage and growth stage startups across sectors in India and US.",
+      "people": ["Suvir Sujan", "Anup Gupta"],
+      "investmentStructure": "Invests between $0.5 Mn and $10 Mn in early growth stage companies. Also, makes investments upto $0.5 Mn in their seed program.",
+      "industries": ["Mobile", "Data Security", "Big Data analytics", "Infrastructure", "Cloud", "Storage", "Internet", "Rural Sector", "Outsourced Services", "Agribusiness", "Energy", "Media", "Consumer and Business services", "Technology"],
+      "startupsFunded": ["Snapdeal", "Housing", "Komli", "ScaleArc", "PubMatic", "Delhivery"],
+      "contact": "8049456600, 2266260000"
+    },
+    {
+      "id": 6,
+      "name": "Inventus Capital Partners",
+      "description": "With the sole goal of making new entrepreneurs successful, Inventus is a venture capital fund managed by entrepreneurs and industry-operating veterans.",
+      "people": ["Samir Kumar", "Kanwal Rekhi"],
+      "investmentStructure": "The firm does not invest in capital intensive companies. It typically leads the first venture round with $1 Mn to $2 Mn and as the businesses grow, it invests from $0.25 Mn up to $10 Mn.",
+      "industries": ["Consumer", "Hotels, Restaurants and Leisure", "Media", "Internet and Catalog Retail", "Healthcare", "Information Technology", "Hardware and Equipment", "Telecommunications etc."],
+      "startupsFunded": ["Poshmark", "Savaari", "Farfaria", "Policy Bazaar.com", "Insta Health Solutions", "CBazaar"],
+      "contact": "+91 80 4125 6747"
+    },
+    {
+      "id": 7,
+      "name": "IDG Ventures",
+      "description": "Having a global network of technology venture funds with more than $4 billion, IDG Ventures India is a leading India-focused technology venture capital fund specializing in startups, early stage, growth stage and expansion stage companies.",
+      "people": ["Manik Arora", "Sudhir Sethi"],
+      "investmentStructure": "Invests in India-based companies and also in companies outside India. The firm invests between $1 Mn and $10 Mn.",
+      "industries": ["Digital Consumer – Internet, Mobile, Media and Technology Enabled Consumer Services", "Enterprise Software – SaaS, Software Products and Enterprise services", "Engineering – Medical Devices, Clean-tech and IP-led Businesses"],
+      "startupsFunded": ["UNBXD", "Yatra.com", "Myntra.com. FirstCry", "Zivame", "iProf", "Ozone Media"],
+      "contact": "+91 80 4043 4836, +91 11 3019 4145"
+    },
+    {
+      "id": 8,
+      "name": "Fidelity Growth Partners",
+      "description": "Fidelity Growth Partners India is the private equity arm of Fidelity International Limited focused on investing in India. Since 2008, FGPI has made several investments across sectors including Healthcare and Life Sciences, Technology, Consumer and Manufacturing.",
+      "people": ["Abhinav Sinha", "Harsh Jhaveri"],
+      "investmentStructure": "Typically, FGPI invests between $10 Mn and $50 Mn for a minority stake in the company",
+      "industries": ["Healthcare and Life Sciences", "Technology", "Consumer and Manufacturing"],
+      "startupsFunded": ["Netmagic", "Yebhi"],
+      "contact": "+91-22-6655-4400"
+    },
+    {
+      "id": 9,
+      "name": "Naspers",
+      "description": "Naspers is a leading multinational media group, incorporated in 1915 as a public limited liability company and was listed on the Johannesburg Stock Exchange (JSE) in September 1994. The group’s principal operations are in internet platforms (focusing on commerce, communities, content, communication and games), pay-television and the provision of related technologies and print media (including publishing, distribution and printing). The group’s most significant operations are located in South Africa and elsewhere in Africa, China, Central and Eastern Europe, India, Brazil, Russia, Thailand and the Netherlands.",
+      "people": ["N/A"],
+      "investmentStructure": "N/A",
+      "industries": ["Ecommerce", "Print Media", "Pay Television"],
+      "startupsFunded": ["OLX", "Flipkart"],
+      "contact": "https://www.naspers.com/"
+    },
+    {
+      "id": 10,
+      "name": "Steadview Capital",
+      "description": "Steadview is a leading alternative asset manager based in Hong Kong. The firm makes concentrated long-term investments across multiple industries.",
+      "people": ["Ravi Mehta"],
+      "investmentStructure": "Early Stage Venture and Later Stage Venture Investments",
+      "industries": ["Ecommerce"],
+      "startupsFunded": ["Olacabs", "Flipkart", "Saavn", "Urban Ladder"],
+      "contact": "https://www.steadview.com/"
+    },
+    {
+      "id": 11,
+      "name": "Jungle Ventures",
+      "description": "Jungle Ventures is a Singapore based, entrepreneur backed venture firm that funds and helps startups scale across Asia Pacific. It invests in global startups that are solving problems relevant to Asia Pacific markets. It currently has investments in US, Singapore, India, Australia, Thailand, Malaysia, and the Philippines.",
+      "people": ["Amit Anand", "Subrata Mitra"],
+      "investmentStructure": "Venture Capital that does Seed and Early Stage Venture Investments",
+      "industries": ["Ecommerce", "Digital Media", "Saas", "Fintech", "Big Data", "Analytics", "Enterprise"],
+      "startupsFunded": ["Zipdial", "Ekstop", "Pokkt", "Milaap"],
+      "contact": "https://www.jungle.vc/"
+    }
+  ]
+}
