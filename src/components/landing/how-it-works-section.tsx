@@ -6,19 +6,19 @@ import { SectionSubtitle, SectionTitle } from './section-helpers';
 const steps = [
   {
     icon: <Map className="h-10 w-10 text-primary" />,
-    title: 'Choose Your Path',
-    description: 'Start with either problem-solving or communication skills.',
+    title: 'Choose Your Track',
+    description: 'Strategy, communication, or both.',
   },
   {
     icon: <BookOpenCheck className="h-10 w-10 text-primary" />,
-    title: 'Learn &amp; Practice',
+    title: 'Learn & Apply',
     description:
-      'Engage with daily puzzles, tutorials, and bite-sized lessons.',
+      'Daily challenges, tutorials, and frameworks.',
   },
   {
     icon: <TrendingUp className="h-10 w-10 text-primary" />,
-    title: 'Track Your Growth',
-    description: 'Monitor your progress with streaks and milestones.',
+    title: 'Implement & Grow',
+    description: 'Track progress, apply insights, build momentum.',
   },
 ];
 
