@@ -1,3 +1,4 @@
+
 'use client';
 
 import * as React from 'react';
@@ -70,9 +71,8 @@ export function Header() {
       )}
     >
       <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-6">
-        <Link href="/" className="flex items-center gap-2">
-          <SwanLogo className="h-6 w-6 text-primary" />
-          <span className="text-xl font-bold text-foreground">SoftSwan</span>
+        <Link href="/" className="flex items-center gap-2 text-xl font-bold text-foreground">
+          <SwanLogo />
         </Link>
         <nav className="hidden items-center gap-6 md:flex">
           {navigationLinks.map((item) => (
@@ -120,13 +120,10 @@ export function Header() {
               <div className="flex items-center justify-between border-b pb-4">
                 <Link
                   href="/"
-                  className="flex items-center gap-2"
+                  className="flex items-center gap-2 text-xl font-bold text-foreground"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  <SwanLogo className="h-6 w-6 text-primary" />
-                  <span className="text-xl font-bold text-foreground">
-                    SoftSwan
-                  </span>
+                  <SwanLogo />
                 </Link>
                 <Button variant="ghost" size="icon" onClick={() => setIsMobileMenuOpen(false)}>
                   <X className="h-6 w-6" />
@@ -139,7 +136,7 @@ export function Header() {
                     key={item.name}
                     href={item.href}
                     className="text-lg font-medium text-muted-foreground transition-colors hover:text-primary"
-                    onClick={() => setIsMobileMenuOpen(false)}
+                    onClick={() => setIsMobileMenuopen(false)}
                   >
                     {item.name}
                   </Link>

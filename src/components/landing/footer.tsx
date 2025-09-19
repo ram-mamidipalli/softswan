@@ -1,3 +1,4 @@
+
 import Link from 'next/link';
 import { Linkedin, Instagram, Youtube } from 'lucide-react';
 import { SwanLogo } from '@/components/icons/swan-logo';
@@ -33,11 +34,8 @@ export function Footer() {
       <div className="container mx-auto px-4 py-12 lg:px-6">
         <div className="flex flex-col items-center justify-between gap-8 md:flex-row">
           <div className="flex flex-col items-center gap-4 md:items-start">
-            <Link href="#home" className="flex items-center gap-2">
-              <SwanLogo className="h-7 w-7 text-primary" />
-              <span className="text-2xl font-bold text-foreground">
-                SoftSwan
-              </span>
+            <Link href="#home" className="flex items-center gap-2 text-2xl font-bold text-foreground">
+              <SwanLogo />
             </Link>
             <p className="text-muted-foreground">
               Sharpen Your Mind. Master Your Voice.
