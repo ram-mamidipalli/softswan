@@ -96,7 +96,7 @@ export default function ProblemSolvingPage() {
         </Button>
       </div>
 
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         {currentPuzzles.map((puzzle) => {
           const isSolved = solvedPuzzles.includes(puzzle.id);
           const isHard = puzzle.category.includes('Hard') || puzzle.category.includes('Deep') || puzzle.category.includes('Advanced') || puzzle.category.includes('Tough') || puzzle.category.includes('Critical');
@@ -107,12 +107,12 @@ export default function ProblemSolvingPage() {
               className={cn('group', { 'pointer-events-none': isSolved })}
             >
               <Card className="h-full transition-all group-hover:shadow-lg group-hover:-translate-y-1 relative flex flex-col">
-                <CardHeader className="flex-grow">
-                  <div className="flex justify-between items-start gap-4 mb-2">
-                    <CardTitle className="text-base font-semibold leading-snug">
+                <CardHeader className="flex-grow p-4">
+                  <div className="flex justify-between items-start gap-2 mb-2">
+                    <CardTitle className="text-sm font-semibold leading-snug">
                       Challenge #{puzzle.id}
                     </CardTitle>
-                    <div className="flex flex-col items-end gap-2 flex-shrink-0">
+                    <div className="flex flex-col items-end gap-1 flex-shrink-0">
                       {isSolved && (
                         <Badge
                           variant="secondary"
@@ -129,11 +129,11 @@ export default function ProblemSolvingPage() {
                       )}
                     </div>
                   </div>
-                  <CardDescription>{puzzle.category}</CardDescription>
+                  <CardDescription className="text-xs">{puzzle.category}</CardDescription>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="p-4 pt-0">
                   <p
-                    className={cn('text-sm text-muted-foreground line-clamp-3', {
+                    className={cn('text-xs text-muted-foreground line-clamp-3', {
                       'opacity-60': isSolved,
                     })}
                   >
