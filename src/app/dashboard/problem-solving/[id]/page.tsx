@@ -31,6 +31,10 @@ export default function PuzzlePage() {
   const puzzleId = parseInt(params.id as string, 10);
 
   React.useEffect(() => {
+    if (isNaN(puzzleId) || puzzleId < 1 || puzzleId > puzzles.length) {
+      router.push('/dashboard/problem-solving');
+      return;
+    }
     const currentPuzzle = puzzles.find(p => p.id === puzzleId);
     if (currentPuzzle) {
         setPuzzle(currentPuzzle);
@@ -191,3 +195,5 @@ export default function PuzzlePage() {
     </div>
   );
 }
+
+    

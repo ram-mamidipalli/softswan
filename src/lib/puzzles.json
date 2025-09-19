@@ -360,6 +360,188 @@
       "category": "Critical Thinking",
       "problem": "You must choose between a stable corporate job or launching your risky startup. Which path do you take?",
       "expert_answer": "Depends on risk tolerance, financial backup, and passion. Startup = long-term reward. Job = security. Decision based on life stage."
+    },
+    {
+      "id": 61,
+      "category": "Puzzle (Logic)",
+      "problem": "A man pushes his car to a hotel and tells the owner, “I’m bankrupt.” Why?",
+      "expert_answer": "He’s playing Monopoly."
+    },
+    {
+      "id": 62,
+      "category": "Aptitude (Work & Time)",
+      "problem": "A can finish a task in 12 days, B in 15 days. If they work together, how long will it take?",
+      "expert_answer": "1/12 + 1/15 = 9/60 → 20/3 days ≈ 6.67 days."
+    },
+    {
+      "id": 63,
+      "category": "Communication Challenge",
+      "problem": "In a group discussion, someone keeps interrupting you. What do you do?",
+      "expert_answer": "Stay calm, acknowledge them briefly, then politely continue: “I’ll just finish my point, then I’d love to hear yours.”"
+    },
+    {
+      "id": 64,
+      "category": "Interview Behavioral",
+      "problem": "“Describe a failure and what you learned from it.”",
+      "expert_answer": "Use STAR method → show ownership, what went wrong, lessons learned, and how you improved."
+    },
+    {
+      "id": 65,
+      "category": "Riddle (Math)",
+      "problem": "I am a three-digit number. My tens digit is 5 more than my ones digit, and my hundreds digit is 8 less than my tens digit. What am I?",
+      "expert_answer": "194."
+    },
+    {
+      "id": 66,
+      "category": "Workplace Problem",
+      "problem": "Your teammate consistently misses deadlines. How do you handle it?",
+      "expert_answer": "Approach privately, ask about challenges, offer support, escalate only if pattern continues."
+    },
+    {
+      "id": 67,
+      "category": "Puzzle (Classic)",
+      "problem": "You have two ropes. Each burns in exactly 1 hour, but not at a uniform rate. How do you measure 30 minutes?",
+      "expert_answer": "Light both ends of Rope 1 + one end of Rope 2. When Rope 1 burns out (30 min), light the other end of Rope 2."
+    },
+    {
+      "id": 68,
+      "category": "Aptitude (Speed)",
+      "problem": "A man walks 30 km at 6 km/h and another 30 km at 10 km/h. What is his average speed?",
+      "expert_answer": "Total time = 5 + 3 = 8 hrs. Distance = 60 km. Avg speed = 60/8 = 7.5 km/h."
+    },
+    {
+      "id": 69,
+      "category": "Logical Puzzle",
+      "problem": "If you have only one match and enter a dark room containing a candle, a kerosene lamp, and a fireplace, which would you light first?",
+      "expert_answer": "The match."
+    },
+    {
+      "id": 70,
+      "category": "Interview Question",
+      "problem": "“If we asked your best friend to describe you, what would they say?”",
+      "expert_answer": "Prepare for soft skills: trustworthy, supportive, hardworking, problem-solver."
+    },
+    {
+      "id": 71,
+      "category": "Real-Life Problem",
+      "problem": "You’re stuck in traffic and running late for an interview. What do you do?",
+      "expert_answer": "Call ahead, apologize professionally, give ETA. Shows responsibility."
+    },
+    {
+      "id": 72,
+      "category": "Brain Teaser",
+      "problem": "How many times do the hands of a clock overlap in 24 hours?",
+      "expert_answer": "22 times."
+    },
+    {
+      "id": 73,
+      "category": "Aptitude (Permutations)",
+      "problem": "How many 4-digit numbers can be formed using digits 1–9 without repetition?",
+      "expert_answer": "9 × 8 × 7 × 6 = 3024."
+    },
+    {
+      "id": 74,
+      "category": "Logical Reasoning",
+      "problem": "Five people sit in a line. A is left of B, C is right of B, D is left of A, E is right of C. Who is in the middle?",
+      "expert_answer": "B."
+    },
+    {
+      "id": 75,
+      "category": "Workplace Critical Thinking",
+      "problem": "Your manager assigns you to a project outside your skill set. How do you respond?",
+      "expert_answer": "Accept challenge, research quickly, ask for guidance, and learn by doing."
+    },
+    {
+      "id": 76,
+      "category": "Riddle (Hard)",
+      "problem": "Forward I am heavy, but backward I am not. What am I?",
+      "expert_answer": "The word “Ton.”"
+    },
+    {
+      "id": 77,
+      "category": "Communication Problem",
+      "problem": "In a presentation, your audience looks disengaged. What do you do?",
+      "expert_answer": "Ask interactive questions, share stories/examples, involve the audience."
+    },
+    {
+      "id": 78,
+      "category": "Aptitude (Mixtures)",
+      "problem": "A 30L solution has 20% alcohol. How much water should be added to reduce it to 15%?",
+      "expert_answer": "Alcohol = 6L. For 15%, total solution = 6/0.15 = 40L. Add 10L water."
+    },
+    {
+      "id": 79,
+      "category": "Puzzle",
+      "problem": "Two fathers and two sons buy 3 tickets for the cinema. Each gets one ticket. How?",
+      "expert_answer": "They are grandfather, father, and son."
+    },
+    {
+      "id": 80,
+      "category": "Interview (Pressure)",
+      "problem": "“If you had 10 tasks and 1 hour, how would you manage?”",
+      "expert_answer": "Prioritize high-value tasks, delegate, cut non-urgent tasks, focus on impact."
+    },
+    {
+      "id": 81,
+      "category": "Real-Life Ethical",
+      "problem": "You accidentally overhear confidential salary info. Do you tell your colleagues?",
+      "expert_answer": "No. Keep confidentiality to maintain integrity."
+    },
+    {
+      "id": 82,
+      "category": "Aptitude (Series)",
+      "problem": "1, 1, 2, 3, 5, 8, 13, ?",
+      "expert_answer": "21 (Fibonacci sequence)."
+    },
+    {
+      "id": 83,
+      "category": "Logical Puzzle (Hard)",
+      "problem": "You see 100 doors all closed. You toggle every door. Then toggle every 2nd door, every 3rd door, … until the 100th. Which doors are open?",
+      "expert_answer": "Perfect squares → 1, 4, 9, 16, … 100."
+    },
+    {
+      "id": 84,
+      "category": "Communication Challenge",
+      "problem": "You forget your next point during a speech. How do you handle it?",
+      "expert_answer": "Pause calmly, recap previous point, or smoothly transition to next section."
+    },
+    {
+      "id": 85,
+      "category": "Puzzle (Math)",
+      "problem": "What is the smallest number that leaves remainder 1 when divided by 2, 3, 4, 5, and 6?",
+      "expert_answer": "LCM of 2–6 = 60. Answer = 61."
+    },
+    {
+      "id": 86,
+      "category": "Interview (Teamwork)",
+      "problem": "“What role do you usually play in a team?”",
+      "expert_answer": "Show adaptability: leadership, coordination, or support, depending on need."
+    },
+    {
+      "id": 87,
+      "category": "Real-Life Problem",
+      "problem": "You’re asked to work on a weekend unexpectedly. What do you do?",
+      "expert_answer": "Check urgency, negotiate if possible, otherwise adjust schedule and deliver."
+    },
+    {
+      "id": 88,
+      "category": "Aptitude (Geometry)",
+      "problem": "What is the area of a circle inscribed in a square of side 10 cm?",
+      "expert_answer": "Radius = 5 cm. Area = πr² = 78.5 cm² (approx)."
+    },
+    {
+      "id": 89,
+      "category": "Puzzle (Logic)",
+      "problem": "You see a house with two doors. One leads to wealth, one to ruin. A man outside says one guard lies, one tells truth. You can ask one yes/no question. What do you ask?",
+      "expert_answer": "Ask: “If I ask the other guard, will he say this door leads to wealth?” Choose the opposite door."
+    },
+    {
+      "id": 90,
+      "category": "Interview (Vision)",
+      "problem": "“What is your ultimate career goal?”",
+      "expert_answer": "Align ambition with company growth: “To lead impactful projects, mentor others, and contribute to innovation in this industry.”"
     }
   ]
 }
+
+    

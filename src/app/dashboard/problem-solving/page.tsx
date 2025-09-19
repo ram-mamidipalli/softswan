@@ -19,7 +19,6 @@ import { cn } from '@/lib/utils';
 import {
   Pagination,
   PaginationContent,
-  PaginationEllipsis,
   PaginationItem,
   PaginationLink,
   PaginationNext,
@@ -52,6 +51,7 @@ export default function ProblemSolvingPage() {
   }, []);
 
   const handlePageChange = (page: number) => {
+    if (page < 1 || page > totalPages) return;
     router.push(`/dashboard/problem-solving?page=${page}`);
   };
 
@@ -59,7 +59,12 @@ export default function ProblemSolvingPage() {
 
   const resetPuzzles = () => {
     sessionStorage.setItem('solvedPuzzles', JSON.stringify([]));
+    localStorage.setItem('puzzlesSolvedCount', '0');
     setSolvedPuzzles([]);
+    window.dispatchEvent(new StorageEvent('storage', {
+        key: 'puzzlesSolvedCount',
+        newValue: '0',
+    }));
     toast({
       title: 'Progress Reset',
       description: 'Your progress on the puzzles has been cleared.',
@@ -140,44 +145,48 @@ export default function ProblemSolvingPage() {
           );
         })}
       </div>
-      <Pagination>
-        <PaginationContent>
-          <PaginationItem>
-            <PaginationPrevious
-              href="#"
-              onClick={(e) => {
-                e.preventDefault();
-                if (currentPage > 1) handlePageChange(currentPage - 1);
-              }}
-              className={cn({ 'pointer-events-none opacity-50': currentPage === 1 })}
-            />
-          </PaginationItem>
-          {Array.from({ length: totalPages }, (_, i) => (
-            <PaginationItem key={i}>
-              <PaginationLink
+      {totalPages > 1 && (
+        <Pagination>
+          <PaginationContent>
+            <PaginationItem>
+              <PaginationPrevious
                 href="#"
-                isActive={currentPage === i + 1}
                 onClick={(e) => {
                   e.preventDefault();
-                  handlePageChange(i + 1);
+                  if (currentPage > 1) handlePageChange(currentPage - 1);
                 }}
-              >
-                {i + 1}
-              </PaginationLink>
+                className={cn({ 'pointer-events-none opacity-50': currentPage === 1 })}
+              />
             </PaginationItem>
-          ))}
-          <PaginationItem>
-            <PaginationNext
-              href="#"
-              onClick={(e) => {
-                e.preventDefault();
-                if (currentPage < totalPages) handlePageChange(currentPage + 1);
-              }}
-               className={cn({ 'pointer-events-none opacity-50': currentPage === totalPages })}
-            />
-          </PaginationItem>
-        </PaginationContent>
-      </Pagination>
+            {Array.from({ length: totalPages }, (_, i) => (
+              <PaginationItem key={i}>
+                <PaginationLink
+                  href="#"
+                  isActive={currentPage === i + 1}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handlePageChange(i + 1);
+                  }}
+                >
+                  {i + 1}
+                </PaginationLink>
+              </PaginationItem>
+            ))}
+            <PaginationItem>
+              <PaginationNext
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (currentPage < totalPages) handlePageChange(currentPage + 1);
+                }}
+                className={cn({ 'pointer-events-none opacity-50': currentPage === totalPages })}
+              />
+            </PaginationItem>
+          </PaginationContent>
+        </Pagination>
+      )}
     </div>
   );
 }
+
+    
