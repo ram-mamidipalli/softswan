@@ -256,13 +256,27 @@
     {
       "id": 7,
       "companyName": "Airbnb",
-      "title": "Airbnb Programmatic SEO Strategy Case Study",
-      "links": [
-        "https://www.growth-method.com/programmatic-seo-airbnb-case-study"
-      ],
-      "description": "How Airbnb disrupted the hospitality industry with its programmatic SEO strategy to generate immense organic traffic.",
+      "title": "Airbnb: The Growth Story",
+      "description": "How Airbnb disrupted the hospitality industry with its innovative business model and marketing strategies.",
       "imageUrl": "https://images.unsplash.com/photo-1657256031855-68029292ff34?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxhaXJibmJ8ZW58MHx8fHwxNzU4MjkzNTk4fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "airbnb travel"
+      "imageHint": "airbnb travel",
+      "links": [
+        {
+          "title": "Airbnb Case Study - Road to $84.56B with Programmatic SEO Strategy",
+          "description": "This case study focuses on the company's powerful use of programmatic SEO.",
+          "url": "https://www.omnius.so/blog/airbnb-case-study"
+        },
+        {
+          "title": "Airbnb Marketing Strategy: How It Attracts and Retains 150M+ Users",
+          "description": "This provides an in-depth look at their marketing and user retention strategies.",
+          "url": "https://www.qoreups.com/academy/airbnb-growth-strategy/"
+        },
+        {
+          "title": "How Airbnb Disrupted the Hospitality Industry",
+          "description": "This article explains how the company's business model created a new market for travelers.",
+          "url": "https://www.kingdombranding.com/how-airbnb-disrupted-the-hospitality-industry/"
+        }
+      ]
     },
     {
       "id": 8,
@@ -409,5 +423,3 @@
     }
   ]
 }
-
-    
