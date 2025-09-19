@@ -362,28 +362,6 @@
       ]
     },
     {
-      "id": 11,
-      "companyName": "Zappos",
-      "title": "Zappos Success Story",
-      "links": [
-        "https://www.investopedia.com/articles/investing/042915/zappos-billion-dollar-customer-service-machine.asp"
-      ],
-      "description": "How Zappos built a billion-dollar business on exceptional customer service and a unique company culture.",
-      "imageUrl": "https://picsum.photos/seed/cs11/600/400",
-      "imageHint": "zappos shoes"
-    },
-    {
-      "id": 12,
-      "companyName": "Patagonia",
-      "title": "The Success of Patagonia's Marketing Strategy",
-      "links": [
-        "https://www.drip.com/blog/patagonia-marketing-strategy"
-      ],
-      "description": "A lesson in purpose-driven marketing, building brand loyalty through environmental activism.",
-      "imageUrl": "https://picsum.photos/seed/cs12/600/400",
-      "imageHint": "patagonia outdoors"
-    },
-    {
       "id": 13,
       "companyName": "HubSpot",
       "title": "HubSpot for Startups Customer Stories",
@@ -414,6 +392,7 @@
       "links": [
         "https://www.salesforce.com/customer-success-stories/"
       ],
+      "websiteUrl": "https://www.salesforce.com",
       "description": "How businesses have used Salesforce to gain a 360-degree view of their customers and boost profitability.",
       "imageUrl": "https://picsum.photos/seed/cs15/600/400",
       "imageHint": "salesforce cloud"
@@ -430,17 +409,6 @@
       "imageHint": "lego bricks"
     },
     {
-      "id": 17,
-      "companyName": "UNIQLO",
-      "title": "How UNIQLO Engineered Fashion's Most Unconventional Success Story",
-      "links": [
-        "https://www.businessoffashion.com/articles/retail/how-uniqlo-engineered-fashions-most-unconventional-success-story/"
-      ],
-      "description": "UNIQLO's success through material innovation and high-quality, long-lasting basic wear.",
-      "imageUrl": "https://picsum.photos/seed/cs17/600/400",
-      "imageHint": "uniqlo fashion"
-    },
-    {
       "id": 18,
       "companyName": "IKEA",
       "title": "IKEA Business Model Explained",
@@ -451,17 +419,6 @@
       "description": "Explains IKEA's innovative business model, centered on low-cost, functional design and a unique in-store experience.",
       "imageUrl": "https://picsum.photos/seed/cs18/600/400",
       "imageHint": "ikea furniture"
-    },
-    {
-      "id": 19,
-      "companyName": "Southwest Airlines",
-      "title": "Case Study: Southwest Airlines Strategies",
-      "links": [
-        "https://www.investopedia.com/articles/investing/111815/case-study-southwest-airlines-strategies.asp"
-      ],
-      "description": "A case study on Southwest's low-cost, point-to-point business model and strong employee-focused culture.",
-      "imageUrl": "https://picsum.photos/seed/cs19/600/400",
-      "imageHint": "southwest airplane"
     },
     {
       "id": 20,
