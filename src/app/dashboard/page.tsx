@@ -1,5 +1,4 @@
 
-
 'use client';
 
 import * as React from 'react';
@@ -40,19 +39,31 @@ export default function DashboardPage() {
       setSwanXP(xp);
       setCurrentBadge(badge);
       setNextBadge(nextBadge);
-      localStorage.setItem('currentBadgeName', badge.name);
+      
 
       const majorBadgeTiers = ['Silver 1', 'Gold 1', 'Platinum 1', 'Diamond 1', 'Master 1', 'Cosmic Swan'];
       if (prevBadgeName !== badge.name && majorBadgeTiers.includes(badge.name)) {
         const newlyAchieved = badgeLevels.find(b => b.name === badge.name);
         if (newlyAchieved) {
-            setNewlyAchievedBadge(newlyAchieved);
-            sessionStorage.setItem('newlyAchievedBadge', JSON.stringify({
+            const certificateData = {
                 name: newlyAchieved.name,
                 date: new Date().toISOString()
-            }));
+            };
+            setNewlyAchievedBadge(newlyAchieved);
+            sessionStorage.setItem('newlyAchievedBadge', JSON.stringify(certificateData));
+
+            // Persist earned certificates
+            const earnedCertificates = JSON.parse(localStorage.getItem('earnedCertificates') || '[]');
+            const existingCert = earnedCertificates.find((c: any) => c.name === newlyAchieved.name);
+            if (!existingCert) {
+                earnedCertificates.push(certificateData);
+                localStorage.setItem('earnedCertificates', JSON.stringify(earnedCertificates));
+                window.dispatchEvent(new StorageEvent('storage', { key: 'earnedCertificates' }));
+            }
         }
       }
+      // Update this last
+      localStorage.setItem('currentBadgeName', badge.name);
     };
 
     updateStats();
@@ -88,7 +99,7 @@ export default function DashboardPage() {
     const range = nextBadge.xpRequired - currentBadge.xpRequired;
     if (range <= 0) return 100;
     const progress = swanXP - currentBadge.xpRequired;
-    return (progress / range) * 100;
+    return Math.max(0, (progress / range) * 100);
   }, [swanXP, currentBadge, nextBadge]);
 
   const stats = [

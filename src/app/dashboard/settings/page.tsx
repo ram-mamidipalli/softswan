@@ -1,5 +1,7 @@
+
 'use client';
 
+import * as React from 'react';
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -13,10 +15,30 @@ import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
-import { User, Moon, Bell } from 'lucide-react';
+import { User, Moon, Bell, Award, View } from 'lucide-react';
+import Link from 'next/link';
+
+type Certificate = {
+    name: string;
+    date: string;
+};
 
 export default function SettingsPage() {
   const { toast } = useToast();
+  const [certificates, setCertificates] = React.useState<Certificate[]>([]);
+
+  React.useEffect(() => {
+    const fetchCertificates = () => {
+        const storedCerts = localStorage.getItem('earnedCertificates');
+        if (storedCerts) {
+            setCertificates(JSON.parse(storedCerts));
+        }
+    }
+    fetchCertificates();
+
+    window.addEventListener('storage', fetchCertificates);
+    return () => window.removeEventListener('storage', fetchCertificates);
+  }, []);
 
   const handleSaveChanges = () => {
     toast({
@@ -35,7 +57,7 @@ export default function SettingsPage() {
       </div>
 
       <div className="grid gap-6 lg:grid-cols-3">
-        <div className="lg:col-span-2">
+        <div className="lg:col-span-2 space-y-6">
           <Card>
             <CardHeader>
               <CardTitle>Profile</CardTitle>
@@ -56,6 +78,39 @@ export default function SettingsPage() {
                   className="min-h-[100px]"
                 />
               </div>
+            </CardContent>
+          </Card>
+           <Card>
+            <CardHeader>
+              <CardTitle>My Certificates</CardTitle>
+              <CardDescription>
+                View and download the certificates you've earned.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+                {certificates.length > 0 ? (
+                    <ul className="space-y-4">
+                        {certificates.map((cert, index) => (
+                            <li key={index} className="flex items-center justify-between p-3 bg-secondary rounded-md">
+                                <div className="flex items-center gap-3">
+                                    <Award className="h-5 w-5 text-primary" />
+                                    <div>
+                                        <p className="font-semibold">{cert.name}</p>
+                                        <p className="text-sm text-muted-foreground">Awarded on {new Date(cert.date).toLocaleDateString()}</p>
+                                    </div>
+                                </div>
+                                <Button asChild variant="ghost" size="sm">
+                                    <Link href={`/dashboard/certificate?badge=${encodeURIComponent(cert.name)}&date=${cert.date}`}>
+                                        <View className="mr-2 h-4 w-4" />
+                                        View
+                                    </Link>
+                                </Button>
+                            </li>
+                        ))}
+                    </ul>
+                ) : (
+                    <p className="text-muted-foreground text-sm">You haven't earned any certificates yet. Keep learning!</p>
+                )}
             </CardContent>
           </Card>
         </div>
