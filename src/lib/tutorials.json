@@ -16,7 +16,7 @@
         "id": 2,
         "title": "Think Fast, Talk Smart: Communication Techniques",
         "author": "Matt Abrahams",
-        "category": "Public Speaking",
+        "category": "Communication",
         "imageId": "tutorial5",
         "imageHint": "communication",
         "imageUrl": "https://img.youtube.com/vi/HAnw168huqA/hqdefault.jpg",
@@ -66,6 +66,182 @@
         "imageUrl": "https://img.youtube.com/vi/84wVbU3bBwE/hqdefault.jpg",
         "videoUrl": "https://www.youtube.com/embed/84wVbU3bBwE",
         "description": "Group discussions are a common part of the selection process for many jobs and academic programs. In this video, we'll share some tips and tricks on how to win a group discussion, from preparing your arguments to presenting them effectively."
+      },
+      {
+        "id": 7,
+        "title": "Level Up Your Communication Skills",
+        "author": "Vinh Giang",
+        "category": "Communication",
+        "imageId": "tutorial7",
+        "imageHint": "communication skills",
+        "imageUrl": "https://img.youtube.com/vi/LI57EB_T38c/hqdefault.jpg",
+        "videoUrl": "https://www.youtube.com/embed/LI57EB_T38c",
+        "description": "Listen to this if you want to level up your communication skills in 2025."
+      },
+      {
+        "id": 8,
+        "title": "10 ways to have a better conversation",
+        "author": "Celeste Headlee",
+        "category": "Communication",
+        "imageId": "tutorial8",
+        "imageHint": "conversation skills",
+        "imageUrl": "https://img.youtube.com/vi/R1vskiVDwl4/hqdefault.jpg",
+        "videoUrl": "https://www.youtube.com/embed/R1vskiVDwl4",
+        "description": "Your head is full of questions and comments, but you're not sure how to start a conversation? Here are 10 ways to have a better conversation."
+      },
+      {
+        "id": 9,
+        "title": "5 ways to listen better",
+        "author": "Julian Treasure",
+        "category": "Communication",
+        "imageId": "tutorial9",
+        "imageHint": "listening skills",
+        "imageUrl": "https://img.youtube.com/vi/cSohjlYQI2A/hqdefault.jpg",
+        "videoUrl": "https://www.youtube.com/embed/cSohjlYQI2A",
+        "description": "In our louder and louder world, says sound expert Julian Treasure, 'We are losing our listening.' In this short, fascinating talk, Treasure shares five ways to re-tune your ears for conscious listening — to other people and the world around you."
+      },
+      {
+        "id": 10,
+        "title": "How to disagree productively and find common ground",
+        "author": "Julia Dhar",
+        "category": "Communication",
+        "imageId": "tutorial10",
+        "imageHint": "debate skills",
+        "imageUrl": "https://img.youtube.com/vi/phgjouv0BUA/hqdefault.jpg",
+        "videoUrl": "https://www.youtube.com/embed/phgjouv0BUA",
+        "description": "In a divided world, it's not easy to disagree with people. But debate coach Julia Dhar offers a few techniques to help us disagree productively."
+      },
+      {
+        "id": 11,
+        "title": "The danger of silence",
+        "author": "Clint Smith",
+        "category": "Communication",
+        "imageId": "tutorial11",
+        "imageHint": "social justice",
+        "imageUrl": "https://img.youtube.com/vi/NiKtZgImdlY/hqdefault.jpg",
+        "videoUrl": "https://www.youtube.com/embed/NiKtZgImdlY",
+        "description": "We live in a world where we are constantly inundated with information. But what happens when we choose to remain silent? Clint Smith, a teacher and poet, explores the danger of silence and the power of voice."
+      },
+      {
+        "id": 12,
+        "title": "Talk nerdy to me",
+        "author": "Melissa Marshall",
+        "category": "Communication",
+        "imageId": "tutorial12",
+        "imageHint": "science communication",
+        "imageUrl": "https://img.youtube.com/vi/y66YKWz_sf0/hqdefault.jpg",
+        "videoUrl": "https://www.youtube.com/embed/y66YKWz_sf0",
+        "description": "Melissa Marshall's mission is to help scientists and engineers communicate their work to the public. In this talk, she shares some tips on how to make your science and engineering presentations more engaging and accessible."
+      },
+      {
+        "id": 13,
+        "title": "Public Speaking For Beginners",
+        "author": "Alexander Lyon",
+        "category": "Public Speaking",
+        "imageId": "tutorial13",
+        "imageHint": "public speaking",
+        "imageUrl": "https://img.youtube.com/vi/i5mYphUoOCs/hqdefault.jpg",
+        "videoUrl": "https://www.youtube.com/embed/i5mYphUoOCs",
+        "description": "This video is for beginners who want to improve their public speaking skills. Communication coach Alexander Lyon shares some tips on how to overcome your fear of public speaking and deliver a great presentation."
+      },
+      {
+        "id": 14,
+        "title": "The Trick to Powerful Public Speaking",
+        "author": "Lawrence Bernstein",
+        "category": "Public Speaking",
+        "imageId": "tutorial14",
+        "imageHint": "powerful speaking",
+        "imageUrl": "https://img.youtube.com/vi/bsxJVgb6Kls/hqdefault.jpg",
+        "videoUrl": "https://www.youtube.com/embed/bsxJVgb6Kls",
+        "description": "In this talk, Lawrence Bernstein shares a simple trick to help you become a more powerful public speaker."
+      },
+      {
+        "id": 15,
+        "title": "The science of stage fright (and how to overcome it)",
+        "author": "Mikael Cho",
+        "category": "Public Speaking",
+        "imageId": "tutorial15",
+        "imageHint": "stage fright",
+        "imageUrl": "https://img.youtube.com/vi/K93fMnFKwfI/hqdefault.jpg",
+        "videoUrl": "https://www.youtube.com/embed/K93fMnFKwfI",
+        "description": "In this talk, Mikael Cho explains the science of stage fright and shares some tips on how to overcome it."
+      },
+      {
+        "id": 16,
+        "title": "How I beat stage fright",
+        "author": "Joe Kowan",
+        "category": "Public Speaking",
+        "imageId": "tutorial16",
+        "imageHint": "overcoming fear",
+        "imageUrl": "https://img.youtube.com/vi/lq_BVyou38s/hqdefault.jpg",
+        "videoUrl": "https://www.youtube.com/embed/lq_BVyou38s",
+        "description": "In this talk, Joe Kowan shares his personal story of how he beat stage fright and became a confident performer."
+      },
+      {
+        "id": 17,
+        "title": "The clues to a great story",
+        "author": "Andrew Stanton",
+        "category": "Storytelling",
+        "imageId": "tutorial17",
+        "imageHint": "storytelling",
+        "imageUrl": "https://img.youtube.com/vi/KxDwieKpawg/hqdefault.jpg",
+        "videoUrl": "https://www.youtube.com/embed/KxDwieKpawg",
+        "description": "Filmmaker Andrew Stanton, the writer behind the 'Toy Story' trilogy and 'WALL-E,' shares what he knows about storytelling — starting at the end and working back to the beginning."
+      },
+      {
+        "id": 18,
+        "title": "The power of vulnerability",
+        "author": "Brené Brown",
+        "category": "Storytelling",
+        "imageId": "tutorial18",
+        "imageHint": "vulnerability",
+        "imageUrl": "https://img.youtube.com/vi/X4Qm9cGRub0/hqdefault.jpg",
+        "videoUrl": "https://www.youtube.com/embed/X4Qm9cGRub0",
+        "description": "Brené Brown studies human connection -- our ability to empathize, belong, love. In a poignant, funny talk, she shares a deep insight from her research, one that sent her on a personal quest to know herself as well as to understand humanity."
+      },
+      {
+        "id": 19,
+        "title": "What is Character? (Let's Make It Easy)",
+        "author": "RocketKids",
+        "category": "Character Building",
+        "imageId": "tutorial19",
+        "imageHint": "character building",
+        "imageUrl": "https://img.youtube.com/vi/G1YeaOh4gHQ/hqdefault.jpg",
+        "videoUrl": "https://www.youtube.com/embed/G1YeaOh4gHQ",
+        "description": "Learn what character is and why it's so important in this video for kids."
+      },
+      {
+        "id": 20,
+        "title": "Character Building For Kids",
+        "author": "Mental Health Center Kids",
+        "category": "Character Building",
+        "imageId": "tutorial20",
+        "imageHint": "social emotional learning",
+        "imageUrl": "https://img.youtube.com/vi/iY7dfvMjR5g/hqdefault.jpg",
+        "videoUrl": "https://www.youtube.com/embed/iY7dfvMjR5g",
+        "description": "This video is all about character building for kids. It's a great resource for parents and teachers who want to help children develop good character."
+      },
+      {
+        "id": 21,
+        "title": "How great leaders inspire action",
+        "author": "Simon Sinek",
+        "category": "Character Building",
+        "imageId": "tutorial21",
+        "imageHint": "leadership",
+        "imageUrl": "https://img.youtube.com/vi/57hPu0foQ3Q/hqdefault.jpg",
+        "videoUrl": "https://www.youtube.com/embed/57hPu0foQ3Q",
+        "description": "Simon Sinek presents a simple but powerful model for how leaders inspire action, starting with a golden circle and the question 'Why?'"
+      },
+      {
+        "id": 22,
+        "title": "Make Body Language Your Superpower",
+        "author": "Stanford GSB",
+        "category": "Body Language",
+        "imageId": "tutorial22",
+        "imageHint": "body language",
+        "imageUrl": "https://img.youtube.com/vi/cFLjudWTuGQ/hqdefault.jpg",
+        "videoUrl": "https://www.youtube.com/embed/cFLjudWTuGQ",
+        "description": "Learn how to use body language to your advantage in this video from the Stanford Graduate School of Business."
       }
     ]
   }
