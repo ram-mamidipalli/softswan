@@ -102,7 +102,7 @@ export function Header() {
                   <Link href="/auth">Login</Link>
                 </Button>
                 <Button asChild>
-                  <Link href="/auth?mode=signup">Start for free</Link>
+                  <Link href="/auth?mode=signup">Start Now</Link>
                 </Button>
               </>
             ))}
@@ -159,7 +159,7 @@ export function Header() {
                       <Link href="/auth">Login</Link>
                     </Button>
                     <Button asChild size="lg">
-                      <Link href="/auth?mode=signup">Start Free</Link>
+                      <Link href="/auth?mode=signup">Start Now</Link>
                     </Button>
                   </div>
                 ))}
