@@ -18,7 +18,7 @@ import { Badge } from '@/components/ui/badge';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { useAuth } from '@/hooks/use-auth';
 import { cn } from '@/lib/utils';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
+import { User } from 'lucide-react';
 
 const leaderboardData = [
   { rank: 1, username: 'puzzle_master', points: 2540, badge: 'Golden Swan' },
@@ -41,7 +41,6 @@ const badgeColors: { [key: string]: 'default' | 'secondary' | 'destructive' | 'o
 
 export default function LeaderboardPage() {
   const { user } = useAuth();
-  const avatar1 = PlaceHolderImages.find((img) => img.id === 'avatar1');
 
   return (
     <div className="flex flex-col gap-8">
@@ -81,15 +80,12 @@ export default function LeaderboardPage() {
                   <TableCell>
                     <div className="flex items-center gap-3">
                       <Avatar className="h-8 w-8">
-                         {avatar1 && player.username === 'you' && (
-                            <AvatarImage
-                                src={avatar1.imageUrl}
-                                alt={avatar1.description}
-                                data-ai-hint={avatar1.imageHint}
-                            />
-                            )}
                         <AvatarFallback>
-                          {player.username.charAt(0).toUpperCase()}
+                          {player.username === 'you' ? (
+                            <User className="h-5 w-5" />
+                          ) : (
+                            player.username.charAt(0).toUpperCase()
+                          )}
                         </AvatarFallback>
                       </Avatar>
                       <span className="font-medium">{player.username}</span>

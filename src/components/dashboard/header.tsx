@@ -2,6 +2,7 @@
 'use client';
 import {
   Award,
+  User,
 } from 'lucide-react';
 
 import {
@@ -29,7 +30,6 @@ export function DashboardHeader() {
   const { user } = useAuth();
   const router = useRouter();
   const { toast } = useToast();
-  const avatar1 = PlaceHolderImages.find((img) => img.id === 'avatar1');
 
   const handleSignOut = async () => {
     try {
@@ -60,15 +60,8 @@ export function DashboardHeader() {
         <DropdownMenuTrigger asChild>
           <Button variant="ghost" size="icon" className="rounded-full">
             <Avatar>
-               {avatar1 && (
-                      <AvatarImage
-                        src={avatar1.imageUrl}
-                        alt={avatar1.description}
-                        data-ai-hint={avatar1.imageHint}
-                      />
-                    )}
-              <AvatarFallback>
-                {user?.email?.[0].toUpperCase() ?? 'U'}
+               <AvatarFallback>
+                {user?.email?.[0].toUpperCase() ?? <User className="h-5 w-5" />}
               </AvatarFallback>
             </Avatar>
           </Button>

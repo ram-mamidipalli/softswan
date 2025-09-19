@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Card, CardContent } from '@/components/ui/card';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { SectionSubtitle, SectionTitle } from './section-helpers';
+import { User } from 'lucide-react';
 
 const testimonials = [
   {
@@ -22,9 +22,6 @@ const testimonials = [
 ];
 
 export function TestimonialsSection() {
-  const avatar1 = PlaceHolderImages.find((img) => img.id === 'avatar1');
-  const avatar2 = PlaceHolderImages.find((img) => img.id === 'avatar2');
-  const avatars = { avatar1, avatar2 };
 
   return (
     <section id="testimonials" className="bg-secondary">
@@ -37,7 +34,6 @@ export function TestimonialsSection() {
         </div>
         <div className="mt-16 grid grid-cols-1 gap-8 lg:grid-cols-2">
           {testimonials.map((testimonial, index) => {
-            const avatar = avatars[testimonial.avatarId as keyof typeof avatars];
             return (
               <Card key={index} className="flex flex-col justify-between">
                 <CardContent className="p-6">
@@ -47,15 +43,8 @@ export function TestimonialsSection() {
                 </CardContent>
                 <div className="flex items-center gap-4 border-t bg-background/50 p-6">
                   <Avatar>
-                    {avatar && (
-                      <AvatarImage
-                        src={avatar.imageUrl}
-                        alt={avatar.description}
-                        data-ai-hint={avatar.imageHint}
-                      />
-                    )}
                     <AvatarFallback>
-                      {testimonial.name.charAt(0)}
+                      <User className="h-5 w-5 text-muted-foreground" />
                     </AvatarFallback>
                   </Avatar>
                   <div>
