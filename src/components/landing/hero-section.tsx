@@ -13,8 +13,10 @@ export function HeroSection() {
             <h1 className="font-headline text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl md:text-6xl">
               Sharpen Your Mind.
               <br />
+              Master Your Voice.
+              <br />
               <span className="relative inline-block">
-                Master Your Voice.
+                Start Your Journey.
                 <span className="absolute -bottom-2 left-0 h-2 w-full bg-primary/30"></span>
               </span>
             </h1>
