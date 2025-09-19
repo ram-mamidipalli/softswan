@@ -27,6 +27,9 @@ import { usePathname, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useAuth } from '@/hooks/use-auth';
 import { useToast } from '@/hooks/use-toast';
+import { signOut } from 'firebase/auth';
+import { auth } from '@/lib/firebase';
+
 
 const mainNav = [
   {
@@ -44,6 +47,16 @@ const mainNav = [
     label: 'Tutorials',
     icon: Mic,
   },
+   {
+    href: '/dashboard/lessons',
+    label: 'Lessons',
+    icon: BookOpen,
+  },
+  {
+    href: '/dashboard/articles',
+    label: 'Articles',
+    icon: Newspaper,
+  },
   {
     href: '/dashboard/case-studies',
     label: 'Case Studies',
@@ -53,16 +66,6 @@ const mainNav = [
     href: '/dashboard/investors',
     label: 'Investors',
     icon: Users,
-  },
-  {
-    href: '/dashboard/lessons',
-    label: 'Lessons',
-    icon: BookOpen,
-  },
-  {
-    href: '/dashboard/articles',
-    label: 'Articles',
-    icon: Newspaper,
   },
   {
     href: '/dashboard/plan-builder',
@@ -93,21 +96,11 @@ export function DashboardSidebar() {
   const pathname = usePathname();
   const router = useRouter();
   const { toast } = useToast();
-  const { supabase, user } = useAuth();
 
 
   const handleSignOut = async () => {
-    if (!supabase) {
-      toast({
-        variant: 'destructive',
-        title: 'Supabase client not available',
-        description: 'Please check your Supabase credentials.',
-      });
-      return;
-    }
     try {
-      const { error } = await supabase.auth.signOut();
-      if (error) throw error;
+      await signOut(auth);
       toast({
         title: 'Signed out',
         description: 'You have been successfully signed out.',
