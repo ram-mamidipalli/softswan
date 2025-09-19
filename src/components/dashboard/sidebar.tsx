@@ -84,8 +84,8 @@ export function DashboardSidebar() {
           <SwanLogo />
         </Link>
       </SidebarHeader>
-      <SidebarContent className="p-2">
-        <SidebarMenu>
+      <SidebarContent className="p-2 flex flex-col justify-center">
+        <SidebarMenu className="gap-4">
           {mainNav.map((item) => (
             <SidebarMenuItem key={item.label}>
               <SidebarMenuButton
