@@ -312,14 +312,43 @@
     {
       "id": 9,
       "companyName": "Tesla",
-      "title": "Tesla Case Study - Meritshot",
-      "links": [
-        "https://www.meritshot.com/case-studies/tesla-case-study"
-      ],
-      "websiteUrl": "https://www.tesla.com",
-      "description": "Analyzes Tesla's vertical integration and innovation, bringing electric vehicles into the mainstream.",
+      "title": "Tesla: Disruptive Innovation and Brand-Building",
+      "description": "Tesla's business success is a case study in disruptive innovation and brand-building, fundamentally transforming the automotive and energy industries. The company's unique approach to manufacturing, sales, and technology has allowed it to grow from a niche startup into a global leader.",
       "imageUrl": "https://images.unsplash.com/photo-1663008519747-9da38bbfd132?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHx0ZXNsYXxlbnwwfHx8fDE3NTgyOTU1NzV8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "tesla electric"
+      "imageHint": "tesla electric",
+      "websiteUrl": "https://www.tesla.com",
+      "links": [
+        {
+          "title": "Direct-to-Consumer Sales Model 🛒",
+          "url": "https://www.datanext.ai/case-study/tesla-direct-sales-model/",
+          "description": "This analysis explains how Tesla's direct-to-consumer model has revolutionized the car industry by bypassing dealerships."
+        },
+        {
+          "title": "Benefits and Effects of Tesla's Direct-to-Customer Sales Model",
+          "url": "https://ieomsociety.org/proceedings/2023lisbon/471.pdf",
+          "description": "This paper investigates how Tesla's sales methodology has enabled it to grow into a major brand with worldwide recognition."
+        },
+        {
+          "title": "Vertical Integration 🏭",
+          "url": "https://www.scribd.com/document/775343175/Case-Studies",
+          "description": "This document provides an in-depth look at Tesla's vertical integration strategy, from battery production to software development and direct sales."
+        },
+        {
+          "title": "Why Vertical Integration Worked for Tesla",
+          "url": "https://eightception.com/tesla-vertical-integration-strategy/",
+          "description": "This article explains the benefits of Tesla's strategy, including cost control and enhanced customer experience."
+        },
+        {
+          "title": "Brand Identity and Ecosystem 🔌",
+          "url": "https://www.youngurbanproject.com/tesla-case-study/",
+          "description": "This case study analyzes Tesla's brand, marketing strategy, and how it used storytelling and community to build a cult-like following without traditional advertising."
+        },
+        {
+          "title": "An Analysis of Tesla's Disruptive Innovation Strategy",
+          "url": "https://www.researchgate.net/publication/385331939_An_Analysis_of_Tesla's_Disruptive_Innovation_Strategy",
+          "description": "This paper examines how Tesla's innovative approach in technology and market positioning has redefined the electric vehicle industry."
+        }
+      ]
     },
     {
       "id": 10,
