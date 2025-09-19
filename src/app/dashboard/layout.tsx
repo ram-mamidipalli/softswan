@@ -49,9 +49,12 @@ export default function DashboardLayout({
       </Sidebar>
       <DashboardContent>
         <DashboardHeader />
-        <main className="p-4 sm:p-6 lg:p-8">{children}</main>
+        <main className={pathname.startsWith('/dashboard/financial-modeler') ? "" : "p-4 sm:p-6 lg:p-8"}>
+          {children}
+        </main>
       </DashboardContent>
     </SidebarProvider>
   );
 }
 
+    

@@ -27,8 +27,10 @@ import {
   CircleDollarSign,
   Landmark,
   FileText,
+  Download,
 } from 'lucide-react';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import { toPng } from 'html-to-image';
 
 const FinancialModelerPage = () => {
   const [revenue, setRevenue] = React.useState({
@@ -59,6 +61,7 @@ const FinancialModelerPage = () => {
     investorCapital: 0,
     loans: 0,
   });
+  const modelerRef = React.useRef<HTMLDivElement>(null);
 
   const totalRevenue = Object.values(revenue).reduce((a, b) => a + b, 0);
   const totalCogs = Object.values(cogs).reduce((a, b) => a + b, 0);
@@ -142,16 +145,39 @@ const FinancialModelerPage = () => {
     setFunding({ investorCapital: 0, loans: 0 });
   }
 
+  const handleDownload = React.useCallback(() => {
+    if (modelerRef.current === null) {
+      return;
+    }
+
+    toPng(modelerRef.current, { cacheBust: true, pixelRatio: 2 })
+      .then((dataUrl) => {
+        const link = document.createElement('a');
+        link.download = 'financial-model.png';
+        link.href = dataUrl;
+        link.click();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   return (
-    <div className="flex flex-col gap-8 max-w-4xl mx-auto">
-      <div className="flex justify-between items-start">
+    <Card ref={modelerRef} className="p-6 sm:p-8">
+      <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-8">
         <div>
             <h1 className="text-3xl font-bold tracking-tight">Financial Modeler</h1>
             <p className="text-muted-foreground">
                 A simple calculator to understand your startup's key financial metrics.
             </p>
         </div>
-        <Button onClick={resetCalculator} variant="outline">Reset</Button>
+        <div className="flex gap-2">
+            <Button onClick={resetCalculator} variant="outline">Reset</Button>
+            <Button onClick={handleDownload}>
+                <Download className="mr-2 h-4 w-4" />
+                Download
+            </Button>
+        </div>
       </div>
       
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -282,8 +308,10 @@ const FinancialModelerPage = () => {
             </Card>
         </div>
       </div>
-    </div>
+    </Card>
   );
 };
 
 export default FinancialModelerPage;
+
+    
