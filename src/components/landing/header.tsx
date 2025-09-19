@@ -22,7 +22,6 @@ import { useToast } from '@/hooks/use-toast';
 const navigationLinks = [
   { name: 'Puzzles', href: '/#puzzles' },
   { name: 'Tutorials', href: '/#tutorials' },
-  { name: 'Features', href: '/#features' },
   { name: 'Testimonials', href: '/#testimonials' },
 ];
 
@@ -136,7 +135,7 @@ export function Header() {
                     key={item.name}
                     href={item.href}
                     className="text-lg font-medium text-muted-foreground transition-colors hover:text-primary"
-                    onClick={() => setIsMobileMenuopen(false)}
+                    onClick={() => setIsMobileMenuOpen(false)}
                   >
                     {item.name}
                   </Link>
