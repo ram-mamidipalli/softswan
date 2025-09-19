@@ -180,6 +180,186 @@
       "category": "Final Brain Teaser",
       "problem": "You have 2 eggs and a 100-floor building. Find the highest floor from which you can drop an egg without breaking. Minimize attempts.",
       "expert_answer": "Use √N strategy → first egg from floors 14, 27, 39… until it breaks. Then use second egg floor by floor. Worst-case = 14 attempts."
+    },
+    {
+      "id": 31,
+      "category": "Puzzle",
+      "problem": "A man pushes his car to a hotel and tells the owner, “I’m bankrupt.” Why?",
+      "expert_answer": "He’s playing Monopoly."
+    },
+    {
+      "id": 32,
+      "category": "Aptitude (Speed/Distance)",
+      "problem": "A car travels at 60 km/h for 2 hours and 40 km/h for 3 hours. What is the average speed?",
+      "expert_answer": "Total distance = 120 + 120 = 240 km. Total time = 5 hrs. Average = 240/5 = 48 km/h."
+    },
+    {
+      "id": 33,
+      "category": "Logical Reasoning",
+      "problem": "If “All engineers are coders” and “Some coders are teachers,” can we conclude “Some engineers are teachers”?",
+      "expert_answer": "No, not necessarily."
+    },
+    {
+      "id": 34,
+      "category": "Interview Question",
+      "problem": "“Tell me about a time you failed and what you learned.”",
+      "expert_answer": "Use STAR. Show accountability, reflection, and growth. Example: Missing a deadline taught prioritization and proactive communication."
+    },
+    {
+      "id": 35,
+      "category": "Riddle",
+      "problem": "The person who makes it sells it. The person who buys it never uses it. The person who uses it never knows. What is it?",
+      "expert_answer": "A coffin."
+    },
+    {
+      "id": 36,
+      "category": "Aptitude (Numbers)",
+      "problem": "A number is divided by 5, remainder is 2. Divided by 3, remainder is 1. What’s the smallest number?",
+      "expert_answer": "Solve using LCM. Answer = 11."
+    },
+    {
+      "id": 37,
+      "category": "Critical Thinking",
+      "problem": "You’re managing a project, and midway, your client changes requirements drastically. What do you do?",
+      "expert_answer": "Reassess scope, renegotiate deadlines, prioritize deliverables, and manage stakeholder expectations."
+    },
+    {
+      "id": 38,
+      "category": "Puzzle (Sequence)",
+      "problem": "2, 5, 10, 17, 26, ?",
+      "expert_answer": "Pattern = n² + 1 → (1²+1=2, 2²+1=5, 3²+1=10, etc.). Next = 6²+1 = 37."
+    },
+    {
+      "id": 39,
+      "category": "Real-Life Problem",
+      "problem": "You’re offered a high-paying job but in a location far from family. What do you do?",
+      "expert_answer": "Evaluate values, career goals, financial needs. Consider hybrid/remote options before deciding."
+    },
+    {
+      "id": 40,
+      "category": "Interview (Case)",
+      "problem": "“If sales dropped 20% last quarter, how would you fix it?”",
+      "expert_answer": "Analyze customer data, find pain points, redesign marketing, strengthen retention, and launch targeted campaigns."
+    },
+    {
+      "id": 41,
+      "category": "Logical Puzzle",
+      "problem": "A man is looking at a photo. Someone asks, “Whose photo is it?” He replies: “Brothers and sisters, I have none. But the man’s father is my father’s son.” Who is it?",
+      "expert_answer": "His son."
+    },
+    {
+      "id": 42,
+      "category": "Aptitude (Work & Time)",
+      "problem": "A and B can finish a task in 12 days and 16 days respectively. Working together, how long will they take?",
+      "expert_answer": "1/12 + 1/16 = 7/48 → 48/7 ≈ 6.86 days."
+    },
+    {
+      "id": 43,
+      "category": "Riddle",
+      "problem": "What gets wetter the more it dries?",
+      "expert_answer": "A towel."
+    },
+    {
+      "id": 44,
+      "category": "Interview Question",
+      "problem": "“Why do you want to work here?”",
+      "expert_answer": "Show alignment: “I admire your culture, and my skills in problem-solving and communication fit the role.”"
+    },
+    {
+      "id": 45,
+      "category": "Puzzle (Math)",
+      "problem": "Find the missing number: 3, 9, 27, ?, 243.",
+      "expert_answer": "Multiply by 3 each step. Missing = 81."
+    },
+    {
+      "id": 46,
+      "category": "Workplace Problem",
+      "problem": "A teammate isn’t pulling their weight. What do you do?",
+      "expert_answer": "Speak privately, understand reasons, offer support, escalate if it continues."
+    },
+    {
+      "id": 47,
+      "category": "Critical Thinking",
+      "problem": "You’re asked to fire a team member who is your friend. How do you handle it?",
+      "expert_answer": "Keep professionalism. Deliver news empathetically. Separate personal and work relationships."
+    },
+    {
+      "id": 48,
+      "category": "Puzzle (Age Problem)",
+      "problem": "A father is three times as old as his son. In 12 years, he’ll be twice as old. Find their ages.",
+      "expert_answer": "Son = 12, Father = 36."
+    },
+    {
+      "id": 49,
+      "category": "Riddle",
+      "problem": "The more you cut me, the bigger I get. What am I?",
+      "expert_answer": "A debt."
+    },
+    {
+      "id": 50,
+      "category": "Interview (Pressure)",
+      "problem": "“How do you handle tight deadlines?”",
+      "expert_answer": "Prioritize, break tasks into milestones, manage time, and communicate risks."
+    },
+    {
+      "id": 51,
+      "category": "Aptitude (Profit/Loss)",
+      "problem": "A shopkeeper buys a toy for ₹200 and sells it for ₹250. What’s the profit percentage?",
+      "expert_answer": "(50/200)×100 = 25%."
+    },
+    {
+      "id": 52,
+      "category": "Logical Puzzle",
+      "problem": "A is older than B. C is younger than B. Who’s the oldest?",
+      "expert_answer": "Cannot be determined."
+    },
+    {
+      "id": 53,
+      "category": "Real-Life Problem",
+      "problem": "You’re preparing for an important interview but fall sick. What do you do?",
+      "expert_answer": "Inform company honestly, request reschedule, or attend virtually if possible."
+    },
+    {
+      "id": 54,
+      "category": "Brain Teaser",
+      "problem": "What comes before yesterday and after tomorrow?",
+      "expert_answer": "Today."
+    },
+    {
+      "id": 55,
+      "category": "Interview Question",
+      "problem": "“If money weren’t a concern, what would you do with your life?”",
+      "expert_answer": "Show passion/vision: “I’d work on projects solving real-world problems in education and tech.”"
+    },
+    {
+      "id": 56,
+      "category": "Aptitude (Probability)",
+      "problem": "A bag has 4 red, 3 blue, 2 green balls. Probability of picking a red?",
+      "expert_answer": "4/9."
+    },
+    {
+      "id": 57,
+      "category": "Workplace Scenario",
+      "problem": "Your manager asks you to work weekends continuously. What do you do?",
+      "expert_answer": "Clarify urgency, negotiate balance, or escalate if unreasonable."
+    },
+    {
+      "id": 58,
+      "category": "Logical Riddle",
+      "problem": "What begins with T, ends with T, and is full of T?",
+      "expert_answer": "Teapot."
+    },
+    {
+      "id": 59,
+      "category": "Puzzle (Series)",
+      "problem": "1, 1, 2, 3, 5, 8, 13, ?",
+      "expert_answer": "Fibonacci sequence. Next = 21."
+    },
+    {
+      "id": 60,
+      "category": "Critical Thinking",
+      "problem": "You must choose between a stable corporate job or launching your risky startup. Which path do you take?",
+      "expert_answer": "Depends on risk tolerance, financial backup, and passion. Startup = long-term reward. Job = security. Decision based on life stage."
     }
   ]
 }
