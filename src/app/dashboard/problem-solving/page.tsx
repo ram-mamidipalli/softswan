@@ -7,28 +7,18 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
 import { type Puzzle } from '@/ai/flows/generate-puzzles';
-import { Loader2, CheckCircle, XCircle } from 'lucide-react';
-import { getFeedback, getPuzzles } from '@/app/actions';
-
-type PuzzleState = {
-  userAnswer: string;
-  isCorrect: boolean | null;
-  isLoading: boolean;
-};
+import { Loader2 } from 'lucide-react';
+import { getPuzzles } from '@/app/actions';
+import Link from 'next/link';
 
 export default function ProblemSolvingPage() {
   const [puzzles, setPuzzles] = React.useState<Puzzle[]>([]);
   const [pageLoading, setPageLoading] = React.useState(true);
-  const [puzzleStates, setPuzzleStates] = React.useState<
-    Record<number, PuzzleState>
-  >({});
   const { toast } = useToast();
 
   const fetchPuzzles = React.useCallback(async () => {
@@ -36,16 +26,8 @@ export default function ProblemSolvingPage() {
     const result = await getPuzzles();
     if (result.success && result.puzzles) {
       setPuzzles(result.puzzles);
-      // Initialize states for new puzzles
-      const newStates: Record<number, PuzzleState> = {};
-      result.puzzles.forEach((_, index) => {
-        newStates[index] = {
-          userAnswer: '',
-          isCorrect: null,
-          isLoading: false,
-        };
-      });
-      setPuzzleStates(newStates);
+      // Store puzzles in session storage to persist across pages
+      sessionStorage.setItem('puzzles', JSON.stringify(result.puzzles));
     } else {
       toast({
         variant: 'destructive',
@@ -57,65 +39,15 @@ export default function ProblemSolvingPage() {
   }, [toast]);
 
   React.useEffect(() => {
-    fetchPuzzles();
+    // Try to load puzzles from session storage first
+    const storedPuzzles = sessionStorage.getItem('puzzles');
+    if (storedPuzzles) {
+      setPuzzles(JSON.parse(storedPuzzles));
+      setPageLoading(false);
+    } else {
+      fetchPuzzles();
+    }
   }, [fetchPuzzles]);
-
-  const handleAnswerChange = (index: number, answer: string) => {
-    setPuzzleStates((prev) => ({
-      ...prev,
-      [index]: { ...prev[index], userAnswer: answer },
-    }));
-  };
-
-  const checkAnswer = async (index: number) => {
-    const puzzle = puzzles[index];
-    const state = puzzleStates[index];
-
-    if (!state.userAnswer) {
-      toast({
-        variant: 'destructive',
-        title: 'Please enter an answer.',
-      });
-      return;
-    }
-
-    setPuzzleStates((prev) => ({
-      ...prev,
-      [index]: { ...prev[index], isLoading: true },
-    }));
-
-    const result = await getFeedback({
-      problem: puzzle.question,
-      expertAnswer: puzzle.answer,
-      userAnswer: state.userAnswer,
-    });
-
-    if (!result.success || !result.feedback) {
-      toast({
-        variant: 'destructive',
-        title: 'Error',
-        description: result.error,
-      });
-      setPuzzleStates((prev) => ({
-        ...prev,
-        [index]: { ...prev[index], isLoading: false },
-      }));
-      return;
-    }
-
-    const { isCorrect, feedback } = result.feedback;
-
-    setPuzzleStates((prev) => ({
-      ...prev,
-      [index]: { ...prev[index], isLoading: false, isCorrect },
-    }));
-
-    toast({
-      title: isCorrect ? 'Correct! 🎉' : 'Not quite!',
-      description: feedback,
-      variant: isCorrect ? 'default' : 'destructive',
-    });
-  };
 
   if (pageLoading) {
     return (
@@ -159,73 +91,27 @@ export default function ProblemSolvingPage() {
         </Button>
       </div>
 
-      <div className="grid gap-6 md:grid-cols-2">
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {puzzles.map((puzzle, index) => {
-          const state = puzzleStates[index] || {
-            userAnswer: '',
-            isCorrect: null,
-            isLoading: false,
-          };
-          const isSolved = state.isCorrect === true;
-
           return (
-            <Card key={index}>
-              <CardHeader>
-                <div className="flex items-start justify-between gap-4">
+            <Link
+              href={`/dashboard/problem-solving/${index}`}
+              key={index}
+              className="group"
+            >
+              <Card className="h-full transition-all group-hover:shadow-lg group-hover:-translate-y-1">
+                <CardHeader>
                   <CardTitle className="text-base font-semibold">
                     Challenge #{index + 1}
                   </CardTitle>
-                  {state.isCorrect !== null && (
-                    <div className="flex items-center gap-1 text-xs">
-                      {isSolved ? (
-                        <CheckCircle className="h-4 w-4 text-green-500" />
-                      ) : (
-                        <XCircle className="h-4 w-4 text-destructive" />
-                      )}
-                      <span
-                        className={
-                          isSolved ? 'text-green-500' : 'text-destructive'
-                        }
-                      >
-                        {isSolved ? 'Solved' : 'Incorrect'}
-                      </span>
-                    </div>
-                  )}
-                </div>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">
-                  {puzzle.question}
-                </p>
-              </CardContent>
-              <CardFooter className="flex flex-col items-start gap-2">
-                <div className="flex w-full gap-2">
-                  <Input
-                    placeholder="Your answer..."
-                    value={state.userAnswer}
-                    onChange={(e) => handleAnswerChange(index, e.target.value)}
-                    disabled={isSolved || state.isLoading}
-                    className="h-9 text-sm"
-                  />
-                  <Button
-                    onClick={() => checkAnswer(index)}
-                    disabled={isSolved || state.isLoading}
-                    size="sm"
-                  >
-                    {state.isLoading ? (
-                      <Loader2 className="animate-spin" />
-                    ) : (
-                      'Submit'
-                    )}
-                  </Button>
-                </div>
-                {isSolved && (
-                  <p className="text-xs text-green-600">
-                    Correct Answer: {puzzle.answer}
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-muted-foreground">
+                    {puzzle.question}
                   </p>
-                )}
-              </CardFooter>
-            </Card>
+                </CardContent>
+              </Card>
+            </Link>
           );
         })}
       </div>
