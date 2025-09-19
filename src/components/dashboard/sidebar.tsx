@@ -80,7 +80,7 @@ export function DashboardSidebar() {
   return (
     <>
       <SidebarHeader>
-        <Link href="/" className="flex items-center gap-2 text-xl font-bold text-sidebar-foreground group-data-[collapsible=icon]:hidden">
+        <Link href="/" className="flex items-center justify-center gap-2 text-xl font-bold text-sidebar-foreground group-data-[collapsible=icon]:hidden">
           <SwanLogo />
         </Link>
       </SidebarHeader>
