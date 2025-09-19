@@ -1,7 +1,7 @@
 
 'use client';
 import {
-  Bell,
+  Award,
 } from 'lucide-react';
 
 import {
@@ -22,6 +22,7 @@ import { useRouter } from 'next/navigation';
 import { useToast } from '@/hooks/use-toast';
 import Link from 'next/link';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
+import { Badge } from '../ui/badge';
 
 
 export function DashboardHeader() {
@@ -51,14 +52,10 @@ export function DashboardHeader() {
     <header className="sticky top-0 z-10 flex h-14 items-center gap-4 border-b bg-background px-4 sm:h-16 sm:px-6">
       <SidebarTrigger className="sm:hidden" />
       <div className="flex-1" />
-      <Button variant="ghost" size="icon" className="relative">
-        <Bell className="h-5 w-5" />
-        <span className="absolute -right-0.5 -top-0.5 flex h-2 w-2">
-          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75"></span>
-          <span className="relative inline-flex h-2 w-2 rounded-full bg-primary"></span>
-        </span>
-        <span className="sr-only">Notifications</span>
-      </Button>
+      <Badge variant="outline" className="hidden sm:flex items-center gap-2">
+        <Award className="h-4 w-4" />
+        Bronze Swan
+      </Badge>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="ghost" size="icon" className="rounded-full">
