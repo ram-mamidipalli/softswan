@@ -21,9 +21,7 @@ export function HeroSection() {
               </span>
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground">
-              SoftSwan is your personal growth hub for problem-solving riddles,
-              puzzles, and communication tutorials—designed to make you confident
-              and job-ready.
+              SoftSwan is the ultimate toolkit for aspiring entrepreneurs and founders, offering curated puzzles and communication tutorials to sharpen your mind and amplify your voice. Start your journey to building the next big thing.
             </p>
             <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Button asChild size="lg">
