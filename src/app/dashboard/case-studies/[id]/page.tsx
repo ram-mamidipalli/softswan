@@ -84,7 +84,7 @@ export default function CaseStudyPage() {
         </CardHeader>
         <CardContent>
           <p className="text-muted-foreground mb-6">{study.description}</p>
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-wrap gap-4">
              {study.links.map((link, index) => {
                 const linkUrl = typeof link === 'string' ? link : link.url;
                 const linkTitle = typeof link === 'string' ? `Read Full Case Study #${index + 1}` : link.title;
@@ -92,7 +92,7 @@ export default function CaseStudyPage() {
 
                 if (linkDescription) {
                     return (
-                        <Card key={index} className="bg-secondary/50">
+                        <Card key={index} className="bg-secondary/50 flex-1 basis-full md:basis-[calc(50%-0.5rem)]">
                             <CardHeader>
                                 <CardTitle className="text-lg">{linkTitle}</CardTitle>
                             </CardHeader>
@@ -109,10 +109,10 @@ export default function CaseStudyPage() {
                     )
                 }
                 return (
-                    <Button asChild key={index} variant="outline" className="justify-between">
-                        <a href={linkUrl} target="_blank" rel="noopener noreferrer">
-                        {linkTitle}
-                        <ExternalLink className="ml-2 h-4 w-4" />
+                    <Button asChild key={index} variant="outline" className="justify-start text-left h-auto">
+                        <a href={linkUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 p-2">
+                            <span>{linkTitle}</span>
+                            <ExternalLink className="ml-auto h-4 w-4 flex-shrink-0" />
                         </a>
                     </Button>
                 )
