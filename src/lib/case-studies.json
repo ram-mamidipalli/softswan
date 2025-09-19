@@ -201,11 +201,55 @@
     {
       "id": 6,
       "companyName": "Spotify",
-      "title": "Business Model of Spotify",
+      "title": "Spotify's Business Success",
       "links": [
-        "https://www.feedough.com/spotify-business-model/"
+        {
+          "title": "The Thrilling Business Model Of Netflix 2025 from IIDE",
+          "url": "https://iide.co/case-studies/business-model-of-spotify/",
+          "description": "Explains Spotify's freemium model and its journey from a music streaming platform to an audio giant."
+        },
+        {
+          "title": "Spotify's Freemium Model A Blueprint for Subscription Growth from Rajiv Gopinath",
+          "url": "https://www.rajivgopinath.com/real-time/next-gen-media-and-marketing/the-subscription-economy-and-rentership-culture/trends-in-subscription-models/spotifys-freemium-model-a-blueprint-for-subscription-growth",
+          "description": "A deep dive into the psychology and mechanics of Spotify's successful freemium model."
+        },
+        {
+          "title": "Spotify Business Model from Strategyzer",
+          "url": "https://www.strategyzer.com/library/spotify-business-model",
+          "description": "A visual breakdown of Spotify's business model, outlining how it attracts users and generates revenue."
+        },
+        {
+          "title": "How Spotify Uses AI from Marketing AI Institute",
+          "url": "https://www.marketingaiinstitute.com/blog/spotify-artificial-intelligence",
+          "description": "This article explains how Spotify uses AI to create its hyper-personalized playlists and features like 'Spotify Wrapped.'"
+        },
+        {
+          "title": "Case Study: Artificial Intelligence in Spotify from Squarespace",
+          "url": "https://static1.squarespace.com/static/62856357b3c6636e1f1a3318/t/6628503031d8987ce5c8e14a/1713918003014/Sid+Yu+SSIE+Winter+Research.pdf",
+          "description": "A detailed look at the machine learning algorithms, such as BaRT, that power Spotify's recommendation engine."
+        },
+        {
+          "title": "Spotify: Music and Podcasts from Google Play",
+          "url": "https://play.google.com/store/apps/details?id=com.spotify.music",
+          "description": "This page highlights Spotify's expansion beyond music into podcasts and audiobooks, a key part of its diversification strategy."
+        },
+        {
+          "title": "Personalized Audiobook Recommendations at Spotify Through Graph Neural Networks from arXiv",
+          "url": "https://arxiv.org/html/2403.05185v1",
+          "description": "A research paper that discusses Spotify's efforts to personalize audiobook and podcast recommendations."
+        },
+        {
+          "title": "9 International Growth Strategies from Spotify from OneSky Blog",
+          "url": "https://www.onesky.ai/blog/spotify-global-expansion",
+          "description": "A case study that breaks down Spotify's localization and global expansion strategies, including its focus on local music tastes."
+        },
+        {
+          "title": "(PDF) Individual Case Study & Report: Spotify from ResearchGate",
+          "url": "https://www.researchgate.net/publication/383598771_Individual_Case_Study_Report_Spotify",
+          "description": "This report analyzes Spotify's global expansion, market positioning, and its competitive advantage in different regions."
+        }
       ],
-      "description": "A breakdown of Spotify's freemium strategy and its use of AI for personalized recommendations.",
+      "description": "An in-depth look at Spotify's success, from its freemium business model and use of AI to its content strategy and global expansion.",
       "imageUrl": "https://images.unsplash.com/photo-1611339555312-e607c8352fd7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxzcG90aWZ5fGVufDB8fHx8MTc1ODI5MzI2MXww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "spotify music"
     },
