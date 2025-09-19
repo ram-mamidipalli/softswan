@@ -106,13 +106,14 @@ export default function DashboardPage() {
       title: 'Total Swan XP',
       value: swanXP.toString(),
       icon: Flame,
-      iconClassName: 'text-orange-400',
+      iconClassName: 'text-primary',
       change: 'Keep the flame alive!',
     },
     {
       title: 'Tutorials Completed',
       value: tutorialsCompleted.toString(),
       icon: CheckCircle,
+      iconClassName: 'text-green-500',
       change: `+${tutorialsCompleted * 30} XP earned`,
     },
     {
