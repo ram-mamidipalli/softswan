@@ -110,6 +110,129 @@
       "industries": ["Ecommerce", "Digital Media", "Saas", "Fintech", "Big Data", "Analytics", "Enterprise"],
       "startupsFunded": ["Zipdial", "Ekstop", "Pokkt", "Milaap"],
       "contact": "https://www.jungle.vc/"
+    },
+    {
+      "id": 12,
+      "name": "Qualcomm Ventures",
+      "description": "Qualcomm Ventures is the investment arm of Qualcomm Inc. (NASDAQ: QCOM), a Fortune 500 company with operations across the globe.",
+      "people": ["Karthee Madasamy"],
+      "investmentStructure": "N/A",
+      "industries": ["Business Software", "Cloud/Enterprise", "Consumer Software", "Hardware", "Health Care", "Infrastructure", "Semi/Components"],
+      "startupsFunded": ["Appsdaily", "Capillary", "Deck", "Portea", "Housing"],
+      "contact": "https://www.qualcommventures.com/"
+    },
+    {
+      "id": 13,
+      "name": "Warburg Pincus",
+      "description": "Warburg Pincus is a leading global private equity firm focused on growth investing. The firm has more than $37 Bn in assets under management. Its active portfolio of more than 120 companies is highly diversified by stage, sector and geography.",
+      "people": ["Hari Ravichandran"],
+      "investmentStructure": "It emphasizes growth investing and has successfully built companies at all stages, from conceiving and creating venture capital opportunities, to providing capital to meet the needs of existing businesses, to investing in later-stage buyout transactions and special situations with unique characteristics.",
+      "industries": ["Consumer", "Industrial and Services", "Energy", "Financial Services", "Healthcare", "Real Estate", "Tech", "Media", "Telecommunications"],
+      "startupsFunded": ["Lemon Tree", "Biba", "Quikr"],
+      "contact": "+91 22 66451234"
+    },
+    {
+      "id": 14,
+      "name": "Canaan Partners",
+      "description": "Global venture capital firm investing in people with visionary ideas, Canaan Partners specializes in all stages of development, seed financings, start-ups, growth and early stage investments, typically Series A and B financings.",
+      "people": ["Wende Hutton"],
+      "investmentStructure": "The firm typically invests between $0.05 Mn to $80 Mn in its portfolio company. It prefers to exit its investments within 7 to 10 years.",
+      "industries": ["Technology- Advertising & Marketing", "Big Data/Cloud", "Consumer", "Enterprise/SaaS", "FinTech", "Hardware", "Healthcare – Biopharma, digital Health & MedTech."],
+      "startupsFunded": ["Naaptol", "Bharat Matrimony", "iYogi", "Happiest minds", "mCARBON", "CarTrade", "Surewaves."],
+      "contact": "+91 124 4301841"
+    },
+    {
+      "id": 15,
+      "name": "SAIF Partners",
+      "description": "Investing in India since 2001, SAIF Partners specializes in private equity and venture capital across Asia.",
+      "people": ["Mukul Arora", "Mukul Singhal"],
+      "investmentStructure": "Invests between $10 Mn and $100 Mn in one or more rounds of financing with investments between $200,000 to $500,000 in early stage companies and between $30 Mn and $35 Mn in more mature unlisted ventures.",
+      "industries": ["IT", "ITes", "Industrials", "Financial Services", "Internet", "Consumer Product", "Mobile"],
+      "startupsFunded": ["Justdial.com", "Paytm", "Network18", "HomeShop18", "Book My Show."],
+      "contact": "+91 124 496 5500"
+    },
+    {
+      "id": 16,
+      "name": "Ascent Capital Advisors",
+      "description": "Ascent Capital, an India-focused independent private equity firm, is among the most experienced teams on ground with over 150+ years of collective experience in Indian capital markets.",
+      "people": ["Raja Kumar"],
+      "investmentStructure": "The firm makes investments ranging from $10 Mn to $30 Mn.",
+      "industries": ["Technology", "Ecommerce", "Healthcare", "Financial Services", "Consumer Brands", "Infrastructure"],
+      "startupsFunded": ["Bigbasket.com", "KIMS"],
+      "contact": "+91 80 3055 1230, +91 80 3055 1231"
+    },
+    {
+      "id": 17,
+      "name": "Bain Capital Private Equity",
+      "description": "Bain Capital professionals in aggregate is the largest investor in every fund raised. Bain Capital, along with management teams, provides the strategic and analytic resources needed to build and grow great companies.",
+      "people": ["Samonnoi Banerjee"],
+      "investmentStructure": "Invests between $5 Mn and $1 Bn in companies in wide range of Industries.",
+      "industries": ["Consumer", "Retail and Dining", "Financial and business Services", "Healthcare", "Industrial and Energy", "Technology, Media and Telecom."],
+      "startupsFunded": ["ASIMCO", "BMC Software", "Biglobe", "Atento", "BPL"],
+      "contact": "+91-2267528000"
+    },
+    {
+      "id": 18,
+      "name": "Basil Partners",
+      "description": "It’s a Venture Capital fund involved in Early Stage Venture Investments focusing on investing in India besides investing in North America, Europe and Asian Countries.",
+      "people": ["Ramanan Raghavendran", "Rajeev Srivastava"],
+      "investmentStructure": "Investment is done in the range between $1 million and $ 5 million with minimum revenue of $5 million.",
+      "industries": ["IT"],
+      "startupsFunded": ["Endeavour Software Technologies", "Karmic LifeSciences"],
+      "contact": "https://www.basilpartners.com/"
+    },
+    {
+      "id": 19,
+      "name": "Bessemer Venture Partners",
+      "description": "With great experience in investing, this 1911 founded company operates on a global scale with offices located in Israel, India and both coasts in the US.",
+      "people": ["Raghav Bahl", "Aakash Goel"],
+      "investmentStructure": "They invest in the range of $75,000 to $66 Mn.",
+      "industries": ["Cyber Security", "Financial Services", "Mobile", "Cleantech Cloud Computing"],
+      "startupsFunded": ["Snapdeal", "OnMobile"],
+      "contact": "+91-80-3082-9000"
+    },
+    {
+      "id": 20,
+      "name": "Forum Synergies (India) PE Fund",
+      "description": "The company’s vision and mission is to be a unique, ethical private equity fund management model in India that provides investors with a best-in-class private equity model.",
+      "people": ["Samir Inamdar"],
+      "investmentStructure": "Forum Synergies invests between between $2 – $10 Mn in firms with revenues between $3 – $50 Mn.",
+      "industries": ["Healthcare", "Automotive", "Electronic Hardware", "Electrical Equipment", "Chemical Engineering", "Medical Devices", "Pharmaceuticals", "Biotechnology", "IT"],
+      "startupsFunded": ["Zomato", "Ola", "Quikr", "TaxiForSure", "Commonfloor", "Freecharge", "Housing."],
+      "contact": "+91 80 4000 6400"
+    },
+    {
+      "id": 21,
+      "name": "Fulcrum Venture India",
+      "description": "Founded in 2000, Fulcrum is a private equity investor which focuses on the SME business opportunities.They prefer to invest in like-minded entrepreneurs with solid principles and objectives.",
+      "people": ["Krishna Ramanathan", "Ethan Khatri", "Mahesh Shankaranarayanan"],
+      "investmentStructure": "The firm seeks to invest between INR 5 crores – INR 15 crores.",
+      "industries": ["Education", "Financial Services", "FMCG", "Healthcare", "Niche Retail"],
+      "startupsFunded": ["Shield Healthcare Private Limited", "SwaaS Systems", "Congruent Solutions Pvt Ltd"],
+      "contact": "+91 22 6712 8484, +91 22 6712 8484"
+    },
+    {
+      "id": 22,
+      "name": "IvyCap Ventures",
+      "description": "Guided by an entrepreneur-centric investment approach, IvyCap focuses on high-quality professional entrepreneurs from premier education institutions of the country.",
+      "people": ["Norbert Fernandes"],
+      "investmentStructure": "The Firm does Early Stage Venture Investments and invests between $0.3 Mn and $7 Mn.",
+      "industries": ["Healthcare", "Education", "Technology", "Commerce."],
+      "startupsFunded": ["Aujas Networks", "Leixir", "eShakti.com", "Vinculum Solutions", "FieldEZ"],
+      "contact": "+91-22-67000567"
+    },
+    {
+      "id": 23,
+      "name": "Kalaari Capital",
+      "description": "With a strong advisory team in Bangalore, Kalaari is a $160 Mn venture capital fund investing in early-stage technology-oriented companies in India. They seek companies that are capable of capturing new markets, providing innovative solutions and creating new wealth for India and beyond.",
+      "people": ["Vani Kola", "Sampath Kumar P.", "Rajesh Raju"],
+      "investmentStructure": "The firm invests $1Mn to $5Mn in technology savvy companies and technology-enabled services for India and the global markets.",
+      "industries": ["ECommerce", "Internet", "Curated Web", "cleantech."],
+      "startupsFunded": ["Mettl", "UrbanLadder", "Snapdeal", "Zivame"],
+      "contact": "080 67159600"
     }
   ]
 }
+
+
+    
