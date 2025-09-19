@@ -24,6 +24,7 @@ export default function DashboardPage() {
   const [currentBadge, setCurrentBadge] = React.useState<Badge | null>(null);
   const [nextBadge, setNextBadge] = React.useState<Badge | null>(null);
   const [newlyAchievedBadge, setNewlyAchievedBadge] = React.useState<Badge | null>(null);
+  const [displayName, setDisplayName] = React.useState('');
 
   React.useEffect(() => {
     const updateStats = () => {
@@ -33,7 +34,9 @@ export default function DashboardPage() {
       const completedTutorialsCount = JSON.parse(localStorage.getItem('completedTutorials') || '[]').length;
       const xp = parseInt(localStorage.getItem('swanXP') || '0', 10);
       const { badge, nextBadge } = getBadgeForPoints(xp);
+      const storedName = localStorage.getItem('userName');
       
+      setDisplayName(storedName || user?.email?.split('@')[0] || 'Learner');
       setPuzzlesSolved(solvedCount);
       setTutorialsCompleted(completedTutorialsCount);
       setSwanXP(xp);
@@ -76,7 +79,7 @@ export default function DashboardPage() {
     }
 
     const handleStorageChange = (e: StorageEvent) => {
-        if (e.key === 'puzzlesSolvedCount' || e.key === 'swanXP' || e.key === 'completedTutorials') {
+        if (e.key === 'puzzlesSolvedCount' || e.key === 'swanXP' || e.key === 'completedTutorials' || e.key === 'userName') {
             updateStats();
         }
     };
@@ -85,7 +88,7 @@ export default function DashboardPage() {
     return () => {
         window.removeEventListener('storage', handleStorageChange);
     };
-  }, []);
+  }, [user]);
   
   const handleViewCertificate = () => {
     sessionStorage.removeItem('newlyAchievedBadge');
@@ -133,7 +136,7 @@ export default function DashboardPage() {
     <div className="flex flex-col gap-8">
       <div>
         <h1 className="text-3xl font-bold tracking-tight">
-          Welcome back, {user?.email?.split('@')[0] || 'Learner'}!
+          Welcome back, {displayName}!
         </h1>
         <p className="text-muted-foreground">
           Here&apos;s a snapshot of your progress. Keep up the great work!
