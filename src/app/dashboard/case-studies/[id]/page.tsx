@@ -92,13 +92,13 @@ export default function CaseStudyPage() {
 
                 if (linkDescription) {
                     return (
-                        <Card key={index} className="bg-secondary">
+                        <Card key={index} className="bg-secondary/50">
                             <CardHeader>
                                 <CardTitle className="text-lg">{linkTitle}</CardTitle>
                             </CardHeader>
                             <CardContent>
                                 <p className="text-sm text-muted-foreground mb-4">{linkDescription}</p>
-                                <Button asChild>
+                                <Button asChild variant="outline">
                                     <a href={linkUrl} target="_blank" rel="noopener noreferrer">
                                         Read More
                                         <ExternalLink className="ml-2 h-4 w-4" />
@@ -109,7 +109,7 @@ export default function CaseStudyPage() {
                     )
                 }
                 return (
-                    <Button asChild key={index}>
+                    <Button asChild key={index} variant="outline" className="justify-between">
                         <a href={linkUrl} target="_blank" rel="noopener noreferrer">
                         {linkTitle}
                         <ExternalLink className="ml-2 h-4 w-4" />
