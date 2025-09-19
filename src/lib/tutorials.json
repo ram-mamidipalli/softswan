@@ -24,50 +24,6 @@
         "description": "Communication is critical to success in business and life. Concerned about an upcoming interview? Anxious about being asked to give your thoughts during a meeting? Founder of TFTS communication, Matt Abrahams, is here to help."
       },
       {
-        "id": 3,
-        "title": "The 3 Magic Ingredients of Amazing Talks",
-        "author": "Phil Waknell",
-        "category": "Storytelling",
-        "imageId": "tutorial2",
-        "imageHint": "presentation skills",
-        "imageUrl": "https://img.youtube.com/vi/S2dJu8p4_pA/hqdefault.jpg",
-        "videoUrl": "https://www.youtube.com/embed/S2dJu8p4_pA",
-        "description": "Some people are great speakers. But what makes them great? Are they born that way, or can anyone learn the magic of amazing talks? Phil Waknell, a presentation coach, has analysed hundreds of great talks and great speakers. In this talk, he will share the three magic ingredients that you can use to make your next talk amazing."
-      },
-      {
-        "id": 4,
-        "title": "How to Nail Your Job Interview",
-        "author": "Google",
-        "category": "Interview Prep",
-        "imageId": "tutorial3",
-        "imageHint": "job interview",
-        "imageUrl": "https://img.youtube.com/vi/a-A_io-y34I/hqdefault.jpg",
-        "videoUrl": "https://www.youtube.com/embed/a-A_io-y34I",
-        "description": "In this video, we'll walk you through the steps of preparing for a job interview, from understanding the role and company to practicing your answers and following up afterward."
-      },
-      {
-        "id": 5,
-        "title": "Body Language, the Hidden Language",
-        "author": "BBC REEL",
-        "category": "Body Language",
-        "imageId": "tutorial4",
-        "imageHint": "body language",
-        "imageUrl": "https://img.youtube.com/vi/cWIi8f_22j4/hqdefault.jpg",
-        "videoUrl": "https://www.youtube.com/embed/cWIi8f_22j4",
-        "description": "It's often said that our bodies speak louder than our words. But how much of what we 'say' is non-verbal? And how can we use body language to our advantage? In this video, we'll explore the hidden language of our bodies, and how it can be used to communicate more effectively."
-      },
-      {
-        "id": 6,
-        "title": "How to Win a Group Discussion",
-        "author": "Anubhav Singh",
-        "category": "Group Discussion",
-        "imageId": "tutorial6",
-        "imageHint": "team meeting",
-        "imageUrl": "https://img.youtube.com/vi/84wVbU3bBwE/hqdefault.jpg",
-        "videoUrl": "https://www.youtube.com/embed/84wVbU3bBwE",
-        "description": "Group discussions are a common part of the selection process for many jobs and academic programs. In this video, we'll share some tips and tricks on how to win a group discussion, from preparing your arguments to presenting them effectively."
-      },
-      {
         "id": 7,
         "title": "Level Up Your Communication Skills",
         "author": "Vinh Giang",
