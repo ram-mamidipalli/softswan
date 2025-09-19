@@ -9,7 +9,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { Mail, Phone } from 'lucide-react';
+import { Mail } from 'lucide-react';
 
 export default function SupportPage() {
   return (
@@ -34,18 +34,8 @@ export default function SupportPage() {
                 <div>
                     <h3 className="font-semibold">Email</h3>
                     <p className="text-muted-foreground text-sm mb-1">For any support queries, please email us.</p>
-                    <a href="mailto:ramasubbarao1125@gmail.com" className="text-primary hover:underline">
-                        ramasubbarao1125@gmail.com
-                    </a>
-                </div>
-            </div>
-             <div className="flex items-start gap-4">
-                <Phone className="h-6 w-6 text-primary mt-1" />
-                <div>
-                    <h3 className="font-semibold">Phone</h3>
-                     <p className="text-muted-foreground text-sm mb-1">You can also reach us by phone during business hours.</p>
-                    <a href="tel:+1234567890" className="text-primary hover:underline">
-                        +1 (234) 567-890
+                    <a href="mailto:contact.projectgaruda@gmail.com" className="text-primary hover:underline">
+                        contact.projectgaruda@gmail.com
                     </a>
                 </div>
             </div>
