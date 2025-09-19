@@ -118,7 +118,6 @@ export default function DashboardPage() {
       value: currentBadge?.name || 'Bronze Swan',
       icon: Award,
       change: nextBadge ? `${nextBadge.xpRequired - swanXP} XP to next` : 'Max level reached!',
-      emblem: currentBadge?.icon,
     },
   ];
 
@@ -159,11 +158,7 @@ export default function DashboardPage() {
               <CardTitle className="text-sm font-medium">
                 {stat.title}
               </CardTitle>
-              {stat.emblem ? (
-                <span className="text-2xl">{stat.emblem}</span>
-              ) : (
-                <stat.icon className="h-4 w-4 text-muted-foreground" />
-              )}
+              <stat.icon className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{stat.value}</div>
