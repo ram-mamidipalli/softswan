@@ -32,34 +32,38 @@ export default function SettingsPage() {
   const [notifications, setNotifications] = React.useState(true);
   const [certificates, setCertificates] = React.useState<Certificate[]>([]);
 
-  React.useEffect(() => {
-    const fetchSettings = () => {
-        const storedName = localStorage.getItem('userName') || '';
-        const storedBio = localStorage.getItem('userBio') || '';
-        const storedNotifications = localStorage.getItem('userNotifications') !== 'false';
-        const storedCerts = localStorage.getItem('earnedCertificates');
-        
-        setName(storedName);
-        setBio(storedBio);
-        setNotifications(storedNotifications);
+  const fetchSettings = React.useCallback(() => {
+    const storedName = localStorage.getItem('userName') || '';
+    const storedBio = localStorage.getItem('userBio') || '';
+    const storedNotifications = localStorage.getItem('userNotifications') !== 'false';
+    const storedCerts = localStorage.getItem('earnedCertificates');
+    
+    setName(storedName);
+    setBio(storedBio);
+    setNotifications(storedNotifications);
 
-        if (storedCerts) {
-            setCertificates(JSON.parse(storedCerts));
-        }
+    if (storedCerts) {
+        setCertificates(JSON.parse(storedCerts));
+    } else {
+        setCertificates([]);
     }
+  }, []);
+
+  React.useEffect(() => {
     fetchSettings();
 
-    window.addEventListener('storage', (e) => {
-        if (e.key === 'earnedCertificates') {
+    const handleStorageChange = (e: StorageEvent) => {
+        if (e.key === 'earnedCertificates' || e.key === 'userName' || e.key === 'userBio' || e.key === 'userNotifications') {
             fetchSettings();
         }
-    });
-    return () => window.removeEventListener('storage', (e) => {
-        if (e.key === 'earnedCertificates') {
-            fetchSettings();
-        }
-    });
-  }, []);
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+    
+    return () => {
+        window.removeEventListener('storage', handleStorageChange);
+    };
+  }, [fetchSettings]);
 
   const handleSaveChanges = () => {
     localStorage.setItem('userName', name);
