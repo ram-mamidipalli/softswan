@@ -17,6 +17,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 import { User, Moon, Bell, Award, View } from 'lucide-react';
 import Link from 'next/link';
+import { useTheme } from 'next-themes';
 
 type Certificate = {
     name: string;
@@ -25,26 +26,54 @@ type Certificate = {
 
 export default function SettingsPage() {
   const { toast } = useToast();
+  const { theme, setTheme } = useTheme();
+  const [name, setName] = React.useState('');
+  const [bio, setBio] = React.useState('');
+  const [notifications, setNotifications] = React.useState(true);
   const [certificates, setCertificates] = React.useState<Certificate[]>([]);
 
   React.useEffect(() => {
-    const fetchCertificates = () => {
+    const fetchSettings = () => {
+        const storedName = localStorage.getItem('userName') || '';
+        const storedBio = localStorage.getItem('userBio') || '';
+        const storedNotifications = localStorage.getItem('userNotifications') !== 'false';
         const storedCerts = localStorage.getItem('earnedCertificates');
+        
+        setName(storedName);
+        setBio(storedBio);
+        setNotifications(storedNotifications);
+
         if (storedCerts) {
             setCertificates(JSON.parse(storedCerts));
         }
     }
-    fetchCertificates();
+    fetchSettings();
 
-    window.addEventListener('storage', fetchCertificates);
-    return () => window.removeEventListener('storage', fetchCertificates);
+    window.addEventListener('storage', (e) => {
+        if (e.key === 'earnedCertificates') {
+            fetchSettings();
+        }
+    });
+    return () => window.removeEventListener('storage', (e) => {
+        if (e.key === 'earnedCertificates') {
+            fetchSettings();
+        }
+    });
   }, []);
 
   const handleSaveChanges = () => {
+    localStorage.setItem('userName', name);
+    localStorage.setItem('userBio', bio);
+    localStorage.setItem('userNotifications', String(notifications));
+    
     toast({
       title: 'Settings Saved',
       description: 'Your changes have been successfully saved.',
     });
+  };
+
+  const handleThemeChange = (checked: boolean) => {
+    setTheme(checked ? 'dark' : 'light');
   };
 
   return (
@@ -68,7 +97,7 @@ export default function SettingsPage() {
             <CardContent className="space-y-4">
               <div className="space-y-2">
                 <Label htmlFor="name">Name</Label>
-                <Input id="name" placeholder="Your Name" />
+                <Input id="name" placeholder="Your Name" value={name} onChange={(e) => setName(e.target.value)} />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="bio">Bio</Label>
@@ -76,6 +105,8 @@ export default function SettingsPage() {
                   id="bio"
                   placeholder="Tell us a little about yourself"
                   className="min-h-[100px]"
+                  value={bio}
+                  onChange={(e) => setBio(e.target.value)}
                 />
               </div>
             </CardContent>
@@ -125,7 +156,7 @@ export default function SettingsPage() {
                   <Moon className="h-4 w-4" />
                   <span>Dark Mode</span>
                 </Label>
-                <Switch id="dark-mode" />
+                <Switch id="dark-mode" checked={theme === 'dark'} onCheckedChange={handleThemeChange} />
               </div>
               <div className="flex items-center justify-between">
                 <Label
@@ -135,7 +166,7 @@ export default function SettingsPage() {
                   <Bell className="h-4 w-4" />
                   <span>Email Notifications</span>
                 </Label>
-                <Switch id="notifications" />
+                <Switch id="notifications" checked={notifications} onCheckedChange={setNotifications} />
               </div>
             </CardContent>
           </Card>
