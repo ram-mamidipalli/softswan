@@ -87,7 +87,7 @@ export function DashboardSidebar() {
           </span>
         </Link>
       </SidebarHeader>
-      <SidebarContent>
+      <SidebarContent className="p-2">
         <SidebarMenu>
           {mainNav.map((item) => (
             <SidebarMenuItem key={item.label}>

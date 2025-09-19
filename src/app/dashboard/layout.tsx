@@ -38,7 +38,7 @@ export default function DashboardLayout({
 
   return (
     <SidebarProvider>
-      <Sidebar side="left" variant="sidebar" collapsible="icon">
+      <Sidebar side="left" variant="sidebar" collapsible="icon" className="border-r">
         <DashboardSidebar />
       </Sidebar>
       <SidebarInset>
