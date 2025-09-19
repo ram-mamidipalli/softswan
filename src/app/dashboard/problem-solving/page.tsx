@@ -14,70 +14,64 @@ import {
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
 import { type Puzzle } from '@/ai/flows/generate-puzzles';
-import { ChevronLeft, ChevronRight, Check, Loader2 } from 'lucide-react';
-import { Badge } from '@/components/ui/badge';
-import { Progress } from '@/components/ui/progress';
+import { Loader2, CheckCircle, XCircle } from 'lucide-react';
 import { getFeedback, getPuzzles } from '@/app/actions';
+
+type PuzzleState = {
+  userAnswer: string;
+  isCorrect: boolean | null;
+  isLoading: boolean;
+};
 
 export default function ProblemSolvingPage() {
   const [puzzles, setPuzzles] = React.useState<Puzzle[]>([]);
   const [pageLoading, setPageLoading] = React.useState(true);
-  const [currentPuzzleIndex, setCurrentPuzzleIndex] = React.useState(0);
-  const [userAnswers, setUserAnswers] = React.useState<Record<number, string>>(
-    {}
-  );
-  const [solvedPuzzles, setSolvedPuzzles] = React.useState<number[]>([]);
-  const [isLoading, setIsLoading] = React.useState(false);
+  const [puzzleStates, setPuzzleStates] = React.useState<
+    Record<number, PuzzleState>
+  >({});
   const { toast } = useToast();
 
-  React.useEffect(() => {
-    async function fetchPuzzles() {
-      setPageLoading(true);
-      const result = await getPuzzles();
-      if (result.success && result.puzzles) {
-        setPuzzles(result.puzzles);
-      } else {
-        toast({
-          variant: 'destructive',
-          title: 'Failed to load puzzles',
-          description: result.error,
-        });
-      }
-      setPageLoading(false);
+  const fetchPuzzles = React.useCallback(async () => {
+    setPageLoading(true);
+    const result = await getPuzzles();
+    if (result.success && result.puzzles) {
+      setPuzzles(result.puzzles);
+      // Initialize states for new puzzles
+      const newStates: Record<number, PuzzleState> = {};
+      result.puzzles.forEach((_, index) => {
+        newStates[index] = {
+          userAnswer: '',
+          isCorrect: null,
+          isLoading: false,
+        };
+      });
+      setPuzzleStates(newStates);
+    } else {
+      toast({
+        variant: 'destructive',
+        title: 'Failed to load puzzles',
+        description: result.error,
+      });
     }
-    fetchPuzzles();
+    setPageLoading(false);
   }, [toast]);
 
-  if (pageLoading) {
-    return (
-      <div className="flex h-full w-full items-center justify-center">
-        <Loader2 className="h-8 w-8 animate-spin" />
-        <span className="ml-4 text-muted-foreground">Loading puzzles...</span>
-      </div>
-    );
-  }
-
-  if (!puzzles.length) {
-    return (
-        <div className="text-center">
-            <p className="text-muted-foreground">Could not load any puzzles.</p>
-            <Button onClick={() => window.location.reload()} className="mt-4">
-                Try again
-            </Button>
-        </div>
-    )
-  }
-
-  const currentPuzzle = puzzles[currentPuzzleIndex];
+  React.useEffect(() => {
+    fetchPuzzles();
+  }, [fetchPuzzles]);
 
   const handleAnswerChange = (index: number, answer: string) => {
-    setUserAnswers((prev) => ({ ...prev, [index]: answer }));
+    setPuzzleStates((prev) => ({
+      ...prev,
+      [index]: { ...prev[index], userAnswer: answer },
+    }));
   };
 
   const checkAnswer = async (index: number) => {
     const puzzle = puzzles[index];
-    const userAnswer = userAnswers[index];
-    if (!userAnswer) {
+    const state = puzzleStates[index];
+
+    if (!state.userAnswer) {
       toast({
         variant: 'destructive',
         title: 'Please enter an answer.',
@@ -85,152 +79,156 @@ export default function ProblemSolvingPage() {
       return;
     }
 
-    setIsLoading(true);
+    setPuzzleStates((prev) => ({
+      ...prev,
+      [index]: { ...prev[index], isLoading: true },
+    }));
 
     const result = await getFeedback({
       problem: puzzle.question,
       expertAnswer: puzzle.answer,
-      userAnswer: userAnswer,
+      userAnswer: state.userAnswer,
     });
 
-    setIsLoading(false);
-
     if (!result.success || !result.feedback) {
-        toast({
-            variant: 'destructive',
-            title: 'Error',
-            description: result.error,
-        });
-        return;
+      toast({
+        variant: 'destructive',
+        title: 'Error',
+        description: result.error,
+      });
+      setPuzzleStates((prev) => ({
+        ...prev,
+        [index]: { ...prev[index], isLoading: false },
+      }));
+      return;
     }
 
     const { isCorrect, feedback } = result.feedback;
 
-    if (isCorrect) {
-      if (!solvedPuzzles.includes(index)) {
-        setSolvedPuzzles([...solvedPuzzles, index]);
-        toast({
-          title: 'Correct! 🎉',
-          description: `${feedback} You've solved ${
-            solvedPuzzles.length + 1
-          } out of ${puzzles.length} puzzles.`,
-        });
-      } else {
-        toast({
-          title: 'Already Solved!',
-          description: 'You have already solved this puzzle correctly.',
-        });
-      }
-    } else {
-      toast({
-        title: 'Not quite!',
-        description: feedback,
-        variant: 'destructive',
-      });
-    }
+    setPuzzleStates((prev) => ({
+      ...prev,
+      [index]: { ...prev[index], isLoading: false, isCorrect },
+    }));
+
+    toast({
+      title: isCorrect ? 'Correct! 🎉' : 'Not quite!',
+      description: feedback,
+      variant: isCorrect ? 'default' : 'destructive',
+    });
   };
 
-  const goToNextPuzzle = () => {
-    setCurrentPuzzleIndex((prev) => (prev + 1) % puzzles.length);
-  };
-
-  const goToPreviousPuzzle = () => {
-    setCurrentPuzzleIndex(
-      (prev) => (prev - 1 + puzzles.length) % puzzles.length
+  if (pageLoading) {
+    return (
+      <div className="flex h-full w-full flex-col items-center justify-center gap-4">
+        <Loader2 className="h-8 w-8 animate-spin" />
+        <span className="text-muted-foreground">
+          Generating new challenges for you...
+        </span>
+      </div>
     );
-  };
-  
-  const isCurrentPuzzleSolved = solvedPuzzles.includes(currentPuzzleIndex);
-  const progressPercentage = (solvedPuzzles.length / puzzles.length) * 100;
+  }
+
+  if (!puzzles.length) {
+    return (
+      <div className="text-center">
+        <p className="text-muted-foreground">Could not load any puzzles.</p>
+        <Button onClick={fetchPuzzles} className="mt-4">
+          Try again
+        </Button>
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-col gap-8">
-      <div>
-        <h1 className="text-3xl font-bold tracking-tight">Problem Solving Quiz</h1>
-        <p className="text-muted-foreground">
-          Test your skills with these {puzzles.length} challenges generated by AI.
-        </p>
-      </div>
-        
-      <Card>
-        <CardHeader>
-            <CardTitle>Your Progress</CardTitle>
-            <CardDescription>You have solved {solvedPuzzles.length} out of {puzzles.length} puzzles.</CardDescription>
-        </CardHeader>
-        <CardContent>
-            <Progress value={progressPercentage} className="w-full" />
-        </CardContent>
-      </Card>
-
-      <div className="relative">
-        <Card className="mx-auto max-w-2xl">
-          <CardHeader>
-            <div className="flex justify-between items-center">
-                <div>
-                    <CardTitle className="mt-2">Challenge #{currentPuzzleIndex + 1}</CardTitle>
-                </div>
-                {isCurrentPuzzleSolved && <div className="flex items-center gap-2 text-green-600"><Check /> Solved</div>}
-            </div>
-          </CardHeader>
-          <CardContent>
-            <p className="text-lg text-muted-foreground">
-              {currentPuzzle.question}
-            </p>
-          </CardContent>
-          <CardFooter className="flex flex-col items-start gap-4">
-            <div className="w-full flex gap-2">
-                <Input
-                  placeholder="Your answer..."
-                  value={userAnswers[currentPuzzleIndex] || ''}
-                  onChange={(e) =>
-                    handleAnswerChange(currentPuzzleIndex, e.target.value)
-                  }
-                  disabled={isCurrentPuzzleSolved || isLoading}
-                />
-                <Button onClick={() => checkAnswer(currentPuzzleIndex)} disabled={isCurrentPuzzleSolved || isLoading}>
-                  {isLoading ? <Loader2 className="animate-spin" /> : 'Submit'}
-                </Button>
-            </div>
-             {isCurrentPuzzleSolved && <p className="text-sm text-green-600">Correct Answer: {currentPuzzle.answer}</p>}
-          </CardFooter>
-        </Card>
-        
-        <Button
-          variant="outline"
-          size="icon"
-          onClick={goToPreviousPuzzle}
-          className="absolute left-0 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full h-12 w-12 hidden md:flex"
-          disabled={isLoading}
-        >
-          <ChevronLeft />
-        </Button>
-        <Button
-          variant="outline"
-          size="icon"
-          onClick={goToNextPuzzle}
-          className="absolute right-0 top-1/2 translate-x-1/2 -translate-y-1/2 rounded-full h-12 w-12 hidden md:flex"
-          disabled={isLoading}
-        >
-          <ChevronRight />
-        </Button>
-      </div>
-
-       <div className="flex md:hidden justify-between w-full max-w-2xl mx-auto">
-             <Button
-                variant="outline"
-                onClick={goToPreviousPuzzle}
-                disabled={isLoading}
-            >
-                <ChevronLeft className="mr-2" /> Previous
-            </Button>
-             <Button
-                variant="outline"
-                onClick={goToNextPuzzle}
-                disabled={isLoading}
-            >
-                Next <ChevronRight className="ml-2" />
-            </Button>
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-2xl font-bold tracking-tight">
+            Problem Solving Challenges
+          </h1>
+          <p className="text-sm text-muted-foreground">
+            A fresh set of {puzzles.length} AI-generated puzzles to test your
+            skills.
+          </p>
         </div>
+        <Button onClick={fetchPuzzles} disabled={pageLoading}>
+          {pageLoading ? (
+            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+          ) : null}
+          Regenerate
+        </Button>
+      </div>
+
+      <div className="grid gap-6 md:grid-cols-2">
+        {puzzles.map((puzzle, index) => {
+          const state = puzzleStates[index] || {
+            userAnswer: '',
+            isCorrect: null,
+            isLoading: false,
+          };
+          const isSolved = state.isCorrect === true;
+
+          return (
+            <Card key={index}>
+              <CardHeader>
+                <div className="flex items-start justify-between gap-4">
+                  <CardTitle className="text-base font-semibold">
+                    Challenge #{index + 1}
+                  </CardTitle>
+                  {state.isCorrect !== null && (
+                    <div className="flex items-center gap-1 text-xs">
+                      {isSolved ? (
+                        <CheckCircle className="h-4 w-4 text-green-500" />
+                      ) : (
+                        <XCircle className="h-4 w-4 text-destructive" />
+                      )}
+                      <span
+                        className={
+                          isSolved ? 'text-green-500' : 'text-destructive'
+                        }
+                      >
+                        {isSolved ? 'Solved' : 'Incorrect'}
+                      </span>
+                    </div>
+                  )}
+                </div>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground">
+                  {puzzle.question}
+                </p>
+              </CardContent>
+              <CardFooter className="flex flex-col items-start gap-2">
+                <div className="flex w-full gap-2">
+                  <Input
+                    placeholder="Your answer..."
+                    value={state.userAnswer}
+                    onChange={(e) => handleAnswerChange(index, e.target.value)}
+                    disabled={isSolved || state.isLoading}
+                    className="h-9 text-sm"
+                  />
+                  <Button
+                    onClick={() => checkAnswer(index)}
+                    disabled={isSolved || state.isLoading}
+                    size="sm"
+                  >
+                    {state.isLoading ? (
+                      <Loader2 className="animate-spin" />
+                    ) : (
+                      'Submit'
+                    )}
+                  </Button>
+                </div>
+                {isSolved && (
+                  <p className="text-xs text-green-600">
+                    Correct Answer: {puzzle.answer}
+                  </p>
+                )}
+              </CardFooter>
+            </Card>
+          );
+        })}
+      </div>
     </div>
   );
 }
