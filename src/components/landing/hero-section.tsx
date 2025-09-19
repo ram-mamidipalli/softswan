@@ -10,7 +10,7 @@ export function HeroSection() {
   return (
     <section id="home" className="relative overflow-hidden bg-background">
       <div className="container mx-auto px-4 py-24 sm:py-32 lg:px-6">
-        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
+        <div className="grid grid-cols-1 items-center gap-12">
           <div className="text-center lg:text-left">
             <h1 className="font-headline text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl md:text-6xl">
               Sharpen Your Mind.
@@ -38,26 +38,6 @@ export function HeroSection() {
                 <Link href="#tutorials">Explore Tutorials</Link>
               </Button>
             </div>
-          </div>
-          <div className="relative mx-auto w-full max-w-lg lg:max-w-none">
-            {heroImage && (
-              <div className="relative rounded-lg shadow-xl">
-                <div className="absolute -left-4 -top-4 z-10 animate-pulse rounded-full bg-primary/20 p-3">
-                  <BrainCircuit className="h-8 w-8 text-primary" />
-                </div>
-                <Image
-                  src={heroImage.imageUrl}
-                  alt={heroImage.description}
-                  width={800}
-                  height={600}
-                  className="rounded-lg object-cover"
-                  data-ai-hint={heroImage.imageHint}
-                />
-                 <div className="absolute -bottom-4 -right-4 z-10 animate-pulse rounded-full bg-accent p-3">
-                  <MessageSquare className="h-8 w-8 text-primary" />
-                </div>
-              </div>
-            )}
           </div>
         </div>
       </div>
