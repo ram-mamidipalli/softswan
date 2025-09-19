@@ -1,3 +1,4 @@
+
 'use client';
 
 import * as React from 'react';
@@ -12,35 +13,20 @@ import {
 } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
-import { getPuzzles } from '@/app/actions';
-import { BrainCircuit, Loader2 } from 'lucide-react';
-import type { Puzzle } from '@/ai/flows/generate-puzzles';
+import { puzzles, type Puzzle } from '@/lib/puzzles';
+import { ChevronLeft, ChevronRight, Check } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
+import { Progress } from '@/components/ui/progress';
 
 export default function ProblemSolvingPage() {
-  const [puzzles, setPuzzles] = React.useState<Puzzle[]>([]);
-  const [isLoading, setIsLoading] = React.useState(false);
+  const [currentPuzzleIndex, setCurrentPuzzleIndex] = React.useState(0);
   const [userAnswers, setUserAnswers] = React.useState<Record<number, string>>(
     {}
   );
+  const [solvedPuzzles, setSolvedPuzzles] = React.useState<number[]>([]);
   const { toast } = useToast();
 
-  const handleGeneratePuzzles = async () => {
-    setIsLoading(true);
-    setPuzzles([]);
-    const result = await getPuzzles();
-    setIsLoading(false);
-    if (result.success && result.puzzles) {
-      setPuzzles(result.puzzles);
-      setUserAnswers({});
-    } else {
-      toast({
-        variant: 'destructive',
-        title: 'Error generating puzzles',
-        description:
-          result.error || 'An unexpected error occurred. Please try again.',
-      });
-    }
-  };
+  const currentPuzzle = puzzles[currentPuzzleIndex];
 
   const handleAnswerChange = (index: number, answer: string) => {
     setUserAnswers((prev) => ({ ...prev, [index]: answer }));
@@ -57,76 +43,132 @@ export default function ProblemSolvingPage() {
       return;
     }
 
-    // Simple case-insensitive and whitespace-trimmed comparison
     const isCorrect =
-      userAnswer.trim().toLowerCase() === puzzle.answer.trim().toLowerCase();
+      userAnswer.trim().toLowerCase() ===
+      puzzle.expert_answer.trim().toLowerCase();
 
-    toast({
-      title: isCorrect ? 'Correct! 🎉' : 'Incorrect, try again!',
-      description: isCorrect
-        ? `+10 points! Keep it up.`
-        : `Hint: The answer is not "${userAnswer}".`,
-      variant: isCorrect ? 'default' : 'destructive',
-    });
+    if (isCorrect) {
+      if (!solvedPuzzles.includes(index)) {
+        setSolvedPuzzles([...solvedPuzzles, index]);
+        toast({
+          title: 'Correct! 🎉',
+          description: `+10 points! You've solved ${
+            solvedPuzzles.length + 1
+          } out of ${puzzles.length} puzzles.`,
+        });
+      } else {
+        toast({
+          title: 'Already Solved!',
+          description: 'You have already solved this puzzle correctly.',
+        });
+      }
+    } else {
+      toast({
+        title: 'Incorrect, try again!',
+        description: `Hint: The answer is not "${userAnswer}".`,
+        variant: 'destructive',
+      });
+    }
   };
+
+  const goToNextPuzzle = () => {
+    setCurrentPuzzleIndex((prev) => (prev + 1) % puzzles.length);
+  };
+
+  const goToPreviousPuzzle = () => {
+    setCurrentPuzzleIndex(
+      (prev) => (prev - 1 + puzzles.length) % puzzles.length
+    );
+  };
+  
+  const isCurrentPuzzleSolved = solvedPuzzles.includes(currentPuzzleIndex);
+  const progressPercentage = (solvedPuzzles.length / puzzles.length) * 100;
 
   return (
     <div className="flex flex-col gap-8">
       <div>
-        <h1 className="text-3xl font-bold tracking-tight">Problem Solving</h1>
+        <h1 className="text-3xl font-bold tracking-tight">Problem Solving Quiz</h1>
         <p className="text-muted-foreground">
-          Sharpen your mind with AI-generated riddles and challenges.
+          Test your skills with these 10 challenges.
         </p>
       </div>
-
+        
       <Card>
         <CardHeader>
-          <CardTitle>Puzzle Hub</CardTitle>
-          <CardDescription>
-            Click the button below to generate a new set of 10 puzzles. Test
-            your wit and see how many you can solve!
-          </CardDescription>
+            <CardTitle>Your Progress</CardTitle>
+            <CardDescription>You have solved {solvedPuzzles.length} out of {puzzles.length} puzzles.</CardDescription>
         </CardHeader>
         <CardContent>
-          <Button onClick={handleGeneratePuzzles} disabled={isLoading}>
-            {isLoading ? (
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-            ) : (
-              <BrainCircuit className="mr-2 h-4 w-4" />
-            )}
-            Generate New Puzzles
-          </Button>
+            <Progress value={progressPercentage} className="w-full" />
         </CardContent>
       </Card>
 
-      {isLoading && (
-        <div className="flex items-center justify-center py-12">
-          <Loader2 className="h-10 w-10 animate-spin text-primary" />
-        </div>
-      )}
-
-      {puzzles.length > 0 && (
-        <div className="grid gap-6 md:grid-cols-2">
-          {puzzles.map((puzzle, index) => (
-            <Card key={index}>
-              <CardHeader>
-                <CardTitle>Challenge #{index + 1}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">{puzzle.question}</p>
-              </CardContent>
-              <CardFooter className="flex gap-2">
+      <div className="relative">
+        <Card className="mx-auto max-w-2xl">
+          <CardHeader>
+            <div className="flex justify-between items-center">
+                <div>
+                    <Badge variant="secondary">{currentPuzzle.category}</Badge>
+                    <CardTitle className="mt-2">Challenge #{currentPuzzle.id}</CardTitle>
+                </div>
+                {isCurrentPuzzleSolved && <div className="flex items-center gap-2 text-green-600"><Check /> Solved</div>}
+            </div>
+          </CardHeader>
+          <CardContent>
+            <p className="text-lg text-muted-foreground">
+              {currentPuzzle.problem}
+            </p>
+          </CardContent>
+          <CardFooter className="flex flex-col items-start gap-4">
+            <div className="w-full flex gap-2">
                 <Input
                   placeholder="Your answer..."
-                  value={userAnswers[index] || ''}
-                  onChange={(e) => handleAnswerChange(index, e.target.value)}
+                  value={userAnswers[currentPuzzleIndex] || ''}
+                  onChange={(e) =>
+                    handleAnswerChange(currentPuzzleIndex, e.target.value)
+                  }
+                  disabled={isCurrentPuzzleSolved}
                 />
-                <Button onClick={() => checkAnswer(index)}>Submit</Button>
-              </CardFooter>
-            </Card>
-          ))}
+                <Button onClick={() => checkAnswer(currentPuzzleIndex)} disabled={isCurrentPuzzleSolved}>
+                  Submit
+                </Button>
+            </div>
+             {isCurrentPuzzleSolved && <p className="text-sm text-green-600">Correct Answer: {currentPuzzle.expert_answer}</p>}
+          </CardFooter>
+        </Card>
+        
+        <Button
+          variant="outline"
+          size="icon"
+          onClick={goToPreviousPuzzle}
+          className="absolute left-0 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full h-12 w-12 hidden md:flex"
+        >
+          <ChevronLeft />
+        </Button>
+        <Button
+          variant="outline"
+          size="icon"
+          onClick={goToNextPuzzle}
+          className="absolute right-0 top-1/2 translate-x-1/2 -translate-y-1/2 rounded-full h-12 w-12 hidden md:flex"
+        >
+          <ChevronRight />
+        </Button>
+      </div>
+
+       <div className="flex md:hidden justify-between w-full max-w-2xl mx-auto">
+             <Button
+                variant="outline"
+                onClick={goToPreviousPuzzle}
+            >
+                <ChevronLeft className="mr-2" /> Previous
+            </Button>
+             <Button
+                variant="outline"
+                onClick={goToNextPuzzle}
+            >
+                Next <ChevronRight className="ml-2" />
+            </Button>
         </div>
-      )}
     </div>
   );
 }

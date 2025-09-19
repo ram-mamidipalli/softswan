@@ -1,0 +1,65 @@
+
+{
+  "puzzles": [
+    {
+      "id": 1,
+      "category": "Logical Puzzle",
+      "problem": "There are 3 boxes: one with apples, one with oranges, and one with both apples & oranges. All are incorrectly labeled. How can you correctly label them by picking only one fruit from one box?",
+      "expert_answer": "Pick one fruit from the box labeled 'Both'. Since the labels are wrong, that box must contain only one fruit type. If you draw an apple, that box is 'Apples.' Then relabel the others accordingly."
+    },
+    {
+      "id": 2,
+      "category": "Aptitude Problem",
+      "problem": "Find the missing number: 2, 6, 12, 20, 30, ?",
+      "expert_answer": "Pattern = n\u00b2 + n (1\u00b2+1=2, 2\u00b2+2=6, 3\u00b2+3=12, 4\u00b2+4=20, 5\u00b2+5=30, 6\u00b2+6=42). Answer: 42."
+    },
+    {
+      "id": 3,
+      "category": "Riddle",
+      "problem": "I speak without a mouth and hear without ears. I have no body, but I come alive with wind. What am I?",
+      "expert_answer": "An echo."
+    },
+    {
+      "id": 4,
+      "category": "Workplace Problem",
+      "problem": "You have a brilliant idea in a team meeting, but a louder colleague speaks over you and takes the spotlight. What do you do?",
+      "expert_answer": "Stay calm, don’t interrupt aggressively. Acknowledge the colleague: 'That’s a good point, and to build on it…' then restate your idea. Follow up with the manager or in email if not heard. This shows assertive communication without conflict."
+    },
+    {
+      "id": 5,
+      "category": "Logical Reasoning",
+      "problem": "You have 9 identical-looking balls, one of which is heavier. You can use a balance scale only twice. How do you find the heavier ball?",
+      "expert_answer": "Divide balls into 3 groups of 3. Weigh two groups. If equal, heavier is in the 3rd group. If not, heavier is in the heavier group. Weigh 2 balls from that group → heavier one is found."
+    },
+    {
+      "id": 6,
+      "category": "Communication Challenge",
+      "problem": "You feel nervous when speaking in front of 50 people. How do you overcome stage fright?",
+      "expert_answer": "Prepare key points (not scripts). Practice with smaller groups. Use breathing techniques before speaking. Start with eye contact to 2–3 friendly faces. Remember: audience is rooting for you, not judging."
+    },
+    {
+      "id": 7,
+      "category": "Analytical Thinking",
+      "problem": "If 5 machines make 5 items in 5 minutes, how long will 100 machines take to make 100 items?",
+      "expert_answer": "Each machine makes 1 item in 5 minutes. So 100 machines make 100 items in 5 minutes. Answer: 5 minutes."
+    },
+    {
+      "id": 8,
+      "category": "Real-Life Problem",
+      "problem": "You are preparing for exams, but social media distracts you constantly. What’s the best approach?",
+      "expert_answer": "Use the Pomodoro method (25 min focus + 5 min break). Block apps with productivity tools. Keep phone in another room. Replace scrolling with quick walks or deep breathing."
+    },
+    {
+      "id": 9,
+      "category": "Critical Thinking Puzzle",
+      "problem": "A man is looking at a picture. Someone asks, 'Whose picture is that?' The man replies: 'Brothers and sisters, I have none. But that man’s father is my father’s son.' Who is in the picture?",
+      "expert_answer": "'My father’s son' = me. So the man’s son. Answer: It’s his son."
+    },
+    {
+      "id": 10,
+      "category": "Job Interview Problem",
+      "problem": "You are asked in an interview: 'Tell me about a time you failed.' How should you respond?",
+      "expert_answer": "Be honest but strategic. Share a real but non-critical failure. Show what you learned: 'I realized the importance of planning. Since then, I use task tracking tools, and I haven’t missed a deadline again.' This shows growth mindset, not weakness."
+    }
+  ]
+}
