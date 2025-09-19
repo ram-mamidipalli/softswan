@@ -42,6 +42,11 @@
           "title": "Google Cloud's Enterprise Success ☁️",
           "url": "https://cloud.google.com/customers",
           "description": "This page features a collection of customer stories showing how businesses use Google Cloud to solve complex problems. For instance, you can find case studies on how companies like The Super-Pharm pharmacy chain used Vertex AI to improve inventory accuracy by up to 90%, and how HCA Healthcare used generative AI to redesign patient care. These examples highlight Google's growing influence in the enterprise market and its focus on AI and data analytics."
+        },
+        {
+          "title": "Community Case Study",
+          "url": "https://dev.to/grenishrai/case-study-google-597k",
+          "description": "An additional community-provided case study on Google."
         }
       ],
       "description": "How publishers use Google's advertising platforms to monetize content and optimize ad revenue.",
