@@ -10,7 +10,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { Flame, Target, Trophy, Award } from 'lucide-react';
+import { Flame, Target, Trophy, Award, CheckCircle } from 'lucide-react';
 import { Progress } from '@/components/ui/progress';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
@@ -19,18 +19,20 @@ import { getBadgeForPoints, type Badge } from '@/lib/badges';
 export default function DashboardPage() {
   const { user } = useAuth();
   const [puzzlesSolved, setPuzzlesSolved] = React.useState(0);
+  const [tutorialsCompleted, setTutorialsCompleted] = React.useState(0);
   const [swanXP, setSwanXP] = React.useState(0);
   const [currentBadge, setCurrentBadge] = React.useState<Badge | null>(null);
   const [nextBadge, setNextBadge] = React.useState<Badge | null>(null);
 
   React.useEffect(() => {
-    // This code runs only on the client, after hydration
     const updateStats = () => {
-      const solvedCount = localStorage.getItem('puzzlesSolvedCount');
+      const solvedCount = parseInt(localStorage.getItem('puzzlesSolvedCount') || '0', 10);
+      const completedTutorialsCount = JSON.parse(localStorage.getItem('completedTutorials') || '[]').length;
       const xp = parseInt(localStorage.getItem('swanXP') || '0', 10);
       const { badge, nextBadge } = getBadgeForPoints(xp);
       
-      setPuzzlesSolved(solvedCount ? parseInt(solvedCount, 10) : 0);
+      setPuzzlesSolved(solvedCount);
+      setTutorialsCompleted(completedTutorialsCount);
       setSwanXP(xp);
       setCurrentBadge(badge);
       setNextBadge(nextBadge);
@@ -38,9 +40,8 @@ export default function DashboardPage() {
 
     updateStats();
 
-    // Listen for storage changes from other tabs
     const handleStorageChange = (e: StorageEvent) => {
-        if (e.key === 'puzzlesSolvedCount' || e.key === 'swanXP') {
+        if (e.key === 'puzzlesSolvedCount' || e.key === 'swanXP' || e.key === 'completedTutorials') {
             updateStats();
         }
     };
@@ -53,7 +54,7 @@ export default function DashboardPage() {
 
   const progressPercentage = currentBadge && nextBadge 
     ? ((swanXP - currentBadge.xpRequired) / (nextBadge.xpRequired - currentBadge.xpRequired)) * 100
-    : 0;
+    : swanXP > 0 ? 100 : 0;
 
   const stats = [
     {
@@ -70,9 +71,9 @@ export default function DashboardPage() {
     },
     {
       title: 'Tutorials Completed',
-      value: '5',
-      icon: Trophy,
-      change: 'Keep learning!',
+      value: tutorialsCompleted.toString(),
+      icon: CheckCircle,
+      change: `+${tutorialsCompleted * 30} XP earned`,
     },
     {
       title: 'Current Badge',
@@ -130,7 +131,7 @@ export default function DashboardPage() {
                 </div>
                 <Progress value={progressPercentage} className="mt-1" />
               </div>
-              <div className="text-4xl opacity-50">{nextBadge?.icon || '🏆'}</div>
+              <div className="text-4xl opacity-50">{nextBadge?.icon || '🌌'}</div>
             </div>
             <Button asChild className="ml-auto">
               <Link href="/dashboard/leaderboard">View Leaderboard</Link>
