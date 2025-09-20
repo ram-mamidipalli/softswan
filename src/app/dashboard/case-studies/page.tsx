@@ -1,6 +1,3 @@
-
-'use client';
-
 import * as React from 'react';
 import {
   Card,
@@ -16,11 +13,12 @@ import { cn } from '@/lib/utils';
 import { caseStudies } from '@/lib/case-studies';
 
 export default function CaseStudiesPage() {
-
   return (
     <div className="flex flex-col gap-8">
       <div>
-        <h1 className="text-3xl font-bold tracking-tight">Business Case Studies</h1>
+        <h1 className="text-3xl font-bold tracking-tight">
+          Business Case Studies
+        </h1>
         <p className="text-muted-foreground">
           Learn from the strategies of the world's most successful companies.
         </p>
