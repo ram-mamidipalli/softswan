@@ -68,7 +68,21 @@ export default function TutorialPage() {
     );
   }
 
-  const videoId = tutorial.videoUrl.split('embed/')[1];
+  let videoId = '';
+  try {
+    const url = new URL(tutorial.videoUrl);
+    if (url.hostname === 'youtu.be') {
+      videoId = url.pathname.slice(1);
+    } else if (url.hostname.includes('youtube.com')) {
+      if (url.pathname.includes('/embed/')) {
+        videoId = url.pathname.split('/embed/')[1];
+      } else {
+        videoId = url.searchParams.get('v') || '';
+      }
+    }
+  } catch (error) {
+    console.error('Invalid video URL:', tutorial.videoUrl);
+  }
 
   const opts: YouTubeProps['opts'] = {
     height: '100%',
@@ -96,13 +110,19 @@ export default function TutorialPage() {
         </CardHeader>
         <CardContent>
           <div className="aspect-video mb-6">
-            <YouTube 
-                videoId={videoId}
-                opts={opts}
-                className="w-full h-full rounded-lg overflow-hidden"
-                iframeClassName="w-full h-full"
-                onEnd={handleVideoEnd}
-            />
+             {videoId ? (
+              <YouTube 
+                  videoId={videoId}
+                  opts={opts}
+                  className="w-full h-full rounded-lg overflow-hidden"
+                  iframeClassName="w-full h-full"
+                  onEnd={handleVideoEnd}
+              />
+            ) : (
+              <div className="w-full h-full bg-muted rounded-lg flex items-center justify-center">
+                <p className="text-muted-foreground">Video is unavailable.</p>
+              </div>
+            )}
           </div>
           <p className="text-muted-foreground">{tutorial.description}</p>
         </CardContent>

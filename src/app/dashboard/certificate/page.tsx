@@ -39,6 +39,7 @@ export default function CertificatePage() {
     toPng(certificateRef.current, { 
       cacheBust: true, 
       pixelRatio: 2,
+      // This is required to fix a CORS issue with Google Fonts when exporting.
       fetchRequestInit: {
         mode: 'no-cors'
       }

@@ -153,6 +153,7 @@ const FinancialModelerPage = () => {
     toPng(modelerRef.current, { 
         cacheBust: true, 
         pixelRatio: 2,
+        // This is required to fix a CORS issue with Google Fonts when exporting.
         fetchRequestInit: {
             mode: 'no-cors'
         }
@@ -169,155 +170,155 @@ const FinancialModelerPage = () => {
   }, []);
 
   return (
-    <Card ref={modelerRef} className="p-6 sm:p-8">
-      <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-8">
-        <div>
-            <h1 className="text-3xl font-bold tracking-tight">Financial Modeler</h1>
-            <p className="text-muted-foreground">
-                A simple calculator to understand your startup's key financial metrics.
-            </p>
+    <div ref={modelerRef} className="bg-background">
+      <Card className="p-6 sm:p-8 shadow-none border-none">
+        <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-8">
+          <div>
+              <h1 className="text-3xl font-bold tracking-tight">Financial Modeler</h1>
+              <p className="text-muted-foreground">
+                  A simple calculator to understand your startup's key financial metrics.
+              </p>
+          </div>
+          <div className="flex gap-2">
+              <Button onClick={resetCalculator} variant="outline">Reset</Button>
+              <Button onClick={handleDownload}>
+                  <Download className="mr-2 h-4 w-4" />
+                  Download
+              </Button>
+          </div>
         </div>
-        <div className="flex gap-2">
-            <Button onClick={resetCalculator} variant="outline">Reset</Button>
-            <Button onClick={handleDownload}>
-                <Download className="mr-2 h-4 w-4" />
-                Download
-            </Button>
-        </div>
-      </div>
-      
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Inputs Column */}
-        <div className="lg:col-span-1 space-y-6">
-           <Accordion type="multiple" defaultValue={["item-0", "item-1"]} className="w-full">
-            {inputSections.map((section, index) => (
-              <AccordionItem value={`item-${index}`} key={index}>
-                <AccordionTrigger>
-                  <div className="flex items-center gap-3">
-                    <section.icon className="h-5 w-5 text-primary" />
-                    <span className="font-semibold">{section.title}</span>
-                  </div>
-                </AccordionTrigger>
-                <AccordionContent>
-                  <div className="space-y-4 p-4 bg-secondary/50 rounded-md">
-                     <p className="text-sm text-muted-foreground">{section.description}</p>
-                     {section.fields.map((field) => (
-                        <div key={field.key} className="grid grid-cols-2 items-center gap-4">
-                            <Label htmlFor={field.key} className="text-sm text-right">{field.name}</Label>
-                            <Input
-                                id={field.key}
-                                type="number"
-                                placeholder="0"
-                                value={field.state[field.key] === 0 ? '' : field.state[field.key]}
-                                onChange={(e) => handleInputChange(field.setter, field.state, field.key, e.target.value)}
-                                className="h-9"
-                            />
-                        </div>
-                     ))}
-                  </div>
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </div>
-
-        {/* Results Column */}
-        <div className="lg:col-span-1 space-y-6">
-           <Card>
-                <CardHeader>
+        
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {/* Inputs Column */}
+          <div className="lg:col-span-1 space-y-6">
+            <Accordion type="multiple" defaultValue={["item-0", "item-1"]} className="w-full">
+              {inputSections.map((section, index) => (
+                <AccordionItem value={`item-${index}`} key={index}>
+                  <AccordionTrigger>
                     <div className="flex items-center gap-3">
-                       <CircleDollarSign className="h-6 w-6 text-primary" />
-                        <div>
-                            <CardTitle>Financial Summary</CardTitle>
-                            <CardDescription>Your key monthly metrics.</CardDescription>
-                        </div>
+                      <section.icon className="h-5 w-5 text-primary" />
+                      <span className="font-semibold">{section.title}</span>
                     </div>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                    <div className="flex justify-between items-center p-3 bg-secondary rounded-md">
-                        <p className="font-medium">Total Revenue</p>
-                        <p className="font-bold text-green-600">${totalRevenue.toLocaleString()}</p>
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    <div className="space-y-4 p-4 bg-secondary/50 rounded-md">
+                      <p className="text-sm text-muted-foreground">{section.description}</p>
+                      {section.fields.map((field) => (
+                          <div key={field.key} className="grid grid-cols-2 items-center gap-4">
+                              <Label htmlFor={field.key} className="text-sm text-right">{field.name}</Label>
+                              <Input
+                                  id={field.key}
+                                  type="number"
+                                  placeholder="0"
+                                  value={field.state[field.key] === 0 ? '' : field.state[field.key]}
+                                  onChange={(e) => handleInputChange(field.setter, field.state, field.key, e.target.value)}
+                                  className="h-9"
+                              />
+                          </div>
+                      ))}
                     </div>
-                    <div className="flex justify-between items-center p-3 bg-secondary rounded-md">
-                        <p className="font-medium">Total Expenses</p>
-                        <p className="font-bold text-red-600">${totalExpenses.toLocaleString()}</p>
-                    </div>
-                    <div className="flex justify-between items-center p-3 bg-secondary rounded-md">
-                        <p className="font-medium">Net Profit / Loss</p>
-                        <p className={`font-bold ${netProfit >= 0 ? 'text-green-600' : 'text-red-600'}`}>
-                           ${netProfit.toLocaleString()}
-                        </p>
-                    </div>
-                </CardContent>
-            </Card>
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
 
-             <Card>
-                <CardHeader>
-                     <div className="flex items-center gap-3">
-                       <TrendingUp className="h-6 w-6 text-primary" />
-                        <div>
-                            <CardTitle>Performance Metrics</CardTitle>
-                            <CardDescription>Analyze your business health.</CardDescription>
-                        </div>
-                    </div>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                     <div className="flex justify-between items-center p-3 bg-secondary rounded-md">
-                        <p className="font-medium">Gross Profit Margin</p>
-                        <p className="font-bold">{grossProfitMargin.toFixed(2)}%</p>
-                    </div>
-                     <div className="flex justify-between items-center p-3 bg-secondary rounded-md">
-                        <p className="font-medium">Net Profit Margin</p>
-                        <p className="font-bold">{netProfitMargin.toFixed(2)}%</p>
-                    </div>
-                </CardContent>
-            </Card>
-
+          {/* Results Column */}
+          <div className="lg:col-span-1 space-y-6">
             <Card>
-                <CardHeader>
-                     <div className="flex items-center gap-3">
-                       <TrendingDown className="h-6 w-6 text-amber-500" />
-                        <div>
-                            <CardTitle>Burn & Runway</CardTitle>
-                            <CardDescription>Cash flow sustainability.</CardDescription>
-                        </div>
-                    </div>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                     <div className="flex justify-between items-center p-3 bg-secondary rounded-md">
-                        <p className="font-medium">Monthly Burn Rate</p>
-                        <p className="font-bold text-red-600">${burnRate.toLocaleString()}</p>
-                    </div>
-                     <div className="flex justify-between items-center p-3 bg-secondary rounded-md">
-                        <p className="font-medium">Cash Runway</p>
-                        <p className="font-bold">
-                            {isFinite(runway) ? `${runway.toFixed(1)} months` : 'Positive Cashflow'}
-                        </p>
-                    </div>
-                     {!isFinite(runway) && burnRate === 0 && funding.investorCapital > 0 && (
-                        <Alert variant="default" className="bg-green-50 border-green-200">
-                           <AlertTitle className="text-green-800 font-semibold">Positive Cash Flow!</AlertTitle>
-                           <AlertDescription className="text-green-700">
-                                Your revenue currently covers or exceeds your expenses. Keep up the great work!
-                           </AlertDescription>
-                        </Alert>
-                    )}
-                     {isFinite(runway) && runway < 6 && (
-                         <Alert variant="destructive">
-                           <AlertTitle>Warning: Short Runway</AlertTitle>
-                           <AlertDescription>
-                                Your estimated runway is less than 6 months. It's time to focus on increasing revenue or reducing costs.
-                           </AlertDescription>
-                        </Alert>
-                    )}
-                </CardContent>
-            </Card>
+                  <CardHeader>
+                      <div className="flex items-center gap-3">
+                        <CircleDollarSign className="h-6 w-6 text-primary" />
+                          <div>
+                              <CardTitle>Financial Summary</CardTitle>
+                              <CardDescription>Your key monthly metrics.</CardDescription>
+                          </div>
+                      </div>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                      <div className="flex justify-between items-center p-3 bg-secondary rounded-md">
+                          <p className="font-medium">Total Revenue</p>
+                          <p className="font-bold text-green-600">${totalRevenue.toLocaleString()}</p>
+                      </div>
+                      <div className="flex justify-between items-center p-3 bg-secondary rounded-md">
+                          <p className="font-medium">Total Expenses</p>
+                          <p className="font-bold text-red-600">${totalExpenses.toLocaleString()}</p>
+                      </div>
+                      <div className="flex justify-between items-center p-3 bg-secondary rounded-md">
+                          <p className="font-medium">Net Profit / Loss</p>
+                          <p className={`font-bold ${netProfit >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                            ${netProfit.toLocaleString()}
+                          </p>
+                      </div>
+                  </CardContent>
+              </Card>
+
+              <Card>
+                  <CardHeader>
+                      <div className="flex items-center gap-3">
+                        <TrendingUp className="h-6 w-6 text-primary" />
+                          <div>
+                              <CardTitle>Performance Metrics</CardTitle>
+                              <CardDescription>Analyze your business health.</CardDescription>
+                          </div>
+                      </div>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                      <div className="flex justify-between items-center p-3 bg-secondary rounded-md">
+                          <p className="font-medium">Gross Profit Margin</p>
+                          <p className="font-bold">{grossProfitMargin.toFixed(2)}%</p>
+                      </div>
+                      <div className="flex justify-between items-center p-3 bg-secondary rounded-md">
+                          <p className="font-medium">Net Profit Margin</p>
+                          <p className="font-bold">{netProfitMargin.toFixed(2)}%</p>
+                      </div>
+                  </CardContent>
+              </Card>
+
+              <Card>
+                  <CardHeader>
+                      <div className="flex items-center gap-3">
+                        <TrendingDown className="h-6 w-6 text-amber-500" />
+                          <div>
+                              <CardTitle>Burn & Runway</CardTitle>
+                              <CardDescription>Cash flow sustainability.</CardDescription>
+                          </div>
+                      </div>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                      <div className="flex justify-between items-center p-3 bg-secondary rounded-md">
+                          <p className="font-medium">Monthly Burn Rate</p>
+                          <p className="font-bold text-red-600">${burnRate.toLocaleString()}</p>
+                      </div>
+                      <div className="flex justify-between items-center p-3 bg-secondary rounded-md">
+                          <p className="font-medium">Cash Runway</p>
+                          <p className="font-bold">
+                              {isFinite(runway) ? `${runway.toFixed(1)} months` : 'Positive Cashflow'}
+                          </p>
+                      </div>
+                      {!isFinite(runway) && burnRate === 0 && funding.investorCapital > 0 && (
+                          <Alert variant="default" className="bg-green-50 border-green-200">
+                            <AlertTitle className="text-green-800 font-semibold">Positive Cash Flow!</AlertTitle>
+                            <AlertDescription className="text-green-700">
+                                  Your revenue currently covers or exceeds your expenses. Keep up the great work!
+                            </AlertDescription>
+                          </Alert>
+                      )}
+                      {isFinite(runway) && runway < 6 && (
+                          <Alert variant="destructive">
+                            <AlertTitle>Warning: Short Runway</AlertTitle>
+                            <AlertDescription>
+                                  Your estimated runway is less than 6 months. It's time to focus on increasing revenue or reducing costs.
+                            </AlertDescription>
+                          </Alert>
+                      )}
+                  </CardContent>
+              </Card>
+          </div>
         </div>
-      </div>
-    </Card>
+      </Card>
+    </div>
   );
 };
 
 export default FinancialModelerPage;
-
-    
