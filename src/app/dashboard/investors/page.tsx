@@ -31,7 +31,7 @@ export default function InvestorsPage() {
             key={investor.id}
             className="group"
           >
-            <Card className="h-full transform-gpu transition-transform duration-300 hover:-translate-y-2 hover:shadow-lg">
+            <Card className="h-full border-2 border-transparent transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-lg group-hover:border-primary/50">
               <CardHeader>
                 <CardTitle>{investor.name}</CardTitle>
                 <CardDescription className="line-clamp-3">{investor.description}</CardDescription>
