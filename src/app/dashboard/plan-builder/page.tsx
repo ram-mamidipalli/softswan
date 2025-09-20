@@ -21,22 +21,46 @@ export default function PlanBuilderPage() {
   const [plan, setPlan] = React.useState<string | null>(null);
   const [isLoading, setIsLoading] = React.useState(false);
   const [lastGenerationTime, setLastGenerationTime] = React.useState<number | null>(null);
+  const [remainingTime, setRemainingTime] = React.useState<string | null>(null);
   const { toast } = useToast();
 
-  React.useEffect(() => {
-    const storedTime = localStorage.getItem('lastPlanGeneration');
-    if (storedTime) {
-      setLastGenerationTime(Number(storedTime));
-    }
-  }, []);
-
-  const canGenerate = () => {
+  const canGenerate = React.useCallback(() => {
     if (!lastGenerationTime) {
       return true;
     }
     const twentyFourHours = 24 * 60 * 60 * 1000;
     return Date.now() - lastGenerationTime > twentyFourHours;
-  };
+  }, [lastGenerationTime]);
+
+
+  React.useEffect(() => {
+    const storedTime = localStorage.getItem('lastPlanGeneration');
+    if (storedTime) {
+      const time = Number(storedTime);
+      setLastGenerationTime(time);
+
+      const twentyFourHours = 24 * 60 * 60 * 1000;
+      const interval = setInterval(() => {
+        const now = Date.now();
+        const timePassed = now - time;
+        if (timePassed >= twentyFourHours) {
+          setRemainingTime(null);
+          setLastGenerationTime(null); 
+          localStorage.removeItem('lastPlanGeneration');
+          clearInterval(interval);
+        } else {
+          const timeLeft = twentyFourHours - timePassed;
+          const hours = Math.floor((timeLeft / (1000 * 60 * 60)) % 24);
+          const minutes = Math.floor((timeLeft / 1000 / 60) % 60);
+          const seconds = Math.floor((timeLeft / 1000) % 60);
+          setRemainingTime(`${hours}h ${minutes}m ${seconds}s`);
+        }
+      }, 1000);
+
+      return () => clearInterval(interval);
+    }
+  }, []);
+
   
   const handleGeneratePlan = async () => {
     if (!idea) {
@@ -105,12 +129,12 @@ export default function PlanBuilderPage() {
         </p>
       </div>
 
-       {!canGenerate() && (
+       {remainingTime && (
          <Alert>
           <PartyPopper className="h-4 w-4" />
           <AlertTitle>You've Generated Your Plan!</AlertTitle>
           <AlertDescription>
-            You can generate a new plan in 24 hours. Come back tomorrow to explore another idea!
+            You can generate a new plan in <span className="font-semibold text-primary">{remainingTime}</span>. Come back soon!
           </AlertDescription>
         </Alert>
       )}
@@ -128,9 +152,9 @@ export default function PlanBuilderPage() {
             value={idea}
             onChange={(e) => setIdea(e.target.value)}
             rows={4}
-            disabled={!canGenerate()}
+            disabled={!canGenerate() || !!remainingTime}
           />
-          <Button onClick={handleGeneratePlan} disabled={isLoading || !canGenerate()} className="w-full">
+          <Button onClick={handleGeneratePlan} disabled={isLoading || !canGenerate() || !!remainingTime} className="w-full">
             {isLoading ? (
               <Loader2 className="mr-2 h-4 w-4 animate-spin" />
             ) : (
