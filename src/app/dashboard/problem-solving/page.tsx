@@ -43,7 +43,7 @@ export default function ProblemSolvingPage() {
   );
 
   React.useEffect(() => {
-    const storedSolvedPuzzles = sessionStorage.getItem('solvedPuzzles');
+    const storedSolvedPuzzles = localStorage.getItem('solvedPuzzles');
     if (storedSolvedPuzzles) {
       setSolvedPuzzles(JSON.parse(storedSolvedPuzzles));
     }
@@ -58,7 +58,7 @@ export default function ProblemSolvingPage() {
   const { toast } = useToast();
 
   const resetPuzzles = () => {
-    sessionStorage.setItem('solvedPuzzles', JSON.stringify([]));
+    localStorage.setItem('solvedPuzzles', JSON.stringify([]));
     localStorage.setItem('puzzlesSolvedCount', '0');
     setSolvedPuzzles([]);
     window.dispatchEvent(new StorageEvent('storage', {

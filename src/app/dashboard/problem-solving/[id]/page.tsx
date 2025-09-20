@@ -38,7 +38,7 @@ export default function PuzzlePage() {
     const currentPuzzle = puzzles.find(p => p.id === puzzleId);
     if (currentPuzzle) {
         setPuzzle(currentPuzzle);
-        const solvedPuzzles = JSON.parse(sessionStorage.getItem('solvedPuzzles') || '[]');
+        const solvedPuzzles = JSON.parse(localStorage.getItem('solvedPuzzles') || '[]');
         if (solvedPuzzles.includes(puzzleId)) {
           setIsSolved(true);
         }
@@ -97,10 +97,10 @@ export default function PuzzlePage() {
 
     if (isCorrect) {
       setIsSolved(true);
-      const solvedPuzzles = JSON.parse(sessionStorage.getItem('solvedPuzzles') || '[]');
+      const solvedPuzzles = JSON.parse(localStorage.getItem('solvedPuzzles') || '[]');
       if (!solvedPuzzles.includes(puzzleId)) {
         const newSolvedPuzzles = [...solvedPuzzles, puzzleId];
-        sessionStorage.setItem('solvedPuzzles', JSON.stringify(newSolvedPuzzles));
+        localStorage.setItem('solvedPuzzles', JSON.stringify(newSolvedPuzzles));
         
         // Update solved count
         const currentTotal = parseInt(localStorage.getItem('puzzlesSolvedCount') || '0', 10);
