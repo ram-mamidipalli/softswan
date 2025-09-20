@@ -3,7 +3,6 @@
 
 import * as React from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import YouTube, { type YouTubeProps } from 'react-youtube';
 import { tutorials, type Tutorial } from '@/lib/tutorials';
 import { Loader2, ArrowLeft } from 'lucide-react';
 import {
@@ -16,6 +15,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { useToast } from '@/hooks/use-toast';
+import { VideoPlayer } from '@/components/dashboard/video-player';
 
 export default function TutorialPage() {
   const [tutorial, setTutorial] = React.useState<Tutorial | null>(null);
@@ -67,31 +67,7 @@ export default function TutorialPage() {
       </div>
     );
   }
-
-  let videoId = '';
-  try {
-    const url = new URL(tutorial.videoUrl);
-    if (url.hostname === 'youtu.be') {
-      videoId = url.pathname.slice(1);
-    } else if (url.hostname.includes('youtube.com')) {
-      if (url.pathname.includes('/embed/')) {
-        videoId = url.pathname.split('/embed/')[1];
-      } else {
-        videoId = url.searchParams.get('v') || '';
-      }
-    }
-  } catch (error) {
-    console.error('Invalid video URL:', tutorial.videoUrl);
-  }
-
-  const opts: YouTubeProps['opts'] = {
-    height: '100%',
-    width: '100%',
-    playerVars: {
-      autoplay: 1,
-    },
-  };
-
+  
   return (
     <div className="max-w-4xl mx-auto">
       <Button
@@ -110,19 +86,11 @@ export default function TutorialPage() {
         </CardHeader>
         <CardContent>
           <div className="aspect-video mb-6">
-             {videoId ? (
-              <YouTube 
-                  videoId={videoId}
-                  opts={opts}
-                  className="w-full h-full rounded-lg overflow-hidden"
-                  iframeClassName="w-full h-full"
-                  onEnd={handleVideoEnd}
+             <VideoPlayer
+                videoUrl={tutorial.videoUrl}
+                title={tutorial.title}
+                onVideoEnd={handleVideoEnd}
               />
-            ) : (
-              <div className="w-full h-full bg-muted rounded-lg flex items-center justify-center">
-                <p className="text-muted-foreground">Video is unavailable.</p>
-              </div>
-            )}
           </div>
           <p className="text-muted-foreground">{tutorial.description}</p>
         </CardContent>
