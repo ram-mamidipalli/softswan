@@ -100,7 +100,7 @@
           "description": ""
         },
         {
-          "title": "Netflix Case Study: Marketing Strategies and Tactics from Young Urban Project",
+          "title": "Netflix Marketing Strategy: Case Study from Young Urban Project",
           "url": "https://www.youngurbanproject.com/netflix-case-study/",
           "description": ""
         },
@@ -360,77 +360,6 @@
           "url": "https://cropink.com/meta-ads-examples"
         }
       ]
-    },
-    {
-      "id": 13,
-      "companyName": "HubSpot",
-      "title": "HubSpot for Startups Customer Stories",
-      "links": [
-        "https://www.hubspot.com/customers/case-studies"
-      ],
-      "websiteUrl": "https://www.hubspot.com",
-      "description": "How startups have used HubSpot's CRM platform to streamline sales, marketing, and customer service.",
-      "imageUrl": "https://picsum.photos/seed/cs13/600/400",
-      "imageHint": "hubspot crm"
-    },
-    {
-      "id": 14,
-      "companyName": "Shopify",
-      "title": "Shopify Case Studies",
-      "links": [
-        "https://www.shopify.com/case-studies"
-      ],
-      "websiteUrl": "https://www.shopify.com",
-      "description": "Brands that have used Shopify's e-commerce platform to unify sales and scale their businesses.",
-      "imageUrl": "https://picsum.photos/seed/cs14/600/400",
-      "imageHint": "shopify ecommerce"
-    },
-    {
-      "id": 15,
-      "companyName": "Salesforce",
-      "title": "Success Stories from Companies Using Salesforce",
-      "links": [
-        "https://www.salesforce.com/customer-success-stories/"
-      ],
-      "websiteUrl": "https://www.salesforce.com",
-      "description": "How businesses have used Salesforce to gain a 360-degree view of their customers and boost profitability.",
-      "imageUrl": "https://picsum.photos/seed/cs15/600/400",
-      "imageHint": "salesforce cloud"
-    },
-    {
-      "id": 16,
-      "companyName": "LEGO",
-      "title": "LEGO - Harvard Business School Case",
-      "links": [
-        "https://www.hbs.edu/faculty/Pages/item.aspx?num=53229"
-      ],
-      "description": "Examines LEGO's journey from near bankruptcy to a thriving company by balancing innovation with core values.",
-      "imageUrl": "https://picsum.photos/seed/cs16/600/400",
-      "imageHint": "lego bricks"
-    },
-    {
-      "id": 18,
-      "companyName": "IKEA",
-      "title": "IKEA Business Model Explained",
-      "links": [
-        "https://www.feedough.com/ikea-business-model/"
-      ],
-      "websiteUrl": "https://www.ikea.com",
-      "description": "Explains IKEA's innovative business model, centered on low-cost, functional design and a unique in-store experience.",
-      "imageUrl": "https://picsum.photos/seed/cs18/600/400",
-      "imageHint": "ikea furniture"
-    },
-    {
-      "id": 20,
-      "companyName": "FedEx",
-      "title": "Case Study: FedEx Success Story",
-      "links": [
-        "https://www.managementstudyguide.com/fedex-success-story.htm"
-      ],
-      "websiteUrl": "https://www.fedex.com",
-      "description": "How FedEx's commitment to service quality and technological innovation allowed it to dominate the overnight delivery market.",
-      "imageUrl": "https://picsum.photos/seed/cs20/600/400",
-      "imageHint": "fedex delivery"
     }
   ]
 }
