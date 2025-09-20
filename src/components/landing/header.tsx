@@ -32,6 +32,11 @@ export function Header() {
   const { user, loading } = useAuth();
   const router = useRouter();
   const { toast } = useToast();
+  const [currentUser, setCurrentUser] = React.useState(user);
+
+  React.useEffect(() => {
+    setCurrentUser(user);
+  }, [user]);
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -52,6 +57,7 @@ export function Header() {
         title: "Signed out",
         description: "You have been successfully signed out.",
       });
+      setCurrentUser(null);
       router.push('/');
     } catch (error) {
       toast({
@@ -83,7 +89,7 @@ export function Header() {
               {item.name}
             </Link>
           ))}
-          {user && (
+          {currentUser && (
              <Link
               href="/dashboard"
               className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
@@ -94,7 +100,7 @@ export function Header() {
         </nav>
         <div className="hidden items-center gap-4 md:flex">
           {!loading &&
-            (user ? (
+            (currentUser ? (
               <Button onClick={handleSignOut}>Sign Out</Button>
             ) : (
               <>
@@ -140,7 +146,7 @@ export function Header() {
                     {item.name}
                   </Link>
                 ))}
-                {user && (
+                {currentUser && (
                   <Link
                     href="/dashboard"
                     className="text-lg font-medium text-muted-foreground transition-colors hover:text-primary"
@@ -151,7 +157,7 @@ export function Header() {
                 )}
               </nav>
               {!loading &&
-                (user ? (
+                (currentUser ? (
                   <Button onClick={handleSignOut} size="lg" className="mt-8 w-full">Sign Out</Button>
                 ) : (
                   <div className="mt-8 grid w-full grid-cols-2 gap-4">
