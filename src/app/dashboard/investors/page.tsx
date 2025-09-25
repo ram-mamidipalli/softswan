@@ -11,42 +11,17 @@ import {
 } from '@/components/ui/card';
 import { investors } from '@/lib/investors';
 import Link from 'next/link';
-import { ArrowRight, Globe } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { useRouter } from 'next/navigation';
 import { globalInvestors } from '@/lib/global-investors';
 
-function InvestorCard({ investor }: { investor: (typeof investors)[0] | (typeof globalInvestors)[0] }) {
-  const isGlobal = 'website' in investor;
-  const link = isGlobal ? investor.website : `/dashboard/investors/${investor.id}`;
-  
-  // For global investors with no specific detail page, link directly to their website if available.
-  if (isGlobal) {
-    return (
-       <a
-        href={link}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="group h-full"
-      >
-        <Card className="h-full flex flex-col border-2 border-primary/20 transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl group-hover:border-primary">
-          <CardHeader>
-            <CardTitle>{investor.name}</CardTitle>
-            <CardDescription className="line-clamp-3 pt-1">{investor.description}</CardDescription>
-          </CardHeader>
-          <CardContent className="flex-grow flex items-end">
-              <p className="text-sm font-semibold text-primary flex items-center gap-2">
-              Visit Website <Globe className="h-4 w-4" />
-            </p>
-          </CardContent>
-        </Card>
-      </a>
-    )
-  }
+function InvestorCard({ investor, type }: { investor: (typeof investors)[0] | (typeof globalInvestors)[0], type: 'indian' | 'global' }) {
+  const link = `/dashboard/investors/${type === 'indian' ? '' : 'global/'}${investor.id}`;
 
   return (
     <Link
-      href={`/dashboard/investors/${investor.id}`}
+      href={link}
       key={investor.id}
       className="group"
     >
@@ -88,14 +63,14 @@ export default function InvestorsPage() {
         <TabsContent value="indian" className="mt-6">
            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {investors.map((investor) => (
-              <InvestorCard key={investor.id} investor={investor} />
+              <InvestorCard key={investor.id} investor={investor} type="indian" />
             ))}
           </div>
         </TabsContent>
         <TabsContent value="global" className="mt-6">
            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {globalInvestors.map((investor) => (
-              <InvestorCard key={investor.name} investor={investor} />
+              <InvestorCard key={investor.id} investor={investor} type="global" />
             ))}
           </div>
         </TabsContent>

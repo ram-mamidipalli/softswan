@@ -2,6 +2,7 @@
 import data from './global-investors.json';
 
 export type GlobalInvestor = {
+  id: number;
   name: string;
   description: string;
   investmentStructure: string;
