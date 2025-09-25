@@ -1,0 +1,165 @@
+
+{
+  "investors": [
+    {
+      "name": "Andreessen Horowitz (a16z)",
+      "description": "A Silicon Valley powerhouse known for its 'full-stack' support model, offering not just capital but also operational and talent-related services to its portfolio companies. They are famous for their bold investments and for betting on long-term, disruptive technological trends.",
+      "investmentStructure": "Multi-stage, from seed to growth.",
+      "industries": ["Software", "crypto", "fintech", "consumer", "bio & healthcare"],
+      "notableInvestments": ["Airbnb", "Coinbase", "Instagram", "Lyft", "Pinterest", "Slack"],
+      "website": "https://a16z.com/"
+    },
+    {
+      "name": "Sequoia Capital",
+      "description": "One of the most legendary VC firms in the world, with a long history of backing some of the most successful tech companies. They are known for their focus on 'company building' and for their extensive global network.",
+      "investmentStructure": "Multi-stage, from seed to growth.",
+      "industries": ["Fintech", "SaaS", "consumer", "enterprise"],
+      "notableInvestments": ["Apple", "Google", "PayPal", "WhatsApp", "YouTube", "Zoom"],
+      "website": "https://www.sequoiacap.com/"
+    },
+    {
+      "name": "Lightspeed Venture Partners",
+      "description": "A multi-stage VC firm with a global presence, including a strong footprint in India. They focus on investing in disruptive innovations in enterprise and consumer markets.",
+      "investmentStructure": "Multi-stage, from seed to growth.",
+      "industries": ["Enterprise", "consumer", "fintech"],
+      "notableInvestments": ["Snapchat", "Grubhub", "Nest", "Affirm"],
+      "website": "https://lsvp.com/"
+    },
+    {
+      "name": "Kleiner Perkins",
+      "description": "A legendary Silicon Valley firm with a history of backing iconic tech companies from the earliest stages. They have a reputation for identifying and supporting exceptional founders.",
+      "investmentStructure": "Early-stage and growth-stage.",
+      "industries": ["Enterprise", "consumer", "fintech", "digital health"],
+      "notableInvestments": ["Amazon", "Genentech", "Google", "Spotify", "Square"],
+      "website": "https://www.kleinerperkins.com/"
+    },
+    {
+      "name": "New Enterprise Associates (NEA)",
+      "description": "One of the world's largest and most active VC firms, with a focus on both technology and healthcare. They are known for their long-term perspective and commitment to building durable companies.",
+      "investmentStructure": "All stages, from seed to growth equity.",
+      "industries": ["Enterprise", "consumer", "fintech", "healthcare"],
+      "notableInvestments": ["Salesforce", "Workday", "Uber", "Robinhood"],
+      "website": "https://www.nea.com/"
+    },
+    {
+      "name": "Accel",
+      "description": "A global VC firm that invests across all stages. They have a particularly strong track record in early-stage investments and are known for their deep expertise in various sectors.",
+      "investmentStructure": "Early-stage to growth.",
+      "industries": ["SaaS", "consumer internet", "fintech"],
+      "notableInvestments": ["Facebook", "Dropbox", "Slack", "Spotify"],
+      "website": "https://www.accel.com/"
+    },
+    {
+      "name": "General Catalyst",
+      "description": "A VC firm that invests in a wide range of companies, from early-stage startups to established businesses. They are known for their active role in helping founders build great companies.",
+      "investmentStructure": "Seed to growth equity.",
+      "industries": ["Fintech", "healthcare", "enterprise", "consumer"],
+      "notableInvestments": ["Airbnb", "HubSpot", "Warby Parker", "Snap"],
+      "website": "https://www.generalcatalyst.com/"
+    },
+    {
+      "name": "Insight Partners",
+      "description": "A leading global private equity and venture capital firm specializing in high-growth technology and software companies. They are known for their focus on 'scale-up' investing.",
+      "investmentStructure": "Growth-stage to late-stage.",
+      "industries": ["Software", "technology"],
+      "notableInvestments": ["Shopify", "Twitter", "DocuSign", "N-able"],
+      "website": "https://www.insightpartners.com/"
+    },
+    {
+      "name": "SoftBank Vision Fund",
+      "description": "A massive investment fund managed by SoftBank Group. They are famous for their large, late-stage investments and their focus on companies that are poised to become global leaders.",
+      "investmentStructure": "Late-stage and growth-stage.",
+      "industries": ["Technology", "transportation", "robotics"],
+      "notableInvestments": ["Uber", "WeWork", "Didi Global", "Coupang"],
+      "website": "https://visionfund.com/"
+    },
+    {
+      "name": "Tiger Global Management",
+      "description": "A global investment firm that operates both a hedge fund and a private equity/venture capital business. They are known for their fast-paced, high-volume investing, particularly in later-stage rounds.",
+      "investmentStructure": "Growth and late-stage.",
+      "industries": ["Internet", "software", "consumer", "financial technology"],
+      "notableInvestments": ["Flipkart", "ByteDance", "Airbnb", "Peloton"],
+      "website": "N/A"
+    },
+    {
+      "name": "AngelList",
+      "description": "A platform that has revolutionized early-stage investing by allowing founders to raise capital from a massive network of individual angels and venture funds. It's a go-to for many founders seeking to secure their first round of funding.",
+      "investmentStructure": "Angel and seed stage.",
+      "industries": ["Sector-agnostic"],
+      "notableInvestments": [],
+      "website": "https://angel.co/"
+    },
+    {
+      "name": "Y Combinator",
+      "description": "A world-renowned startup accelerator that has funded thousands of companies. While primarily an accelerator, their alumni network of founders and partners are among the most active angel investors globally.",
+      "investmentStructure": "Seed stage.",
+      "industries": ["All sectors"],
+      "notableInvestments": ["Airbnb", "Dropbox", "Stripe", "Reddit"],
+      "website": "https://www.ycombinator.com/"
+    },
+    {
+      "name": "500 Global",
+      "description": "A global VC firm with a focus on early-stage investments. They have a strong accelerator program and a vast network of mentors and investors worldwide.",
+      "investmentStructure": "Seed to Series A.",
+      "industries": ["Sector-agnostic"],
+      "notableInvestments": [],
+      "website": "https://500.co/"
+    },
+    {
+      "name": "Founders Fund",
+      "description": "A San Francisco-based VC firm that invests in a wide range of companies, from early-stage to growth. The firm is co-founded by Peter Thiel and is known for its contrarian approach to investing.",
+      "investmentStructure": "All stages.",
+      "industries": ["Technology", "space", "healthcare"],
+      "notableInvestments": ["Airbnb", "Facebook", "Palantir", "SpaceX"],
+      "website": "https://foundersfund.com/"
+    },
+    {
+      "name": "Naval Ravikant",
+      "description": "Co-founder of AngelList and an incredibly influential figure in the tech and startup world. He is a prolific angel investor and a thought leader on technology, entrepreneurship, and investing.",
+      "investmentStructure": "Angel and early-stage.",
+      "industries": [],
+      "notableInvestments": ["Uber", "Twitter", "Clubhouse", "Stack Overflow"],
+      "website": "Primarily through platforms like AngelList and professional networks."
+    },
+    {
+      "name": "Jason Calacanis",
+      "description": "A serial entrepreneur and one of the most well-known angel investors in Silicon Valley. He founded The LAUNCH Festival and is a judge on the podcast The Angel. He is known for his hands-on approach and for investing in early-stage startups.",
+      "investmentStructure": "Angel and early-stage.",
+      "industries": [],
+      "notableInvestments": ["Uber", "Calm", "Robinhood", "Thumbtack"],
+      "website": "Via his podcast or professional networks."
+    },
+    {
+      "name": "Mark Cuban",
+      "description": "A billionaire entrepreneur and television personality on the show 'Shark Tank.' He is a highly active angel investor, often investing in a wide variety of companies and products.",
+      "investmentStructure": "Angel and early-stage.",
+      "industries": ["All sectors, from consumer products to technology"],
+      "notableInvestments": ["Cost Plus Drugs", "Box", "Ring"],
+      "website": "Through his website or the 'Shark Tank' application process."
+    },
+    {
+      "name": "Paul Graham",
+      "description": "Co-founder of Y Combinator, he is one of the most influential figures in the seed-stage investing world. While he no longer runs Y Combinator, his investment philosophy and essays continue to guide thousands of founders.",
+      "investmentStructure": "Angel and seed stage.",
+      "industries": [],
+      "notableInvestments": ["Airbnb", "Dropbox", "Stripe", "Reddit"],
+      "website": "Primarily through Y Combinator's network."
+    },
+    {
+      "name": "Reid Hoffman",
+      "description": "A co-founder of LinkedIn and a partner at the VC firm Greylock. He is a highly respected angel investor with a focus on network effects and companies that have the potential to grow quickly.",
+      "investmentStructure": "Angel and early-stage.",
+      "industries": ["Social media", "consumer", "enterprise software"],
+      "notableInvestments": ["Airbnb", "Facebook", "PayPal", "Zynga"],
+      "website": "Through his work at Greylock or professional networks."
+    },
+    {
+      "name": "Peter Thiel",
+      "description": "A co-founder of PayPal and Palantir, and a partner at Founders Fund. He is a highly influential and often controversial figure known for his contrarian bets and for his early investment in Facebook.",
+      "investmentStructure": "Angel, early-stage, and growth.",
+      "industries": ["Technology", "defense", "life sciences"],
+      "notableInvestments": ["Airbnb", "Facebook", "SpaceX", "Palantir"],
+      "website": "Through his work at Founders Fund."
+    }
+  ]
+}
