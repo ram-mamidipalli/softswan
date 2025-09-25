@@ -137,39 +137,35 @@ export default function ProblemSolvingPage() {
               key={challenge.id}
               className={cn('group', { 'pointer-events-none': isSolved })}
             >
-              <Card className="h-full transition-all group-hover:shadow-lg group-hover:-translate-y-1 relative flex flex-col">
-                <CardHeader className="flex-grow p-4">
+              <Card className="h-full flex flex-col border-2 border-transparent transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-lg group-hover:border-primary/50">
+                 <CardHeader className="p-4">
                   <div className="flex justify-between items-start gap-2 mb-2">
-                    <CardTitle className="text-sm font-semibold leading-snug">
+                     <p className="text-sm font-semibold text-primary">
                       Challenge #{challenge.id}
-                    </CardTitle>
-                    <div className="flex flex-col items-end gap-1 flex-shrink-0">
-                      {isSolved && (
-                        <Badge
-                          variant="secondary"
-                          className="bg-green-100 text-green-800 border-green-200 text-xs"
-                        >
-                          <CheckCircle className="mr-1 h-3 w-3" />
-                          Completed
-                        </Badge>
-                      )}
+                    </p>
+                    {isSolved && (
+                      <Badge
+                        variant="secondary"
+                        className="bg-green-100 text-green-800 border-green-200 text-xs"
+                      >
+                        <CheckCircle className="mr-1 h-3 w-3" />
+                        Completed
+                      </Badge>
+                    )}
+                  </div>
+                   <CardTitle className="text-base leading-snug">
+                     {challenge.problem}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="p-4 pt-0 flex-grow flex items-end">
+                   <div className="flex flex-wrap gap-2">
+                     <Badge variant="secondary" className="text-xs">{challenge.category.split('(')[0].trim()}</Badge>
                       {isHard && !isSolved && (
                         <Badge variant="destructive" className="text-xs">
                           Hard
                         </Badge>
                       )}
                     </div>
-                  </div>
-                  <CardDescription className="text-xs">{challenge.category}</CardDescription>
-                </CardHeader>
-                <CardContent className="p-4 pt-0">
-                  <p
-                    className={cn('text-xs text-muted-foreground line-clamp-3', {
-                      'opacity-60': isSolved,
-                    })}
-                  >
-                    {challenge.problem}
-                  </p>
                 </CardContent>
               </Card>
             </Link>
@@ -219,3 +215,5 @@ export default function ProblemSolvingPage() {
     </div>
   );
 }
+
+    
