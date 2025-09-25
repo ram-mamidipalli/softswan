@@ -2,7 +2,7 @@
 'use client';
 
 import * as React from 'react';
-import { useParams, useRouter } from 'next/navigation';
+import { useParams, useRouter, useSearchParams } from 'next/navigation';
 import {
   Card,
   CardContent,
@@ -16,11 +16,14 @@ import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
 import { getFeedback } from '@/app/actions';
 import { type Puzzle, puzzles } from '@/lib/puzzles';
+import { type StartupChallenge, startupChallenges } from '@/lib/startup-challenges';
 import { Loader2, ArrowLeft, Lightbulb, CheckCircle, ArrowRight } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 
+type Challenge = Puzzle | StartupChallenge;
+
 export default function PuzzlePage() {
-  const [puzzle, setPuzzle] = React.useState<Puzzle | null>(null);
+  const [challenge, setChallenge] = React.useState<Challenge | null>(null);
   const [userAnswer, setUserAnswer] = React.useState('');
   const [isLoading, setIsLoading] = React.useState(false);
   const [isSolved, setIsSolved] = React.useState(false);
@@ -28,38 +31,44 @@ export default function PuzzlePage() {
   const { toast } = useToast();
   const params = useParams();
   const router = useRouter();
-  const puzzleId = parseInt(params.id as string, 10);
+  const searchParams = useSearchParams();
+
+  const challengeId = parseInt(params.id as string, 10);
+  const type = searchParams.get('type') || 'classic';
+
+  const challenges: Challenge[] = type === 'startup' ? startupChallenges : puzzles;
 
   React.useEffect(() => {
-    if (isNaN(puzzleId) || puzzleId < 1 || puzzleId > puzzles.length) {
-      router.push('/dashboard/problem-solving');
+    if (isNaN(challengeId)) {
+      router.push(`/dashboard/problem-solving?view=${type}`);
       return;
     }
-    const currentPuzzle = puzzles.find(p => p.id === puzzleId);
-    if (currentPuzzle) {
-        setPuzzle(currentPuzzle);
-        const solvedPuzzles = JSON.parse(localStorage.getItem('solvedPuzzles') || '[]');
-        if (solvedPuzzles.includes(puzzleId)) {
+    const currentChallenge = challenges.find(p => p.id === challengeId);
+    if (currentChallenge) {
+        setChallenge(currentChallenge);
+        const solvedKey = type === 'startup' ? 'solvedStartupChallenges' : 'solvedPuzzles';
+        const solvedChallenges = JSON.parse(localStorage.getItem(solvedKey) || '[]');
+        if (solvedChallenges.includes(challengeId)) {
           setIsSolved(true);
         }
     } else {
-        router.push('/dashboard/problem-solving');
+        router.push(`/dashboard/problem-solving?view=${type}`);
     }
-  }, [puzzleId, router]);
+  }, [challengeId, router, type, challenges]);
 
   const handleNextChallenge = () => {
-    const currentIndex = puzzles.findIndex(p => p.id === puzzleId);
-    if (currentIndex < puzzles.length - 1) {
-        const nextPuzzleId = puzzles[currentIndex + 1].id;
-        router.push(`/dashboard/problem-solving/${nextPuzzleId}`);
+    const currentIndex = challenges.findIndex(p => p.id === challengeId);
+    if (currentIndex < challenges.length - 1) {
+        const nextChallengeId = challenges[currentIndex + 1].id;
+        router.push(`/dashboard/problem-solving/${nextChallengeId}?type=${type}`);
     } else {
-        toast({ title: "Congratulations!", description: "You've completed all challenges."});
-        router.push('/dashboard/problem-solving');
+        toast({ title: "Congratulations!", description: "You've completed all challenges in this set."});
+        router.push(`/dashboard/problem-solving?view=${type}`);
     }
   }
 
   const checkAnswer = async () => {
-    if (!puzzle) return;
+    if (!challenge) return;
     if (!userAnswer) {
       toast({
         variant: 'destructive',
@@ -71,8 +80,8 @@ export default function PuzzlePage() {
     setIsLoading(true);
 
     const result = await getFeedback({
-      problem: puzzle.problem,
-      expertAnswer: puzzle.expert_answer,
+      problem: challenge.problem,
+      expertAnswer: challenge.expert_answer,
       userAnswer: userAnswer,
     });
 
@@ -97,12 +106,16 @@ export default function PuzzlePage() {
 
     if (isCorrect) {
       setIsSolved(true);
-      const solvedPuzzles = JSON.parse(localStorage.getItem('solvedPuzzles') || '[]');
-      if (!solvedPuzzles.includes(puzzleId)) {
-        const newSolvedPuzzles = [...solvedPuzzles, puzzleId];
-        localStorage.setItem('solvedPuzzles', JSON.stringify(newSolvedPuzzles));
+      const solvedKey = type === 'startup' ? 'solvedStartupChallenges' : 'solvedPuzzles';
+      const countKey = type === 'startup' ? 'startupChallengesSolvedCount' : 'puzzlesSolvedCount';
+      
+      const solvedItems = JSON.parse(localStorage.getItem(solvedKey) || '[]');
+      
+      if (!solvedItems.includes(challengeId)) {
+        const newSolvedItems = [...solvedItems, challengeId];
+        localStorage.setItem(solvedKey, JSON.stringify(newSolvedItems));
         
-        // Update solved count
+        // This count is now general, let's keep a general puzzlesSolvedCount for XP
         const currentTotal = parseInt(localStorage.getItem('puzzlesSolvedCount') || '0', 10);
         const newTotal = currentTotal + 1;
         localStorage.setItem('puzzlesSolvedCount', newTotal.toString());
@@ -115,11 +128,12 @@ export default function PuzzlePage() {
         // Dispatch storage event to notify other tabs/components
         window.dispatchEvent(new StorageEvent('storage', { key: 'puzzlesSolvedCount', newValue: newTotal.toString() }));
         window.dispatchEvent(new StorageEvent('storage', { key: 'swanXP', newValue: newXP.toString() }));
+        window.dispatchEvent(new StorageEvent('storage', { key: solvedKey, newValue: JSON.stringify(newSolvedItems) }));
       }
     }
   };
 
-  if (!puzzle) {
+  if (!challenge) {
     return (
       <div className="flex h-full w-full items-center justify-center">
         <Loader2 className="h-8 w-8 animate-spin" />
@@ -129,17 +143,17 @@ export default function PuzzlePage() {
 
   return (
     <div className="max-w-2xl mx-auto">
-        <Button variant="ghost" onClick={() => router.push('/dashboard/problem-solving')} className="mb-4">
+        <Button variant="ghost" onClick={() => router.push(`/dashboard/problem-solving?view=${type}`)} className="mb-4">
             <ArrowLeft className="mr-2 h-4 w-4" />
             Back to Challenges
         </Button>
         <Card>
             <CardHeader>
                 <div className="flex justify-between items-center">
-                    <CardTitle>Challenge #{puzzle.id}</CardTitle>
+                    <CardTitle>Challenge #{challenge.id}</CardTitle>
                     {isSolved && <Badge variant="secondary" className="bg-green-100 text-green-800 border-green-200"><CheckCircle className="mr-1 h-3 w-3"/>Completed</Badge>}
                 </div>
-                <CardDescription className="text-base pt-4">{puzzle.problem}</CardDescription>
+                <CardDescription className="text-base pt-4">{challenge.problem}</CardDescription>
             </CardHeader>
             <CardContent>
                  <div className="flex w-full gap-2">
@@ -184,7 +198,7 @@ export default function PuzzlePage() {
                   <div className="p-4 bg-accent rounded-md w-full">
                     <p className="text-sm text-accent-foreground">
                         <span className="font-semibold">Expert's Answer: </span>
-                        {puzzle.expert_answer}
+                        {challenge.expert_answer}
                     </p>
                   </div>
                 )}
@@ -192,7 +206,7 @@ export default function PuzzlePage() {
                      <div className="p-4 bg-accent rounded-md w-full">
                         <p className="text-sm text-accent-foreground">
                             <span className="font-semibold">Expert's Answer: </span>
-                            {puzzle.expert_answer}
+                            {challenge.expert_answer}
                         </p>
                     </div>
                  )}

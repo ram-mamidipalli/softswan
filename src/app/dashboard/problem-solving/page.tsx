@@ -12,6 +12,7 @@ import {
 } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
 import { type Puzzle, puzzles } from '@/lib/puzzles';
+import { type StartupChallenge, startupChallenges } from '@/lib/startup-challenges';
 import { Loader2, CheckCircle } from 'lucide-react';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
@@ -25,49 +26,68 @@ import {
   PaginationPrevious,
 } from '@/components/ui/pagination';
 import { useSearchParams, useRouter } from 'next/navigation';
+import { Label } from '@/components/ui/label';
+import { Switch } from '@/components/ui/switch';
 
 const PUZZLES_PER_PAGE = 9;
 
+type Challenge = Puzzle | StartupChallenge;
+
 export default function ProblemSolvingPage() {
-  const [solvedPuzzles, setSolvedPuzzles] = React.useState<number[]>([]);
-  const [pageLoading, setPageLoading] = React.useState(true);
   const router = useRouter();
   const searchParams = useSearchParams();
+  const { toast } = useToast();
 
+  const view = searchParams.get('view') || 'classic';
   const currentPage = Number(searchParams.get('page')) || 1;
-  const totalPages = Math.ceil(puzzles.length / PUZZLES_PER_PAGE);
 
-  const currentPuzzles = puzzles.slice(
+  const [solvedPuzzles, setSolvedPuzzles] = React.useState<number[]>([]);
+  const [solvedStartupChallenges, setSolvedStartupChallenges] = React.useState<number[]>([]);
+  const [pageLoading, setPageLoading] = React.useState(true);
+
+  const challenges: Challenge[] = view === 'startup' ? startupChallenges : puzzles;
+  const solvedChallenges = view === 'startup' ? solvedStartupChallenges : solvedPuzzles;
+  const totalPages = Math.ceil(challenges.length / PUZZLES_PER_PAGE);
+
+  const currentChallenges = challenges.slice(
     (currentPage - 1) * PUZZLES_PER_PAGE,
     currentPage * PUZZLES_PER_PAGE
   );
+  
+  const handleViewChange = (isStartup: boolean) => {
+    const newView = isStartup ? 'startup' : 'classic';
+    router.push(`/dashboard/problem-solving?view=${newView}&page=1`);
+  };
 
   React.useEffect(() => {
     const storedSolvedPuzzles = localStorage.getItem('solvedPuzzles');
     if (storedSolvedPuzzles) {
       setSolvedPuzzles(JSON.parse(storedSolvedPuzzles));
     }
+    const storedSolvedStartupChallenges = localStorage.getItem('solvedStartupChallenges');
+    if (storedSolvedStartupChallenges) {
+      setSolvedStartupChallenges(JSON.parse(storedSolvedStartupChallenges));
+    }
     setPageLoading(false);
-  }, []);
+  }, [view]);
 
   const handlePageChange = (page: number) => {
     if (page < 1 || page > totalPages) return;
-    router.push(`/dashboard/problem-solving?page=${page}`);
+    router.push(`/dashboard/problem-solving?view=${view}&page=${page}`);
   };
 
-  const { toast } = useToast();
-
   const resetPuzzles = () => {
-    localStorage.setItem('solvedPuzzles', JSON.stringify([]));
-    localStorage.setItem('puzzlesSolvedCount', '0');
-    setSolvedPuzzles([]);
-    window.dispatchEvent(new StorageEvent('storage', {
-        key: 'puzzlesSolvedCount',
-        newValue: '0',
-    }));
+    const solvedKey = view === 'startup' ? 'solvedStartupChallenges' : 'solvedPuzzles';
+    localStorage.setItem(solvedKey, JSON.stringify([]));
+    if (view === 'startup') {
+        setSolvedStartupChallenges([]);
+    } else {
+        setSolvedPuzzles([]);
+    }
+    // Note: We are not resetting the total XP count, just the solved status for this category
     toast({
       title: 'Progress Reset',
-      description: 'Your progress on the puzzles has been cleared.',
+      description: `Your progress on ${view === 'startup' ? 'Startup' : 'Classic'} Challenges has been cleared.`,
     });
   };
 
@@ -88,29 +108,40 @@ export default function ProblemSolvingPage() {
             Problem Solving Challenges
           </h1>
           <p className="text-sm text-muted-foreground">
-            A set of {puzzles.length} challenges to test your skills.
+            A set of {challenges.length} challenges to test your skills.
           </p>
         </div>
-        <Button onClick={resetPuzzles} variant="outline">
-          Reset Progress
-        </Button>
+        <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-2">
+                <Label htmlFor="challenge-toggle">Classic</Label>
+                <Switch 
+                    id="challenge-toggle" 
+                    checked={view === 'startup'}
+                    onCheckedChange={handleViewChange}
+                />
+                <Label htmlFor="challenge-toggle">Startup</Label>
+            </div>
+            <Button onClick={resetPuzzles} variant="outline">
+                Reset Progress
+            </Button>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {currentPuzzles.map((puzzle) => {
-          const isSolved = solvedPuzzles.includes(puzzle.id);
-          const isHard = puzzle.category.includes('Hard') || puzzle.category.includes('Deep') || puzzle.category.includes('Advanced') || puzzle.category.includes('Tough') || puzzle.category.includes('Critical');
+        {currentChallenges.map((challenge) => {
+          const isSolved = solvedChallenges.includes(challenge.id);
+          const isHard = challenge.category.includes('Hard') || challenge.category.includes('Deep') || challenge.category.includes('Advanced') || challenge.category.includes('Tough') || challenge.category.includes('Critical');
           return (
             <Link
-              href={`/dashboard/problem-solving/${puzzle.id}`}
-              key={puzzle.id}
+              href={`/dashboard/problem-solving/${challenge.id}?type=${view}`}
+              key={challenge.id}
               className={cn('group', { 'pointer-events-none': isSolved })}
             >
               <Card className="h-full transition-all group-hover:shadow-lg group-hover:-translate-y-1 relative flex flex-col">
                 <CardHeader className="flex-grow p-4">
                   <div className="flex justify-between items-start gap-2 mb-2">
                     <CardTitle className="text-sm font-semibold leading-snug">
-                      Challenge #{puzzle.id}
+                      Challenge #{challenge.id}
                     </CardTitle>
                     <div className="flex flex-col items-end gap-1 flex-shrink-0">
                       {isSolved && (
@@ -129,7 +160,7 @@ export default function ProblemSolvingPage() {
                       )}
                     </div>
                   </div>
-                  <CardDescription className="text-xs">{puzzle.category}</CardDescription>
+                  <CardDescription className="text-xs">{challenge.category}</CardDescription>
                 </CardHeader>
                 <CardContent className="p-4 pt-0">
                   <p
@@ -137,7 +168,7 @@ export default function ProblemSolvingPage() {
                       'opacity-60': isSolved,
                     })}
                   >
-                    {puzzle.problem}
+                    {challenge.problem}
                   </p>
                 </CardContent>
               </Card>
