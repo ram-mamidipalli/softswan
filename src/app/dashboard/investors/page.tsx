@@ -11,6 +11,7 @@ import {
 } from '@/components/ui/card';
 import { investors } from '@/lib/investors';
 import Link from 'next/link';
+import { ArrowRight } from 'lucide-react';
 
 export default function InvestorsPage() {
   return (
@@ -31,13 +32,15 @@ export default function InvestorsPage() {
             key={investor.id}
             className="group"
           >
-            <Card className="h-full border-2 border-transparent transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-lg group-hover:border-primary/50">
+            <Card className="h-full flex flex-col border border-border transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl group-hover:border-primary">
               <CardHeader>
                 <CardTitle>{investor.name}</CardTitle>
-                <CardDescription className="line-clamp-3">{investor.description}</CardDescription>
+                <CardDescription className="line-clamp-3 pt-1">{investor.description}</CardDescription>
               </CardHeader>
-              <CardContent>
-                 <p className="text-sm font-medium text-primary">Click to see details</p>
+              <CardContent className="flex-grow flex items-end">
+                 <p className="text-sm font-semibold text-primary flex items-center gap-2">
+                  View Details <ArrowRight className="h-4 w-4 transform transition-transform duration-300 group-hover:translate-x-1" />
+                </p>
               </CardContent>
             </Card>
           </Link>
