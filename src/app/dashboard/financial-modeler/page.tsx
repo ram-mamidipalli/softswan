@@ -28,9 +28,28 @@ import {
   Landmark,
   FileText,
   Download,
+  PieChart as PieChartIcon,
 } from 'lucide-react';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { toPng } from 'html-to-image';
+import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select"
+
+const currencies = {
+    USD: { symbol: '$', name: 'US Dollar' },
+    EUR: { symbol: '€', name: 'Euro' },
+    GBP: { symbol: '£', name: 'British Pound' },
+    INR: { symbol: '₹', name: 'Indian Rupee' },
+    JPY: { symbol: '¥', name: 'Japanese Yen' },
+};
+
+type CurrencyCode = keyof typeof currencies;
 
 const FinancialModelerPage = () => {
   const [revenue, setRevenue] = React.useState({
@@ -61,6 +80,7 @@ const FinancialModelerPage = () => {
     investorCapital: 0,
     loans: 0,
   });
+  const [currency, setCurrency] = React.useState<CurrencyCode>('USD');
   const modelerRef = React.useRef<HTMLDivElement>(null);
 
   const totalRevenue = Object.values(revenue).reduce((a, b) => a + b, 0);
@@ -76,6 +96,8 @@ const FinancialModelerPage = () => {
   
   const burnRate = Math.max(0, totalExpenses - totalRevenue);
   const runway = burnRate > 0 && funding.investorCapital > 0 ? funding.investorCapital / burnRate : Infinity;
+  
+  const currencySymbol = currencies[currency].symbol;
 
   const inputSections = [
     {
@@ -133,6 +155,14 @@ const FinancialModelerPage = () => {
     },
   ];
   
+  const expenseData = [
+    { name: 'COGS', value: totalCogs },
+    { name: 'Operating Expenses', value: totalOpEx },
+    { name: 'Admin Expenses', value: totalAdminEx },
+  ].filter(d => d.value > 0);
+
+  const COLORS = ['hsl(var(--chart-1))', 'hsl(var(--chart-2))', 'hsl(var(--chart-3))'];
+
   const handleInputChange = (setter: Function, state: any, key: string, value: string) => {
     setter({ ...state, [key]: Number(value) });
   };
@@ -153,10 +183,6 @@ const FinancialModelerPage = () => {
     toPng(modelerRef.current, { 
         cacheBust: true, 
         pixelRatio: 2,
-        // This is required to fix a CORS issue with Google Fonts when exporting.
-        fetchRequestInit: {
-            mode: 'no-cors'
-        }
     })
       .then((dataUrl) => {
         const link = document.createElement('a');
@@ -180,6 +206,18 @@ const FinancialModelerPage = () => {
               </p>
           </div>
           <div className="flex gap-2">
+              <Select value={currency} onValueChange={(value) => setCurrency(value as CurrencyCode)}>
+                <SelectTrigger className="w-[120px]">
+                    <SelectValue placeholder="Currency" />
+                </SelectTrigger>
+                <SelectContent>
+                    {Object.entries(currencies).map(([code, { symbol, name }]) => (
+                        <SelectItem key={code} value={code}>
+                            {symbol} - {code}
+                        </SelectItem>
+                    ))}
+                </SelectContent>
+              </Select>
               <Button onClick={resetCalculator} variant="outline">Reset</Button>
               <Button onClick={handleDownload}>
                   <Download className="mr-2 h-4 w-4" />
@@ -238,16 +276,16 @@ const FinancialModelerPage = () => {
                   <CardContent className="space-y-4">
                       <div className="flex justify-between items-center p-3 bg-secondary rounded-md">
                           <p className="font-medium">Total Revenue</p>
-                          <p className="font-bold text-green-600">${totalRevenue.toLocaleString()}</p>
+                          <p className="font-bold text-green-600">{currencySymbol}{totalRevenue.toLocaleString()}</p>
                       </div>
                       <div className="flex justify-between items-center p-3 bg-secondary rounded-md">
                           <p className="font-medium">Total Expenses</p>
-                          <p className="font-bold text-red-600">${totalExpenses.toLocaleString()}</p>
+                          <p className="font-bold text-red-600">{currencySymbol}{totalExpenses.toLocaleString()}</p>
                       </div>
                       <div className="flex justify-between items-center p-3 bg-secondary rounded-md">
                           <p className="font-medium">Net Profit / Loss</p>
                           <p className={`font-bold ${netProfit >= 0 ? 'text-green-600' : 'text-red-600'}`}>
-                            ${netProfit.toLocaleString()}
+                            {currencySymbol}{netProfit.toLocaleString()}
                           </p>
                       </div>
                   </CardContent>
@@ -288,7 +326,7 @@ const FinancialModelerPage = () => {
                   <CardContent className="space-y-4">
                       <div className="flex justify-between items-center p-3 bg-secondary rounded-md">
                           <p className="font-medium">Monthly Burn Rate</p>
-                          <p className="font-bold text-red-600">${burnRate.toLocaleString()}</p>
+                          <p className="font-bold text-red-600">{currencySymbol}{burnRate.toLocaleString()}</p>
                       </div>
                       <div className="flex justify-between items-center p-3 bg-secondary rounded-md">
                           <p className="font-medium">Cash Runway</p>
@@ -314,6 +352,45 @@ const FinancialModelerPage = () => {
                       )}
                   </CardContent>
               </Card>
+
+              {expenseData.length > 0 && (
+                 <Card>
+                    <CardHeader>
+                        <div className="flex items-center gap-3">
+                            <PieChartIcon className="h-6 w-6 text-primary" />
+                            <div>
+                                <CardTitle>Expense Breakdown</CardTitle>
+                                <CardDescription>A visual look at your spending.</CardDescription>
+                            </div>
+                        </div>
+                    </CardHeader>
+                    <CardContent>
+                        <div style={{ width: '100%', height: 300 }}>
+                            <ResponsiveContainer>
+                                <PieChart>
+                                    <Pie
+                                        data={expenseData}
+                                        cx="50%"
+                                        cy="50%"
+                                        labelLine={false}
+                                        outerRadius={80}
+                                        fill="#8884d8"
+                                        dataKey="value"
+                                        label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                                    >
+                                        {expenseData.map((entry, index) => (
+                                            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                                        ))}
+                                    </Pie>
+                                    <Tooltip formatter={(value: number) => [`${currencySymbol}${value.toLocaleString()}`, 'Value']}/>
+                                    <Legend />
+                                </PieChart>
+                            </ResponsiveContainer>
+                        </div>
+                    </CardContent>
+                 </Card>
+              )}
+
           </div>
         </div>
       </Card>
@@ -322,3 +399,6 @@ const FinancialModelerPage = () => {
 };
 
 export default FinancialModelerPage;
+
+
+    
