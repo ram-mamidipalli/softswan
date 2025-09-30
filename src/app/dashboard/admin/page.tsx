@@ -4,6 +4,7 @@
 import * as React from 'react';
 import { useAuth } from '@/hooks/use-auth';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { Loader2 } from 'lucide-react';
 import {
   Card,
@@ -41,17 +42,19 @@ export default function AdminPage() {
       </div>
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        <Card>
-          <CardHeader>
-            <CardTitle>Manage Tutorials</CardTitle>
-            <CardDescription>
-              Add, edit, or delete video tutorials.
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            {/* Placeholder for future functionality */}
-          </CardContent>
-        </Card>
+        <Link href="/dashboard/admin/content" className="group">
+          <Card className="h-full transition-all group-hover:shadow-lg group-hover:-translate-y-1">
+            <CardHeader>
+              <CardTitle>Manage Content</CardTitle>
+              <CardDescription>
+                Add, edit, or delete tutorials, startup lessons, and articles.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              {/* Placeholder for future functionality */}
+            </CardContent>
+          </Card>
+        </Link>
         <Card>
           <CardHeader>
             <CardTitle>Manage Users</CardTitle>
@@ -65,9 +68,9 @@ export default function AdminPage() {
         </Card>
         <Card>
           <CardHeader>
-            <CardTitle>Manage Content</CardTitle>
+            <CardTitle>Manage Puzzles</CardTitle>
             <CardDescription>
-              Manage articles, puzzles, and other content.
+              Manage problem-solving challenges and other content.
             </CardDescription>
           </CardHeader>
           <CardContent>
