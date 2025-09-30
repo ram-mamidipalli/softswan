@@ -53,11 +53,6 @@ const mainNav = [
     icon: BookOpen,
   },
   {
-    href: '/dashboard/articles',
-    label: 'Articles',
-    icon: Newspaper,
-  },
-  {
     href: '/dashboard/case-studies',
     label: 'Case Studies',
     icon: BookText,
