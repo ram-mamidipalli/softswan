@@ -20,7 +20,7 @@
       "id": 2,
       "title": "Chapter 2: Finding and Validating the Idea",
       "summary": "Discover how to identify market problems, brainstorm solutions, and validate your startup idea with real user feedback.",
-      "imageUrl": "https://picsum.photos/seed/chapter2/600/400",
+      "imageUrl": "https://images.unsplash.com/photo-1512758017271-d7b84c2113f1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHx2YWxpZGF0aW9ufGVufDB8fHx8MTc1OTIyNTY4OHww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "idea validation",
       "content": [
         "The foundation of any startup is a problem worth solving. This means genuinely identifying market pain points and confirming if enough people care about the problem to make it a business opportunity. This step uses techniques like interviews, market observation, and validation tests to avoid wasting resources on ideas lacking demand.",
@@ -146,3 +146,5 @@
     }
   ]
 }
+
+    
