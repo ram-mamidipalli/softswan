@@ -12,10 +12,10 @@ import {
 import { Badge } from '@/components/ui/badge';
 import Image from 'next/image';
 import Link from 'next/link';
-import { CheckCircle, Star, TrendingUp } from 'lucide-react';
+import { CheckCircle, Star, BookOpen } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { lessons } from '@/lib/lessons';
-import { articles } from '@/lib/articles';
+import { chapters } from '@/lib/chapters';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 function VideoLessonCard({ lesson }: { lesson: (typeof lessons)[0] }) {
@@ -74,38 +74,29 @@ function VideoLessonCard({ lesson }: { lesson: (typeof lessons)[0] }) {
   )
 }
 
-function GuideCard({ article }: { article: (typeof articles)[0] }) {
+function ChapterCard({ chapter }: { chapter: (typeof chapters)[0] }) {
   return (
     <Link
-      href={`/dashboard/articles/${article.id}`}
-      key={article.id}
+      href={`/dashboard/lessons/chapters/${chapter.id}`}
+      key={chapter.id}
       className="group"
     >
       <Card className="overflow-hidden transition-all group-hover:shadow-lg group-hover:-translate-y-1 h-full flex flex-col">
         <CardHeader className="p-0 relative">
           <div className="relative aspect-video">
             <Image
-              src={article.imageUrl}
-              alt={article.title}
+              src={chapter.imageUrl}
+              alt={chapter.title}
               fill
               className={cn('object-cover')}
-              data-ai-hint={article.imageHint}
+              data-ai-hint={chapter.imageHint}
             />
-             {article.trending && (
-              <div className="absolute top-2 right-2">
-                 <Badge variant="default" className="bg-primary/90 text-primary-foreground border-primary text-sm">
-                  <TrendingUp className="mr-1 h-3 w-3" />
-                  Trending
-                </Badge>
-              </div>
-            )}
           </div>
         </CardHeader>
         <CardContent className="p-4 flex-grow">
-          <Badge variant="secondary" className="mb-2">{article.category}</Badge>
-          <CardTitle className="text-lg">{article.title}</CardTitle>
+          <CardTitle className="text-lg">{chapter.title}</CardTitle>
           <CardDescription className="mt-2 text-sm">
-            {article.summary}
+            {chapter.summary}
           </CardDescription>
         </CardContent>
       </Card>
@@ -115,15 +106,6 @@ function GuideCard({ article }: { article: (typeof articles)[0] }) {
 
 
 export default function LessonsPage() {
-  const [completedLessons, setCompletedLessons] = React.useState<string[]>([]);
-
-  React.useEffect(() => {
-    const storedCompleted = localStorage.getItem('completedLessons');
-    if (storedCompleted) {
-      setCompletedLessons(JSON.parse(storedCompleted));
-    }
-  }, []);
-
   return (
     <div className="flex flex-col gap-8">
       <div>
@@ -136,7 +118,7 @@ export default function LessonsPage() {
        <Tabs defaultValue="videos" className="w-full">
         <TabsList className="grid w-full grid-cols-2 max-w-md">
           <TabsTrigger value="videos">Video Lessons</TabsTrigger>
-          <TabsTrigger value="guides">Guides & Articles</TabsTrigger>
+          <TabsTrigger value="chapters">Book Chapters</TabsTrigger>
         </TabsList>
         <TabsContent value="videos" className="mt-6">
            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -145,10 +127,10 @@ export default function LessonsPage() {
               ))}
             </div>
         </TabsContent>
-        <TabsContent value="guides" className="mt-6">
+        <TabsContent value="chapters" className="mt-6">
            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {articles.map((article) => (
-                <GuideCard key={article.id} article={article} />
+              {chapters.map((chapter) => (
+                <ChapterCard key={chapter.id} chapter={chapter} />
               ))}
             </div>
         </TabsContent>
