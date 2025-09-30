@@ -27,7 +27,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
-import { tutorials, type Tutorial } from '@/lib/tutorials';
+import { type Tutorial } from '@/lib/tutorials';
 
 const formSchema = z.object({
   title: z.string().min(1, 'Title is required'),
@@ -64,12 +64,10 @@ function getYouTubeVideoId(url: string): string | null {
 type AddTutorialFormProps = {
     children: React.ReactNode;
     initialData?: Tutorial;
-    onTutorialAdded?: (tutorial: Tutorial) => void;
-    onTutorialUpdated?: (tutorial: Tutorial) => void;
 };
 
 
-export function AddTutorialForm({ children, initialData, onTutorialAdded, onTutorialUpdated }: AddTutorialFormProps) {
+export function AddTutorialForm({ children, initialData }: AddTutorialFormProps) {
   const [isOpen, setIsOpen] = React.useState(false);
   const { toast } = useToast();
   const isEditMode = !!initialData;
@@ -89,7 +87,7 @@ export function AddTutorialForm({ children, initialData, onTutorialAdded, onTuto
   React.useEffect(() => {
     if (initialData && isOpen) {
       form.reset(initialData);
-    } else {
+    } else if (!initialData) {
       form.reset();
     }
   }, [initialData, isOpen, form]);
@@ -106,30 +104,16 @@ export function AddTutorialForm({ children, initialData, onTutorialAdded, onTuto
         return;
     }
 
-    if (isEditMode && onTutorialUpdated && initialData) {
-        const updatedTutorial: Tutorial = {
-            ...initialData,
-            ...values,
-            videoUrl: `https://www.youtube.com/embed/${videoId}`,
-            imageUrl: `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`,
-        };
-        onTutorialUpdated(updatedTutorial);
+    // In a real application, you would make an API call here to save the data.
+    if (isEditMode) {
         toast({
-            title: 'Tutorial Updated',
-            description: 'The tutorial has been successfully updated.',
+            title: 'Tutorial Updated (Simulated)',
+            description: 'The tutorial data was prepared. A page refresh may be needed to see changes in a real app.',
         });
-    } else if (onTutorialAdded) {
-        const newTutorial: Tutorial = {
-            id: tutorials.length + 1, // simplified ID generation
-            ...values,
-            videoUrl: `https://www.youtube.com/embed/${videoId}`,
-            imageUrl: `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`,
-            imageId: `tutorial${tutorials.length + 1}`,
-        };
-        onTutorialAdded(newTutorial);
+    } else {
         toast({
-            title: 'Tutorial Added',
-            description: 'The new tutorial has been added to the list.',
+            title: 'Tutorial Added (Simulated)',
+            description: 'The new tutorial data was prepared. A page refresh may be needed to see changes in a real app.',
         });
     }
     
@@ -241,3 +225,5 @@ export function AddTutorialForm({ children, initialData, onTutorialAdded, onTuto
     </Dialog>
   );
 }
+
+    

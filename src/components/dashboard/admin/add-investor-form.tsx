@@ -27,7 +27,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
-import { investors, type Investor } from '@/lib/investors';
+import { type Investor } from '@/lib/investors';
 
 const formSchema = z.object({
   name: z.string().min(1, 'Name is required'),
@@ -42,11 +42,9 @@ const formSchema = z.object({
 type AddInvestorFormProps = {
     children: React.ReactNode;
     initialData?: Investor;
-    onInvestorAdded?: (investor: Investor) => void;
-    onInvestorUpdated?: (investor: Investor) => void;
 }
 
-export function AddInvestorForm({ children, initialData, onInvestorAdded, onInvestorUpdated }: AddInvestorFormProps) {
+export function AddInvestorForm({ children, initialData }: AddInvestorFormProps) {
   const [isOpen, setIsOpen] = React.useState(false);
   const { toast } = useToast();
   const isEditMode = !!initialData;
@@ -72,39 +70,22 @@ export function AddInvestorForm({ children, initialData, onInvestorAdded, onInve
         industries: initialData.industries.join(', '),
         startupsFunded: initialData.startupsFunded.join(', '),
       });
-    } else {
+    } else if (!initialData) {
       form.reset();
     }
   }, [initialData, isOpen, form]);
 
   const onSubmit = (values: z.infer<typeof formSchema>) => {
-    const processToArray = (str?: string) => str ? str.split(',').map(s => s.trim()).filter(Boolean) : [];
-    
-    if (isEditMode && onInvestorUpdated && initialData) {
-        const updatedInvestor: Investor = {
-            ...initialData,
-            ...values,
-            people: processToArray(values.people),
-            industries: processToArray(values.industries),
-            startupsFunded: processToArray(values.startupsFunded),
-        };
-        onInvestorUpdated(updatedInvestor);
+    // In a real application, you would make an API call here to save the data.
+    if (isEditMode) {
         toast({
-            title: 'Investor Updated',
-            description: 'The investor profile has been successfully updated.',
+            title: 'Investor Updated (Simulated)',
+            description: 'The investor data was prepared. A page refresh may be needed to see changes in a real app.',
         });
-    } else if (onInvestorAdded) {
-        const newInvestor: Investor = {
-            id: investors.length + 1, // simplified ID generation
-            ...values,
-            people: processToArray(values.people),
-            industries: processToArray(values.industries),
-            startupsFunded: processToArray(values.startupsFunded),
-        };
-        onInvestorAdded(newInvestor);
+    } else {
         toast({
-            title: 'Investor Added',
-            description: 'The new investor profile has been added.',
+            title: 'Investor Added (Simulated)',
+            description: 'The new investor data was prepared. A page refresh may be needed to see changes in a real app.',
         });
     }
     
@@ -229,3 +210,5 @@ export function AddInvestorForm({ children, initialData, onInvestorAdded, onInve
     </Dialog>
   );
 }
+
+    

@@ -27,7 +27,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
-import { puzzles, type Puzzle } from '@/lib/puzzles';
+import { type Puzzle } from '@/lib/puzzles';
 
 const formSchema = z.object({
   problem: z.string().min(1, 'Problem is required'),
@@ -38,11 +38,9 @@ const formSchema = z.object({
 type AddPuzzleFormProps = {
     children: React.ReactNode;
     initialData?: Puzzle;
-    onPuzzleAdded?: (puzzle: Puzzle) => void;
-    onPuzzleUpdated?: (puzzle: Puzzle) => void;
 }
 
-export function AddPuzzleForm({ children, initialData, onPuzzleAdded, onPuzzleUpdated }: AddPuzzleFormProps) {
+export function AddPuzzleForm({ children, initialData }: AddPuzzleFormProps) {
   const [isOpen, setIsOpen] = React.useState(false);
   const { toast } = useToast();
   const isEditMode = !!initialData;
@@ -59,31 +57,22 @@ export function AddPuzzleForm({ children, initialData, onPuzzleAdded, onPuzzleUp
   React.useEffect(() => {
     if (initialData && isOpen) {
       form.reset(initialData);
-    } else {
+    } else if (!initialData) {
       form.reset();
     }
   }, [initialData, isOpen, form]);
 
   const onSubmit = (values: z.infer<typeof formSchema>) => {
-    if (isEditMode && onPuzzleUpdated && initialData) {
-        const updatedPuzzle: Puzzle = {
-            ...initialData,
-            ...values,
-        };
-        onPuzzleUpdated(updatedPuzzle);
+    // In a real application, you would make an API call here to save the data.
+    if (isEditMode) {
         toast({
-            title: 'Puzzle Updated',
-            description: 'The puzzle has been successfully updated.',
+            title: 'Puzzle Updated (Simulated)',
+            description: 'The puzzle data was prepared. A page refresh may be needed to see changes in a real app.',
         });
-    } else if (onPuzzleAdded) {
-        const newPuzzle: Puzzle = {
-            id: puzzles.length + 1, // simplified ID generation
-            ...values,
-        };
-        onPuzzleAdded(newPuzzle);
+    } else {
         toast({
-            title: 'Puzzle Added',
-            description: 'The new puzzle has been added to the list.',
+            title: 'Puzzle Added (Simulated)',
+            description: 'The new puzzle data was prepared. A page refresh may be needed to see changes in a real app.',
         });
     }
     
@@ -156,3 +145,5 @@ export function AddPuzzleForm({ children, initialData, onPuzzleAdded, onPuzzleUp
     </Dialog>
   );
 }
+
+    

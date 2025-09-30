@@ -28,11 +28,7 @@ export default function AdminPuzzlesPage() {
   const router = useRouter();
   const { toast } = useToast();
 
-  const [allPuzzles, setAllPuzzles] = React.useState<Puzzle[]>(puzzles);
-  const [allStartupChallenges, setAllStartupChallenges] = React.useState<StartupChallenge[]>(startupChallenges);
-
-  const [itemToDelete, setItemToDelete] = React.useState<Challenge | null>(null);
-  const [deleteType, setDeleteType] = React.useState<'puzzle' | 'startup-challenge' | null>(null);
+  const [itemToDelete, setItemToDelete] = React.useState<{item: Challenge, type: string} | null>(null);
 
   React.useEffect(() => {
     if (!loading && !isAdmin) {
@@ -40,43 +36,20 @@ export default function AdminPuzzlesPage() {
     }
   }, [isAdmin, loading, router]);
 
-  const handlePuzzleAdded = (newPuzzle: Puzzle) => {
-    setAllPuzzles(prev => [...prev, newPuzzle]);
-  };
-  
-  const handleStartupChallengeAdded = (newChallenge: StartupChallenge) => {
-    setAllStartupChallenges(prev => [...prev, newChallenge]);
-  };
-  
-  const handlePuzzleUpdated = (updatedPuzzle: Puzzle) => {
-    setAllPuzzles(prev => prev.map(p => p.id === updatedPuzzle.id ? updatedPuzzle : p));
-  };
-
-  const handleStartupChallengeUpdated = (updatedChallenge: StartupChallenge) => {
-    setAllStartupChallenges(prev => prev.map(c => c.id === updatedChallenge.id ? updatedChallenge : c));
-  };
-  
   const handleDeleteClick = (item: Challenge, type: 'puzzle' | 'startup-challenge') => {
-    setItemToDelete(item);
-    setDeleteType(type);
+    setItemToDelete({item, type});
   };
   
   const handleConfirmDelete = () => {
-    if (!itemToDelete || !deleteType) return;
+    if (!itemToDelete) return;
 
-    if (deleteType === 'puzzle') {
-      setAllPuzzles(prev => prev.filter(p => p.id !== itemToDelete.id));
-    } else if (deleteType === 'startup-challenge') {
-      setAllStartupChallenges(prev => prev.filter(c => c.id !== itemToDelete.id));
-    }
-
+    // This is a client-side simulation. A real implementation would require a backend call.
     toast({
-      title: `${deleteType.charAt(0).toUpperCase() + deleteType.slice(1)} Deleted`,
-      description: `The item has been removed.`,
+      title: `${itemToDelete.type.charAt(0).toUpperCase() + itemToDelete.type.slice(1)} Deleted (Simulated)`,
+      description: `The item "${itemToDelete.item.problem}" would be removed. Refresh to see original state.`,
     });
 
     setItemToDelete(null);
-    setDeleteType(null);
   };
 
   if (loading || !isAdmin) {
@@ -117,7 +90,7 @@ export default function AdminPuzzlesPage() {
                             Riddles, logic puzzles, and brain teasers.
                         </CardDescription>
                     </div>
-                    <AddPuzzleForm onPuzzleAdded={handlePuzzleAdded}>
+                    <AddPuzzleForm>
                         <Button>
                             <PlusCircle className="mr-2 h-4 w-4" />
                             Add Puzzle
@@ -127,15 +100,12 @@ export default function AdminPuzzlesPage() {
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                  {allPuzzles.map(puzzle => (
+                  {puzzles.map(puzzle => (
                     <div key={puzzle.id} className="flex flex-col gap-2 p-4 rounded-md border">
                         <div className="flex justify-between items-start">
                              <p className="font-semibold">{puzzle.problem}</p>
                              <div className="flex gap-2 flex-shrink-0">
-                                <AddPuzzleForm
-                                    initialData={puzzle}
-                                    onPuzzleUpdated={handlePuzzleUpdated}
-                                >
+                                <AddPuzzleForm initialData={puzzle}>
                                     <Button variant="outline" size="sm">Edit</Button>
                                 </AddPuzzleForm>
                                 <Button variant="destructive" size="sm" onClick={() => handleDeleteClick(puzzle, 'puzzle')}>Delete</Button>
@@ -159,7 +129,7 @@ export default function AdminPuzzlesPage() {
                             Real-world business scenarios and case studies.
                         </CardDescription>
                     </div>
-                     <AddStartupChallengeForm onStartupChallengeAdded={handleStartupChallengeAdded}>
+                     <AddStartupChallengeForm>
                         <Button>
                             <PlusCircle className="mr-2 h-4 w-4" />
                             Add Challenge
@@ -169,15 +139,12 @@ export default function AdminPuzzlesPage() {
             </CardHeader>
             <CardContent>
                 <div className="space-y-4">
-                  {allStartupChallenges.map(challenge => (
+                  {startupChallenges.map(challenge => (
                     <div key={challenge.id} className="flex flex-col gap-2 p-4 rounded-md border">
                         <div className="flex justify-between items-start">
                              <p className="font-semibold">{challenge.problem}</p>
                              <div className="flex gap-2 flex-shrink-0">
-                                <AddStartupChallengeForm
-                                    initialData={challenge}
-                                    onStartupChallengeUpdated={handleStartupChallengeUpdated}
-                                >
+                                <AddStartupChallengeForm initialData={challenge}>
                                     <Button variant="outline" size="sm">Edit</Button>
                                 </AddStartupChallengeForm>
                                 <Button variant="destructive" size="sm" onClick={() => handleDeleteClick(challenge, 'startup-challenge')}>Delete</Button>
@@ -196,8 +163,10 @@ export default function AdminPuzzlesPage() {
             isOpen={!!itemToDelete}
             onOpenChange={(isOpen) => !isOpen && setItemToDelete(null)}
             onConfirm={handleConfirmDelete}
-            itemName={itemToDelete?.problem || ''}
+            itemName={itemToDelete?.item.problem || ''}
         />
     </div>
   );
 }
+
+    

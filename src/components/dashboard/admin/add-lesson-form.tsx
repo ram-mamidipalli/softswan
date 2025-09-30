@@ -27,7 +27,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
-import { lessons, type Lesson } from '@/lib/lessons';
+import { type Lesson } from '@/lib/lessons';
 
 const formSchema = z.object({
   title: z.string().min(1, 'Title is required'),
@@ -64,11 +64,9 @@ function getYouTubeVideoId(url: string): string | null {
 type AddLessonFormProps = {
     children: React.ReactNode;
     initialData?: Lesson;
-    onLessonAdded?: (lesson: Lesson) => void;
-    onLessonUpdated?: (lesson: Lesson) => void;
 };
 
-export function AddLessonForm({ children, initialData, onLessonAdded, onLessonUpdated }: AddLessonFormProps) {
+export function AddLessonForm({ children, initialData }: AddLessonFormProps) {
   const [isOpen, setIsOpen] = React.useState(false);
   const { toast } = useToast();
   const isEditMode = !!initialData;
@@ -88,7 +86,7 @@ export function AddLessonForm({ children, initialData, onLessonAdded, onLessonUp
   React.useEffect(() => {
     if (initialData && isOpen) {
       form.reset(initialData);
-    } else {
+    } else if (!initialData) {
       form.reset();
     }
   }, [initialData, isOpen, form]);
@@ -105,29 +103,16 @@ export function AddLessonForm({ children, initialData, onLessonAdded, onLessonUp
         return;
     }
 
-    if (isEditMode && onLessonUpdated && initialData) {
-        const updatedLesson: Lesson = {
-            ...initialData,
-            ...values,
-            videoUrl: `https://www.youtube.com/embed/${videoId}`,
-            imageUrl: `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`,
-        };
-        onLessonUpdated(updatedLesson);
+    // In a real application, you would make an API call here to save the data.
+    if (isEditMode) {
         toast({
-            title: 'Lesson Updated',
-            description: 'The lesson has been successfully updated.',
+            title: 'Lesson Updated (Simulated)',
+            description: 'The lesson data was prepared. A page refresh may be needed to see changes in a real app.',
         });
-    } else if (onLessonAdded) {
-        const newLesson: Lesson = {
-            id: lessons.length + 1, // simplified ID generation
-            ...values,
-            videoUrl: `https://www.youtube.com/embed/${videoId}`,
-            imageUrl: `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`,
-        };
-        onLessonAdded(newLesson);
+    } else {
         toast({
-            title: 'Lesson Added',
-            description: 'The new lesson has been added to the list.',
+            title: 'Lesson Added (Simulated)',
+            description: 'The new lesson data was prepared. A page refresh may be needed to see changes in a real app.',
         });
     }
     
@@ -239,3 +224,5 @@ export function AddLessonForm({ children, initialData, onLessonAdded, onLessonUp
     </Dialog>
   );
 }
+
+    

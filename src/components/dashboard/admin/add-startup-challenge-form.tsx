@@ -27,7 +27,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
-import { startupChallenges, type StartupChallenge } from '@/lib/startup-challenges';
+import { type StartupChallenge } from '@/lib/startup-challenges';
 
 const formSchema = z.object({
   problem: z.string().min(1, 'Problem is required'),
@@ -38,11 +38,9 @@ const formSchema = z.object({
 type AddStartupChallengeFormProps = {
     children: React.ReactNode;
     initialData?: StartupChallenge;
-    onStartupChallengeAdded?: (challenge: StartupChallenge) => void;
-    onStartupChallengeUpdated?: (challenge: StartupChallenge) => void;
 }
 
-export function AddStartupChallengeForm({ children, initialData, onStartupChallengeAdded, onStartupChallengeUpdated }: AddStartupChallengeFormProps) {
+export function AddStartupChallengeForm({ children, initialData }: AddStartupChallengeFormProps) {
   const [isOpen, setIsOpen] = React.useState(false);
   const { toast } = useToast();
   const isEditMode = !!initialData;
@@ -59,31 +57,22 @@ export function AddStartupChallengeForm({ children, initialData, onStartupChalle
   React.useEffect(() => {
     if (initialData && isOpen) {
       form.reset(initialData);
-    } else {
+    } else if (!initialData) {
       form.reset();
     }
   }, [initialData, isOpen, form]);
 
   const onSubmit = (values: z.infer<typeof formSchema>) => {
-    if (isEditMode && onStartupChallengeUpdated && initialData) {
-        const updatedChallenge: StartupChallenge = {
-            ...initialData,
-            ...values,
-        };
-        onStartupChallengeUpdated(updatedChallenge);
+    // In a real application, you would make an API call here to save the data.
+    if (isEditMode) {
         toast({
-            title: 'Startup Challenge Updated',
-            description: 'The challenge has been successfully updated.',
+            title: 'Startup Challenge Updated (Simulated)',
+            description: 'The challenge data was prepared. A page refresh may be needed to see changes in a real app.',
         });
-    } else if (onStartupChallengeAdded) {
-        const newChallenge: StartupChallenge = {
-            id: startupChallenges.length + 1, // simplified ID generation
-            ...values,
-        };
-        onStartupChallengeAdded(newChallenge);
+    } else {
         toast({
-            title: 'Startup Challenge Added',
-            description: 'The new challenge has been added to the list.',
+            title: 'Startup Challenge Added (Simulated)',
+            description: 'The new challenge data was prepared. A page refresh may be needed to see changes in a real app.',
         });
     }
     
@@ -156,3 +145,5 @@ export function AddStartupChallengeForm({ children, initialData, onStartupChalle
     </Dialog>
   );
 }
+
+    

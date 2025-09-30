@@ -27,7 +27,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
-import { caseStudies, type CaseStudy, type CaseStudyLink } from '@/lib/case-studies';
+import { type CaseStudy, type CaseStudyLink } from '@/lib/case-studies';
 
 const formSchema = z.object({
   companyName: z.string().min(1, 'Company name is required'),
@@ -42,11 +42,9 @@ const formSchema = z.object({
 type AddCaseStudyFormProps = {
     children: React.ReactNode;
     initialData?: CaseStudy;
-    onCaseStudyAdded?: (caseStudy: CaseStudy) => void;
-    onCaseStudyUpdated?: (caseStudy: CaseStudy) => void;
 }
 
-export function AddCaseStudyForm({ children, initialData, onCaseStudyAdded, onCaseStudyUpdated }: AddCaseStudyFormProps) {
+export function AddCaseStudyForm({ children, initialData }: AddCaseStudyFormProps) {
   const [isOpen, setIsOpen] = React.useState(false);
   const { toast } = useToast();
   const isEditMode = !!initialData;
@@ -70,49 +68,30 @@ export function AddCaseStudyForm({ children, initialData, onCaseStudyAdded, onCa
       try {
         linksString = JSON.stringify(initialData.links, null, 2);
       } catch (e) {
-        linksString = (initialData.links as string[]).join('\n');
+        // Attempt to handle both string[] and CaseStudyLink[]
+        linksString = initialData.links.map(link => typeof link === 'string' ? link : link.url).join('\n');
       }
 
       form.reset({
         ...initialData,
         links: linksString,
       });
-    } else {
+    } else if (!initialData) {
       form.reset();
     }
   }, [initialData, isOpen, form]);
 
   const onSubmit = (values: z.infer<typeof formSchema>) => {
-    let parsedLinks: (string | CaseStudyLink)[];
-    try {
-      // Try parsing as JSON first
-      parsedLinks = JSON.parse(values.links);
-    } catch (e) {
-      // If JSON parsing fails, treat as newline-separated strings
-      parsedLinks = values.links.split('\n').filter(link => link.trim() !== '');
-    }
-
-    if (isEditMode && onCaseStudyUpdated && initialData) {
-        const updatedCaseStudy: CaseStudy = {
-            ...initialData,
-            ...values,
-            links: parsedLinks,
-        };
-        onCaseStudyUpdated(updatedCaseStudy);
+    // In a real application, you would make an API call here to save the data.
+    if (isEditMode) {
         toast({
-            title: 'Case Study Updated',
-            description: 'The case study has been successfully updated.',
+            title: 'Case Study Updated (Simulated)',
+            description: 'The case study data was prepared. A page refresh may be needed to see changes in a real app.',
         });
-    } else if (onCaseStudyAdded) {
-        const newCaseStudy: CaseStudy = {
-            id: caseStudies.length + 1, // simplified ID generation
-            ...values,
-            links: parsedLinks,
-        };
-        onCaseStudyAdded(newCaseStudy);
+    } else {
         toast({
-            title: 'Case Study Added',
-            description: 'The new case study has been added to the list.',
+            title: 'Case Study Added (Simulated)',
+            description: 'The new case study data was prepared. A page refresh may be needed to see changes in a real app.',
         });
     }
     
@@ -237,3 +216,5 @@ export function AddCaseStudyForm({ children, initialData, onCaseStudyAdded, onCa
     </Dialog>
   );
 }
+
+    

@@ -35,14 +35,7 @@ export default function AdminContentPage() {
   const router = useRouter();
   const { toast } = useToast();
   
-  const [allTutorials, setAllTutorials] = React.useState<Tutorial[]>(tutorials);
-  const [allLessons, setAllLessons] = React.useState<Lesson[]>(lessons);
-  const [allArticles, setAllArticles] = React.useState<Article[]>(articles);
-  const [allCaseStudies, setAllCaseStudies] = React.useState<CaseStudy[]>(caseStudies);
-  const [allInvestors, setAllInvestors] = React.useState<Investor[]>(investors);
-
-  const [itemToDelete, setItemToDelete] = React.useState<ContentItem | null>(null);
-  const [deleteType, setDeleteType] = React.useState<'tutorial' | 'lesson' | 'article' | 'casestudy' | 'investor' | null>(null);
+  const [itemToDelete, setItemToDelete] = React.useState<{item: ContentItem, type: string} | null>(null);
 
   React.useEffect(() => {
     if (!loading && !isAdmin) {
@@ -50,73 +43,22 @@ export default function AdminContentPage() {
     }
   }, [isAdmin, loading, router]);
 
-  const handleTutorialAdded = (newTutorial: Tutorial) => {
-    setAllTutorials(prev => [...prev, newTutorial]);
-  };
-
-  const handleLessonAdded = (newLesson: Lesson) => {
-    setAllLessons(prev => [...prev, newLesson]);
-  };
-
-  const handleArticleAdded = (newArticle: Article) => {
-    setAllArticles(prev => [...prev, newArticle]);
-  };
-
-  const handleCaseStudyAdded = (newCaseStudy: CaseStudy) => {
-    setAllCaseStudies(prev => [...prev, newCaseStudy]);
-  };
-
-  const handleInvestorAdded = (newInvestor: Investor) => {
-    setAllInvestors(prev => [...prev, newInvestor]);
-  };
-  
-  const handleTutorialUpdated = (updatedTutorial: Tutorial) => {
-    setAllTutorials(prev => prev.map(t => t.id === updatedTutorial.id ? updatedTutorial : t));
-  };
-    
-  const handleLessonUpdated = (updatedLesson: Lesson) => {
-    setAllLessons(prev => prev.map(l => l.id === updatedLesson.id ? updatedLesson : l));
-  };
-
-  const handleArticleUpdated = (updatedArticle: Article) => {
-    setAllArticles(prev => prev.map(a => a.id === updatedArticle.id ? updatedArticle : a));
-  };
-
-  const handleCaseStudyUpdated = (updatedCaseStudy: CaseStudy) => {
-    setAllCaseStudies(prev => prev.map(c => c.id === updatedCaseStudy.id ? updatedCaseStudy : c));
-  };
-
-  const handleInvestorUpdated = (updatedInvestor: Investor) => {
-    setAllInvestors(prev => prev.map(i => i.id === updatedInvestor.id ? updatedInvestor : i));
-  };
-
   const handleDeleteClick = (item: ContentItem, type: 'tutorial' | 'lesson' | 'article' | 'casestudy' | 'investor') => {
-    setItemToDelete(item);
-    setDeleteType(type);
+    setItemToDelete({item, type});
   };
 
   const handleConfirmDelete = () => {
-    if (!itemToDelete || !deleteType) return;
+    if (!itemToDelete) return;
 
-    if (deleteType === 'tutorial') {
-      setAllTutorials(prev => prev.filter(t => t.id !== itemToDelete.id));
-    } else if (deleteType === 'lesson') {
-      setAllLessons(prev => prev.filter(l => l.id !== itemToDelete.id));
-    } else if (deleteType === 'article') {
-      setAllArticles(prev => prev.filter(a => a.id !== itemToDelete.id));
-    } else if (deleteType === 'casestudy') {
-      setAllCaseStudies(prev => prev.filter(c => c.id !== itemToDelete.id));
-    } else if (deleteType === 'investor') {
-      setAllInvestors(prev => prev.filter(i => i.id !== itemToDelete.id));
-    }
-
+    // This is a client-side simulation. A real implementation would require a backend call.
+    // For now, we just close the dialog and show a toast.
+    
     toast({
-      title: `${deleteType.charAt(0).toUpperCase() + deleteType.slice(1)} Deleted`,
-      description: `The item has been removed.`,
+      title: `${itemToDelete.type.charAt(0).toUpperCase() + itemToDelete.type.slice(1)} Deleted (Simulated)`,
+      description: `The item "${(itemToDelete.item as any).title || (itemToDelete.item as any).name}" would be removed. Refresh to see original state.`,
     });
 
     setItemToDelete(null);
-    setDeleteType(null);
   };
 
   if (loading || !isAdmin) {
@@ -160,7 +102,7 @@ export default function AdminContentPage() {
                     Browse and manage all video tutorials.
                   </CardDescription>
                 </div>
-                <AddTutorialForm onTutorialAdded={handleTutorialAdded}>
+                <AddTutorialForm>
                    <Button>
                       <PlusCircle className="mr-2 h-4 w-4" />
                       Add Tutorial
@@ -170,7 +112,7 @@ export default function AdminContentPage() {
             </CardHeader>
             <CardContent>
                 <div className="space-y-4">
-                  {allTutorials.map(tutorial => (
+                  {tutorials.map(tutorial => (
                     <div key={tutorial.id} className="flex items-center gap-4 p-2 rounded-md border">
                         <div className="relative h-16 w-28 rounded-md overflow-hidden">
                              <Image 
@@ -184,10 +126,7 @@ export default function AdminContentPage() {
                             <p className="font-semibold">{tutorial.title}</p>
                             <p className="text-sm text-muted-foreground">by {tutorial.author}</p>
                         </div>
-                        <AddTutorialForm
-                          initialData={tutorial}
-                          onTutorialUpdated={handleTutorialUpdated}
-                        >
+                        <AddTutorialForm initialData={tutorial}>
                            <Button variant="outline" size="sm">Edit</Button>
                         </AddTutorialForm>
                          <Button variant="destructive" size="sm" onClick={() => handleDeleteClick(tutorial, 'tutorial')}>Delete</Button>
@@ -207,7 +146,7 @@ export default function AdminContentPage() {
                     Browse and manage all startup lesson videos.
                   </CardDescription>
                 </div>
-                <AddLessonForm onLessonAdded={handleLessonAdded}>
+                <AddLessonForm>
                    <Button>
                       <PlusCircle className="mr-2 h-4 w-4" />
                       Add Lesson
@@ -217,7 +156,7 @@ export default function AdminContentPage() {
             </CardHeader>
             <CardContent>
                 <div className="space-y-4">
-                  {allLessons.map(lesson => (
+                  {lessons.map(lesson => (
                     <div key={lesson.id} className="flex items-center gap-4 p-2 rounded-md border">
                         <div className="relative h-16 w-28 rounded-md overflow-hidden">
                              <Image 
@@ -231,10 +170,7 @@ export default function AdminContentPage() {
                             <p className="font-semibold">{lesson.title}</p>
                             <p className="text-sm text-muted-foreground">by {lesson.author}</p>
                         </div>
-                         <AddLessonForm
-                          initialData={lesson}
-                          onLessonUpdated={handleLessonUpdated}
-                        >
+                         <AddLessonForm initialData={lesson}>
                             <Button variant="outline" size="sm">Edit</Button>
                         </AddLessonForm>
                          <Button variant="destructive" size="sm" onClick={() => handleDeleteClick(lesson, 'lesson')}>Delete</Button>
@@ -254,7 +190,7 @@ export default function AdminContentPage() {
                     Browse and manage all articles.
                   </CardDescription>
                 </div>
-                <AddArticleForm onArticleAdded={handleArticleAdded}>
+                <AddArticleForm>
                    <Button>
                       <PlusCircle className="mr-2 h-4 w-4" />
                       Add Article
@@ -264,7 +200,7 @@ export default function AdminContentPage() {
             </CardHeader>
             <CardContent>
                 <div className="space-y-4">
-                  {allArticles.map(article => (
+                  {articles.map(article => (
                     <div key={article.id} className="flex items-center gap-4 p-2 rounded-md border">
                         <div className="relative h-16 w-28 rounded-md overflow-hidden">
                              <Image 
@@ -278,10 +214,7 @@ export default function AdminContentPage() {
                             <p className="font-semibold">{article.title}</p>
                             <p className="text-sm text-muted-foreground">{article.category}</p>
                         </div>
-                        <AddArticleForm
-                          initialData={article}
-                          onArticleUpdated={handleArticleUpdated}
-                        >
+                        <AddArticleForm initialData={article}>
                             <Button variant="outline" size="sm">Edit</Button>
                         </AddArticleForm>
                          <Button variant="destructive" size="sm" onClick={() => handleDeleteClick(article, 'article')}>Delete</Button>
@@ -301,7 +234,7 @@ export default function AdminContentPage() {
                     Browse and manage all case studies.
                   </CardDescription>
                 </div>
-                <AddCaseStudyForm onCaseStudyAdded={handleCaseStudyAdded}>
+                <AddCaseStudyForm>
                    <Button>
                       <PlusCircle className="mr-2 h-4 w-4" />
                       Add Case Study
@@ -311,7 +244,7 @@ export default function AdminContentPage() {
             </CardHeader>
             <CardContent>
                 <div className="space-y-4">
-                  {allCaseStudies.map(study => (
+                  {caseStudies.map(study => (
                     <div key={study.id} className="flex items-center gap-4 p-2 rounded-md border">
                         <div className="relative h-16 w-28 rounded-md overflow-hidden">
                              <Image 
@@ -325,10 +258,7 @@ export default function AdminContentPage() {
                             <p className="font-semibold">{study.title}</p>
                             <p className="text-sm text-muted-foreground">{study.companyName}</p>
                         </div>
-                        <AddCaseStudyForm
-                          initialData={study}
-                          onCaseStudyUpdated={handleCaseStudyUpdated}
-                        >
+                        <AddCaseStudyForm initialData={study}>
                             <Button variant="outline" size="sm">Edit</Button>
                         </AddCaseStudyForm>
                          <Button variant="destructive" size="sm" onClick={() => handleDeleteClick(study, 'casestudy')}>Delete</Button>
@@ -348,7 +278,7 @@ export default function AdminContentPage() {
                     Browse and manage all investor profiles.
                   </CardDescription>
                 </div>
-                <AddInvestorForm onInvestorAdded={handleInvestorAdded}>
+                <AddInvestorForm>
                    <Button>
                       <PlusCircle className="mr-2 h-4 w-4" />
                       Add Investor
@@ -358,16 +288,13 @@ export default function AdminContentPage() {
             </CardHeader>
             <CardContent>
                 <div className="space-y-4">
-                  {allInvestors.map(investor => (
+                  {investors.map(investor => (
                     <div key={investor.id} className="flex items-center gap-4 p-2 rounded-md border">
                         <div className="flex-1">
                             <p className="font-semibold">{investor.name}</p>
                             <p className="text-sm text-muted-foreground line-clamp-1">{investor.description}</p>
                         </div>
-                        <AddInvestorForm
-                          initialData={investor}
-                          onInvestorUpdated={handleInvestorUpdated}
-                        >
+                        <AddInvestorForm initialData={investor}>
                             <Button variant="outline" size="sm">Edit</Button>
                         </AddInvestorForm>
                          <Button variant="destructive" size="sm" onClick={() => handleDeleteClick(investor, 'investor')}>Delete</Button>
@@ -382,8 +309,10 @@ export default function AdminContentPage() {
         isOpen={!!itemToDelete}
         onOpenChange={(isOpen) => !isOpen && setItemToDelete(null)}
         onConfirm={handleConfirmDelete}
-        itemName={itemToDelete?.title || (itemToDelete as Investor)?.name || ''}
+        itemName={itemToDelete ? (itemToDelete.item as any).title || (itemToDelete.item as any).name || '' : ''}
       />
     </div>
   );
 }
+
+    

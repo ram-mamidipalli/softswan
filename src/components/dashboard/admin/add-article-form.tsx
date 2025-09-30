@@ -27,7 +27,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
-import { articles, type Article } from '@/lib/articles';
+import { type Article } from '@/lib/articles';
 
 const formSchema = z.object({
   title: z.string().min(1, 'Title is required'),
@@ -42,11 +42,9 @@ const formSchema = z.object({
 type AddArticleFormProps = {
     children: React.ReactNode;
     initialData?: Article;
-    onArticleAdded?: (article: Article) => void;
-    onArticleUpdated?: (article: Article) => void;
 }
 
-export function AddArticleForm({ children, initialData, onArticleAdded, onArticleUpdated }: AddArticleFormProps) {
+export function AddArticleForm({ children, initialData }: AddArticleFormProps) {
   const [isOpen, setIsOpen] = React.useState(false);
   const { toast } = useToast();
   const isEditMode = !!initialData;
@@ -70,33 +68,23 @@ export function AddArticleForm({ children, initialData, onArticleAdded, onArticl
         ...initialData,
         content: initialData.content.join('\n\n'),
       });
-    } else {
+    } else if (!initialData) {
       form.reset();
     }
   }, [initialData, isOpen, form]);
 
   const onSubmit = (values: z.infer<typeof formSchema>) => {
-    if (isEditMode && onArticleUpdated && initialData) {
-        const updatedArticle: Article = {
-            ...initialData,
-            ...values,
-            content: values.content.split('\n').filter(p => p.trim() !== ''),
-        };
-        onArticleUpdated(updatedArticle);
+    // In a real application, you would make an API call here to save the data.
+    // For now, we'll just show a toast message.
+    if (isEditMode) {
         toast({
-            title: 'Article Updated',
-            description: 'The article has been successfully updated.',
+            title: 'Article Updated (Simulated)',
+            description: 'The article data was prepared. A page refresh may be needed to see changes in a real app.',
         });
-    } else if (onArticleAdded) {
-        const newArticle: Article = {
-            id: articles.length + 1, // simplified ID generation
-            ...values,
-            content: values.content.split('\n').filter(p => p.trim() !== ''),
-        };
-        onArticleAdded(newArticle);
+    } else {
         toast({
-            title: 'Article Added',
-            description: 'The new article has been added to the list.',
+            title: 'Article Added (Simulated)',
+            description: 'The article data was prepared. A page refresh may be needed to see changes in a real app.',
         });
     }
     
@@ -208,3 +196,5 @@ export function AddArticleForm({ children, initialData, onArticleAdded, onArticl
     </Dialog>
   );
 }
+
+    
