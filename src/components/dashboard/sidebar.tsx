@@ -21,6 +21,7 @@ import {
   Newspaper,
   ClipboardList,
   Calculator,
+  Shield,
 } from 'lucide-react';
 import { SwanLogo } from '../icons/swan-logo';
 import { usePathname, useRouter } from 'next/navigation';
@@ -96,6 +97,7 @@ export function DashboardSidebar() {
   const pathname = usePathname();
   const router = useRouter();
   const { toast } = useToast();
+  const { isAdmin } = useAuth();
 
 
   const handleSignOut = async () => {
@@ -138,6 +140,20 @@ export function DashboardSidebar() {
               </SidebarMenuButton>
             </SidebarMenuItem>
           ))}
+          {isAdmin && (
+             <SidebarMenuItem>
+              <SidebarMenuButton
+                asChild
+                isActive={pathname.startsWith('/dashboard/admin')}
+                tooltip="Admin"
+              >
+                <Link href="/dashboard/admin">
+                  <Shield />
+                  <span>Admin</span>
+                </Link>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          )}
         </SidebarMenu>
       </SidebarContent>
       <SidebarFooter>
