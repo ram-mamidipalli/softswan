@@ -35,7 +35,7 @@
       "id": 3,
       "title": "Chapter 3: Market Research",
       "summary": "Learn to analyze your competition, understand your target users, and size the market to ensure a viable opportunity.",
-      "imageUrl": "https://picsum.photos/seed/chapter3/600/400",
+      "imageUrl": "https://images.unsplash.com/photo-1588600878108-578307a3cc9d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxyZXNlYXJjaHxlbnwwfHx8fDE3NTkyMjU3NTh8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "market research",
       "content": [
         "After identifying and validating the core idea, a startup must understand the market it’s targeting. This step involves gathering detailed information about potential customers, analyzing competitors, and estimating the market size to ensure the opportunity is significant enough to support growth.",
@@ -147,4 +147,5 @@
   ]
 }
 
+    
     
