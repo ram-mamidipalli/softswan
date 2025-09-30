@@ -45,7 +45,11 @@ function getYouTubeVideoId(url: string): string | null {
       if (urlObj.hostname === 'youtu.be') {
         videoId = urlObj.pathname.slice(1);
       } else if (urlObj.hostname.includes('youtube.com')) {
-        videoId = urlObj.searchParams.get('v') || '';
+         if (urlObj.pathname.includes('/embed/')) {
+            videoId = urlObj.pathname.split('/embed/')[1];
+         } else {
+            videoId = urlObj.searchParams.get('v') || '';
+         }
       }
       const ampersandPosition = videoId.indexOf('&');
       if (ampersandPosition !== -1) {
@@ -57,9 +61,18 @@ function getYouTubeVideoId(url: string): string | null {
     return videoId;
 }
 
-export function AddLessonForm({ children, onLessonAdded }: { children: React.ReactNode, onLessonAdded: (lesson: Lesson) => void }) {
+type AddLessonFormProps = {
+    children: React.ReactNode;
+    initialData?: Lesson;
+    onLessonAdded?: (lesson: Lesson) => void;
+    onLessonUpdated?: (lesson: Lesson) => void;
+};
+
+export function AddLessonForm({ children, initialData, onLessonAdded, onLessonUpdated }: AddLessonFormProps) {
   const [isOpen, setIsOpen] = React.useState(false);
   const { toast } = useToast();
+  const isEditMode = !!initialData;
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -71,6 +84,14 @@ export function AddLessonForm({ children, onLessonAdded }: { children: React.Rea
       imageHint: '',
     },
   });
+
+  React.useEffect(() => {
+    if (initialData && isOpen) {
+      form.reset(initialData);
+    } else {
+      form.reset();
+    }
+  }, [initialData, isOpen, form]);
 
   const onSubmit = (values: z.infer<typeof formSchema>) => {
     const videoId = getYouTubeVideoId(values.videoUrl);
@@ -84,22 +105,32 @@ export function AddLessonForm({ children, onLessonAdded }: { children: React.Rea
         return;
     }
 
-    const newLesson: Lesson = {
-        id: lessons.length + 1, // simplified ID generation
-        title: values.title,
-        author: values.author,
-        category: values.category,
-        videoUrl: `https://www.youtube.com/embed/${videoId}`,
-        imageUrl: `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`,
-        description: values.description,
-        imageHint: values.imageHint,
-    };
+    if (isEditMode && onLessonUpdated && initialData) {
+        const updatedLesson: Lesson = {
+            ...initialData,
+            ...values,
+            videoUrl: `https://www.youtube.com/embed/${videoId}`,
+            imageUrl: `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`,
+        };
+        onLessonUpdated(updatedLesson);
+        toast({
+            title: 'Lesson Updated',
+            description: 'The lesson has been successfully updated.',
+        });
+    } else if (onLessonAdded) {
+        const newLesson: Lesson = {
+            id: lessons.length + 1, // simplified ID generation
+            ...values,
+            videoUrl: `https://www.youtube.com/embed/${videoId}`,
+            imageUrl: `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`,
+        };
+        onLessonAdded(newLesson);
+        toast({
+            title: 'Lesson Added',
+            description: 'The new lesson has been added to the list.',
+        });
+    }
     
-    onLessonAdded(newLesson);
-    toast({
-        title: 'Lesson Added',
-        description: 'The new lesson has been added to the list.',
-    });
     form.reset();
     setIsOpen(false);
   };
@@ -109,9 +140,9 @@ export function AddLessonForm({ children, onLessonAdded }: { children: React.Rea
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent className="sm:max-w-[425px] max-h-[90dvh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle>Add New Startup Lesson</DialogTitle>
+          <DialogTitle>{isEditMode ? 'Edit Startup Lesson' : 'Add New Startup Lesson'}</DialogTitle>
           <DialogDescription>
-            Fill in the details for the new lesson. Click save when you're done.
+            {isEditMode ? 'Edit the lesson details.' : "Fill in the details for the new lesson. Click save when you're done."}
           </DialogDescription>
         </DialogHeader>
         <div className="py-4">

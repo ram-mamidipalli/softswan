@@ -36,11 +36,21 @@ const formSchema = z.object({
   imageUrl: z.string().url('Must be a valid image URL'),
   imageHint: z.string().min(1, 'Image hint is required'),
   content: z.string().min(1, 'Content is required. Separate paragraphs with a new line.'),
+  trending: z.boolean().optional(),
 });
 
-export function AddArticleForm({ children, onArticleAdded }: { children: React.ReactNode, onArticleAdded: (article: Article) => void }) {
+type AddArticleFormProps = {
+    children: React.ReactNode;
+    initialData?: Article;
+    onArticleAdded?: (article: Article) => void;
+    onArticleUpdated?: (article: Article) => void;
+}
+
+export function AddArticleForm({ children, initialData, onArticleAdded, onArticleUpdated }: AddArticleFormProps) {
   const [isOpen, setIsOpen] = React.useState(false);
   const { toast } = useToast();
+  const isEditMode = !!initialData;
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -50,25 +60,46 @@ export function AddArticleForm({ children, onArticleAdded }: { children: React.R
       imageUrl: '',
       imageHint: '',
       content: '',
+      trending: false,
     },
   });
 
+  React.useEffect(() => {
+    if (initialData && isOpen) {
+      form.reset({
+        ...initialData,
+        content: initialData.content.join('\n\n'),
+      });
+    } else {
+      form.reset();
+    }
+  }, [initialData, isOpen, form]);
+
   const onSubmit = (values: z.infer<typeof formSchema>) => {
-    const newArticle: Article = {
-        id: articles.length + 1, // simplified ID generation
-        title: values.title,
-        category: values.category,
-        summary: values.summary,
-        imageUrl: values.imageUrl,
-        imageHint: values.imageHint,
-        content: values.content.split('\n').filter(p => p.trim() !== ''),
-    };
+    if (isEditMode && onArticleUpdated && initialData) {
+        const updatedArticle: Article = {
+            ...initialData,
+            ...values,
+            content: values.content.split('\n').filter(p => p.trim() !== ''),
+        };
+        onArticleUpdated(updatedArticle);
+        toast({
+            title: 'Article Updated',
+            description: 'The article has been successfully updated.',
+        });
+    } else if (onArticleAdded) {
+        const newArticle: Article = {
+            id: articles.length + 1, // simplified ID generation
+            ...values,
+            content: values.content.split('\n').filter(p => p.trim() !== ''),
+        };
+        onArticleAdded(newArticle);
+        toast({
+            title: 'Article Added',
+            description: 'The new article has been added to the list.',
+        });
+    }
     
-    onArticleAdded(newArticle);
-    toast({
-        title: 'Article Added',
-        description: 'The new article has been added to the list.',
-    });
     form.reset();
     setIsOpen(false);
   };
@@ -78,9 +109,9 @@ export function AddArticleForm({ children, onArticleAdded }: { children: React.R
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent className="sm:max-w-[425px] max-h-[90dvh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle>Add New Article</DialogTitle>
+          <DialogTitle>{isEditMode ? 'Edit Article' : 'Add New Article'}</DialogTitle>
           <DialogDescription>
-            Fill in the details for the new article. Click save when you're done.
+            {isEditMode ? 'Edit the article details.' : "Fill in the details for the new article. Click save when you're done."}
           </DialogDescription>
         </DialogHeader>
         <div className="py-4">

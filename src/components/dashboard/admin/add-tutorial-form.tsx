@@ -45,7 +45,11 @@ function getYouTubeVideoId(url: string): string | null {
       if (urlObj.hostname === 'youtu.be') {
         videoId = urlObj.pathname.slice(1);
       } else if (urlObj.hostname.includes('youtube.com')) {
-        videoId = urlObj.searchParams.get('v') || '';
+         if (urlObj.pathname.includes('/embed/')) {
+            videoId = urlObj.pathname.split('/embed/')[1];
+         } else {
+            videoId = urlObj.searchParams.get('v') || '';
+         }
       }
       const ampersandPosition = videoId.indexOf('&');
       if (ampersandPosition !== -1) {
@@ -57,9 +61,19 @@ function getYouTubeVideoId(url: string): string | null {
     return videoId;
 }
 
-export function AddTutorialForm({ children, onTutorialAdded }: { children: React.ReactNode, onTutorialAdded: (tutorial: Tutorial) => void }) {
+type AddTutorialFormProps = {
+    children: React.ReactNode;
+    initialData?: Tutorial;
+    onTutorialAdded?: (tutorial: Tutorial) => void;
+    onTutorialUpdated?: (tutorial: Tutorial) => void;
+};
+
+
+export function AddTutorialForm({ children, initialData, onTutorialAdded, onTutorialUpdated }: AddTutorialFormProps) {
   const [isOpen, setIsOpen] = React.useState(false);
   const { toast } = useToast();
+  const isEditMode = !!initialData;
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -71,6 +85,14 @@ export function AddTutorialForm({ children, onTutorialAdded }: { children: React
       imageHint: '',
     },
   });
+
+  React.useEffect(() => {
+    if (initialData && isOpen) {
+      form.reset(initialData);
+    } else {
+      form.reset();
+    }
+  }, [initialData, isOpen, form]);
 
   const onSubmit = (values: z.infer<typeof formSchema>) => {
     const videoId = getYouTubeVideoId(values.videoUrl);
@@ -84,27 +106,33 @@ export function AddTutorialForm({ children, onTutorialAdded }: { children: React
         return;
     }
 
-    const newTutorial: Tutorial = {
-        id: tutorials.length + 1, // simplified ID generation
-        title: values.title,
-        author: values.author,
-        category: values.category,
-        videoUrl: `https://www.youtube.com/embed/${videoId}`,
-        imageUrl: `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`,
-        description: values.description,
-        imageId: `tutorial${tutorials.length + 1}`,
-        imageHint: values.imageHint,
-    };
+    if (isEditMode && onTutorialUpdated && initialData) {
+        const updatedTutorial: Tutorial = {
+            ...initialData,
+            ...values,
+            videoUrl: `https://www.youtube.com/embed/${videoId}`,
+            imageUrl: `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`,
+        };
+        onTutorialUpdated(updatedTutorial);
+        toast({
+            title: 'Tutorial Updated',
+            description: 'The tutorial has been successfully updated.',
+        });
+    } else if (onTutorialAdded) {
+        const newTutorial: Tutorial = {
+            id: tutorials.length + 1, // simplified ID generation
+            ...values,
+            videoUrl: `https://www.youtube.com/embed/${videoId}`,
+            imageUrl: `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`,
+            imageId: `tutorial${tutorials.length + 1}`,
+        };
+        onTutorialAdded(newTutorial);
+        toast({
+            title: 'Tutorial Added',
+            description: 'The new tutorial has been added to the list.',
+        });
+    }
     
-    // In a real app, you would make an API call here to save the tutorial
-    // For now, we'll just show a success message and pass it to the parent.
-    console.log('New tutorial data:', newTutorial);
-    
-    onTutorialAdded(newTutorial);
-    toast({
-        title: 'Tutorial Added',
-        description: 'The new tutorial has been added to the list.',
-    });
     form.reset();
     setIsOpen(false);
   };
@@ -114,9 +142,9 @@ export function AddTutorialForm({ children, onTutorialAdded }: { children: React
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent className="sm:max-w-[425px] max-h-[90dvh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle>Add New Tutorial</DialogTitle>
+          <DialogTitle>{isEditMode ? 'Edit Tutorial' : 'Add New Tutorial'}</DialogTitle>
           <DialogDescription>
-            Fill in the details for the new tutorial. Click save when you're done.
+            {isEditMode ? 'Edit the tutorial details.' : "Fill in the details for the new tutorial. Click save when you're done."}
           </DialogDescription>
         </DialogHeader>
         <div className="py-4">
@@ -204,7 +232,7 @@ export function AddTutorialForm({ children, onTutorialAdded }: { children: React
                   <DialogClose asChild>
                       <Button type="button" variant="secondary">Cancel</Button>
                   </DialogClose>
-                  <Button type="submit">Save Tutorial</Button>
+                  <Button type="submit">{isEditMode ? 'Save Changes' : 'Save Tutorial'}</Button>
               </DialogFooter>
             </form>
           </Form>
