@@ -17,14 +17,18 @@ import {
 import { tutorials, type Tutorial } from '@/lib/tutorials';
 import { lessons, type Lesson } from '@/lib/lessons';
 import { articles, type Article } from '@/lib/articles';
+import { caseStudies, type CaseStudy } from '@/lib/case-studies';
+import { investors, type Investor } from '@/lib/investors';
 import Image from 'next/image';
 import { AddTutorialForm } from '@/components/dashboard/admin/add-tutorial-form';
 import { AddLessonForm } from '@/components/dashboard/admin/add-lesson-form';
 import { AddArticleForm } from '@/components/dashboard/admin/add-article-form';
+import { AddCaseStudyForm } from '@/components/dashboard/admin/add-case-study-form';
+import { AddInvestorForm } from '@/components/dashboard/admin/add-investor-form';
 import { DeleteConfirmationDialog } from '@/components/dashboard/admin/delete-confirmation-dialog';
 import { useToast } from '@/hooks/use-toast';
 
-type ContentItem = Tutorial | Lesson | Article;
+type ContentItem = Tutorial | Lesson | Article | CaseStudy | Investor;
 
 export default function AdminContentPage() {
   const { isAdmin, loading } = useAuth();
@@ -34,10 +38,11 @@ export default function AdminContentPage() {
   const [allTutorials, setAllTutorials] = React.useState<Tutorial[]>(tutorials);
   const [allLessons, setAllLessons] = React.useState<Lesson[]>(lessons);
   const [allArticles, setAllArticles] = React.useState<Article[]>(articles);
-  
-  const [itemToDelete, setItemToDelete] = React.useState<ContentItem | null>(null);
-  const [deleteType, setDeleteType] = React.useState<'tutorial' | 'lesson' | 'article' | null>(null);
+  const [allCaseStudies, setAllCaseStudies] = React.useState<CaseStudy[]>(caseStudies);
+  const [allInvestors, setAllInvestors] = React.useState<Investor[]>(investors);
 
+  const [itemToDelete, setItemToDelete] = React.useState<ContentItem | null>(null);
+  const [deleteType, setDeleteType] = React.useState<'tutorial' | 'lesson' | 'article' | 'casestudy' | 'investor' | null>(null);
 
   React.useEffect(() => {
     if (!loading && !isAdmin) {
@@ -57,6 +62,14 @@ export default function AdminContentPage() {
     setAllArticles(prev => [...prev, newArticle]);
   };
 
+  const handleCaseStudyAdded = (newCaseStudy: CaseStudy) => {
+    setAllCaseStudies(prev => [...prev, newCaseStudy]);
+  };
+
+  const handleInvestorAdded = (newInvestor: Investor) => {
+    setAllInvestors(prev => [...prev, newInvestor]);
+  };
+  
   const handleTutorialUpdated = (updatedTutorial: Tutorial) => {
     setAllTutorials(prev => prev.map(t => t.id === updatedTutorial.id ? updatedTutorial : t));
   };
@@ -69,7 +82,15 @@ export default function AdminContentPage() {
     setAllArticles(prev => prev.map(a => a.id === updatedArticle.id ? updatedArticle : a));
   };
 
-  const handleDeleteClick = (item: ContentItem, type: 'tutorial' | 'lesson' | 'article') => {
+  const handleCaseStudyUpdated = (updatedCaseStudy: CaseStudy) => {
+    setAllCaseStudies(prev => prev.map(c => c.id === updatedCaseStudy.id ? updatedCaseStudy : c));
+  };
+
+  const handleInvestorUpdated = (updatedInvestor: Investor) => {
+    setAllInvestors(prev => prev.map(i => i.id === updatedInvestor.id ? updatedInvestor : i));
+  };
+
+  const handleDeleteClick = (item: ContentItem, type: 'tutorial' | 'lesson' | 'article' | 'casestudy' | 'investor') => {
     setItemToDelete(item);
     setDeleteType(type);
   };
@@ -83,6 +104,10 @@ export default function AdminContentPage() {
       setAllLessons(prev => prev.filter(l => l.id !== itemToDelete.id));
     } else if (deleteType === 'article') {
       setAllArticles(prev => prev.filter(a => a.id !== itemToDelete.id));
+    } else if (deleteType === 'casestudy') {
+      setAllCaseStudies(prev => prev.filter(c => c.id !== itemToDelete.id));
+    } else if (deleteType === 'investor') {
+      setAllInvestors(prev => prev.filter(i => i.id !== itemToDelete.id));
     }
 
     toast({
@@ -269,26 +294,86 @@ export default function AdminContentPage() {
          <TabsContent value="case-studies" className="mt-6">
           <Card>
             <CardHeader>
-              <CardTitle>Manage Case Studies</CardTitle>
-              <CardDescription>
-                Functionality to add, edit, and delete case studies will be built here.
-              </CardDescription>
+              <div className="flex justify-between items-center">
+                <div>
+                  <CardTitle>All Case Studies</CardTitle>
+                  <CardDescription>
+                    Browse and manage all case studies.
+                  </CardDescription>
+                </div>
+                <AddCaseStudyForm onCaseStudyAdded={handleCaseStudyAdded}>
+                   <Button>
+                      <PlusCircle className="mr-2 h-4 w-4" />
+                      Add Case Study
+                    </Button>
+                </AddCaseStudyForm>
+              </div>
             </CardHeader>
             <CardContent>
-               <p className="text-muted-foreground">Case study management coming soon.</p>
+                <div className="space-y-4">
+                  {allCaseStudies.map(study => (
+                    <div key={study.id} className="flex items-center gap-4 p-2 rounded-md border">
+                        <div className="relative h-16 w-28 rounded-md overflow-hidden">
+                             <Image 
+                                src={study.imageUrl}
+                                alt={study.title}
+                                fill
+                                className="object-cover"
+                             />
+                        </div>
+                        <div className="flex-1">
+                            <p className="font-semibold">{study.title}</p>
+                            <p className="text-sm text-muted-foreground">{study.companyName}</p>
+                        </div>
+                        <AddCaseStudyForm
+                          initialData={study}
+                          onCaseStudyUpdated={handleCaseStudyUpdated}
+                        >
+                            <Button variant="outline" size="sm">Edit</Button>
+                        </AddCaseStudyForm>
+                         <Button variant="destructive" size="sm" onClick={() => handleDeleteClick(study, 'casestudy')}>Delete</Button>
+                    </div>
+                  ))}
+                </div>
             </CardContent>
           </Card>
         </TabsContent>
         <TabsContent value="investors" className="mt-6">
           <Card>
             <CardHeader>
-              <CardTitle>Manage Investors</CardTitle>
-              <CardDescription>
-                 Functionality to add, edit, and delete investor profiles will be built here.
-              </CardDescription>
+              <div className="flex justify-between items-center">
+                <div>
+                  <CardTitle>All Investors</CardTitle>
+                  <CardDescription>
+                    Browse and manage all investor profiles.
+                  </CardDescription>
+                </div>
+                <AddInvestorForm onInvestorAdded={handleInvestorAdded}>
+                   <Button>
+                      <PlusCircle className="mr-2 h-4 w-4" />
+                      Add Investor
+                    </Button>
+                </AddInvestorForm>
+              </div>
             </CardHeader>
             <CardContent>
-              <p className="text-muted-foreground">Investor management coming soon.</p>
+                <div className="space-y-4">
+                  {allInvestors.map(investor => (
+                    <div key={investor.id} className="flex items-center gap-4 p-2 rounded-md border">
+                        <div className="flex-1">
+                            <p className="font-semibold">{investor.name}</p>
+                            <p className="text-sm text-muted-foreground line-clamp-1">{investor.description}</p>
+                        </div>
+                        <AddInvestorForm
+                          initialData={investor}
+                          onInvestorUpdated={handleInvestorUpdated}
+                        >
+                            <Button variant="outline" size="sm">Edit</Button>
+                        </AddInvestorForm>
+                         <Button variant="destructive" size="sm" onClick={() => handleDeleteClick(investor, 'investor')}>Delete</Button>
+                    </div>
+                  ))}
+                </div>
             </CardContent>
           </Card>
         </TabsContent>
@@ -297,7 +382,7 @@ export default function AdminContentPage() {
         isOpen={!!itemToDelete}
         onOpenChange={(isOpen) => !isOpen && setItemToDelete(null)}
         onConfirm={handleConfirmDelete}
-        itemName={itemToDelete?.title || ''}
+        itemName={itemToDelete?.title || (itemToDelete as Investor)?.name || ''}
       />
     </div>
   );
