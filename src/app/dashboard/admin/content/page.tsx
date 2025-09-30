@@ -15,14 +15,19 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { tutorials, type Tutorial } from '@/lib/tutorials';
+import { lessons, type Lesson } from '@/lib/lessons';
+import { articles, type Article } from '@/lib/articles';
 import Image from 'next/image';
 import { AddTutorialForm } from '@/components/dashboard/admin/add-tutorial-form';
+import { AddLessonForm } from '@/components/dashboard/admin/add-lesson-form';
+import { AddArticleForm } from '@/components/dashboard/admin/add-article-form';
 
 export default function AdminContentPage() {
   const { isAdmin, loading } = useAuth();
   const router = useRouter();
-  const [isAddModalOpen, setIsAddModalOpen] = React.useState(false);
   const [allTutorials, setAllTutorials] = React.useState<Tutorial[]>(tutorials);
+  const [allLessons, setAllLessons] = React.useState<Lesson[]>(lessons);
+  const [allArticles, setAllArticles] = React.useState<Article[]>(articles);
 
   React.useEffect(() => {
     if (!loading && !isAdmin) {
@@ -31,10 +36,15 @@ export default function AdminContentPage() {
   }, [isAdmin, loading, router]);
 
   const handleTutorialAdded = (newTutorial: Tutorial) => {
-    // This is a optimistic update for the UI.
-    // In a real app, you'd refetch or get the new list from the server.
     setAllTutorials(prev => [...prev, newTutorial]);
-    setIsAddModalOpen(false);
+  }
+
+  const handleLessonAdded = (newLesson: Lesson) => {
+    setAllLessons(prev => [...prev, newLesson]);
+  }
+
+  const handleArticleAdded = (newArticle: Article) => {
+    setAllArticles(prev => [...prev, newArticle]);
   }
 
   if (loading || !isAdmin) {
@@ -109,14 +119,88 @@ export default function AdminContentPage() {
           </Card>
         </TabsContent>
         <TabsContent value="lessons" className="mt-6">
-          <p className="text-muted-foreground">
-            Startup lesson management functionality will be built here.
-          </p>
+          <Card>
+            <CardHeader>
+              <div className="flex justify-between items-center">
+                <div>
+                  <CardTitle>All Startup Lessons</CardTitle>
+                  <CardDescription>
+                    Browse and manage all startup lesson videos.
+                  </CardDescription>
+                </div>
+                <AddLessonForm onLessonAdded={handleLessonAdded}>
+                   <Button>
+                      <PlusCircle className="mr-2 h-4 w-4" />
+                      Add Lesson
+                    </Button>
+                </AddLessonForm>
+              </div>
+            </CardHeader>
+            <CardContent>
+                <div className="space-y-4">
+                  {allLessons.map(lesson => (
+                    <div key={lesson.id} className="flex items-center gap-4 p-2 rounded-md border">
+                        <div className="relative h-16 w-28 rounded-md overflow-hidden">
+                             <Image 
+                                src={lesson.imageUrl}
+                                alt={lesson.title}
+                                fill
+                                className="object-cover"
+                             />
+                        </div>
+                        <div className="flex-1">
+                            <p className="font-semibold">{lesson.title}</p>
+                            <p className="text-sm text-muted-foreground">by {lesson.author}</p>
+                        </div>
+                        <Button variant="outline" size="sm">Edit</Button>
+                         <Button variant="destructive" size="sm">Delete</Button>
+                    </div>
+                  ))}
+                </div>
+            </CardContent>
+          </Card>
         </TabsContent>
         <TabsContent value="articles" className="mt-6">
-          <p className="text-muted-foreground">
-            Article management functionality will be built here.
-          </p>
+           <Card>
+            <CardHeader>
+              <div className="flex justify-between items-center">
+                <div>
+                  <CardTitle>All Articles</CardTitle>
+                  <CardDescription>
+                    Browse and manage all articles.
+                  </CardDescription>
+                </div>
+                <AddArticleForm onArticleAdded={handleArticleAdded}>
+                   <Button>
+                      <PlusCircle className="mr-2 h-4 w-4" />
+                      Add Article
+                    </Button>
+                </AddArticleForm>
+              </div>
+            </CardHeader>
+            <CardContent>
+                <div className="space-y-4">
+                  {allArticles.map(article => (
+                    <div key={article.id} className="flex items-center gap-4 p-2 rounded-md border">
+                        <div className="relative h-16 w-28 rounded-md overflow-hidden">
+                             <Image 
+                                src={article.imageUrl}
+                                alt={article.title}
+                                fill
+                                className="object-cover"
+                             />
+                        </div>
+                        <div className="flex-1">
+                            <p className="font-semibold">{article.title}</p>
+                            <p className="text-sm text-muted-foreground">{article.category}</p>
+                        </div>
+                        <Button variant="outline" size="sm">Edit</Button>
+                         <Button variant="destructive" size="sm">Delete</Button>
+                    </div>
+                  ))}
+                </div>
+            </CardContent>
+          </Card>
         </TabsContent>
       </Tabs>
     </div>
