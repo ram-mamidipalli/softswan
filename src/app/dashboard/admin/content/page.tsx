@@ -118,10 +118,12 @@ export default function AdminContentPage() {
       </div>
 
       <Tabs defaultValue="tutorials" className="w-full">
-        <TabsList className="grid w-full grid-cols-3 max-w-lg">
+        <TabsList className="grid w-full grid-cols-5 max-w-2xl">
           <TabsTrigger value="tutorials">Tutorials</TabsTrigger>
           <TabsTrigger value="lessons">Startup Lessons</TabsTrigger>
           <TabsTrigger value="articles">Articles</TabsTrigger>
+          <TabsTrigger value="case-studies">Case Studies</TabsTrigger>
+          <TabsTrigger value="investors">Investors</TabsTrigger>
         </TabsList>
         <TabsContent value="tutorials" className="mt-6">
           <Card>
@@ -261,6 +263,32 @@ export default function AdminContentPage() {
                     </div>
                   ))}
                 </div>
+            </CardContent>
+          </Card>
+        </TabsContent>
+         <TabsContent value="case-studies" className="mt-6">
+          <Card>
+            <CardHeader>
+              <CardTitle>Manage Case Studies</CardTitle>
+              <CardDescription>
+                Functionality to add, edit, and delete case studies will be built here.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+               <p className="text-muted-foreground">Case study management coming soon.</p>
+            </CardContent>
+          </Card>
+        </TabsContent>
+        <TabsContent value="investors" className="mt-6">
+          <Card>
+            <CardHeader>
+              <CardTitle>Manage Investors</CardTitle>
+              <CardDescription>
+                 Functionality to add, edit, and delete investor profiles will be built here.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <p className="text-muted-foreground">Investor management coming soon.</p>
             </CardContent>
           </Card>
         </TabsContent>
