@@ -5,7 +5,7 @@ import * as React from 'react';
 import { useAuth } from '@/hooks/use-auth';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { Loader2 } from 'lucide-react';
+import { Loader2, Newspaper, Users, Puzzle } from 'lucide-react';
 import {
   Card,
   CardContent,
@@ -45,38 +45,57 @@ export default function AdminPage() {
         <Link href="/dashboard/admin/content" className="group">
           <Card className="h-full transition-all group-hover:shadow-lg group-hover:-translate-y-1">
             <CardHeader>
-              <CardTitle>Manage Content</CardTitle>
-              <CardDescription>
-                Add, edit, or delete tutorials, startup lessons, and articles.
-              </CardDescription>
+               <div className="flex items-center gap-4">
+                <Newspaper className="w-8 h-8 text-primary" />
+                <div>
+                  <CardTitle>Manage Content</CardTitle>
+                  <CardDescription>
+                    Tutorials, lessons, and articles.
+                  </CardDescription>
+                </div>
+              </div>
             </CardHeader>
             <CardContent>
               {/* Placeholder for future functionality */}
             </CardContent>
           </Card>
         </Link>
-        <Card>
-          <CardHeader>
-            <CardTitle>Manage Users</CardTitle>
-            <CardDescription>
-              View and manage user accounts.
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-             {/* Placeholder for future functionality */}
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader>
-            <CardTitle>Manage Puzzles</CardTitle>
-            <CardDescription>
-              Manage problem-solving challenges and other content.
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-             {/* Placeholder for future functionality */}
-          </CardContent>
-        </Card>
+        <Link href="/dashboard/admin/puzzles" className="group">
+          <Card className="h-full transition-all group-hover:shadow-lg group-hover:-translate-y-1">
+            <CardHeader>
+               <div className="flex items-center gap-4">
+                <Puzzle className="w-8 h-8 text-primary" />
+                <div>
+                  <CardTitle>Manage Puzzles</CardTitle>
+                  <CardDescription>
+                    Problem-solving challenges.
+                  </CardDescription>
+                </div>
+              </div>
+            </CardHeader>
+            <CardContent>
+              {/* Placeholder for future functionality */}
+            </CardContent>
+          </Card>
+        </Link>
+         <Link href="/dashboard/admin/users" className="group">
+            <Card className="h-full transition-all group-hover:shadow-lg group-hover:-translate-y-1">
+                <CardHeader>
+                <div className="flex items-center gap-4">
+                    <Users className="w-8 h-8 text-primary" />
+                    <div>
+                    <CardTitle>Manage Users</CardTitle>
+                    <CardDescription>
+                        View and manage user accounts.
+                    </CardDescription>
+                    </div>
+                </div>
+                </CardHeader>
+                <CardContent>
+                {/* Placeholder for future functionality */}
+                </CardContent>
+            </Card>
+        </Link>
       </div>
     </div>
   );
