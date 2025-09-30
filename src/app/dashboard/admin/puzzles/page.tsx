@@ -4,7 +4,7 @@
 import * as React from 'react';
 import { useAuth } from '@/hooks/use-auth';
 import { useRouter } from 'next/navigation';
-import { Loader2, ArrowLeft } from 'lucide-react';
+import { Loader2, ArrowLeft, PlusCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import {
@@ -14,16 +14,70 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import { puzzles, type Puzzle } from '@/lib/puzzles';
+import { startupChallenges, type StartupChallenge } from '@/lib/startup-challenges';
+import { AddPuzzleForm } from '@/components/dashboard/admin/add-puzzle-form';
+import { AddStartupChallengeForm } from '@/components/dashboard/admin/add-startup-challenge-form';
+import { DeleteConfirmationDialog } from '@/components/dashboard/admin/delete-confirmation-dialog';
+import { useToast } from '@/hooks/use-toast';
+
+type Challenge = Puzzle | StartupChallenge;
 
 export default function AdminPuzzlesPage() {
   const { isAdmin, loading } = useAuth();
   const router = useRouter();
+  const { toast } = useToast();
+
+  const [allPuzzles, setAllPuzzles] = React.useState<Puzzle[]>(puzzles);
+  const [allStartupChallenges, setAllStartupChallenges] = React.useState<StartupChallenge[]>(startupChallenges);
+
+  const [itemToDelete, setItemToDelete] = React.useState<Challenge | null>(null);
+  const [deleteType, setDeleteType] = React.useState<'puzzle' | 'startup-challenge' | null>(null);
 
   React.useEffect(() => {
     if (!loading && !isAdmin) {
       router.push('/dashboard');
     }
   }, [isAdmin, loading, router]);
+
+  const handlePuzzleAdded = (newPuzzle: Puzzle) => {
+    setAllPuzzles(prev => [...prev, newPuzzle]);
+  };
+  
+  const handleStartupChallengeAdded = (newChallenge: StartupChallenge) => {
+    setAllStartupChallenges(prev => [...prev, newChallenge]);
+  };
+  
+  const handlePuzzleUpdated = (updatedPuzzle: Puzzle) => {
+    setAllPuzzles(prev => prev.map(p => p.id === updatedPuzzle.id ? updatedPuzzle : p));
+  };
+
+  const handleStartupChallengeUpdated = (updatedChallenge: StartupChallenge) => {
+    setAllStartupChallenges(prev => prev.map(c => c.id === updatedChallenge.id ? updatedChallenge : c));
+  };
+  
+  const handleDeleteClick = (item: Challenge, type: 'puzzle' | 'startup-challenge') => {
+    setItemToDelete(item);
+    setDeleteType(type);
+  };
+  
+  const handleConfirmDelete = () => {
+    if (!itemToDelete || !deleteType) return;
+
+    if (deleteType === 'puzzle') {
+      setAllPuzzles(prev => prev.filter(p => p.id !== itemToDelete.id));
+    } else if (deleteType === 'startup-challenge') {
+      setAllStartupChallenges(prev => prev.filter(c => c.id !== itemToDelete.id));
+    }
+
+    toast({
+      title: `${deleteType.charAt(0).toUpperCase() + deleteType.slice(1)} Deleted`,
+      description: `The item has been removed.`,
+    });
+
+    setItemToDelete(null);
+    setDeleteType(null);
+  };
 
   if (loading || !isAdmin) {
     return (
@@ -56,30 +110,94 @@ export default function AdminPuzzlesPage() {
         <TabsContent value="classic" className="mt-6">
           <Card>
             <CardHeader>
-              <CardTitle>Classic Puzzles</CardTitle>
-              <CardDescription>
-                Riddles, logic puzzles, and brain teasers.
-              </CardDescription>
+                <div className="flex justify-between items-center">
+                    <div>
+                        <CardTitle>Classic Puzzles</CardTitle>
+                        <CardDescription>
+                            Riddles, logic puzzles, and brain teasers.
+                        </CardDescription>
+                    </div>
+                    <AddPuzzleForm onPuzzleAdded={handlePuzzleAdded}>
+                        <Button>
+                            <PlusCircle className="mr-2 h-4 w-4" />
+                            Add Puzzle
+                        </Button>
+                    </AddPuzzleForm>
+                </div>
             </CardHeader>
             <CardContent>
-              <p className="text-muted-foreground">Puzzle management functionality will be built here.</p>
+              <div className="space-y-4">
+                  {allPuzzles.map(puzzle => (
+                    <div key={puzzle.id} className="flex flex-col gap-2 p-4 rounded-md border">
+                        <div className="flex justify-between items-start">
+                             <p className="font-semibold">{puzzle.problem}</p>
+                             <div className="flex gap-2 flex-shrink-0">
+                                <AddPuzzleForm
+                                    initialData={puzzle}
+                                    onPuzzleUpdated={handlePuzzleUpdated}
+                                >
+                                    <Button variant="outline" size="sm">Edit</Button>
+                                </AddPuzzleForm>
+                                <Button variant="destructive" size="sm" onClick={() => handleDeleteClick(puzzle, 'puzzle')}>Delete</Button>
+                             </div>
+                        </div>
+                        <p className="text-sm text-muted-foreground"><span className="font-semibold">Answer: </span>{puzzle.expert_answer}</p>
+                        <p className="text-xs text-muted-foreground pt-2">Category: {puzzle.category}</p>
+                    </div>
+                  ))}
+                </div>
             </CardContent>
           </Card>
         </TabsContent>
         <TabsContent value="startup" className="mt-6">
           <Card>
             <CardHeader>
-              <CardTitle>Startup Challenges</CardTitle>
-              <CardDescription>
-                Real-world business scenarios and case studies.
-              </CardDescription>
+                 <div className="flex justify-between items-center">
+                    <div>
+                        <CardTitle>Startup Challenges</CardTitle>
+                        <CardDescription>
+                            Real-world business scenarios and case studies.
+                        </CardDescription>
+                    </div>
+                     <AddStartupChallengeForm onStartupChallengeAdded={handleStartupChallengeAdded}>
+                        <Button>
+                            <PlusCircle className="mr-2 h-4 w-4" />
+                            Add Challenge
+                        </Button>
+                    </AddStartupChallengeForm>
+                </div>
             </CardHeader>
             <CardContent>
-              <p className="text-muted-foreground">Startup challenge management functionality will be built here.</p>
+                <div className="space-y-4">
+                  {allStartupChallenges.map(challenge => (
+                    <div key={challenge.id} className="flex flex-col gap-2 p-4 rounded-md border">
+                        <div className="flex justify-between items-start">
+                             <p className="font-semibold">{challenge.problem}</p>
+                             <div className="flex gap-2 flex-shrink-0">
+                                <AddStartupChallengeForm
+                                    initialData={challenge}
+                                    onStartupChallengeUpdated={handleStartupChallengeUpdated}
+                                >
+                                    <Button variant="outline" size="sm">Edit</Button>
+                                </AddStartupChallengeForm>
+                                <Button variant="destructive" size="sm" onClick={() => handleDeleteClick(challenge, 'startup-challenge')}>Delete</Button>
+                             </div>
+                        </div>
+                        <p className="text-sm text-muted-foreground"><span className="font-semibold">Answer: </span>{challenge.expert_answer}</p>
+                        <p className="text-xs text-muted-foreground pt-2">Category: {challenge.category}</p>
+                    </div>
+                  ))}
+                </div>
             </CardContent>
           </Card>
         </TabsContent>
       </Tabs>
+        <DeleteConfirmationDialog
+            isOpen={!!itemToDelete}
+            onOpenChange={(isOpen) => !isOpen && setItemToDelete(null)}
+            onConfirm={handleConfirmDelete}
+            itemName={itemToDelete?.problem || ''}
+        />
     </div>
   );
 }
